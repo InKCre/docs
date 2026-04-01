@@ -11,10 +11,10 @@ This file defines how unit repositories consume shared durable docs from `InKCre
 
 ## Exported Paths
 
-- `docs/00-meta/**`
-- `docs/10-prd/**`
-- `docs/15-alignment/**`
-- `docs/20-product-tdd/**`
+- `00-meta/**`
+- `10-prd/**`
+- `15-alignment/**`
+- `20-product-tdd/**`
 
 ## Non-Exported Paths
 
