@@ -106,13 +106,17 @@ Multi-repo profile (shared durable docs + local unit docs):
 
 /  
 ├─ AGENTS.md  
+├─ .agents/
+│  └─ skills/
+│     └─ edit-shared-docs/   <-- thin repo-root discovery wrapper if runtime only auto-loads repo-root skills
 ├─ docs/  
 │  ├─ _shared/                <-- git submodule to shared docs repo (e.g., InKCre/docs)  
 │  │  ├─ 00-meta/  
 │  │  │  └─ _svc_v9_2.md  
 │  │  ├─ 10-prd/  
 │  │  ├─ 15-alignment/  
-│  │  └─ 20-product-tdd/  
+│  │  ├─ 20-product-tdd/  
+│  │  └─ .agents/skills/      <-- canonical shared agent skills
 │  └─ 40-deployment/          <-- unit-local runtime/ops docs  
 ├─ tasks/  
 └─ src/.../AGENTS.md          <-- unit-local complexity memory
@@ -122,6 +126,7 @@ Rules for the multi-repo profile:
 * Cross-unit durable docs belong to the shared docs repo and are consumed through `docs/_shared/`.  
 * Unit-local runtime/ops docs stay outside `docs/_shared/` (typically `docs/40-deployment/`).  
 * Local complexity memory stays near code in local AGENTS.md files.  
+* If canonical shared skills live under `docs/_shared/.agents/skills/`, unit repos may expose thin repo-root wrappers under `.agents/skills/` when the runtime only auto-loads repo-root skills.  
 * Do not directly edit shared docs from a unit repo worktree. Edit in the shared docs repo, push, then update the submodule pointer in the unit repo.
 
 ## 4. AGENTS.md & The Execution Protocol
@@ -186,6 +191,7 @@ If the repo uses `docs/_shared/` as a submodule mount:
 
 * Treat `docs/_shared/00-meta/_svc_v9_2.md` as the shared framework baseline.  
 * Treat `docs/_shared/10-prd/`, `docs/_shared/15-alignment/`, and `docs/_shared/20-product-tdd/` as shared read targets.  
+* Canonical shared skills may live under `docs/_shared/.agents/skills/`; if the runtime only auto-loads repo-root `.agents/skills/`, use a thin repo-root wrapper rather than a second submodule mount.  
 * Shared-doc changes must be authored in the source docs repo first, then consumed by submodule pointer update in the unit repo.  
 * Unit repos should not carry ad hoc local edits inside `docs/_shared/`.
 

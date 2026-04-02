@@ -25,6 +25,7 @@ An agent operating in a unit repository should:
 - block direct edits under `docs/_shared`
 - enforce update order: source push first, pointer update second
 - verify pointer target commit is reachable from `InKCre/docs` remote
+- use the canonical skill at `.agents/skills/edit-shared-docs/`; repo-root unit wrappers should only delegate to that source
 
 ## CI Guard Contract (Unit Repos)
 
