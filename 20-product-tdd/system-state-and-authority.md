@@ -14,3 +14,9 @@ Record durable ownership of authoritative state across units and distinguish it 
 - Extension installation state is authoritative at the deployment level.
 - One deployment must not carry multiple installed records for the same extension ID.
 - Installation state is distinct from client-scoped permission and distinct from current runtime activity.
+
+## Info-Base Graph Authority
+
+- Persisted blocks and relations are authoritative graph state.
+- A block record may carry inline content or a pointer to externally retrieved content.
+- Raw content retrieval is downstream runtime behavior, not additional authoritative graph state.

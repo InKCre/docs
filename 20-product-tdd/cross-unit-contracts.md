@@ -16,3 +16,11 @@ Record durable data and behavior contracts that span more than one unit reposito
 - `enabled` means a specific client is allowed to run that extension.
 - `running` means the current runtime has actually started that extension and applied its runtime side effects.
 - Starting or stopping an extension is not a pure flag flip; it changes runtime capabilities and API surface for that client.
+
+## Info-Base Ownership Contract
+
+- Sources and extensions may propose graph data, but info-base owns persisted graph insertion.
+- Resolver responsibility and storage responsibility must stay separated:
+  - resolver interprets a block
+  - storage retrieves raw content when the block does not carry it inline
+- Embedding generation may be triggered during ingestion, but embeddings remain sink-owned rather than source-owned or info-base-owned.
