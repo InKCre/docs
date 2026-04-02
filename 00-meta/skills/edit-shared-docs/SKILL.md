@@ -17,6 +17,7 @@ Use this skill to enforce one safe workflow for shared durable docs:
 Keep shared docs and unit-local docs separated:
 
 - shared docs in source repo `InKCre/docs`: `{00-meta,10-prd,15-alignment,20-product-tdd}`
+- canonical shared skills and SOPs in source repo `InKCre/docs`: `00-meta/skills/`
 - shared docs in unit repos: `docs/_shared/{00-meta,10-prd,15-alignment,20-product-tdd}`
 - unit-local docs: outside `docs/_shared` (for example `docs/40-deployment` and local `AGENTS.md`)
 
@@ -24,9 +25,9 @@ For full command forms, read [references/commands.md](references/commands.md).
 
 ## Discoverability Profile
 
-- The canonical skill source lives here, in `InKCre/docs/.agents/skills/edit-shared-docs/`.
-- Unit repos may expose a thin repo-root wrapper at `.agents/skills/edit-shared-docs/` because Codex auto-loads repo-root `.agents/skills`, not `docs/_shared/.agents/skills`.
-- Treat the repo-root wrapper as a discovery shim only. Do not fork the workflow there.
+- The canonical skill source lives here, in `InKCre/docs/00-meta/skills/edit-shared-docs/`.
+- Unit repos may expose a thin repo-root wrapper at `.agents/skills/edit-shared-docs/` because Codex auto-loads repo-root `.agents/skills`, not `docs/_shared/00-meta/skills/**` paths.
+- Treat every wrapper as discovery-only. Do not fork the workflow there.
 
 ## Workflow A: Decide Shared vs Local Ownership
 
@@ -42,7 +43,7 @@ Apply this before editing any durable doc that may be mixed.
 Apply this when the task changes shared PRD/alignment/product-tdd/framework docs.
 
 1. Work in `InKCre/docs`.
-2. Edit files under `00-meta`, `10-prd`, `15-alignment`, `20-product-tdd`, or `.agents/skills/edit-shared-docs`.
+2. Edit files under `00-meta`, `10-prd`, `15-alignment`, `20-product-tdd`, or `00-meta/skills/edit-shared-docs`.
 3. Commit and push source changes.
 4. Capture the source commit hash for pointer bump reference.
 
@@ -52,17 +53,17 @@ Apply this when a unit repo must consume new shared docs.
 
 1. In the unit repo, initialize or update submodule `docs/_shared`.
 2. Set `docs/_shared` to the intended source commit.
-3. Run `scripts/check-submodule.sh --repo-root <unit-repo> --mode pre-commit`.
+3. Run `scripts/check-submodule.sh --repo-root <unit-repo> --mode pre-commit` from the canonical shared skill root.
 4. Commit only the pointer bump plus the minimal local path updates that route readers correctly.
 
 Do not edit content inside `docs/_shared` from unit repo context.
 
-## Workflow D: Repo-Root Skill Shim
+## Workflow D: Skill Shims
 
-Apply this when a unit repo needs repo-root skill discoverability.
+Apply this when a repo needs skill discoverability without duplicating the workflow.
 
-1. Keep the canonical workflow in `docs/_shared/.agents/skills/edit-shared-docs/`.
-2. Expose a thin wrapper in `.agents/skills/edit-shared-docs/SKILL.md`.
+1. Keep the canonical workflow in `00-meta/skills/edit-shared-docs/`.
+2. Expose only a thin repo-root wrapper in `.agents/skills/edit-shared-docs/SKILL.md` when a unit repo needs auto-discovery.
 3. Keep the wrapper short and make it point straight back to the canonical skill.
 4. Document the setup in a development setup doc such as `CONTRIBUTING.md`.
 

@@ -153,11 +153,12 @@ Multi-repo profile:
 │  │  │  ├─ mode-a-explore.md
 │  │  │  ├─ mode-b-solidify.md
 │  │  │  ├─ mode-c-execute.md
-│  │  │  └─ mode-d-diagnose.md
+│  │  │  ├─ mode-d-diagnose.md
+│  │  │  └─ skills/
+│  │  │     └─ edit-shared-docs/
 │  │  ├─ 10-prd/
 │  │  ├─ 15-alignment/
-│  │  ├─ 20-product-tdd/
-│  │  └─ .agents/skills/
+│  │  └─ 20-product-tdd/
 │  └─ 40-deployment/
 ├─ tasks/
 └─ src/**/AGENTS.md
@@ -166,6 +167,7 @@ Multi-repo profile:
 Rules for the multi-repo profile:
 
 - shared PRD, shared alignment, shared product-tdd, and shared framework/meta docs belong in `InKCre/docs`
+- canonical shared skills and SOPs belong in `InKCre/docs/00-meta/skills/`
 - unit-local runtime and deployment docs stay outside `docs/_shared/`
 - tactical unit memory stays in local `AGENTS.md`
 - unit repos may expose thin repo-root skill wrappers under `.agents/skills/` when the runtime only auto-loads repo-root skills
@@ -216,7 +218,7 @@ If a unit repo mounts shared docs at `docs/_shared/`:
 - treat `docs/_shared/00-meta/_svc_v9_3.md` as the shared framework baseline
 - treat `docs/_shared/00-meta/mode-*.md` as shared workflow baselines when no stronger local override exists
 - treat `docs/_shared/10-prd/`, `docs/_shared/15-alignment/`, and `docs/_shared/20-product-tdd/` as shared read targets
-- keep canonical shared skills under `docs/_shared/.agents/skills/`
+- keep canonical shared skills under `docs/_shared/00-meta/skills/`
 - use thin repo-root wrappers under `.agents/skills/` only for discoverability, not as a forked workflow source
 - author shared-doc changes in the source repo first, then bump the unit repo submodule pointer
 
@@ -237,6 +239,8 @@ Write SOPs in a read-do shape:
 3. give linear read-do steps
 4. define pause points
 5. state exit criteria
+
+A practical canonical layout for shared agent workflows is `00-meta/skills/<skill>/`.
 
 ## 6. Alignment Pack
 
@@ -345,7 +349,7 @@ In multi-repo units, read `docs/_shared/00-meta/_svc_v9_3.md` as the shared base
 
 1. author shared framework/meta docs in `InKCre/docs/00-meta/`
 2. expose them to unit repos through `docs/_shared/00-meta/`
-3. keep canonical shared skills in `InKCre/docs/.agents/skills/`
+3. keep canonical shared skills and SOPs in `InKCre/docs/00-meta/skills/`
 4. use thin repo-root wrappers in unit repos only for runtime discoverability
 5. push shared-doc source changes before bumping unit repo submodule pointers
 

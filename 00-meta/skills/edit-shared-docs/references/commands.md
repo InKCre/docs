@@ -24,10 +24,10 @@ Then validate:
   --repo-root /path/to/unit-repo --mode pre-commit
 ```
 
-If you are reading the canonical shared skill through `docs/_shared/.agents/skills/edit-shared-docs/`, then `<skill-root>` is:
+The canonical `<skill-root>` is:
 
 ```bash
-/path/to/unit-repo/docs/_shared/.agents/skills/edit-shared-docs
+/path/to/unit-repo/docs/_shared/00-meta/skills/edit-shared-docs
 ```
 
 ## Safe Status Inspection
