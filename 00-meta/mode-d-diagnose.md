@@ -1,23 +1,26 @@
-# Mode D: Diagnosis
+# Mode D: Diagnose
 
-## Trigger
+## Role
 
-Use this mode for runtime anomalies, data corruption, unexplained failures, or system behavior that lacks trustworthy causal grounding.
+Use when observed reality diverges from expectations and evidence must be collected before action.
 
-## Constraints
+This mode is common in Reality work, but it can reappear anywhere execution produces unexplained behavior.
 
-- strictly read-only by default
-- do not guess a fix
-- do not modify code or durable docs during diagnosis
+## Forbidden
+
+- No evidence, no modification.
+- Do not collapse multiple hypotheses into one guess.
 
 ## Read-Do Steps
 
-1. gather telemetry first: logs, metrics, traces, failing requests, runtime state
-2. establish ground truth from evidence rather than intuition
-3. write a diagnostic task doc with failure modes, evidence, and validation steps
-4. identify what additional telemetry or reproduction data is still missing
-5. pause for human confirmation before switching to Mode C or invoking deployment runbooks
+1. Capture the observable symptom, timeline, and blast radius.
+2. Collect logs, metrics, traces, failing tests, or other direct evidence.
+3. Build or update a diagnostics matrix.
+4. Rank hypotheses by evidence quality and missing evidence.
+5. Decide whether the next justified step is more diagnosis, exploration, or execution.
 
 ## Exit Criteria
 
-Exit this mode only after a bounded diagnosis exists and the next step is explicitly chosen.
+- Likely causes are ranked with evidence.
+- Missing evidence is explicit.
+- The next action is justified rather than guessed.

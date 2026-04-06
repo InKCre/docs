@@ -1,22 +1,26 @@
-# Mode B: Solidification
+# Mode B: Solidify
 
-## Trigger
+## Role
 
-Use this mode when the request is clear enough to record, but the durable truth is still missing or out of date.
+Use when findings must be restated into stable claims, contracts, decisions, or promotion candidates.
 
-## Constraints
+This mode often bridges tasks and durable docs, and it may occur multiple times inside the same task.
 
-- do not jump straight into implementation when durable references or invariants matter
-- update durable docs before code when new durable truth is being introduced
+## Forbidden
+
+- Do not start coding while durable ownership is still ambiguous.
+- Do not promote unstable guesses into PRD, TDD, or deployment docs.
 
 ## Read-Do Steps
 
-1. identify the durable owner: `00-meta`, PRD, Product TDD, Unit TDD, deployment, or local `AGENTS.md`
-2. perform the pre-execution restatement
-3. wait for human confirmation when the change is reference-sensitive or changes invariants
-4. update the durable truth in the correct layer
-5. only then hand off or continue into execution
+1. Gather the current findings, evidence, and assumptions.
+2. Decide which truths are stable enough to promote and which must stay in tasks.
+3. Restate the target, scope, invariants, and verification.
+4. Confirm the durable owner for each promoted truth.
+5. Hand off to Execute or return to Explore if ownership is still unclear.
 
 ## Exit Criteria
 
-Exit this mode when the durable truth is recorded and the task becomes straightforward execution.
+- Durable ownership is explicit.
+- Verification is explicit.
+- The next edit or implementation step is safe to perform.

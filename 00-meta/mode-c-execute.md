@@ -1,23 +1,26 @@
-# Mode C: Execution
+# Mode C: Execute
 
-## Trigger
+## Role
 
-Use this mode when the target is specific, the relevant truths are already aligned, and the task is ready for direct implementation work.
+Use when the current slice of work is clear enough to implement or edit safely.
 
-## Constraints
+This mode can appear in any input type once ownership and verification are sufficiently clear.
 
-- do not skip the closest relevant local guide
-- do not ignore existing invariants or contracts
+## Forbidden
+
+- Do not skip local `AGENTS.md` and relevant TDD checks before coding.
+- Do not keep executing when new evidence shows the problem is still not understood.
 
 ## Read-Do Steps
 
-1. read the closest relevant local `AGENTS.md`
-2. read `docs/30-unit-tdd/` if the change touches unit-level logical structure
-3. read shared PRD/Product TDD/deployment docs as relevant
-4. perform the pre-execution restatement
-5. await human confirmation before reference-sensitive or logic-altering work when invariants matter
-6. prefer tests, types, assertions, and CI guardrails over extra prose
+1. Restate the exact change and verification plan.
+2. Load the nearest local `AGENTS.md` plus any governing PRD, TDD, deployment, or topology docs.
+3. Implement the smallest safe change for the current slice.
+4. Run checks and compare the result against the declared verification.
+5. If unexpected behavior appears, re-enter Explore or Diagnose instead of guessing.
 
 ## Exit Criteria
 
-Exit this mode when implementation and verification are complete, or when new ambiguity forces a return to Mode A or Mode B.
+- The requested change for this slice is implemented.
+- Verification passes.
+- No known invariant is violated.

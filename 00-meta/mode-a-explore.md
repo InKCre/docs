@@ -1,23 +1,25 @@
-# Mode A: Exploration
+# Mode A: Explore
 
-## Trigger
+## Role
 
-Use this mode when the request is vague, exploratory, or still forming, and causality is not yet stable enough for durable truth or code changes.
+Use when key unknowns remain and the solution space must be mapped before safe solidification or execution.
 
-## Constraints
+This mode is a working posture, not a durable owner, and it can appear inside any input type.
 
-- do not update durable docs
-- do not modify production code
-- work in `tasks/` only
+## Forbidden
+
+- Do not treat exploration notes as durable truth.
+- Do not let open-ended searching replace a concrete next question.
 
 ## Read-Do Steps
 
-1. restate the problem in practical terms
-2. identify unknowns, assumptions, and competing framings
-3. explore options, trade-offs, and first-principles constraints
-4. record outputs in a task doc
-5. stop when the request is ready for Mode B or Mode C
+1. State the current unknowns and why they block progress.
+2. Record temporary assumptions explicitly.
+3. Run bounded exploration, reading only the smallest useful references.
+4. Reduce the unknowns into candidate decisions, claims, or hypotheses.
+5. Decide whether to stay in Explore, move to Solidify, or return to Diagnose.
 
 ## Exit Criteria
 
-Exit this mode when the work is no longer ambiguous enough to justify task-only exploration.
+- The next decision is framed clearly enough for Solidify or Execute.
+- Remaining uncertainty is explicit rather than hidden.
