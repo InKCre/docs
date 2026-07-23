@@ -81,6 +81,42 @@
 - authoritative examples: Explore, Solidify, Execute, Diagnose.
 - when an agent should load this concept: when deciding how to work after ownership is known.
 
+## Alignment Substrate
+
+- owned by layer: `15-alignment/`, when admitted by repeated coordination pressure.
+- one-line definition: an optional coordination grammar for object, address, operation, invariants, state/context, evidence, and protocol.
+- why it exists: fuzzy intent must become a verifiable state transition before non-local durable mutation.
+- common confusion with: product truth, architecture truth, or a mandatory documentation layer.
+- authoritative examples: stable semantic anchors, declarative `From -> To` requests, operation verbs bound to verification contracts.
+- when an agent should load this concept: when references drift, object boundaries are ambiguous, state changes validity, or blast radius is not obviously local.
+
+## Impact Handshake
+
+- owned by layer: `00-meta/`.
+- one-line definition: a pre-execution restatement of target, state diff, blast radius, protected invariants, and verification.
+- why it exists: boundary-crossing mutation needs a shared low-entropy interpretation before execution.
+- common confusion with: a general approval gate for every local edit.
+- authoritative examples: non-local durable-doc changes or alignment-heavy code changes.
+- when an agent should load this concept: after Alignment Substrate is needed or whenever the blast radius is not obviously local.
+
+## Task Packet
+
+- owned by layer: `tasks/`.
+- one-line definition: an agent-owned, task-local, human-inspectable workspace for volatile reasoning, evidence, decisions, verification, and collaboration state.
+- why it exists: agents need recoverable working memory without turning temporary reasoning into durable truth.
+- common confusion with: a private scratchpad, append-only log, or durable knowledge base.
+- authoritative examples: a compact `packet.md` with MVT, current understanding, constraints, and next step; supporting files split only by collaboration pressure.
+- when an agent should load this concept: for non-trivial work or when resuming a task across sessions.
+
+## Implementation Taste
+
+- owned by layer: `00-meta/`.
+- one-line definition: language- and tech-stack-neutral judgment for implementation structure, authority, provenance, durable naming, and complexity ROI.
+- why it exists: non-trivial implementation choices need coherent judgment without prescribing one language, framework, or design phase.
+- common confusion with: a style guide, pattern catalog, or mandatory waterfall design step.
+- authoritative examples: preserving SSoT, distinguishing facts from commands and projections, naming durable semantics directly, and requiring abstractions to earn their complexity.
+- when an agent should load this concept: when a non-trivial change shapes structure, boundaries, data, state, authority, naming, abstraction, or complexity budget.
+
 ## Hub
 
 - owned by layer: `00-meta/`
@@ -105,5 +141,5 @@
 - one-line definition: a read-mostly path such as `docs/_shared/` that gives a Spoke nearby access to Hub truth.
 - why it exists: agents need local read access to shared truth without copying files.
 - common confusion with: a writable local docs folder.
-- authoritative examples: `docs/_shared/00-meta/_svc_v9_6.md` inside a Spoke repo.
+- authoritative examples: `docs/_shared/00-meta/_svc_v9_8.md` inside a Spoke repo.
 - when an agent should load this concept: when a task touches shared truth or updates a shared ref.

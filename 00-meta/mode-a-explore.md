@@ -6,6 +6,8 @@ Use when key unknowns remain and the solution space must be mapped before safe s
 
 This mode is a working posture, not a durable owner, and it can appear inside any input type.
 
+For non-trivial code work, use `implementation-taste.md` to expose authority, trust, naming, and complexity unknowns.
+
 ## Forbidden
 
 - Do not treat exploration notes as durable truth.

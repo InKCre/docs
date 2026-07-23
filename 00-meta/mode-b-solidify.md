@@ -6,6 +6,8 @@ Use when findings must be restated into stable claims, contracts, decisions, or 
 
 This mode often bridges tasks and durable docs, and it may occur multiple times inside the same task.
 
+For non-trivial code work, use `implementation-taste.md` to form the temporary design claim and prepare the verification shape.
+
 ## Forbidden
 
 - Do not start coding while durable ownership is still ambiguous.
