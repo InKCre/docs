@@ -7,7 +7,7 @@ description: Safely edit InKCre shared docs in the Hub repo and bump Spoke `docs
 
 ## Overview
 
-Use this skill to enforce one safe workflow for shared durable docs in the optional multi-repo extension:
+Use this InKCre-owned skill to enforce one safe workflow for shared durable docs after SVC's optional multi-repo extension has been admitted:
 
 1. decide whether the target truth is actually shared
 2. edit `InKCre/docs` first
@@ -16,10 +16,12 @@ Use this skill to enforce one safe workflow for shared durable docs in the optio
 
 Keep shared docs and Spoke-local docs separated:
 
-- Hub-owned shared docs in `InKCre/docs`: `00-meta`, `10-prd`, `15-alignment`, `20-product-tdd`
+- Hub-owned shared docs in `InKCre/docs`: `00-meta`, `10-prd`, `20-product-tdd`, and `15-alignment` only when admitted
 - canonical shared skills and SOPs in `InKCre/docs/00-meta/skills/`
 - Spoke-local docs: outside `docs/_shared/` (for example `docs/30-unit-tdd/`, `docs/40-deployment/`, and local `AGENTS.md`)
 - Hub-local volatile work: `InKCre/docs/tasks/`
+
+SVC framework guidance is not stored in this Hub. Use the installed `svc` CLI to read `sections/extensions/multi-repo.md` when the upstream contract is needed.
 
 For full command forms, read [references/commands.md](references/commands.md).
 
@@ -84,6 +86,7 @@ Use `scripts/check-submodule.sh` for deterministic checks.
 - Never keep ad hoc local edits under `docs/_shared`.
 - Never mix Hub edits, Spoke ref bumps, and Spoke-local code changes in the same commit.
 - Keep Spoke runtime and deployment docs outside `docs/_shared`.
+- Never recreate a copied SVC framework projection under `00-meta/`.
 - Do not centralize Spoke-local implementation vocabulary into the Hub repo just because it appears important today.
 
 ## Validation

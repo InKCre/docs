@@ -1,5 +1,7 @@
 # SVC v9.6 Multi-Repo Upgrade
 
+> Historical record: the SVC v10 adoption removed copied v9 framework paths referenced below. Do not use this packet as current navigation.
+
 ## MVT Core
 
 - Objective & Hypothesis: upgrade shared docs from v9.3 to v9.6 and hard-cut the repo into the optional Hub/Spoke topology model without inventing new product truth.

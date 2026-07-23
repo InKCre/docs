@@ -4,6 +4,8 @@
 
 This document defines the operating protocol for Spoke repositories that mount this Hub repo at `docs/_shared/`.
 
+SVC supplies the upstream multi-repo contract through its packaged corpus. This file owns only the InKCre-specific git-submodule workflow.
+
 ## SOP: Shared Doc Update
 
 1. Capture the local pressure in the active Spoke task packet.
@@ -12,6 +14,8 @@ This document defines the operating protocol for Spoke repositories that mount t
 4. Move the shared ref to the required Hub commit.
 5. Validate path boundaries and pointer reachability.
 6. Commit only the isolated shared-ref bump in the Spoke repository.
+
+The Hub commit must be available from `origin` before a Spoke records it. Generated Hub SVC files outside the exported allowlist are never treated as shared-mount guidance.
 
 ## SOP: Consumer-Only Change
 

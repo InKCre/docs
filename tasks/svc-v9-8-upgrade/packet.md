@@ -1,5 +1,7 @@
 # SVC v9.8 Shared Projection Upgrade
 
+> Historical record: the SVC v10 adoption removed copied v9 framework paths referenced below. Do not use this packet as current navigation.
+
 ## MVT Core
 
 - Objective & Hypothesis: upgrade the InKCre shared SVC projection from v9.6 to v9.8 so every Spoke can consume one authoritative framework baseline.
