@@ -9,6 +9,14 @@ Record durable data and behavior contracts that span more than one unit reposito
 - This file is initialized as a scaffold.
 - Add only contracts that cannot be safely inferred from one unit's code alone.
 
+## Peer Database Runtime Contract
+
+- All units that directly operate shared persisted state consume the canonical
+  [Peer Database Runtime Contract](peer-database-runtime-contract.md).
+- The contract owns database protocol admission, peer principals, lifecycle semantics,
+  readiness, JWT claims, and portable acceptance. Unit repositories own only their
+  implementation and provider-specific deployment mechanics.
+
 ## Extension State Contract
 
 - `installed`, `enabled`, and `running` are different states and must not be collapsed into one concept.
