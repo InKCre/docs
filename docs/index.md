@@ -6,6 +6,7 @@
 - [Unit topology](../20-product-tdd/unit-topology.md)
 - [System state and authority](../20-product-tdd/system-state-and-authority.md)
 - [Cross-unit contracts](../20-product-tdd/cross-unit-contracts.md)
+- [Peer database runtime contract](../20-product-tdd/peer-database-runtime-contract.md)
 - [Claim realization matrix](../20-product-tdd/claim-realization-matrix.md)
 - [Hub/Spoke ownership profile](../00-meta/submodule-profile.md)
 - [Shared-reference operations](../00-meta/submodule-operations.md)
