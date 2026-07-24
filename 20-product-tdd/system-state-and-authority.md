@@ -9,15 +9,6 @@ Record durable ownership of authoritative state across units and distinguish it 
 - This file is initialized as a scaffold.
 - Populate only cross-unit state authority that is stable and expensive to rediscover.
 
-## Shared Database Authority
-
-- PostgreSQL is authoritative for shared persisted InKCre state.
-- The `inkcre` schema is the versioned protocol surface admitted to authenticated peers.
-- `core-py` currently owns migrations and the executable lifecycle contract; this is schema
-  authority, not request-path or product-tier authority over other peers.
-- Production rows are operational recovery data and must never be reproduced as development
-  seed.
-
 ## Extension Installation Authority
 
 - Extension installation state is authoritative at the deployment level.
