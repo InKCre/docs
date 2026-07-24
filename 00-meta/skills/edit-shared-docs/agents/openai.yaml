@@ -1,4 +1,0 @@
-interface:
-  display_name: "Edit Shared Docs"
-  short_description: "Edit InKCre shared docs and bump docs/_shared safely"
-  default_prompt: "Use this skill when updating InKCre/docs, splitting shared-vs-local durable docs, or bumping a unit repo docs/_shared pointer."
