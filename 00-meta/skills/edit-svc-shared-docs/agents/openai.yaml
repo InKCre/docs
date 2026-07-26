@@ -1,0 +1,4 @@
+interface:
+  display_name: "Edit SVC Shared Docs"
+  short_description: "Edit Hub shared docs and bump docs/_shared safely"
+  default_prompt: "Use this skill when updating InKCre/docs, deciding shared-vs-local durable ownership, or bumping a Spoke docs/_shared pointer."
