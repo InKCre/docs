@@ -227,6 +227,11 @@ GitHub preparation completed on 2026-07-28: the selected organization secrets no
 deployments only from `main`. The workflow remains responsible for idempotently reconciling the
 Cloudflare Pages project and custom domain.
 
+The first production run exposed an ordering property of `workflow_run`: a Dependabot pull
+request completion can start the delivery controller even when its identity job will be skipped.
+Keep production concurrency on the deploy job, after trusted-main identity resolution, so an
+ineligible controller run cannot cancel an active production deployment.
+
 When the first published route moves, add its direct permanent redirect under
 `website/content/public/_redirects` and verify both old and new URLs. Do not add custom global
 cache rules until measured behavior requires them.
