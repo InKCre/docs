@@ -1,8 +1,7 @@
 # VitePress Documentation Site Implementation Plan
 
-Status: local website implemented and verified on 2026-07-28; production deployment is
-authorized and in progress. English owns the public root and future Chinese content will use
-`/zh/`.
+Status: website implemented, published, and verified on 2026-07-28. English owns the public root
+and future Chinese content will use `/zh/`.
 
 ## Impact Handshake
 
@@ -219,7 +218,8 @@ External state in scope:
   `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN`;
 - set repository variable `CLOUDFLARE_PAGES_PROJECT=inkcre-website`;
 - create or reconcile the `inkcre-website` Pages project with production branch `main`;
-- attach `inkcre.dev`, allowing Cloudflare to create the apex DNS record and certificate;
+- attach `inkcre.dev`, bootstrap its proxied apex CNAME to `inkcre-website.pages.dev`, and allow
+  Cloudflare to issue the certificate;
 - create a GitHub `production` deployment environment through the workflow.
 
 GitHub preparation completed on 2026-07-28: the selected organization secrets now also allow
@@ -231,6 +231,19 @@ The first production run exposed an ordering property of `workflow_run`: a Depen
 request completion can start the delivery controller even when its identity job will be skipped.
 Keep production concurrency on the deploy job, after trusted-main identity resolution, so an
 ineligible controller run cannot cancel an active production deployment.
+
+## Publication Result
+
+Publication completed on 2026-07-28. The Pages API associated `inkcre.dev` but left it in
+`Verifying` until the Cloudflare-managed zone received the one-time proxied apex CNAME
+`inkcre.dev CNAME inkcre-website.pages.dev`. After that bootstrap, Cloudflare reported the custom
+domain active with SSL enabled.
+
+Production run `30369725430` consumed the exact artifact from successful current-main check
+`30368276959` and passed the complete immutable and canonical-origin smoke contract. Independent
+verification confirmed root `200`, English markup and canonical URL, canonical sitemap and
+robots, missing-route `404`, `noindex` on the immutable Pages origin, and no `noindex` header on
+the official origin.
 
 When the first published route moves, add its direct permanent redirect under
 `website/content/public/_redirects` and verify both old and new URLs. Do not add custom global

@@ -78,5 +78,7 @@ repository variable:
   CLOUDFLARE_PAGES_PROJECT=inkcre-website
 ```
 
-The Cloudflare token requires Pages Write access. The application at `app.inkcre.dev` remains an
-independent deployment.
+The Cloudflare token requires Pages Write access. The one-time domain bootstrap also requires the
+proxied apex DNS record `inkcre.dev CNAME inkcre-website.pages.dev`; it is zone state rather than
+part of each content deployment. The application at `app.inkcre.dev` remains an independent
+deployment.
