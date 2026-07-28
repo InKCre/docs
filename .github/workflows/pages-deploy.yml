@@ -17,10 +17,6 @@ permissions:
   actions: read
   contents: read
 
-concurrency:
-  group: pages-main
-  cancel-in-progress: true
-
 jobs:
   identity:
     name: Resolve trusted production identity
@@ -70,6 +66,9 @@ jobs:
   deploy:
     name: Deploy checked website artifact
     needs: identity
+    concurrency:
+      group: pages-main
+      cancel-in-progress: true
     permissions:
       actions: read
       contents: read
