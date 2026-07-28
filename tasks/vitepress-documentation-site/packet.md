@@ -35,9 +35,13 @@
   The website is an editorial projection and no canonical Hub document changed. The repository
   can consume the existing organization Cloudflare account and API-token secrets, owns
   `CLOUDFLARE_PAGES_PROJECT=inkcre-website`, and has a GitHub `production` environment restricted
-  to the `main` branch.
-- **Next Step**: publish through the normal branch, pull-request, and main-branch workflow path;
-  monitor the Pages deployment and verify `inkcre.dev`.
+  to the `main` branch. `inkcre.dev` now has a proxied apex CNAME to
+  `inkcre-website.pages.dev`, and the Pages custom domain reports active with SSL enabled.
+- **Result**: publication completed through the normal pull-request and main-branch artifact
+  path. Production run `30369725430` verified immutable deployment
+  `3e61826e-b55f-45f0-8480-027421c40092` and `https://inkcre.dev`: HTTPS root, English locale,
+  canonical metadata, sitemap, robots, real `404`, production indexing behavior, and Pages-origin
+  `noindex` all passed.
 
 ## Supporting Material
 
