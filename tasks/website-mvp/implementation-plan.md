@@ -1,7 +1,6 @@
 # InKCre Website MVP Implementation Plan
 
-Status: locally implemented and verified on 2026-07-29. Commit, push, exact-main CI, and production
-acceptance still require Sir's explicit authorization.
+Status: completed and accepted in production on 2026-07-29.
 
 ## Outcome
 
@@ -333,9 +332,28 @@ Landing/Developer/About reader flow, mobile navigation and Developer sidebar, cr
 search for `tertiary retention`, source edit links, one-H1 structure, horizontal overflow,
 light/dark contrast, and console warnings/errors.
 
-The new pages are still uncommitted, so Git cannot yet provide their last-updated timestamps.
-That surface and the production smoke contract remain Slice 6 acceptance evidence rather than
-being simulated locally.
+The committed pages expose their Git-derived last-updated timestamps in production. Slice 6
+completed through the existing exact-main artifact pipeline.
+
+## Production Result
+
+- Implementation commit:
+  `bc18957899955e846890caab8d72dfa2055ebc20`
+- Exact-main Website checks:
+  [run 30435750384](https://github.com/InKCre/docs/actions/runs/30435750384)
+- Artifact-driven Pages deployment:
+  [run 30435799253](https://github.com/InKCre/docs/actions/runs/30435799253)
+- Immutable Cloudflare Pages release:
+  `https://74f40d14.inkcre-website.pages.dev`
+- Canonical production origin:
+  `https://inkcre.dev`
+
+The deployment controller reverified current `main`, downloaded the exact checked artifact,
+deployed it, preserved the custom domain, and passed its route-matrix smoke. The same production
+verifier passed independently against the immutable and canonical origins. Real-browser acceptance
+confirmed the five-route reader journey, cross-page local search, edit links, last-updated data,
+desktop and `390 × 844` responsive behavior, mobile navigation and Developer sidebar, one-H1
+structure, no horizontal overflow, light/dark switching, and no console warnings or errors.
 
 ## Preflight Risks And Resolutions
 

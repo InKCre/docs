@@ -21,22 +21,23 @@
   route output, and production deployment pass deterministic checks; canonical Hub documents and
   Spoke-local owners remain distinguishable from website summaries; `svc status --json`,
   `svc init --agent codex --json`, website checks, and `git diff --check` pass.
-- **Current Truth**: `inkcre.dev` is a deployed one-page English VitePress site with an isolated
-  content root and an established artifact-based Cloudflare Pages pipeline. The public legacy
-  repository `InKCre/.github` contains English and Chinese About and Development material, an
-  organization profile, and an older VitePress implementation. Most long-form pages were last
-  changed in March 2024; the organization profile was updated in August 2025. The legacy material
-  is useful as historical source material, but not as current authority: it mixes durable origin
-  and naming ideas with aspirational capabilities, obsolete branding and domains, incomplete
-  pages, and generic development policy. Current product claims live in `10-prd/**`; current
-  cross-unit topology and contracts live in `20-product-tdd/**`; current repository and deployment
-  mechanics live in their owning repositories. The proposed MVP is one end-to-end reader journey,
-  not three disconnected content buckets: Landing explains the project and routes readers;
-  Developer Guide orients contributors across the active repository topology; About explains the
-  project identity, origin, and present participation model. Sir confirmed that the unified public
-  name is `InKCre`, the Chinese name is `第三持存`, and public organization facts do not need a Hub
-  owner. The website therefore owns public-only About truth; this does not make it authoritative
-  for product or cross-unit technical claims. The Developer Guide has two durable audiences:
+- **Current Truth**: Before this task, `inkcre.dev` was a deployed one-page English VitePress site
+  with an isolated content root and an established artifact-based Cloudflare Pages pipeline. The
+  public legacy repository `InKCre/.github` contains English and Chinese About and Development
+  material, an organization profile, and an older VitePress implementation. Most long-form pages
+  were last changed in March 2024; the organization profile was updated in August 2025. The legacy
+  material is useful as historical source material, but not as current authority: it mixes durable
+  origin and naming ideas with aspirational capabilities, obsolete branding and domains,
+  incomplete pages, and generic development policy. Current product claims live in `10-prd/**`;
+  current cross-unit topology and contracts live in `20-product-tdd/**`; current repository and
+  deployment mechanics live in their owning repositories. The MVP is one end-to-end reader
+  journey, not three disconnected content buckets: Landing explains the project and routes
+  readers; Developer Guide orients contributors across the active repository topology; About
+  explains the project identity, origin, and present participation model. Sir confirmed that the
+  unified public name is `InKCre`, the Chinese name is `第三持存`, and public organization facts do
+  not need a Hub owner. The website therefore owns public-only About truth; this does not make it
+  authoritative for product or cross-unit technical claims. The Developer Guide has two durable
+  audiences:
   developers contributing to InKCre and third-party developers building Extensions or API
   integrations. The MVP may deliver unequal depth because public ecosystem contracts are still
   unstable, but its information architecture and language must not redefine the guide as
@@ -55,18 +56,24 @@
   Developer uses one route-scoped sidebar; presentation extends the VitePress default theme with
   only restrained brand variables and typography; edit links, last-updated data, deterministic
   route verification, responsive and accessibility acceptance, and production smoke are part of
-  the MVP. Sir authorized implementation on 2026-07-29. The local worktree now contains the full
+  the MVP. Sir authorized implementation on 2026-07-29. The published site now contains the full
   five-route English MVP, default-theme navigation and search, a restrained brand layer, and a
   shared route contract consumed by generated-output and deployment verification. Current
   `client-web` implementation and E2E evidence confirm its PostgREST participation. Content
   preflight corrected one task-level wording error so resolver interpretation and storage
   raw-content retrieval remain distinct. Local deterministic checks, high-severity dependency
-  audit, SVC health/no-op, final review, desktop/mobile reader flows, cross-page search, source
-  edit links, sidebars, light/dark contrast, and browser console checks pass. Git-derived
-  last-updated output for the newly added pages can exist only after they are committed; exact-main
-  CI, production deployment, and `inkcre.dev` acceptance remain pending.
-- **Next Step**: obtain Sir's explicit commit and push authorization, then publish through the
-  existing exact-main artifact pipeline and complete production acceptance.
+  audit, SVC health/no-op, final review, desktop/mobile reader flows, cross-page search, source edit
+  links, sidebars, light/dark contrast, and browser console checks pass. The implementation commit
+  is `bc18957899955e846890caab8d72dfa2055ebc20`. Exact-main Website checks run `30435750384`
+  produced the checked artifact; Pages deployment run `30435799253` verified its identity,
+  deployed Cloudflare Pages release `74f40d14`, and passed the five-route production smoke.
+  Independent production verification passed against both the immutable Pages origin and
+  `https://inkcre.dev`. Browser acceptance confirmed the Git-derived last-updated surface, desktop
+  and `390 × 844` layouts, mobile navigation and Developer sidebar, search-result navigation,
+  one-H1 structure, no horizontal overflow, light/dark switching, and no console warnings or
+  errors.
+- **Next Step**: the Website MVP task is complete. Treat later User Manual, Chinese publication,
+  ecosystem depth, or richer Landing work as new task packets with their own evidence and scope.
 
 ## Supporting Material
 
