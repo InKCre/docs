@@ -15,8 +15,8 @@ pnpm --dir website preview
 ```
 
 The deterministic `check` command verifies formatting, builds the production site with VitePress's
-dead-link checks enabled, and checks the generated route contract. Dependency advisories remain a
-separate, network-dependent check:
+dead-link checks enabled, and checks the generated route, metadata, locale, source-link, and sitemap
+contract. Dependency advisories remain a separate, network-dependent check:
 
 ```sh
 pnpm --dir website audit --audit-level high
@@ -29,11 +29,15 @@ pnpm --dir website audit --audit-level high
 - Future Chinese source will live under `content/zh/` and be published under `/zh/`.
 - Only English is active until the Chinese route set is complete or the locale switch has a
   deliberate fallback.
-- Section indexes use trailing-slash routes, such as `/manual/`.
+- The current published routes are `/`, `/developer/`, `/developer/architecture`,
+  `/developer/contributing`, and `/about/`.
+- Section indexes use trailing-slash routes, such as `/developer/`.
 - Leaf pages use lowercase ASCII kebab-case routes without an extension, such as
-  `/manual/getting-started`.
+  `/developer/architecture`.
 - Source ordering belongs in navigation configuration, not numeric filename prefixes.
 - Published routes are compatibility contracts. Move one only with a direct permanent redirect.
+- `scripts/site-contract.mjs` owns the route matrix shared by generated-output and deployment
+  verification.
 
 Internal Markdown links target rewritten public routes and omit `.md` and `.html`. Relative links
 are resolved from the rewritten route, not the source file location.
@@ -46,11 +50,16 @@ are resolved from the rewritten route, not the source file location.
   deep link.
 - Keep current product behavior tentative where the canonical Hub does not claim stability.
 - Link to a canonical Hub source when it materially helps readers or maintainers.
-- Do not create empty pages or navigation for future User Manual, Developer Guide, or About
-  sections.
+- Keep exact setup commands, versions, runtime mechanics, and contribution checks in the repository
+  that enforces them.
+- Documentation layouts expose Git-derived last-updated data and a source edit link after their
+  content is committed. The VitePress home layout intentionally has no document footer.
+- Do not create empty pages or navigation for future User Manual, database, Extension, API, or
+  Chinese sections.
 
 Update canonical Hub truth first when a public page reveals a real product or cross-unit contract
-mismatch.
+mismatch. Public-only identity, About, and presentation facts remain website-owned and do not need
+an artificial Hub mirror.
 
 ## Publication
 
@@ -65,7 +74,7 @@ The deployment controller idempotently owns:
 - custom domain `inkcre.dev`;
 - canonical, sitemap, robots, and Open Graph metadata;
 - `noindex` headers on production and immutable `pages.dev` origins;
-- smoke checks for HTTPS, root HTML, real `404`, sitemap, robots, and canonical behavior.
+- smoke checks for HTTPS, every declared route, real `404`, sitemap, robots, and canonical behavior.
 
 GitHub provides the deployment inputs without copying credentials into this package:
 

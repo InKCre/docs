@@ -1,13 +1,14 @@
 import { defineConfig, type HeadConfig } from 'vitepress'
+import { canonicalOrigin, defaultLanguage } from '../scripts/site-contract.mjs'
 
 const description =
   'Public documentation for InKCre, an actively developed system for reusable information.'
-const siteOrigin = 'https://inkcre.dev'
 
 export default defineConfig({
   srcDir: 'content',
   base: '/',
   cleanUrls: true,
+  lastUpdated: true,
   title: 'InKCre',
   description,
   rewrites: {
@@ -16,17 +17,19 @@ export default defineConfig({
   locales: {
     root: {
       label: 'English',
-      lang: 'en-US',
+      lang: defaultLanguage,
       title: 'InKCre',
       description,
     },
   },
   sitemap: {
-    hostname: siteOrigin,
+    hostname: canonicalOrigin,
   },
   transformPageData(pageData) {
-    const url = new URL(pageData.relativePath.replace(/(?:(^|\/)index)?\.md$/, '$1'), siteOrigin)
-      .href
+    const url = new URL(
+      pageData.relativePath.replace(/(?:(^|\/)index)?\.md$/, '$1'),
+      canonicalOrigin
+    ).href
     const title =
       pageData.title && pageData.title !== 'InKCre' ? `${pageData.title} | InKCre` : 'InKCre'
     const pageDescription = pageData.description || description
@@ -45,6 +48,31 @@ export default defineConfig({
     )
   },
   themeConfig: {
+    nav: [
+      { text: 'Developer', link: '/developer/' },
+      { text: 'About', link: '/about/' },
+      { text: 'GitHub', link: 'https://github.com/InKCre' },
+    ],
+    sidebar: {
+      '/developer/': [
+        {
+          text: 'Developer Guide',
+          items: [
+            { text: 'Overview', link: '/developer/' },
+            { text: 'Architecture', link: '/developer/architecture' },
+            { text: 'Contributing', link: '/developer/contributing' },
+          ],
+        },
+      ],
+    },
+    search: {
+      provider: 'local',
+    },
+    editLink: {
+      pattern: ({ filePath }) =>
+        `https://github.com/InKCre/docs/edit/main/website/content/${filePath}`,
+      text: 'Edit this page',
+    },
     socialLinks: [{ icon: 'github', link: 'https://github.com/InKCre/docs' }],
   },
 })
