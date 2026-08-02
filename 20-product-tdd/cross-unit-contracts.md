@@ -27,8 +27,9 @@ Record durable data and behavior contracts that span more than one unit reposito
 
 ## Info-Base Ownership Contract
 
+- Collection, organization, application, graph authority, resolver/storage composition,
+  extension protocol authentication, and the Memos reference integration are owned by the
+  [Knowledge Capability Contract](knowledge-capability-contract.md).
 - Sources and extensions may propose graph data, but info-base owns persisted graph insertion.
-- Resolver responsibility and storage responsibility must stay separated:
-  - resolver interprets a block
-  - storage retrieves raw content when the block does not carry it inline
-- Embedding generation may be triggered during ingestion, but embeddings remain sink-owned rather than source-owned or info-base-owned.
+- Embedding generation may be triggered during ingestion, but embeddings remain derived
+  application support rather than source-owned or info-base-owned authority.

@@ -2,24 +2,40 @@
 
 ## Workflow: Collection
 
-- actor: source capability or extension-provided source
-- trigger: a collection run starts or external data is received
-- normal flow: source gathers external data, product records collect-job lifecycle, and reusable blocks or relations are produced for the info-base
-- exception flow: collection execution may fail without redefining source type or source instance semantics
-- observable outcome: new or updated reusable information units exist for later organization and use
+- actor: source capability, extension-provided source, or extension-owned collection protocol
+- trigger: a collection run starts, external data is received, or a compatible client submits information
+- normal flow: source-native information is mapped to one block or a graph of blocks and relations, then persisted under info-base authority; a run-oriented source also records its collect-job lifecycle
+- exception flow: a collection command may fail or leave explicitly accepted partial effects without turning execution status into an information state
+- observable outcome: new or updated reusable information units exist for later organization or application
 
 ## Workflow: Organization
 
 - actor: info-base authority
-- trigger: collected information is admitted into reusable product memory
-- normal flow: the product normalizes information into blocks and relations, while storage and resolver roles remain distinct
-- exception flow: raw content may remain external and be retrieved later through storage
-- observable outcome: organized graph state exists for linking, interpretation, and reuse
+- trigger: an explicit or automated operation seeks to improve use of information already present in the info-base
+- normal flow: the operation reads the graph, resolver output, or hydrated content it needs and applies its defined breakdown, merge, linking, or other change
+- exception flow: the operation exposes its own correctness and partial-effect boundary rather than being treated as a hidden part of collection
+- observable outcome: a testable graph or use-facing improvement exists on information that was already persisted
+
+## Workflow: RSS And Atom Collection
+
+- actor: a configured RSS 2.0 or Atom source and the ordinary collect-job runner
+- trigger: a manual collection command or configured schedule creates a pending job
+- normal flow: the source conditionally fetches a bounded feed document, reconciles the feed and identifiable items by exact native evidence, persists enclosure metadata, then attempts configured full-text and enclosure enrichment without replacing feed-authored authority
+- exception flow: unidentified items follow explicit create/discard policy; primary item failures and enrichment failures remain visible in job diagnostics, and source state advances only after a successful contentful snapshot
+- observable outcome: resolver-readable feed/item/enclosure graph state exists, exact replays are idempotent, and optional semantic children remain distinguishable from primary source facts
 
 ## Workflow: Retrieval And Use
 
-- actor: sink capability or downstream workflow
-- trigger: downstream use needs information, indexing, embedding, or retrieval from the info-base
-- normal flow: sink reads organized information, uses resolver output as needed, and serves downstream workflows
-- exception flow: downstream use may depend on deferred raw-content retrieval without transferring authority away from the info-base
-- observable outcome: organized information is available for retrieval, indexing, RAG, or other downstream usage
+- actor: application capability, sink, or downstream workflow
+- trigger: a person or downstream capability asks to find, compare, or navigate information
+- normal flow: feature, semantic, or graph-navigation retrieval reads graph authority and resolver output, using a derived index or embedding only when its query contract requires one
+- exception flow: retrieval may depend on deferred storage-backed content access or unavailable derived support without transferring authority away from the info-base
+- observable outcome: useful information and its relevant context are returned under an explicit query and quality contract
+
+## Workflow: Memo-Compatible Backend Capture
+
+- actor: a memo client and a memo-family extension
+- trigger: the client creates, updates, archives, deletes, comments on, or attaches content to a memo through a supported protocol subset
+- normal flow: a versioned product adapter maps the request to memo-family graph commands; successful primary mutation is persisted, and native reads are rebuilt from resolver output
+- exception flow: unsupported protocol behavior or unresolved graph meaning fails explicitly; a failed or partially cleaned command may leave documented graph residue without claiming complete-server compatibility
+- observable outcome: the client observes a compatible result and the memo remains represented only by blocks, relations, and storage-backed actual content in the info-base

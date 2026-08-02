@@ -1,6 +1,7 @@
 # Market And User Pressures
 
 - market pressure: information captured in external systems loses value when it cannot be collected and reused in one durable base.
-- user pressure: teams need information to be gathered automatically instead of relying on repeated manual copy or one-off retrieval.
+- user pressure: people need information to be gathered automatically instead of relying on repeated manual copy or one-off retrieval.
 - user pressure: once collected, information must remain reusable for later retrieval, indexing, and downstream use.
+- user pressure: thoughts and small pieces of surrounding information should be capturable from familiar memo clients with little friction, wherever the person happens to be.
 - urgency and tradeoff: the product optimizes for reusable information memory rather than source-specific ad hoc extraction.

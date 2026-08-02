@@ -7,13 +7,18 @@
 
 ## Interaction Pair: Info-base -> Sink
 
-- semantic contract: sinks consume organized information for downstream use without taking over source or info-base authority.
+- semantic contract: sinks consume info-base information for downstream use without taking over source or info-base authority.
 - shared language: info-base, block, relation, sink, downstream use.
 
-## Interaction Pair: Extension -> Source/Resolver/Sink
+## Interaction Pair: Info-base -> Application
 
-- semantic contract: extensions add capability to existing product surfaces without bypassing ownership boundaries.
-- shared language: extension, source, resolver, sink, lifecycle hooks.
+- semantic contract: application capabilities consume graph authority and resolver meaning; indexes, embeddings, and projections remain rebuildable support rather than competing information authority.
+- shared language: info-base, block, relation, resolver, application, retrieval.
+
+## Interaction Pair: Extension -> Product Capabilities
+
+- semantic contract: extensions add source, resolver, storage, sink, or protocol capability without bypassing graph or deployment ownership boundaries.
+- shared language: extension, source, resolver, storage, sink, protocol, lifecycle hooks.
 
 ## Interaction Pair: Client -> Shared System
 

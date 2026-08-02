@@ -3,9 +3,11 @@
 ## In Scope
 
 - automatic or event-driven collection of information from external systems
-- organization of reusable information into blocks and relations inside the info-base
-- retrieval, indexing, embedding, and downstream use of organized information
-- extension-based capability addition for source, resolver, and sink behavior
+- low-friction memo-like capture through bounded compatible backends or collectors
+- RSS 2.0 and Atom collection with source-scoped incremental state, default full-text enrichment, and policy-controlled enclosure materialization
+- organization of information already in the info-base when it improves later use
+- feature, semantic, and graph-navigation retrieval, with indexing and embedding as application support
+- extension-based capability addition for source, resolver, storage, sink, or bounded protocol behavior
 - multi-runtime participation around the same shared info-base
 
 ## Out Of Scope
@@ -14,6 +16,8 @@
 - module ownership topology and language-specific package structure
 - wire transport internals and local interface details
 - Spoke-local runtime operations and deployment procedures
+- multi-tenant or per-user ownership and access control inside one InKCre deployment
+- feed-reader UI, OPML management, or exhaustive compatibility with every malformed syndication document
 
 ## Open Question
 

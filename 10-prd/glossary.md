@@ -14,25 +14,25 @@
 
 ## relation
 
-- canonical business meaning: a directed, typed link between two blocks.
+- canonical business meaning: a directed semantic link between two blocks whose payload states the relation meaning required by its owning contract.
 - user-visible or business lifecycle language: reusable context that connects information units.
-- notes on ambiguity with framework terms: this is domain graph vocabulary, not a transport or ORM relation term.
+- notes on ambiguity with framework terms: this is domain graph vocabulary, not a transport or ORM relation term; a payload grammar does not imply one universal relation-type registry.
 
 ## resolver
 
-- canonical business meaning: a component that interprets a block and its local graph context into usable meaning.
+- canonical business meaning: a component that interprets a block's hydrated content together with its local graph context into usable meaning under an exact contract version.
 - user-visible or business lifecycle language: the interpretation layer that turns stored graph context into text or meaning for use.
 - notes on ambiguity with framework terms: resolver is product/domain vocabulary here, even if implementations differ per unit.
 
 ## storage
 
-- canonical business meaning: a component that retrieves raw content when content is not inline in the block record.
-- user-visible or business lifecycle language: the access path to raw content behind a reusable information unit.
+- canonical business meaning: a component that turns an opaque pointer held by a block into actual bytes; a writable storage also owns pointer serialization and its supported byte lifecycle.
+- user-visible or business lifecycle language: the access and lifecycle path to actual content behind a reusable information unit.
 - notes on ambiguity with framework terms: storage here is not the same as a specific database or bucket implementation.
 
 ## source
 
-- canonical business meaning: a capability that gathers data from external systems.
+- canonical business meaning: an origin-facing capability or integration surface that gathers information from an external system or compatible client.
 - user-visible or business lifecycle language: the collection-facing side of the product.
 - notes on ambiguity with framework terms: this is a product capability, not a package or module name.
 
@@ -40,11 +40,11 @@
 
 - canonical business meaning: a capability that retrieves or indexes info-base content for downstream usage.
 - user-visible or business lifecycle language: the retrieval and downstream-use side of the product.
-- notes on ambiguity with framework terms: do not overload this with logging or event-sink infrastructure terminology.
+- notes on ambiguity with framework terms: do not overload this with logging infrastructure or use it as a synonym for every application capability.
 
 ## extension
 
-- canonical business meaning: an installable capability that adds source, resolver, or sink behaviors.
+- canonical business meaning: an installable capability that adds source, resolver, storage, sink, or bounded protocol behavior.
 - user-visible or business lifecycle language: a pluggable way to extend the product without forking the core.
 - notes on ambiguity with framework terms: this is product vocabulary, not only a Python packaging concept.
 
@@ -59,3 +59,27 @@
 - canonical business meaning: one execution lifecycle record for source collection.
 - user-visible or business lifecycle language: the tracked run state of a collection execution.
 - notes on ambiguity with framework terms: this is a product execution record, not a generic background-job abstraction.
+
+## collection
+
+- canonical business meaning: the action of persisting source-specific information into the info-base as one block or a graph of blocks and relations.
+- user-visible or business lifecycle language: bringing information into InKCre so it remains available for later action.
+- notes on ambiguity with framework terms: collection is not a state carried by information, and not every collection access mode has a collect job.
+
+## organization
+
+- canonical business meaning: an action over information already in the info-base whose goal is to improve later use.
+- user-visible or business lifecycle language: maintaining, splitting, merging, or linking existing information when that makes it more useful.
+- notes on ambiguity with framework terms: breakdown, merge, and linking are known operations, not an exhaustive definition; indexing belongs to application support.
+
+## application
+
+- canonical business meaning: an action that obtains useful results from the info-base, including feature, semantic, and graph-navigation retrieval.
+- user-visible or business lifecycle language: finding or navigating information and its context.
+- notes on ambiguity with framework terms: an application capability may use a sink, index, embedding, or resolver projection without transferring graph authority.
+
+## memo-like capture
+
+- canonical business meaning: low-friction collection of thoughts, surrounding events, and small pieces of information through a memo client or collector.
+- user-visible or business lifecycle language: recording a memo wherever the person is, using a familiar client backed or collected by InKCre.
+- notes on ambiguity with framework terms: it is a collection surface, not a browser for the wider info-base; backend compatibility and collector ingestion are separate access modes.

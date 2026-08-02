@@ -19,3 +19,15 @@ Define cross-unit technical boundaries and ownership so changes do not leak resp
   transports and deployments still use distinct login principals and secret custody.
 - Migration authority, runtime capability, HTTP authentication, and anonymous access remain
   separate trust boundaries.
+
+## Knowledge Capability Topology
+
+- The [Knowledge Capability Contract](knowledge-capability-contract.md) owns the shared
+  collection, organization, application, graph, resolver, storage, and extension-protocol
+  boundaries.
+- A unit may implement more than one capability, but that does not merge their authority:
+  collection proposes source-derived graph changes, info-base owns persisted graph state,
+  resolver interprets hydrated content and relations, storage owns byte access mechanics, and
+  application owns derived retrieval support.
+- Extension lifecycle and extension-owned protocol authentication are runtime capability
+  boundaries, not a terminal-user or graph-ownership boundary.
