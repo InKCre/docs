@@ -69,8 +69,10 @@ neither the canonical production artifact nor production delivery. A successful 
 request may hand its checked artifact to a trusted controller for an isolated, deterministic,
 short-lived preview. Fork pull requests receive no preview credentials, preview origins remain
 `noindex`, and closing the pull request replaces the live preview with a trusted closed-preview
-tombstone. Cloudflare retains prior immutable deployments in its history. A preview artifact is
-never promoted to production.
+tombstone. The stable `preview-docs-pr-N` branch alias is the user-facing preview URL and is
+recorded against the pull-request head in GitHub; Cloudflare retains the underlying immutable
+deployments in its history. If automatic retirement fails, the cleanup workflow can be run manually
+for the closed pull-request number. A preview artifact is never promoted to production.
 
 Protected `main` is the publication authority. `Pages deployment` runs for a push to `main`; failed
 runs can be rerun for the same commit, while rollback starts by reverting `main` through a pull

@@ -159,7 +159,9 @@ if (process.env.GITHUB_STEP_SUMMARY) {
       '## Cloudflare Pages deployment',
       '',
       `- Deployment ID: \`${deploymentId}\``,
-      `- Immutable URL: ${pagesOrigin.origin}`,
+      smokeMode === 'production'
+        ? `- Immutable release URL: ${pagesOrigin.origin}`
+        : `- Pull-request preview URL: ${pagesOrigin.origin}`,
       smokeMode === 'production'
         ? `- Canonical URL: ${canonicalOrigin.origin}`
         : '- Canonical production origin: not contacted by preview validation',

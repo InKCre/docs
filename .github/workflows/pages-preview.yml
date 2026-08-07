@@ -84,9 +84,6 @@ jobs:
       pull-requests: read
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    environment:
-      name: preview
-      url: ${{ steps.pages.outputs.deployment-url }}
     steps:
       - name: Checkout the trusted preview controller
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -135,6 +132,34 @@ jobs:
               core.setFailed('Pull-request identity changed after artifact selection.')
             }
 
+      - name: Register the pull-request deployment
+        id: github-deployment
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          PREVIEW_HEAD_SHA: ${{ needs.identity.outputs.head_sha }}
+          PULL_NUMBER: ${{ needs.identity.outputs.pull_number }}
+        with:
+          script: |
+            const { data: deployment } = await github.rest.repos.createDeployment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: process.env.PREVIEW_HEAD_SHA,
+              environment: 'preview',
+              description: `Cloudflare Pages preview for PR #${process.env.PULL_NUMBER}`,
+              auto_merge: false,
+              required_contexts: [],
+              transient_environment: true,
+              production_environment: false,
+            })
+            core.setOutput('deployment_id', String(deployment.id))
+            await github.rest.repos.createDeploymentStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              deployment_id: deployment.id,
+              state: 'in_progress',
+              log_url: `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+            })
+
       - name: Deploy to the isolated Pages preview branch
         id: pages
         uses: cloudflare/wrangler-action@ebbaa1584979971c8614a24965b4405ff95890e0 # v4.0.0
@@ -155,5 +180,27 @@ jobs:
         run: node controller/website/scripts/verify-pages-deployment.mjs
         env:
           CLOUDFLARE_PAGES_DEPLOYMENT_ID: ${{ steps.pages.outputs.pages-deployment-id }}
-          CLOUDFLARE_PAGES_DEPLOYMENT_URL: ${{ steps.pages.outputs.deployment-url }}
+          CLOUDFLARE_PAGES_DEPLOYMENT_URL: ${{ steps.pages.outputs.pages-deployment-alias-url }}
           INKCRE_PAGES_SMOKE_MODE: preview
+
+      - name: Report the pull-request deployment
+        if: ${{ always() && steps.github-deployment.outputs.deployment_id != '' }}
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          DEPLOYMENT_ID: ${{ steps.github-deployment.outputs.deployment_id }}
+          JOB_STATUS: ${{ job.status }}
+          PREVIEW_URL: ${{ steps.pages.outputs.pages-deployment-alias-url }}
+        with:
+          script: |
+            const success = process.env.JOB_STATUS === 'success'
+            await github.rest.repos.createDeploymentStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              deployment_id: Number(process.env.DEPLOYMENT_ID),
+              state: success ? 'success' : 'failure',
+              description: success ? 'Pull-request preview is ready' : 'Pull-request preview failed',
+              log_url: `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              ...(success && process.env.PREVIEW_URL
+                ? { environment_url: process.env.PREVIEW_URL }
+                : {}),
+            })
