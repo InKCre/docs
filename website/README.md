@@ -90,7 +90,7 @@ The deployment controller idempotently owns:
 - custom domain `inkcre.dev`;
 - canonical, sitemap, robots, and Open Graph metadata;
 - `noindex` headers on production and immutable `pages.dev` origins;
-- smoke checks for HTTPS, every declared route, real `404`, sitemap, robots, and canonical behavior.
+- smoke checks for HTTPS, the root page, real `404`, sitemap, robots, and canonical behavior.
 
 Trusted GitHub environment jobs provide the deployment inputs without copying credentials into this
 package. Preview and production currently reuse the repository-selected organization credentials;

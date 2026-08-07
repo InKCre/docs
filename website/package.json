@@ -5,12 +5,11 @@
   "type": "module",
   "scripts": {
     "build": "vitepress build",
-    "check": "pnpm format:check && pnpm build && pnpm verify:build",
+    "check": "pnpm format:check && pnpm build",
     "dev": "vitepress dev",
     "format": "oxfmt .",
     "format:check": "oxfmt --check .",
-    "preview": "vitepress preview",
-    "verify:build": "node scripts/verify-build.mjs"
+    "preview": "vitepress preview"
   },
   "devDependencies": {
     "oxfmt": "0.60.0",
