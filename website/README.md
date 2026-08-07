@@ -63,10 +63,29 @@ an artificial Hub mirror.
 
 ## Publication
 
-`Website checks` builds and uploads `inkcre-website-dist`. The separate `Pages deployment` workflow
-accepts only a successful artifact for the exact current `main` commit, downloads that artifact
-without rebuilding it, and deploys it to the `inkcre-website` Cloudflare Pages Direct Upload
-project.
+`Website checks` validates pull-request candidates and supports manual diagnostics. It proves that
+the website can be built and that the generated site satisfies the repository contract, but it owns
+neither the canonical production artifact nor production delivery. A successful same-repository pull
+request may hand its checked artifact to a trusted controller for an isolated, deterministic,
+short-lived preview. Fork pull requests receive no preview credentials, preview origins remain
+`noindex`, and closing the pull request cleans up its preview. A preview artifact is never promoted
+to production.
+
+Protected `main` is the publication authority. `Pages deployment` runs for a push to `main` or a
+bounded manual recovery of the exact commit currently at `refs/heads/main`. A manual recovery cannot
+select an old run, pull-request head, stale commit, or non-`main` ref; rollback starts by reverting
+`main` through a pull request. The secret-free build job checks out the selected commit, installs
+the frozen website toolchain, runs the release contract, and uploads `inkcre-website-dist`. Its
+production job downloads that artifact from the same workflow run without rebuilding it, reverifies
+that `main` still names the selected commit, and deploys the artifact to the `inkcre-website`
+Cloudflare Pages Direct Upload project.
+
+The release records its source commit, workflow run, artifact identity and digest, Cloudflare
+deployment identity, and smoke result. Independent pull-request and release builds are not required
+to be byte-identical.
+
+During the organization Git-workflow rollout, the checked-in workflows remain the implementation
+truth for which parts of this contract are already enforced.
 
 The deployment controller idempotently owns:
 
