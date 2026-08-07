@@ -30,6 +30,11 @@ source-native input -> collection ---------+
 - Application includes feature, semantic, and graph-navigation retrieval. Indexes,
   embeddings, and projections are derived application support, not organization output or
   graph authority.
+- The first admitted organization/application compound path is explicit focal-block
+  rumination followed by semantic retrieval. Its detailed shared contract lives in
+  [Semantic Retrieval And Peer Capabilities](semantic-retrieval-and-peer-capabilities.md);
+  it does not redefine organization as rumination or imply that the other retrieval modes
+  are implemented.
 
 ## Graph, Content, And Authority
 

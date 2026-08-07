@@ -36,6 +36,15 @@
 - realization pointers: `../../20-product-tdd/cross-unit-contracts.md`, `../../20-product-tdd/unit-topology.md`
 - impact on existing claims: application can consume collected or organized information; it does not require every result to pass through an organization stage first.
 
+## Claim: InKCre retrieves semantically related info-base entities
+
+- claim intent: a person, Agent, or downstream capability should be able to find existing information whose meaning is related to a natural-language query without first generating an answer.
+- evaluation dimensions: one bounded query returns globally ranked blocks and relations with score metadata; relation direction contributes to meaning; unavailable or stale derived support is excluded rather than repaired during the read.
+- evidence expectation: a real provider embeds graph state collected through ordinary Memos, RSS, Atom, storage, resolver, and organization boundaries; judged primary entities enter the global top three and outrank explicit distractors.
+- source rationale: `../_drivers/market-and-user-pressures.md`, `../_drivers/business-and-service-objectives.md`
+- realization pointers: `../../20-product-tdd/semantic-retrieval-and-peer-capabilities.md`, `../../20-product-tdd/claim-realization-matrix.md`
+- impact on existing claims: this realizes semantic retrieval only; feature retrieval, graph-navigation retrieval, answer generation, and Chat InKCre remain independent product capabilities.
+
 ## Claim: InKCre accepts memo-like capture through familiar clients
 
 - claim intent: a person should be able to capture thoughts, observations, and small pieces of information from a memo client while InKCre keeps the resulting information in its info-base.

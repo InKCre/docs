@@ -86,7 +86,7 @@ The shared browser-to-database and browser-to-runtime token contract is:
 
 - algorithm: `HS256`;
 - role: required and exactly `authenticated`;
-- issuer: required and exactly `inkcre-client`;
+- issuer: required and exactly `inkcre-peer`;
 - audience: required and exactly `inkcre-api`;
 - issued-at (`iat`): required;
 - expiry (`exp`): required;
@@ -104,7 +104,7 @@ secret independently to the runtimes that validate it.
 - The image contains migrations, lifecycle commands, runtime dependencies, contract
   revision, and source commit metadata.
 - PostgREST and PostgreSQL/pgvector test runtimes are independently digest-pinned.
-- Non-secret deployment profiles may publish canonical URLs, stable client identifiers,
+- Non-secret deployment profiles may publish canonical URLs, stable peer identifiers,
   JWT issuer/audience, and contract/artifact revisions. They never publish credentials.
 
 The durable delivery topology is:

@@ -36,6 +36,10 @@ Record durable ownership of authoritative state across units and distinguish it 
   changing the block row, so row timestamps are not a universal content-freshness signal.
 - Resolver-solved values, retrieval indexes, embeddings, and native protocol responses are
   derived projections, not additional authoritative graph state.
+- AI providers/models and embedding profiles are deployment-scoped execution and vector-space
+  contracts. Profile-scoped Block/Relation embedding records are rebuildable application
+  support; their timestamps express database-row compatibility rather than universal
+  storage-byte freshness.
 - Block row timestamps describe persistence. Source-authored creation or update time remains
   a content fact owned by the relevant canonical contract.
 
@@ -52,5 +56,6 @@ Record durable ownership of authoritative state across units and distinguish it 
 
 - One InKCre deployment is one owner context; the product does not currently define tenants,
   terminal users, or per-row user ownership.
-- Clients are runtime peers. Identities named by an external source or compatibility protocol
+- Technical runtime participants are Peers. User-facing applications may still be called
+  clients. Identities named by an external source or compatibility protocol
   keep their native boundary meaning and must not silently become shared-system principals.

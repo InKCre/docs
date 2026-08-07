@@ -19,6 +19,9 @@ Define cross-unit technical boundaries and ownership so changes do not leak resp
   transports and deployments still use distinct login principals and secret custody.
 - Migration authority, runtime capability, HTTP authentication, and anonymous access remain
   separate trust boundaries.
+- Peer equality does not imply identical execution ability. A business facade may execute
+  locally on a capable Peer or delegate one exact synchronous capability to another live
+  Peer without turning the deployment into a fixed frontend/backend hierarchy.
 
 ## Knowledge Capability Topology
 
@@ -31,3 +34,5 @@ Define cross-unit technical boundaries and ownership so changes do not leak resp
   application owns derived retrieval support.
 - Extension lifecycle and extension-owned protocol authentication are runtime capability
   boundaries, not a terminal-user or graph-ownership boundary.
+- Semantic retrieval and synchronous capability delegation use the shared
+  [Semantic Retrieval And Peer Capability Contract](semantic-retrieval-and-peer-capabilities.md).

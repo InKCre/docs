@@ -50,9 +50,15 @@
 
 ## client
 
-- canonical business meaning: one running node in a multi-runtime deployment.
-- user-visible or business lifecycle language: a product participant that can run capabilities around the shared system.
-- notes on ambiguity with framework terms: client here is a runtime node, not necessarily an HTTP client.
+- canonical business meaning: a user-facing application through which a person interacts with InKCre or a compatible product protocol.
+- user-visible or business lifecycle language: the app or interface a person uses.
+- notes on ambiguity with framework terms: technical architecture uses `peer` for runtime nodes; product, marketing, landing, and other non-technical material may continue to say client where that is what a person experiences.
+
+## peer
+
+- canonical business meaning: one running node that participates in a deployment around the shared info-base and may provide or consume capabilities.
+- user-visible or business lifecycle language: normally hidden behind the product's clients and deployment.
+- notes on ambiguity with framework terms: peer equality describes shared authority and participation, not identical execution ability; one interaction may still have caller/provider or client/server roles.
 
 ## collect job
 

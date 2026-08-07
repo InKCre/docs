@@ -32,6 +32,22 @@
 - exception flow: retrieval may depend on deferred storage-backed content access or unavailable derived support without transferring authority away from the info-base
 - observable outcome: useful information and its relevant context are returned under an explicit query and quality contract
 
+## Workflow: Semantic Retrieval
+
+- actor: a person, Agent, or downstream application capability
+- trigger: the actor submits a natural-language query and optionally selects a compatible embedding profile or provider peer
+- normal flow: the capability embeds the query, compares it with fresh compatible block and relation records, and returns one bounded global ranking of the existing entities with score metadata
+- exception flow: unavailable projections and stale records remain absent until explicit maintenance; a missing profile or eligible provider fails explicitly; uncertain post-dispatch outcomes are not replayed automatically
+- observable outcome: at least one useful existing block or relation is returned under a stated ranking contract without an answer-generation step
+
+## Workflow: Focal-Block Rumination
+
+- actor: a person or application surface choosing one existing block
+- trigger: the actor explicitly asks InKCre to reconsider that block for later use
+- normal flow: an Agent interprets resolver text plus bounded direct-relation context, drafts an ordinary graph addition, and submits it through the info-base graph command boundary
+- exception flow: inability to understand the block or a meaningful no-write decision completes without mutation; failure does not replace or delete the focal block and no periodic/background retry is implied
+- observable outcome: either the graph is unchanged or useful blocks and relations are added while the original graph authority remains intact
+
 ## Workflow: Memo-Compatible Backend Capture
 
 - actor: a memo client and a memo-family extension

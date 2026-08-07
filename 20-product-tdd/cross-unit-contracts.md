@@ -33,3 +33,13 @@ Record durable data and behavior contracts that span more than one unit reposito
 - Sources and extensions may propose graph data, but info-base owns persisted graph insertion.
 - Embedding generation may be triggered during ingestion, but embeddings remain derived
   application support rather than source-owned or info-base-owned authority.
+
+## Semantic Retrieval And Peer Capability Contract
+
+- Semantic projection, profile-scoped derived records, explicit maintenance, ranked result
+  semantics, focal-block rumination, exact capability discovery, and synchronous Peer
+  delegation are owned by the
+  [Semantic Retrieval And Peer Capability Contract](semantic-retrieval-and-peer-capabilities.md).
+- Peer discovery and invocation remain separate. The generic Peer layer sees exact capability
+  identities and opaque protocol payloads; each business capability keeps its typed request,
+  result, and local execution semantics.

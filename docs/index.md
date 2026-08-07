@@ -7,6 +7,7 @@
 - [System state and authority](../20-product-tdd/system-state-and-authority.md)
 - [Cross-unit contracts](../20-product-tdd/cross-unit-contracts.md)
 - [Knowledge capability contract](../20-product-tdd/knowledge-capability-contract.md)
+- [Semantic retrieval and Peer capabilities](../20-product-tdd/semantic-retrieval-and-peer-capabilities.md)
 - [Peer database runtime contract](../20-product-tdd/peer-database-runtime-contract.md)
 - [Claim realization matrix](../20-product-tdd/claim-realization-matrix.md)
 - [Hub/Spoke ownership profile](../00-meta/submodule-profile.md)
