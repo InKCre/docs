@@ -34,6 +34,11 @@ jobs:
           path: controller
           persist-credentials: false
 
+      - name: Set up Node
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: controller/website/package.json
+
       - name: Replace the closed preview with a noindex tombstone
         id: tombstone
         uses: cloudflare/wrangler-action@ebbaa1584979971c8614a24965b4405ff95890e0 # v4.0.0
