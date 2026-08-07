@@ -68,24 +68,21 @@ the website can be built and that the generated site satisfies the repository co
 neither the canonical production artifact nor production delivery. A successful same-repository pull
 request may hand its checked artifact to a trusted controller for an isolated, deterministic,
 short-lived preview. Fork pull requests receive no preview credentials, preview origins remain
-`noindex`, and closing the pull request cleans up its preview. A preview artifact is never promoted
-to production.
+`noindex`, and closing the pull request replaces the live preview with a trusted closed-preview
+tombstone. Cloudflare retains prior immutable deployments in its history. A preview artifact is
+never promoted to production.
 
-Protected `main` is the publication authority. `Pages deployment` runs for a push to `main` or a
-bounded manual recovery of the exact commit currently at `refs/heads/main`. A manual recovery cannot
-select an old run, pull-request head, stale commit, or non-`main` ref; rollback starts by reverting
-`main` through a pull request. The secret-free build job checks out the selected commit, installs
-the frozen website toolchain, runs the release contract, and uploads `inkcre-website-dist`. Its
-production job downloads that artifact from the same workflow run without rebuilding it, reverifies
-that `main` still names the selected commit, and deploys the artifact to the `inkcre-website`
-Cloudflare Pages Direct Upload project.
+Protected `main` is the publication authority. `Pages deployment` runs for a push to `main`; failed
+runs can be rerun for the same commit, while rollback starts by reverting `main` through a pull
+request. The secret-free build job checks out the pushed commit, installs the frozen website
+toolchain, runs the release contract, and uploads `inkcre-website-dist`. Its production job
+downloads that artifact from the same workflow run without rebuilding it, checks that `main` still
+names the selected commit, and deploys the artifact to the `inkcre-website` Cloudflare Pages Direct
+Upload project.
 
 The release records its source commit, workflow run, artifact identity and digest, Cloudflare
 deployment identity, and smoke result. Independent pull-request and release builds are not required
 to be byte-identical.
-
-During the organization Git-workflow rollout, the checked-in workflows remain the implementation
-truth for which parts of this contract are already enforced.
 
 The deployment controller idempotently owns:
 
@@ -93,12 +90,14 @@ The deployment controller idempotently owns:
 - custom domain `inkcre.dev`;
 - canonical, sitemap, robots, and Open Graph metadata;
 - `noindex` headers on production and immutable `pages.dev` origins;
-- smoke checks for HTTPS, every declared route, real `404`, sitemap, robots, and canonical behavior.
+- smoke checks for HTTPS, the root page, real `404`, sitemap, robots, and canonical behavior.
 
-GitHub provides the deployment inputs without copying credentials into this package:
+Trusted GitHub environment jobs provide the deployment inputs without copying credentials into this
+package. Preview and production currently reuse the repository-selected organization credentials;
+pull-request source code never executes in the credential-bearing preview controller:
 
 ```text
-organization secrets:
+repository-selected organization secrets:
   CLOUDFLARE_ACCOUNT_ID
   CLOUDFLARE_API_TOKEN
 

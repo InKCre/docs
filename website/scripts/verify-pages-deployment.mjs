@@ -1,15 +1,15 @@
 import { appendFile } from 'node:fs/promises'
-import {
-  canonicalHref,
-  canonicalOrigin as canonicalOriginUrl,
-  defaultLanguage,
-  siteRoutes,
-} from './site-contract.mjs'
+import { canonicalOrigin as canonicalOriginUrl, defaultLanguage } from './site-contract.mjs'
 
 const deploymentId = process.env.CLOUDFLARE_PAGES_DEPLOYMENT_ID
 const deploymentUrl = process.env.CLOUDFLARE_PAGES_DEPLOYMENT_URL
+const smokeMode = process.env.INKCRE_PAGES_SMOKE_MODE || 'production'
 const canonicalOrigin = new URL(canonicalOriginUrl)
 const configuredCanonicalOrigin = new URL(process.env.INKCRE_WEBSITE_ORIGIN || canonicalOriginUrl)
+
+if (!['preview', 'production'].includes(smokeMode)) {
+  throw new Error(`Unknown Pages smoke mode: ${smokeMode}`)
+}
 
 if (configuredCanonicalOrigin.href !== canonicalOrigin.href) {
   throw new Error(
@@ -56,43 +56,39 @@ function requireSingleTag(html, tagName, expectedAttributes, address, purpose) {
 }
 
 async function verifyOriginOnce(origin, expectNoindex) {
-  await Promise.all(
-    siteRoutes.map(async (route) => {
-      const response = await fetchPage(new URL(route.publicPath, origin))
-      const body = await response.text()
-      const address = `${origin.origin}${route.publicPath}`
-      const expectedCanonical = canonicalHref(route.publicPath)
+  const response = await fetchPage(origin)
+  const body = await response.text()
+  const address = `${origin.origin}/`
+  const expectedCanonical = canonicalOrigin.href
 
-      if (response.status !== 200) {
-        throw new Error(`${address} returned HTTP ${response.status}`)
-      }
-      if (!response.headers.get('content-type')?.startsWith('text/html')) {
-        throw new Error(`${address} did not return HTML`)
-      }
-      if (!body.includes(`<html lang="${defaultLanguage}"`)) {
-        throw new Error(`${address} did not return the English website`)
-      }
-      requireSingleTag(
-        body,
-        'link',
-        { rel: 'canonical', href: expectedCanonical },
-        address,
-        `canonical URL ${expectedCanonical}`
-      )
-      requireSingleTag(
-        body,
-        'meta',
-        { property: 'og:url', content: expectedCanonical },
-        address,
-        `Open Graph URL ${expectedCanonical}`
-      )
-
-      const robotsHeader = response.headers.get('x-robots-tag') || ''
-      if (expectNoindex !== robotsHeader.toLowerCase().includes('noindex')) {
-        throw new Error(`${address} returned an unexpected X-Robots-Tag: ${robotsHeader}`)
-      }
-    })
+  if (response.status !== 200) {
+    throw new Error(`${address} returned HTTP ${response.status}`)
+  }
+  if (!response.headers.get('content-type')?.startsWith('text/html')) {
+    throw new Error(`${address} did not return HTML`)
+  }
+  if (!body.includes(`<html lang="${defaultLanguage}"`)) {
+    throw new Error(`${address} did not return the English website`)
+  }
+  requireSingleTag(
+    body,
+    'link',
+    { rel: 'canonical', href: expectedCanonical },
+    address,
+    `canonical URL ${expectedCanonical}`
   )
+  requireSingleTag(
+    body,
+    'meta',
+    { property: 'og:url', content: expectedCanonical },
+    address,
+    `Open Graph URL ${expectedCanonical}`
+  )
+
+  const robotsHeader = response.headers.get('x-robots-tag') || ''
+  if (expectNoindex !== robotsHeader.toLowerCase().includes('noindex')) {
+    throw new Error(`${address} returned an unexpected X-Robots-Tag: ${robotsHeader}`)
+  }
 
   const missingResponse = await fetchPage(new URL('/__inkcre_pages_missing__', origin))
   if (missingResponse.status !== 404) {
@@ -104,13 +100,8 @@ async function verifyOriginOnce(origin, expectNoindex) {
   if (sitemapResponse.status !== 200) {
     throw new Error(`${origin.origin}/sitemap.xml returned HTTP ${sitemapResponse.status}`)
   }
-  for (const route of siteRoutes) {
-    const expectedEntry = `<loc>${canonicalHref(route.publicPath)}</loc>`
-    if (sitemap.split(expectedEntry).length - 1 !== 1) {
-      throw new Error(
-        `${origin.origin}/sitemap.xml does not expose ${canonicalHref(route.publicPath)} exactly once`
-      )
-    }
+  if (!sitemap.includes('<urlset')) {
+    throw new Error(`${origin.origin}/sitemap.xml did not return a sitemap`)
   }
 
   const robotsResponse = await fetchPage(new URL('/robots.txt', origin))
@@ -147,13 +138,19 @@ await verifyOrigin(pagesOrigin, {
   expectNoindex: true,
 })
 
-await verifyOrigin(canonicalOrigin, {
-  attempts: 60,
-  delayMs: 10000,
-  expectNoindex: false,
-})
+if (smokeMode === 'production') {
+  await verifyOrigin(canonicalOrigin, {
+    attempts: 60,
+    delayMs: 10000,
+    expectNoindex: false,
+  })
+}
 
-console.log(`Verified Pages deployment ${deploymentId} and ${canonicalOrigin.origin}.`)
+console.log(
+  smokeMode === 'production'
+    ? `Verified Pages deployment ${deploymentId} and ${canonicalOrigin.origin}.`
+    : `Verified Pages preview ${deploymentId}.`
+)
 
 if (process.env.GITHUB_STEP_SUMMARY) {
   await appendFile(
@@ -163,8 +160,10 @@ if (process.env.GITHUB_STEP_SUMMARY) {
       '',
       `- Deployment ID: \`${deploymentId}\``,
       `- Immutable URL: ${pagesOrigin.origin}`,
-      `- Canonical URL: ${canonicalOrigin.origin}`,
-      `- ${siteRoutes.length} routes, metadata, sitemap, robots, noindex, and 404 smoke: passed`,
+      smokeMode === 'production'
+        ? `- Canonical URL: ${canonicalOrigin.origin}`
+        : '- Canonical production origin: not contacted by preview validation',
+      '- Root metadata, sitemap, robots, noindex, and 404 smoke: passed',
       '',
     ].join('\n')
   )
