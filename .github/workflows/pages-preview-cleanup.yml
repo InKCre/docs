@@ -1,0 +1,51 @@
+name: Pages preview cleanup
+
+on:
+  pull_request_target:
+    branches:
+      - main
+    types:
+      - closed
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-preview-docs-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  cleanup:
+    name: Retire exact pull-request preview
+    if: >-
+      github.event.pull_request.base.ref == 'main' &&
+      github.event.pull_request.base.repo.full_name == github.repository &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: preview
+      url: ${{ steps.tombstone.outputs.deployment-url }}
+    steps:
+      - name: Checkout the trusted cleanup controller
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.workflow_sha }}
+          path: controller
+          persist-credentials: false
+
+      - name: Replace the closed preview with a noindex tombstone
+        id: tombstone
+        uses: cloudflare/wrangler-action@ebbaa1584979971c8614a24965b4405ff95890e0 # v4.0.0
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          packageManager: npm
+          wranglerVersion: 4.114.0
+          workingDirectory: controller/website/preview-closed
+          command: >-
+            pages deploy .
+            --project-name=${{ vars.CLOUDFLARE_PAGES_PROJECT }}
+            --branch=preview/docs/pr-${{ github.event.pull_request.number }}
+            --commit-hash=${{ github.workflow_sha }}
+            --commit-dirty=false

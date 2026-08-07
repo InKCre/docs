@@ -8,8 +8,13 @@ import {
 
 const deploymentId = process.env.CLOUDFLARE_PAGES_DEPLOYMENT_ID
 const deploymentUrl = process.env.CLOUDFLARE_PAGES_DEPLOYMENT_URL
+const smokeMode = process.env.INKCRE_PAGES_SMOKE_MODE || 'production'
 const canonicalOrigin = new URL(canonicalOriginUrl)
 const configuredCanonicalOrigin = new URL(process.env.INKCRE_WEBSITE_ORIGIN || canonicalOriginUrl)
+
+if (!['preview', 'production'].includes(smokeMode)) {
+  throw new Error(`Unknown Pages smoke mode: ${smokeMode}`)
+}
 
 if (configuredCanonicalOrigin.href !== canonicalOrigin.href) {
   throw new Error(
@@ -147,13 +152,19 @@ await verifyOrigin(pagesOrigin, {
   expectNoindex: true,
 })
 
-await verifyOrigin(canonicalOrigin, {
-  attempts: 60,
-  delayMs: 10000,
-  expectNoindex: false,
-})
+if (smokeMode === 'production') {
+  await verifyOrigin(canonicalOrigin, {
+    attempts: 60,
+    delayMs: 10000,
+    expectNoindex: false,
+  })
+}
 
-console.log(`Verified Pages deployment ${deploymentId} and ${canonicalOrigin.origin}.`)
+console.log(
+  smokeMode === 'production'
+    ? `Verified Pages deployment ${deploymentId} and ${canonicalOrigin.origin}.`
+    : `Verified Pages preview ${deploymentId}.`
+)
 
 if (process.env.GITHUB_STEP_SUMMARY) {
   await appendFile(
@@ -163,7 +174,9 @@ if (process.env.GITHUB_STEP_SUMMARY) {
       '',
       `- Deployment ID: \`${deploymentId}\``,
       `- Immutable URL: ${pagesOrigin.origin}`,
-      `- Canonical URL: ${canonicalOrigin.origin}`,
+      smokeMode === 'production'
+        ? `- Canonical URL: ${canonicalOrigin.origin}`
+        : '- Canonical production origin: not contacted by preview validation',
       `- ${siteRoutes.length} routes, metadata, sitemap, robots, noindex, and 404 smoke: passed`,
       '',
     ].join('\n')
