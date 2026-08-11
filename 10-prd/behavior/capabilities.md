@@ -40,6 +40,11 @@
 - related claim(s): collect external information into reusable units; reliably collect RSS and Atom feeds
 - non-goal: RSS/Atom collection does not include a feed-reader UI or make fetched full text and downloaded enclosures part of feed-authored authority
 
+## Capability: Email communication collection
+
+- related claim(s): collect external information into reusable units; preserve email communication records for later use
+- non-goal: email collection does not imply a mailbox mirror, a dedicated inbox UI, automatic attachment download, or the complete send/reply/agent action surface
+
 ## Capability: Multi-runtime peer participation
 
 - related claim(s): organize information in one reusable info-base

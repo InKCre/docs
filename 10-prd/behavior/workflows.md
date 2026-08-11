@@ -4,7 +4,7 @@
 
 - actor: source capability, extension-provided source, or extension-owned collection protocol
 - trigger: a collection run starts, external data is received, or a compatible client submits information
-- normal flow: source-native information is mapped to one block or a graph of blocks and relations, then persisted under info-base authority; a run-oriented source also records its collect-job lifecycle
+- normal flow: source-native information is mapped to one block or a graph of blocks and relations, then persisted under info-base authority; a run-oriented source executes through one typed Job lifecycle
 - exception flow: a collection command may fail or leave explicitly accepted partial effects without turning execution status into an information state
 - observable outcome: new or updated reusable information units exist for later organization or application
 
@@ -18,11 +18,19 @@
 
 ## Workflow: RSS And Atom Collection
 
-- actor: a configured RSS 2.0 or Atom source and the ordinary collect-job runner
+- actor: a configured RSS 2.0 or Atom source and an eligible Job runner
 - trigger: a manual collection command or configured schedule creates a pending job
 - normal flow: the source conditionally fetches a bounded feed document, reconciles the feed and identifiable items by exact native evidence, persists enclosure metadata, then attempts configured full-text and enclosure enrichment without replacing feed-authored authority
 - exception flow: unidentified items follow explicit create/discard policy; primary item failures and enrichment failures remain visible in job diagnostics, and source state advances only after a successful contentful snapshot
 - observable outcome: resolver-readable feed/item/enclosure graph state exists, exact replays are idempotent, and optional semantic children remain distinguishable from primary source facts
+
+## Workflow: Email Communication Collection
+
+- actor: a configured Mail source and any eligible Job-capable peer
+- trigger: a person requests ordinary collection or bounded backfill, or a configured Cron creates an ordinary collection Job
+- normal flow: the source reads protocol facts, reconciles exact occurrences and best-effort canonical messages, persists source/mailbox/message/participant/body/MIME/flag/reply graph facts, and advances only source-owned incremental checkpoints whose accepted effects are durable
+- exception flow: one Job is one attempt and never retries itself; mailbox-local failure may leave accepted partial graph effects; missed Cron occurrences are not replayed; attachment bytes remain remote until explicitly materialized through their resolver
+- observable outcome: collected communication can be discovered and rendered through generic info-base navigation, while later collection updates observed mailbox membership and flags without treating the info-base as a remote mirror
 
 ## Workflow: Retrieval And Use
 

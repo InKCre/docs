@@ -60,17 +60,29 @@
 - user-visible or business lifecycle language: normally hidden behind the product's clients and deployment.
 - notes on ambiguity with framework terms: peer equality describes shared authority and participation, not identical execution ability; one interaction may still have caller/provider or client/server roles.
 
-## collect job
+## job
 
-- canonical business meaning: one execution lifecycle record for source collection.
-- user-visible or business lifecycle language: the tracked run state of a collection execution.
-- notes on ambiguity with framework terms: this is a product execution record, not a generic background-job abstraction.
+- canonical business meaning: one typed, one-shot execution request and its lifecycle record.
+- user-visible or business lifecycle language: a tracked run that a capable peer may claim and execute.
+- notes on ambiguity with framework terms: a job records one attempt; it does not promise source completeness, retry itself, or become an information state.
+
+## cron
+
+- canonical business meaning: a recurring policy that creates a job for a due occurrence.
+- user-visible or business lifecycle language: a schedule for starting future runs.
+- notes on ambiguity with framework terms: cron creates commands but does not execute their business behavior; missed occurrences remain missed unless a person separately starts a run.
 
 ## collection
 
 - canonical business meaning: the action of persisting source-specific information into the info-base as one block or a graph of blocks and relations.
 - user-visible or business lifecycle language: bringing information into InKCre so it remains available for later action.
-- notes on ambiguity with framework terms: collection is not a state carried by information, and not every collection access mode has a collect job.
+- notes on ambiguity with framework terms: collection is not a state carried by information, and not every collection access mode has a Job.
+
+## backfill
+
+- canonical business meaning: an explicit collection intent over a caller-specified historical range.
+- user-visible or business lifecycle language: bringing older source information into InKCre on demand.
+- notes on ambiguity with framework terms: backfill is collection, not a separate capability or a synonym for an ordinary incremental run; its exact boundaries remain source-specific.
 
 ## organization
 

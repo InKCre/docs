@@ -138,7 +138,8 @@ The first admitted exact capability IDs are:
 
 - `core.semantic_retrieval.v1`;
 - `core.organization.rumination.v1`;
-- `core.extension.management.v1`.
+- `core.extension.management.v1`;
+- `extensions.mail.mime_part.materialize.v1`.
 
 ## Runtime Authentication And Advertisement
 

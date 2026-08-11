@@ -4,7 +4,7 @@
 
 - claim intent: source-specific information should become reusable product memory instead of remaining transient output or a parallel source-native object store.
 - evaluation dimensions: collection persists the information as blocks and relations, preserves source meaning needed for later use, and keeps source configuration separate from graph authority.
-- evidence expectation: collection workflows persist a resolver-readable graph; run-oriented workflows also record collect-job lifecycle state without making that lifecycle part of the information itself.
+- evidence expectation: collection workflows persist a resolver-readable graph; run-oriented workflows also record Job lifecycle state without making that lifecycle part of the information itself.
 - source rationale: `../_drivers/market-and-user-pressures.md`, `../_drivers/operational-realities.md`
 - realization pointers: `../../20-product-tdd/system-state-and-authority.md`, `../../20-product-tdd/cross-unit-contracts.md`
 - impact on existing claims: collection supplies information that organization and application may later act on, but the three capabilities are not mandatory lifecycle stages.
@@ -22,10 +22,19 @@
 
 - claim intent: a configured syndication source should preserve feed-authored information as reusable graph state while avoiding avoidable duplicate updates.
 - evaluation dimensions: RSS 2.0 and Atom sources use exact native identity when available, scope incremental state to its authority, keep full text separate from feed-authored content, and expose enclosure materialization as an explicit policy or command.
-- evidence expectation: real RSS and Atom documents prove create, replay, update, conditional request, unidentified-item policy, partial failure, full-text enrichment, and semantic enclosure behavior through the ordinary collect-job path.
+- evidence expectation: real RSS and Atom documents prove create, replay, update, conditional request, unidentified-item policy, partial failure, full-text enrichment, and semantic enclosure behavior through the ordinary collection Job path.
 - source rationale: `../_drivers/market-and-user-pressures.md`, `../_drivers/operational-realities.md`
 - realization pointers: `../../20-product-tdd/knowledge-capability-contract.md`, `../../20-product-tdd/claim-realization-matrix.md`
 - impact on existing claims: feed collection realizes the general collection claim; it does not add a feed-reader UI, make enrichment primary authority, or require fuzzy content identity.
+
+## Claim: InKCre preserves email communication records for later use
+
+- claim intent: a person should be able to collect current and historical email communication at low cost without turning the info-base into an email-server mirror.
+- evaluation dimensions: ordinary and backfill collection preserve useful message structure, participants, mailbox membership, flags, MIME metadata, and reply/reference evidence; remote bytes remain materializable on demand; source-owned remote actions are explicit and configurable.
+- evidence expectation: a real IMAP server plus generic Job/Cron execution evidence prove ordinary and scheduled collection, bounded historical backfill, exact remote MIME materialization, and generic info-base viewing through the same persisted Mail graph.
+- source rationale: `../_drivers/market-and-user-pressures.md`, `../_drivers/operational-realities.md`
+- realization pointers: `../../20-product-tdd/knowledge-capability-contract.md`, `../../20-product-tdd/claim-realization-matrix.md`
+- impact on existing claims: Mail realizes collection and use through one graph; it does not add a Mail-only inbox product, guarantee mailbox mirroring, or complete the future email client/agent vision.
 
 ## Claim: InKCre exposes info-base information for retrieval and downstream use
 

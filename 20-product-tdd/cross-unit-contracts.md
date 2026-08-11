@@ -33,6 +33,9 @@ Record durable data and behavior contracts that span more than one unit reposito
 - Sources and extensions may propose graph data, but info-base owns persisted graph insertion.
 - Embedding generation may be triggered during ingestion, but embeddings remain derived
   application support rather than source-owned or info-base-owned authority.
+- Generic one-shot Jobs and Crons, Source graph anchors and writable-Storage selection, the
+  Mail reference graph/materialization integration, and info-base navigation/solved-content
+  boundaries are owned by the same Knowledge Capability Contract.
 
 ## Semantic Retrieval And Peer Capability Contract
 
