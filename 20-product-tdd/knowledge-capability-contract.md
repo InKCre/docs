@@ -127,14 +127,14 @@ external API uses one of those words.
 
   ```python
   class ProtocolExtension(ExtensionBase):
-      @classmethod
-      def api_dependencies(cls):
-          return []
+    @classmethod
+    def api_dependencies(cls):
+      return []
 
-      @classmethod
-      def _register_apis(cls, root):
-          root.include_router(public_routes)
-          root.include_router(protocol_routes, dependencies=[protocol_auth])
+    @classmethod
+    def _register_apis(cls, root):
+      root.include_router(public_routes)
+      root.include_router(protocol_routes, dependencies=[protocol_auth])
   ```
 
 - This composition does not introduce a core terminal-user identity. External users or
@@ -157,9 +157,25 @@ external API uses one of those words.
   URL or graph identity changes.
 - A source-time watermark may reduce duplicate admission when exact identity is unavailable,
   but it is not identity, reconciliation, or a correctness proof.
-- When collection exposes collect jobs, manual and scheduled triggers create ordinary
-  pending jobs and use the same claim/runner path. A schedule is command-creation policy, not
-  a hidden second execution path.
+- A Source may own one optional graph-anchor Block. The Source row remains authority for
+  operational configuration; the Block is a lazy, resolver-readable projection and Relation
+  endpoint for provenance. Sources do not retain a collected-item ledger when graph identity
+  can locate already collected facts; cursors and validators remain valid source state.
+- A Source may select one writable Storage. The selected type must advertise writable
+  capability at the persisted boundary. Deployment-default writable Storage and the always
+  available PostgreSQL binary fallback complete source byte-placement policy without making
+  Storage infer source semantics.
+- Manual and scheduled triggers create typed, one-shot pending Jobs and use the same
+  capability-handler, eligibility, atomic-claim, execution, and closure path. A Job has no
+  retry or business-specific completeness semantics; timeout is a per-attempt execution
+  budget, while partial progress and checkpointing remain owned by the invoked capability.
+- A Cron is global command-creation policy, not a hidden execution path or a Source-owned
+  schedule. A due occurrence is materialized under database serialization with one
+  `scheduled_for` identity and at most one outstanding Job. Missed occurrences remain missed;
+  an immediate run is a separately created Job.
+- Ordinary source collection and bounded historical backfill are different exact Job
+  capabilities. Backfill remains collection, accepts a source-specific range, and is not
+  prohibited from Cron merely because recurrence is normally low-value.
 - Complexity follows marginal utility: compare unresolved harm, mechanism coverage,
   dependency/obscurity, and maintenance cost. Stop after a weaker explicit mechanism removes
   the important loss; theoretical completeness alone does not justify a stronger identity or
@@ -217,6 +233,58 @@ optional semantic enrichment:
 
 Exact resolver identities, relation strings, source config fields, parser libraries, byte
 limits, and transaction sequencing remain implementation-owned by the RSS unit.
+
+## Mail Reference Integration
+
+The Mail extension is the reference integration for incremental communication collection,
+source graph anchors, generic Jobs/Crons, and resolver-owned remote materialization:
+
+- One Mail Source selects one public protocol plus typed protocol parameters and common Mail
+  policy. A thin adapter factory creates a fresh async-context adapter per command. Adapters
+  expose protocol-neutral remote facts and part access; Source owns collection, graph
+  production, state advancement, and accepted partial effects.
+- The provenance chain is `Source --manages--> Mailbox --contains--> Email`. Mailboxes remain
+  source-scoped observations. The membership Relation carries the exact remote locator needed
+  for later access. Canonical Email reconciliation uses a linear strongest-evidence-first
+  ladder; zero or ambiguous matches create rather than guess, nullable identity may be
+  completed, and contradictory non-null identity prevents reuse.
+- An Email root contains only authored scalar facts. Participants are EmailAddress Blocks;
+  text and HTML bodies reuse exact semantic content resolvers; attachment and inline parts are
+  metadata Blocks. Roles, ordering, membership, flags, Content-ID/Location embedding, and
+  reply/reference structure remain Relations rather than copied root attributes.
+- Collection records MIME metadata but does not download ordinary attachments. A MIME-part
+  Resolver first reuses any existing singular semantic `content` child; otherwise explicit
+  materialization fetches the exact remote part through the Mail adapter, writes bytes through
+  source-selected Storage policy, classifies them through the Mail-owned evidence ladder, and
+  adds one semantic content child. Benign concurrent duplicates do not make resolution fail;
+  ordinary use consumes one matching child and organization may later clean duplicates.
+- The exact synchronous Peer capability is `extensions.mail.mime_part.materialize.v1`.
+  A browser peer may solve Mail graph state locally and delegate only this unavailable remote
+  operation to a capable peer. The provider inbound calls a non-delegating local path.
+- The exact Mail Resolver identities are `extensions.mail.source.v1`,
+  `extensions.mail.mailbox.v1`, `extensions.mail.email.v1`,
+  `extensions.mail.email_address.v1`, and `extensions.mail.mime_part.v1`.
+
+Protocol commands, relation payload grammar, config fields, IMAP checkpoint wire shape,
+mailbox traversal, and transaction batching remain implementation-owned by the Mail unit.
+
+## Info-Base Navigation And Solved Content
+
+- Hydrated content is the inline value or Storage-loaded bytes behind one Block. Solved
+  content is a Resolver-derived use projection that may combine hydrated content with local
+  graph facts and may lazily materialize missing semantic content under its contract.
+- `InfoBaseRouter` is a client-supplied, deployment-singleton capability port over stable
+  Block/Relation-oriented destinations. It maps domain navigation to the client's existing
+  navigation authority; it does not maintain a second history or prescribe Graph as the only
+  possible default presentation.
+- `InfoBaseView` is a navigation host that realizes those destinations. GraphSurface is the
+  first realizer; future list or other surfaces may realize the same domain routes. A route
+  destination outlet owns application-like popup composition and navigation semantics.
+- Block inspection and solved-content rendering are separate destinations. A Resolver selects
+  a presentation-neutral solved-content renderer; the navigation host composes it inside the
+  destination container. Destination-owned popups may own their shell because they participate
+  in route/history behavior, while reusable renderer content remains independent of popup,
+  drawer, card, or page presentation.
 
 ## Compatibility And Evolution
 

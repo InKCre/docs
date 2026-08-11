@@ -3,7 +3,7 @@
 ## Interaction Pair: Source -> Info-base
 
 - semantic contract: sources gather data, but the info-base owns persisted reusable graph state.
-- shared language: source, collect job, block, relation, info-base.
+- shared language: source, job, block, relation, info-base.
 
 ## Interaction Pair: Info-base -> Sink
 
