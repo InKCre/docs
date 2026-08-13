@@ -36,3 +36,6 @@ Define cross-unit technical boundaries and ownership so changes do not leak resp
   boundaries, not a terminal-user or graph-ownership boundary.
 - Semantic retrieval and synchronous capability delegation use the shared
   [Semantic Retrieval And Peer Capability Contract](semantic-retrieval-and-peer-capabilities.md).
+- Lexical feature retrieval，multimodal AI content transport，faithful media materialization，
+  Organization media interpretation and List-host navigation use the shared
+  [Feature Retrieval And Media Interpretation Contract](feature-retrieval-and-media-interpretation.md).

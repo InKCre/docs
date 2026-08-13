@@ -46,3 +46,13 @@ Record durable data and behavior contracts that span more than one unit reposito
 - Peer discovery and invocation remain separate. The generic Peer layer sees exact capability
   identities and opaque protocol payloads; each business capability keeps its typed request,
   result, and local execution semantics.
+
+## Feature Retrieval And Media Interpretation Contract
+
+- Block-local lexical projection，derived-record maintenance，explainable ranked results，
+  multimodal AI content parts，faithful Resolver text materialization，system-driven media
+  interpretation and List-host navigation are owned by the
+  [Feature Retrieval And Media Interpretation Contract](feature-retrieval-and-media-interpretation.md).
+- Resolver materialization and Organization may add graph facts，but the lexical retrieval
+  owner alone maintains lexical records。Exact synchronous retrieval uses the generic Peer
+  protocol without giving PeerManager the query or result meaning。

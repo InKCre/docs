@@ -48,6 +48,22 @@
 - exception flow: unavailable projections and stale records remain absent until explicit maintenance; a missing profile or eligible provider fails explicitly; uncertain post-dispatch outcomes are not replayed automatically
 - observable outcome: at least one useful existing block or relation is returned under a stated ranking contract without an answer-generation step
 
+## Workflow: Lexical Feature Retrieval
+
+- actor: a person, Agent, or downstream application capability
+- trigger: the actor submits one textual clue remembered from an information unit
+- normal flow: the capability compares the clue with fresh Block-local label/text projections and returns a small ranked set of existing blocks with plain excerpts and explicit match evidence
+- exception flow: unavailable projections and stale records remain absent until independent maintenance; the query does not repair records or recursively pull text through graph relations
+- observable outcome: an existing target block can be recovered from an exact identifier, fragment, metadata clue, document body, faithful media text, or prior interpretation without generating an answer
+
+## Workflow: System-Driven Media Interpretation
+
+- actor: organization capability running through a capable peer
+- trigger: a typed one-shot job starts, normally after a configured Cron occurrence
+- normal flow: the capability selects media blocks still missing an interpretation, routes each modality to its configured Agent, and adds useful interpretation blocks and relations through ordinary graph authority
+- exception flow: one unavailable modality, provider failure, or honest no-output result does not block useful independent candidates; completed graph effects remain and the next job derives its candidate set from current graph state
+- observable outcome: useful image, audio, or video meaning is added as an explicit interpretation graph that later application capabilities may retrieve
+
 ## Workflow: Focal-Block Rumination
 
 - actor: a person or application surface choosing one existing block
