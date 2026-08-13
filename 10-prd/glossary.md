@@ -96,6 +96,18 @@
 - user-visible or business lifecycle language: finding or navigating information and its context.
 - notes on ambiguity with framework terms: an application capability may use a sink, index, embedding, or resolver projection without transferring graph authority.
 
+## feature retrieval
+
+- canonical business meaning: retrieving information from observable features that do not require semantic-similarity ranking or an already-materialized graph path.
+- user-visible or business lifecycle language: finding something from a clue remembered about it.
+- notes on ambiguity with framework terms: lexical and future perceptual retrieval are feature-retrieval families; graph-navigation owns facts already expressed as graph structure, and hybrid retrieval composes rather than redefines the primitive capabilities.
+
+## lexical retrieval
+
+- canonical business meaning: feature retrieval over a block's bounded textual projection, including labels, literal fragments, terms, document text, faithful media text, and explicit interpretations.
+- user-visible or business lifecycle language: finding an information unit by a word, phrase, identifier, filename, transcript, subtitle, OCR clue, or description.
+- notes on ambiguity with framework terms: lexical retrieval returns existing blocks; it is not Chat, answer generation, recursive graph indexing, or a promise of language-specific tokenization.
+
 ## memo-like capture
 
 - canonical business meaning: low-friction collection of thoughts, surrounding events, and small pieces of information through a memo client or collector.

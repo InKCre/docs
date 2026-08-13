@@ -18,7 +18,17 @@
 ## Capability: Semantic retrieval
 
 - related claim(s): expose info-base information for retrieval and downstream use; retrieve semantically related info-base entities
-- non-goal: semantic retrieval does not generate an answer, create transient information units, silently maintain its index while reading, or imply that feature and graph-navigation retrieval are implemented
+- non-goal: semantic retrieval does not generate an answer, create transient information units, silently maintain its index while reading, or subsume feature and graph-navigation retrieval
+
+## Capability: Lexical feature retrieval
+
+- related claim(s): expose info-base information for retrieval and downstream use; recall blocks from lexical feature evidence
+- non-goal: lexical feature retrieval does not generate an answer, recursively index the graph, replace semantic or graph-navigation retrieval, or imply perceptual/hybrid retrieval is implemented
+
+## Capability: Media interpretation
+
+- related claim(s): organize information in one reusable info-base; recall blocks from lexical feature evidence
+- non-goal: system-driven interpretation is one additive organization approach; it does not replace faithful Resolver materialization, write retrieval records directly, or define all media organization
 
 ## Capability: Focal-block rumination
 

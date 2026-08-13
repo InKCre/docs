@@ -50,8 +50,9 @@ directed Relation projection -+
   timestamps.
 - These checks are best-effort database-row freshness. Storage-backed bytes may change
   without updating a Block row, so the contract does not claim universal content freshness.
-- Periodic execution may call the same maintenance operation, but it does not create a second
-  indexing path, generic job table, retry contract, or dirty-state authority.
+- Exact typed Jobs may call the same maintenance operation, and Cron may create those Jobs as
+  ordinary commands. This does not create a second indexing path, retry contract, or
+  dirty-state authority.
 
 ## Ranked Retrieval
 
@@ -137,6 +138,7 @@ response = { status: integer,
 The first admitted exact capability IDs are:
 
 - `core.semantic_retrieval.v1`;
+- `core.feature_retrieval.lexical.v1`;
 - `core.organization.rumination.v1`;
 - `core.extension.management.v1`;
 - `extensions.mail.mime_part.materialize.v1`.
@@ -158,5 +160,5 @@ The first admitted exact capability IDs are:
 - generic service registry, capability invocation endpoint, or delegation job
 - readiness discovery, routing weights, priorities, stickiness, or circuit breakers
 - persistent Agent Thread/checkpoint storage or Agent-owned exactly-once execution
-- feature retrieval, graph-navigation retrieval, answer generation, or Chat InKCre behavior
+- graph-navigation retrieval, answer generation, or Chat InKCre behavior
 - transient chunk/segment persistence, ANN/HNSW, pagination, or cross-profile score fusion

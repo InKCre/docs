@@ -36,6 +36,18 @@
 - violation impact: block semantics become harder to reason about and downstream use loses clarity.
 - linked claim(s): organize information in one reusable info-base; expose info-base information for retrieval and downstream use
 
+## Retrieval projections remain derived and independently maintained
+
+- rationale: lexical records and embeddings accelerate application queries but do not become information authority or a hidden read-time organization path.
+- violation impact: a query could mutate graph/index state unexpectedly, stale support could be mistaken for authored truth, or collection/organization ownership could leak into retrieval.
+- linked claim(s): expose info-base information for retrieval and downstream use; retrieve semantically related info-base entities; recall blocks from lexical feature evidence
+
+## Faithful media text and interpretation keep different meaning
+
+- rationale: transcript, subtitle, and OCR aim to preserve source evidence, while a model-authored description or summary adds an interpretation for later use.
+- violation impact: users and downstream capabilities could no longer tell source-derived information from organization-authored meaning, and Resolver materialization would silently acquire organization authority.
+- linked claim(s): organize information in one reusable info-base; recall blocks from lexical feature evidence
+
 ## Exact source evidence outranks heuristic duplicate reduction
 
 - rationale: stable native identity can justify reconciliation, while content fingerprints and time cutoffs provide weaker and less stable guarantees.

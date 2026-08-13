@@ -52,7 +52,16 @@
 - evidence expectation: a real provider embeds graph state collected through ordinary Memos, RSS, Atom, storage, resolver, and organization boundaries; judged primary entities enter the global top three and outrank explicit distractors.
 - source rationale: `../_drivers/market-and-user-pressures.md`, `../_drivers/business-and-service-objectives.md`
 - realization pointers: `../../20-product-tdd/semantic-retrieval-and-peer-capabilities.md`, `../../20-product-tdd/claim-realization-matrix.md`
-- impact on existing claims: this realizes semantic retrieval only; feature retrieval, graph-navigation retrieval, answer generation, and Chat InKCre remain independent product capabilities.
+- impact on existing claims: this realizes semantic retrieval only; feature retrieval, graph-navigation retrieval, answer generation, and Chat InKCre remain independent product capabilities even when another capability is also implemented.
+
+## Claim: InKCre recalls blocks from lexical feature evidence
+
+- claim intent: a person, Agent, or downstream capability should be able to recover an existing block from exact clues remembered from its label, content, metadata, transcript, subtitle, OCR, or useful interpretation.
+- evaluation dimensions: one bounded query returns existing blocks with an explainable literal or term-match reason and a plain excerpt; contiguous Chinese fragments do not depend on a Chinese tokenizer; missing or stale derived support is maintained separately from the read.
+- evidence expectation: ordinary collected and organized graph state proves exact identifiers, Chinese fragments, metadata-only clues, document bodies, faithful image/audio/video text, and model-authored media interpretation through the same retrieval contract.
+- source rationale: `../_drivers/market-and-user-pressures.md`, `../_drivers/business-and-service-objectives.md`
+- realization pointers: `../../20-product-tdd/feature-retrieval-and-media-interpretation.md`, `../../20-product-tdd/claim-realization-matrix.md`
+- impact on existing claims: this realizes lexical feature retrieval only; semantic similarity, graph-navigation, perceptual matching, hybrid composition, answer generation, and Chat InKCre remain independent capabilities.
 
 ## Claim: InKCre accepts memo-like capture through familiar clients
 

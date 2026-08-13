@@ -35,6 +35,10 @@ source-native input -> collection ---------+
   [Semantic Retrieval And Peer Capabilities](semantic-retrieval-and-peer-capabilities.md);
   it does not redefine organization as rumination or imply that the other retrieval modes
   are implemented.
+- The first feature-retrieval increment and system-driven media interpretation live in
+  [Feature Retrieval And Media Interpretation](feature-retrieval-and-media-interpretation.md).
+  Lexical records remain application support，faithful media text remains Resolver-owned，and
+  model-authored interpretation remains Organization-owned even when they compose over time。
 
 ## Graph, Content, And Authority
 

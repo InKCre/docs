@@ -40,6 +40,10 @@ Record durable ownership of authoritative state across units and distinguish it 
   contracts. Profile-scoped Block/Relation embedding records are rebuildable application
   support; their timestamps express database-row compatibility rather than universal
   storage-byte freshness.
+- Block lexical records are rebuildable application support owned by lexical retrieval. Their
+  label/text/search projection is Block-local and derived; faithful media text and
+  Organization-authored interpretation become authoritative only as ordinary graph Blocks
+  and Relations before later lexical maintenance observes them.
 - Block row timestamps describe persistence. Source-authored creation or update time remains
   a content fact owned by the relevant canonical contract.
 
