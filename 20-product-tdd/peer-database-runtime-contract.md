@@ -93,6 +93,12 @@ The shared browser-to-database and browser-to-runtime token contract is:
 - maximum lifetime: 24 hours;
 - signature secret: runtime-owned and at least 32 bytes.
 
+A signer may move `iat` a small, bounded amount into the past to tolerate ordinary clock skew
+between independently deployed Peers and protocol runtimes. It must derive `exp` from that adjusted
+`iat`, so the allowance never increases the 24-hour maximum token lifetime. Clock-skew handling
+belongs to the signing boundary; database queries and domain callers do not retry or rewrite tokens
+individually.
+
 PostgREST and native HTTP runtimes validate the same claim vectors. A missing, malformed,
 expired, overlong, wrong-secret, wrong-role, wrong-issuer, or wrong-audience token is denied.
 The contract does not assign secret custody to `core-py`; each deployment supplies the same

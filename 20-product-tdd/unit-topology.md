@@ -39,3 +39,5 @@ Define cross-unit technical boundaries and ownership so changes do not leak resp
 - Lexical feature retrieval，multimodal AI content transport，faithful media materialization，
   Organization media interpretation and List-host navigation use the shared
   [Feature Retrieval And Media Interpretation Contract](feature-retrieval-and-media-interpretation.md).
+- Endpoint-closed graph neighborhoods，bounded shortest paths and InfoBase-view separation use
+  the [Graph Navigation Retrieval Contract](graph-navigation-retrieval.md).

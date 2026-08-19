@@ -22,6 +22,7 @@ This repository is the authoritative Hub for durable product truth shared across
 
 ## Development Workflow
 
+- Follow the organization-wide [Verification and Test Policy](https://github.com/InKCre/.github/blob/main/TESTING.md); repository-local documents may only record justified local exceptions.
 - Runtime: Python 3.11+ for the SVC CLI.
 - Install SVC: `python -m pip install sustainable-vibe-coding==10.0.1`.
 - Inspect adoption: `svc status --json`.

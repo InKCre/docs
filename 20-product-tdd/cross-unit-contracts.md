@@ -56,3 +56,11 @@ Record durable data and behavior contracts that span more than one unit reposito
 - Resolver materialization and Organization may add graph facts，but the lexical retrieval
   owner alone maintains lexical records。Exact synchronous retrieval uses the generic Peer
   protocol without giving PeerManager the query or result meaning。
+
+## Graph Navigation Retrieval Contract
+
+- Endpoint-closed graph read models，bounded Block/Relation neighborhoods，shortest-path
+  outcomes，random focal selection and presentation separation are owned by the
+  [Graph Navigation Retrieval Contract](graph-navigation-retrieval.md).
+- Peer implementations may query shared graph authority directly. InfoBase views realize
+  navigation and presentation without becoming the owner of retrieval semantics.

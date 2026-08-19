@@ -1,0 +1,103 @@
+{
+  "contract": "core.graph_navigation_retrieval.v1",
+  "topology": {
+    "blocks": [
+      "alpha",
+      "beta",
+      "gamma",
+      "delta",
+      "epsilon",
+      "isolated"
+    ],
+    "relations": [
+      {"alias": "alpha_beta", "from": "alpha", "to": "beta", "content": "links"},
+      {"alias": "beta_gamma", "from": "beta", "to": "gamma", "content": "quotes"},
+      {"alias": "gamma_alpha", "from": "gamma", "to": "alpha", "content": "supports"},
+      {"alias": "beta_delta", "from": "beta", "to": "delta", "content": "links"},
+      {"alias": "alpha_epsilon", "from": "alpha", "to": "epsilon", "content": "mentions"},
+      {"alias": "epsilon_delta", "from": "epsilon", "to": "delta", "content": "links"}
+    ]
+  },
+  "scenarios": [
+    {
+      "name": "outgoing_block_neighborhood",
+      "operation": "block_neighborhood",
+      "input": {"focal": "alpha", "direction": "out", "limit": 20},
+      "assert": {
+        "status": "found",
+        "focal": "alpha",
+        "relation_set": ["alpha_beta", "alpha_epsilon"],
+        "endpoint_closed": true
+      }
+    },
+    {
+      "name": "incoming_exact_content_neighborhood",
+      "operation": "block_neighborhood",
+      "input": {"focal": "delta", "direction": "in", "contents": ["links"], "limit": 20},
+      "assert": {
+        "status": "found",
+        "focal": "delta",
+        "relation_set": ["beta_delta", "epsilon_delta"],
+        "endpoint_closed": true
+      }
+    },
+    {
+      "name": "isolated_block_is_success",
+      "operation": "block_neighborhood",
+      "input": {"focal": "isolated", "direction": "both", "limit": 20},
+      "assert": {"status": "found", "block_set": ["isolated"], "relation_set": []}
+    },
+    {
+      "name": "missing_block",
+      "operation": "block_neighborhood",
+      "input": {"focal": "missing", "direction": "both", "limit": 20},
+      "assert": {"status": "missing"}
+    },
+    {
+      "name": "relation_neighborhood",
+      "operation": "relation_neighborhood",
+      "input": {"focal": "beta_gamma"},
+      "assert": {
+        "status": "found",
+        "block_set": ["beta", "gamma"],
+        "relation_set": ["beta_gamma"],
+        "endpoint_closed": true
+      }
+    },
+    {
+      "name": "unique_directed_shortest_path",
+      "operation": "find_path",
+      "input": {"from": "alpha", "to": "gamma", "direction": "out", "max_hops": 4, "max_explored_blocks": 1000},
+      "assert": {
+        "status": "found",
+        "block_path": ["alpha", "beta", "gamma"],
+        "relation_path": ["alpha_beta", "beta_gamma"],
+        "endpoint_closed": true
+      }
+    },
+    {
+      "name": "equal_shortest_path_has_no_tie_break_authority",
+      "operation": "find_path",
+      "input": {"from": "alpha", "to": "delta", "direction": "out", "contents": ["links", "mentions"], "max_hops": 4, "max_explored_blocks": 1000},
+      "assert": {"status": "found", "hop_count": 2, "endpoint_closed": true}
+    },
+    {
+      "name": "zero_hop_path",
+      "operation": "find_path",
+      "input": {"from": "beta", "to": "beta", "direction": "both", "max_hops": 4, "max_explored_blocks": 1000},
+      "assert": {"status": "found", "block_path": ["beta"], "relation_path": []}
+    },
+    {
+      "name": "direction_proves_disconnection",
+      "operation": "find_path",
+      "input": {"from": "delta", "to": "alpha", "direction": "out", "max_hops": 8, "max_explored_blocks": 10000},
+      "assert": {"status": "not_found"}
+    },
+    {
+      "name": "hop_budget_prevents_proof",
+      "operation": "find_path",
+      "input": {"from": "alpha", "to": "gamma", "direction": "out", "max_hops": 1, "max_explored_blocks": 1000},
+      "assert": {"status": "limit_reached"}
+    }
+  ]
+}
