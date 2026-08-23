@@ -9,6 +9,7 @@
 - [Knowledge capability contract](../20-product-tdd/knowledge-capability-contract.md)
 - [Semantic retrieval and Peer capabilities](../20-product-tdd/semantic-retrieval-and-peer-capabilities.md)
 - [Feature retrieval and media interpretation](../20-product-tdd/feature-retrieval-and-media-interpretation.md)
+- [Graph navigation retrieval](../20-product-tdd/graph-navigation-retrieval.md)
 - [Peer database runtime contract](../20-product-tdd/peer-database-runtime-contract.md)
 - [Claim realization matrix](../20-product-tdd/claim-realization-matrix.md)
 - [Hub/Spoke ownership profile](../00-meta/submodule-profile.md)
