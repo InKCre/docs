@@ -238,6 +238,34 @@ optional semantic enrichment:
 Exact resolver identities, relation strings, source config fields, parser libraries, byte
 limits, and transaction sequencing remain implementation-owned by the RSS unit.
 
+## GitHub Saved-Repository Reference Integration
+
+The GitHub extension is the reference integration for complete current-collection
+reconciliation over shared graph entities:
+
+- One Source access context discovers its authenticated account from the remote authority.
+  The Source graph anchor collects that canonical account; configuration does not duplicate
+  account identity.
+- Canonical account, repository, and list Blocks use GitHub's stable graph node identity.
+  Account kind distinguishes users and organizations without creating a second owner entity.
+- Directed facts form `Source -> Account`, `Account -> Repository` Stars,
+  `Account -> List` ownership, `List -> Repository` membership, and
+  `Account -> Repository` ownership. Membership and ownership remain Relations rather than
+  copied root fields.
+- Ordinary collection obtains a complete visible remote snapshot before applying graph
+  changes. Any remote protocol error or incomplete pagination rejects the snapshot instead
+  of turning missing data into deletion authority.
+- Reconciliation updates canonical metadata and replaces only the current relation families
+  denied by the complete snapshot. Removed Stars, Lists, or memberships do not delete their
+  previously collected entity Blocks.
+- Exact replay reuses canonical Blocks and Relations. Multiple Source access contexts for the
+  same account receive no independent observation layer in this slice; the last successfully
+  reconciled complete snapshot is the current observed relation set.
+
+GraphQL query shape, pagination and batching mechanics, resolver identities, relation strings,
+configuration fields, and transaction sequencing remain implementation-owned by the GitHub
+unit.
+
 ## Mail Reference Integration
 
 The Mail extension is the reference integration for incremental communication collection,

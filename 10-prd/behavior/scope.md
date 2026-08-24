@@ -6,6 +6,7 @@
 - low-friction memo-like capture through bounded compatible backends or collectors
 - RSS 2.0 and Atom collection with source-scoped incremental state, default full-text enrichment, and policy-controlled enclosure materialization
 - IMAP email collection with ordinary incremental runs, bounded historical backfill, source-owned remote-state policy, on-demand MIME materialization, and generic info-base rendering
+- GitHub Stars and Lists collection as reusable account, repository, list, ownership, and current-membership graph facts
 - organization of information already in the info-base when it improves later use
 - feature, semantic, and graph-navigation retrieval, with indexing and embedding as application support
 - extension-based capability addition for source, resolver, storage, sink, or bounded protocol behavior

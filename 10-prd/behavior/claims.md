@@ -36,6 +36,15 @@
 - realization pointers: `../../20-product-tdd/knowledge-capability-contract.md`, `../../20-product-tdd/claim-realization-matrix.md`
 - impact on existing claims: Mail realizes collection and use through one graph; it does not add a Mail-only inbox product, guarantee mailbox mirroring, or complete the future email client/agent vision.
 
+## Claim: InKCre preserves GitHub Stars and Lists for later use
+
+- claim intent: a person's saved GitHub repositories and their List organization should become reusable info-base graph facts instead of remaining available only through GitHub's UI.
+- evaluation dimensions: one configured access context discovers its authenticated account, preserves canonical account/repository/list identity, and reconciles current Star and List-membership relations without deleting collected entity blocks.
+- evidence expectation: a real authenticated ordinary collection Job matches GitHub's complete visible Stars, Lists, and memberships; replay is idempotent and the resulting graph supports ordinary navigation and resolver projection.
+- source rationale: `../_drivers/market-and-user-pressures.md`, `../_drivers/operational-realities.md`
+- realization pointers: `../../20-product-tdd/knowledge-capability-contract.md`, `../../20-product-tdd/claim-realization-matrix.md`
+- impact on existing claims: GitHub realizes general graph collection; it does not add repository activity synchronization, a GitHub-only view, or uncertain content-based identity.
+
 ## Claim: InKCre exposes info-base information for retrieval and downstream use
 
 - claim intent: people and downstream capabilities should be able to find and navigate useful information in the info-base.
