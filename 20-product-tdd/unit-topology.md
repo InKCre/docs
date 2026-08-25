@@ -22,6 +22,9 @@ Define cross-unit technical boundaries and ownership so changes do not leak resp
 - Peer equality does not imply identical execution ability. A business facade may execute
   locally on a capable Peer or delegate one exact synchronous capability to another live
   Peer without turning the deployment into a fixed frontend/backend hierarchy.
+- Shared actors，assets，trust boundaries and proportional security classification use the
+  [Security Boundary Model](security-boundary-model.md)。Each Unit still owns its executable
+  admission，rendering，runtime and deployment mechanics。
 
 ## Knowledge Capability Topology
 

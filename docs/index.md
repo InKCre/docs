@@ -4,6 +4,7 @@
 
 - [Product requirements](../10-prd/index.md)
 - [Unit topology](../20-product-tdd/unit-topology.md)
+- [Security boundary model](../20-product-tdd/security-boundary-model.md)
 - [System state and authority](../20-product-tdd/system-state-and-authority.md)
 - [Cross-unit contracts](../20-product-tdd/cross-unit-contracts.md)
 - [Knowledge capability contract](../20-product-tdd/knowledge-capability-contract.md)
