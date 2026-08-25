@@ -52,19 +52,19 @@
 
 - rationale: stable native identity can justify reconciliation, while content fingerprints and time cutoffs provide weaker and less stable guarantees.
 - violation impact: uncertain external information may overwrite the wrong graph state or a heuristic may be misrepresented as identity.
-- linked claim(s): collect external information into reusable units; reliably collect RSS and Atom feeds
+- linked claim(s): collect external information into reusable units
 
 ## Collection preserves source meaning without becoming a remote mirror
 
 - rationale: a source may synchronize facts and explicit remote actions while the info-base remains reusable graph memory rather than a replica of the source system.
 - violation impact: deletion, folder, flag, or byte-fetch behavior would either erase useful information without product intent or force every source into an expensive mirroring contract.
-- linked claim(s): collect external information into reusable units; preserve email communication records for later use
+- linked claim(s): collect external information into reusable units
 
 ## Source-authored facts and semantic enrichment remain separate
 
-- rationale: fetched full text and downloaded enclosure bytes can improve use without becoming authority for what a feed authored.
+- rationale: derived or externally fetched content can improve use without becoming authority for what a source authored.
 - violation impact: enrichment failure would corrupt primary collection semantics and provenance would be lost.
-- linked claim(s): reliably collect RSS and Atom feeds; expose info-base information for retrieval and downstream use
+- linked claim(s): collect external information into reusable units; expose info-base information for retrieval and downstream use
 
 ## One deployment is one owner context
 

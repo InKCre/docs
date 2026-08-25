@@ -50,8 +50,8 @@ storage(pointer) -> actual bytes ------------------+-> resolver -> solved/use-fa
 direct relations ---------------------------------+
 ```
 
-- Blocks and relations are the shared persisted information authority. A Tweet,
-  repository, feed item, memo, or other source-native object is mapped into that graph; it
+- Blocks and relations are the shared persisted information authority. A source-native object
+  is mapped into that graph; it
   does not gain a parallel durable object store merely because its native shape is useful.
 - When `block.storage` is absent, `block.content` is inline content. When storage is present,
   `block.content` is an opaque pointer whose grammar belongs to that storage handler.
@@ -184,93 +184,6 @@ external API uses one of those words.
   dependency/obscurity, and maintenance cost. Stop after a weaker explicit mechanism removes
   the important loss; theoretical completeness alone does not justify a stronger identity or
   synchronization subsystem.
-
-## Memos Reference Integration
-
-The Memos extension is the first reference implementation of memo-like capture:
-
-- The ownership unit is the memo-family extension. A Memos-compatible backend is one access
-  mode; future collectors or product adapters remain separate delivery scopes over the same
-  family meaning.
-- Canonical memo root facts are persisted directly in root block content. Attachments,
-  parent/comment structure, and references exist only as component blocks and relations.
-- Comments are independent memo roots connected to their parent. Each attachment is a
-  metadata block related to one semantic content block whose actual bytes are storage-backed.
-- Backend reads consume resolver output and then map that solved value to the selected native
-  API version. Adapters do not read graph rows as an alternative semantic authority.
-- A successful write guarantees its primary memo mutation was persisted. It does not promise
-  an atomic, residue-free graph; owned component cleanup may be best effort when the product
-  contract says so.
-- The deployment-scoped compatibility profile and credential do not create User, tenant, or
-  per-row ownership tables. The local block ID is the memo's info-base identity.
-
-Memos protocol versions, client deviations, relation strings, storage identifiers, and
-transaction sequencing remain implementation-owned by the responsible unit.
-
-## RSS And Atom Reference Integration
-
-The RSS extension is the first reference source that proves incremental feed collection and
-optional semantic enrichment:
-
-- RSS 2.0 and Atom keep their protocol-authored feed, item, and enclosure facts in canonical
-  metadata/root blocks. Feed membership, enclosures, full text, and materialized content are
-  graph relations rather than copied root fields.
-- Feed continuity prefers a source-scoped native feed identity, then a declared self URL,
-  then the configured URL. An unproven configured-URL change creates a new feed root and
-  retains historical graph state.
-- Item reconciliation prefers the protocol-native ID and then the alternate link. When both
-  are absent, source policy chooses create or discard; no content fingerprint is treated as
-  identity. Create policy may use the previous successful contentful snapshot time as a
-  source-time admission watermark.
-- Conditional request validators are scoped to the configured request URL; the unidentified
-  item watermark is scoped to the exact feed root. A `304` does not advance the contentful
-  snapshot watermark.
-- Feed-authored content remains primary authority. Full-text extraction is a separate
-  semantic text enrichment, enabled by default, and use-time text may prefer it. Extraction
-  failure does not turn a valid primary item collection into failure.
-- Enclosure metadata is always collectible. Automatic download is policy-controlled and
-  manual materialization remains available; materialized bytes become one exact semantic
-  content child or an explicit file fallback.
-- Collection commits primary items independently and records structured job diagnostics.
-  Accepted partial effects and enrichment failures remain visible; source state advances only
-  after a successful contentful snapshot.
-
-Exact resolver identities, relation strings, source config fields, parser libraries, byte
-limits, and transaction sequencing remain implementation-owned by the RSS unit.
-
-## Mail Reference Integration
-
-The Mail extension is the reference integration for incremental communication collection,
-source graph anchors, generic Jobs/Crons, and resolver-owned remote materialization:
-
-- One Mail Source selects one public protocol plus typed protocol parameters and common Mail
-  policy. A thin adapter factory creates a fresh async-context adapter per command. Adapters
-  expose protocol-neutral remote facts and part access; Source owns collection, graph
-  production, state advancement, and accepted partial effects.
-- The provenance chain is `Source --manages--> Mailbox --contains--> Email`. Mailboxes remain
-  source-scoped observations. The membership Relation carries the exact remote locator needed
-  for later access. Canonical Email reconciliation uses a linear strongest-evidence-first
-  ladder; zero or ambiguous matches create rather than guess, nullable identity may be
-  completed, and contradictory non-null identity prevents reuse.
-- An Email root contains only authored scalar facts. Participants are EmailAddress Blocks;
-  text and HTML bodies reuse exact semantic content resolvers; attachment and inline parts are
-  metadata Blocks. Roles, ordering, membership, flags, Content-ID/Location embedding, and
-  reply/reference structure remain Relations rather than copied root attributes.
-- Collection records MIME metadata but does not download ordinary attachments. A MIME-part
-  Resolver first reuses any existing singular semantic `content` child; otherwise explicit
-  materialization fetches the exact remote part through the Mail adapter, writes bytes through
-  source-selected Storage policy, classifies them through the Mail-owned evidence ladder, and
-  adds one semantic content child. Benign concurrent duplicates do not make resolution fail;
-  ordinary use consumes one matching child and organization may later clean duplicates.
-- The exact synchronous Peer capability is `extensions.mail.mime_part.materialize.v1`.
-  A browser peer may solve Mail graph state locally and delegate only this unavailable remote
-  operation to a capable peer. The provider inbound calls a non-delegating local path.
-- The exact Mail Resolver identities are `extensions.mail.source.v1`,
-  `extensions.mail.mailbox.v1`, `extensions.mail.email.v1`,
-  `extensions.mail.email_address.v1`, and `extensions.mail.mime_part.v1`.
-
-Protocol commands, relation payload grammar, config fields, IMAP checkpoint wire shape,
-mailbox traversal, and transaction batching remain implementation-owned by the Mail unit.
 
 ## Info-Base Navigation And Solved Content
 

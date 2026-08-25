@@ -39,6 +39,10 @@ Apply this before editing any doc that may be mixed.
 2. Reject shared promotion if the statement depends on one Spoke's local class names, method names, table names, or runtime sequencing unless those names are themselves the durable contract.
 3. Reject shared promotion if the remaining local details would lose a readable home.
 4. Prefer Spoke-local `AGENTS.md` and `docs/30-unit-tdd/` for implementation vocabulary, runtime hazards, and local mechanics.
+5. Check delivery owner, durable owner, interface layer, and external capability owner independently. First-party distribution,
+   current delivery pressure, importance, or successful acceptance on one axis does not prove promotion on another.
+6. Concrete Extension behavior stays with the owning Extension unless it proves a product-wide claim or cross-unit contract
+   that remains meaningful without naming that implementation.
 
 ## Workflow B: Update Hub Shared Docs
 
