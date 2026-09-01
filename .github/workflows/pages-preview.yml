@@ -115,6 +115,11 @@ jobs:
           pnpm --dir candidate/website install --frozen-lockfile
           pnpm --dir candidate/website check
 
+      - name: Prepare the isolated Pages delivery
+        run: |
+          mkdir --parents .pages-preview
+          cp --recursive candidate/website/.vitepress/dist .pages-preview/dist
+
       - name: Deploy to the isolated Pages preview branch
         id: pages
         uses: cloudflare/wrangler-action@ebbaa1584979971c8614a24965b4405ff95890e0 # v4.0.0
@@ -123,9 +128,9 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           packageManager: npm
           wranglerVersion: 4.114.0
-          workingDirectory: candidate/website
+          workingDirectory: .pages-preview
           command: >-
-            pages deploy .vitepress/dist
+            pages deploy dist
             --project-name=${{ vars.CLOUDFLARE_PAGES_PROJECT }}
             --branch=${{ needs.identity.outputs.branch }}
             --commit-hash=${{ needs.identity.outputs.head_sha }}
