@@ -65,14 +65,15 @@ an artificial Hub mirror.
 
 `Website checks` validates pull-request candidates and supports manual diagnostics. It proves that
 the website can be built and that the generated site satisfies the repository contract, but it owns
-neither the canonical production artifact nor production delivery. A successful same-repository pull
-request may hand its checked artifact to a trusted controller for an isolated, deterministic,
-short-lived preview. Fork pull requests receive no preview credentials, preview origins remain
-`noindex`, and closing the pull request replaces the live preview with a trusted closed-preview
-tombstone. The stable `preview-docs-pr-N` branch alias is the user-facing preview URL and is
-recorded against the pull-request head in GitHub; Cloudflare retains the underlying immutable
-deployments in its history. If automatic retirement fails, the cleanup workflow can be run manually
-for the closed pull-request number. A preview artifact is never promoted to production.
+neither a preview delivery input nor canonical production delivery. After a successful
+same-repository run, the trusted Preview workflow checks out that exact head, builds it itself, and
+publishes an isolated, deterministic, short-lived preview. Fork pull requests receive no preview
+credentials, preview origins remain `noindex`, and closing the pull request replaces the live
+preview with a trusted closed-preview tombstone. The stable `preview-docs-pr-N` branch alias is the
+user-facing preview URL and is recorded against the pull-request head in GitHub; Cloudflare retains
+the underlying immutable deployments in its history. If automatic retirement fails, the cleanup
+workflow can be run manually for the closed pull-request number. A preview build is never promoted
+to production.
 
 Protected `main` is the publication authority. `Pages deployment` runs for a push to `main`; failed
 runs can be rerun for the same commit, while rollback starts by reverting `main` through a pull
