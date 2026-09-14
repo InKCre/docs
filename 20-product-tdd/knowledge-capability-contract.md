@@ -173,6 +173,14 @@ external API uses one of those words.
   capability-handler, eligibility, atomic-claim, execution, and closure path. A Job has no
   retry or business-specific completeness semantics; timeout is a per-attempt execution
   budget, while partial progress and checkpointing remain owned by the invoked capability.
+- Job admission only confirms persistence; the admitting Peer need not be an eligible executor.
+  `abort_requested` records best-effort stop intent. Pending work may close as aborted immediately;
+  running work stays running until its executor has exited and released its resources. Repeated
+  requests do not rewrite terminal outcomes. Stopping never promises rollback, retry, or reversal
+  of already dispatched external work. Each executor observes stop intent for its own active work.
+- An observer's wait budget is separate from the Job execution budget. Ending observation does not
+  request cancellation. A final observed record is evidence of that observation, not a claim that
+  the database has remained unchanged since it was read.
 - A Cron is global command-creation policy, not a hidden execution path or a Source-owned
   schedule. A due occurrence is materialized under database serialization with one
   `scheduled_for` identity and at most one outstanding Job. Missed occurrences remain missed;
