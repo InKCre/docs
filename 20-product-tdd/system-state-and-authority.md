@@ -17,6 +17,11 @@ Record durable ownership of authoritative state across units and distinguish it 
   authority, not request-path or product-tier authority over other peers.
 - Production rows are operational recovery data and must never be reproduced as development
   seed.
+- Input validation belongs at the accepting boundary. A normal record read does not reapply
+  business input validation or require the corresponding runtime schema to be loaded. An execution
+  path may restore persisted representations into its language's types; it need not repeatedly
+  revalidate values already restored by that owner. Runtime capability checks remain separate
+  from the authority of saved records.
 
 ## Extension Installation Authority
 
