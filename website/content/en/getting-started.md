@@ -61,10 +61,10 @@ personal account.
 
 ### 2. Collect one useful source
 
-Begin with a public RSS feed you care about. The self-hosted walkthrough takes you through
-installing its Extension, adding the Source configuration, and checking that the collection Job
-completed. Once that works, add personal sources one at a time, with the credentials and permissions
-each requires.
+Choose [your first source](/guide/first-source); a public RSS feed is an easy starting point. Each
+[source guide](/guide/sources) covers its own prerequisites, Extension setup, and first collection.
+Once you can retrieve a known item, add personal sources one at a time, with the credentials and
+permissions each requires.
 
 ### 3. Find and use what you collected
 

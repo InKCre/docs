@@ -29,7 +29,8 @@ Core URL, a PostgREST URL, your private JWT secret, and the Core Peer ID.
 Follow these shared user guides in order. If you already have an instance, start here.
 
 1. [Connect the CLI](/guide/connect-cli) and verify authenticated access.
-2. [Collect your first source](/guide/first-source), using one public RSS or Atom feed.
+2. [Collect your first source](/guide/first-source); a public RSS or Atom feed is a simple starting
+   point.
 3. [Find what you saved](/guide/search): maintain the lexical index, search, and inspect a result.
 
 **Checkpoint:** you can retrieve a real item from your source. Collection and indexing are separate;

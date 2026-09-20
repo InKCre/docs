@@ -19,10 +19,10 @@ Use its returned Job ID with `inkcre-cli job wait JOB_ID --for 30s`, replacing `
 number. Check its status and `state` for indexed records and diagnostics. Maintenance processes a
 bounded batch; repeat if you imported more than one batch can index.
 
-Copy a distinctive phrase from an item in your feed and search:
+Copy a distinctive phrase from an item your source collected and search:
 
 ```sh
-inkcre-cli recall 'A phrase from your feed item' --mode lexical
+inkcre-cli recall 'A phrase from your saved item' --mode lexical
 ```
 
 Read a returned Block's content and relationships, replacing `123` with that Block's ID:

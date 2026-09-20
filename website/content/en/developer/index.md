@@ -9,7 +9,8 @@ InKCre is a multi-repository system organized around a shared info-base. This gu
 common mental model and routes you to the repository that owns the details.
 
 > [!IMPORTANT] InKCre is under active development. The contributor path is usable today, while
-> third-party database, Extension, and API contracts are still being documented and may change.
+> ecosystem interfaces remain version-sensitive. Check the Host compatibility of an Extension rather
+> than assuming a stable, standalone SDK.
 
 ## Choose a path
 
@@ -28,9 +29,12 @@ The foundational ecosystem path is participation as an authenticated peer of the
 Native PostgreSQL and PostgREST are transports over the same admitted, versioned database protocol.
 Extensions and APIs provide additional integration shapes.
 
-This is not yet a promise of a stable public SDK, unrestricted database access, or a complete API
-compatibility policy. The [Architecture guide](/developer/architecture#ecosystem-surfaces) explains
-what is real now and where its canonical contracts live.
+Start with [Ecosystem Developers](/developer/ecosystem/) to choose an integration path. To collect
+from a new service, follow [Build a Source Extension](/developer/ecosystem/source-extension):
+develop your own Python package and test it on a matching Core Host without contributing to Core.
+
+This is not a promise of unrestricted database access or a complete API compatibility policy. The
+[Architecture guide](/developer/architecture) explains the wider model and canonical contracts.
 
 ## Primary repositories
 

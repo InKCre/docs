@@ -35,7 +35,10 @@ pnpm --dir website audit --audit-level high
 - `/guide/` leaf pages own reusable client, collection, retrieval, scheduling, source, daily-use,
   and troubleshooting procedures. Link to these pages from any onboarding path rather than to
   sections buried inside the self-hosted walkthrough.
-- `/developer/` contains architecture and contribution guidance; `/about/` describes the project.
+- `/guide/sources` selects independent source tutorials under `/guide/sources/`; `/guide/collect`
+  owns shared collection and Job observation. Memos is documented separately as write-in capture.
+- `/developer/` separates ecosystem integration guidance under `/developer/ecosystem/` from
+  architecture and core contribution guidance; `/about/` describes the project.
 - Section indexes use trailing-slash routes, such as `/developer/`.
 - Leaf pages use lowercase ASCII kebab-case routes without an extension, such as
   `/developer/architecture`.

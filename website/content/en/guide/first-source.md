@@ -1,76 +1,36 @@
 ---
 title: Collect Your First Source
-description: Install the RSS collector and collect your first feed.
+description: Choose a source and complete your first collection and search.
 ---
 
 # Collect Your First Source
 
-Before you start, [connect the CLI](/guide/connect-cli) to your instance.
+Start with a working instance and a [connected CLI](/guide/connect-cli). You do not need to connect
+every account at once: choose one small source with an item you will recognize.
 
-Choose a publication you already read and copy its **RSS or Atom feed URL**. Its normal homepage URL
-is not usually a feed URL. Look for an RSS/Subscribe link on the publication.
+## Choose your first source
 
-## Enable the collector
+[RSS or Atom](/guide/sources/rss) is a useful first choice because a public feed needs no account
+credentials. If you prefer your own saved information, start with
+[GitHub Stars](/guide/sources/github), [email](/guide/sources/mail),
+[Telegram](/guide/sources/telegram), or [Twitter / X bookmarks](/guide/sources/twitter). Each guide
+includes its own prerequisites and setup.
 
-Install the RSS Extension on Core, then enable it:
+An **Extension** supplies a collector implementation; a **Source** is one configured use of it. For
+example, install the RSS Extension once, then create one Source per feed. Installing it does not
+automatically enable it or collect anything. Enable the collector on Core, not only in the Web app.
 
-```sh
-inkcre-cli extension install inkcre/rss --version 0.2.0
-inkcre-cli extension enable inkcre/rss
-inkcre-cli source types
-```
+## Complete the first loop
 
-Version `0.2.0` is a published Python release for Core Host `0.2.x`. For a different Host version,
-check the [RSS release listing](https://registry.inkcre.dev/v1/extensions/inkcre/rss) for a
-published release with a compatible `python.host_sdk_version`. Do not guess a version or use
-`latest`. If already installed, inspect `inkcre-cli extension get inkcre/rss` before changing it.
+1. Follow your chosen source's guide to enable its Extension and create the Source. Retain the
+   returned **Source ID**.
+2. [Run a Collection](/guide/collect) and wait for the returned **Job ID** to finish. These are
+   different IDs: the Source persists across runs; each Job represents one run.
+3. [Find What You Saved](/guide/search): maintain the lexical index and search for a known item.
+4. Only after that works, [schedule collection and indexing](/guide/schedules).
 
-The type list should contain `extensions.rss.rss.Source` and `extensions.rss.atom.Source`. The Web
-app's Extensions switch controls its browser runtime; it does not enable this Core collector.
+**Done means you retrieved a real item**, not just that installation or a Job succeeded. A
+successful empty collection may be normal; each source guide explains what is eligible for
+collection.
 
-## Add and run the source
-
-1. Create `feed.json` in your local working folder:
-
-   ```json
-   {
-     "nickname": "My first feed",
-     "config": {
-       "feed_url": "https://YOUR-PUBLICATION/FEED",
-       "fetch_full_text": false,
-       "download_enclosures": false
-     }
-   }
-   ```
-
-   Replace the URL. These first-run settings collect feed content without extra article fetches or
-   attachment downloads.
-
-2. Create the Source, choosing the matching feed format:
-
-   ```sh
-   inkcre-cli source create --type extensions.rss.rss.Source --input feed.json
-   ```
-
-   For Atom, use `extensions.rss.atom.Source`. Record the returned Source `id`.
-
-3. Collect it. Replace `42` with your Source ID:
-
-   ```sh
-   inkcre-cli source collect 42 --input-json '{}'
-   ```
-
-4. The response contains a **Job ID**, different from the Source ID. Replace `17` with it:
-
-   ```sh
-   inkcre-cli job wait 17 --for 30s
-   ```
-
-   Look for `status: finished`. If still `pending` or `running`, observe again rather than creating
-   another collect job. If `failed`, inspect `inkcre-cli job get 17 --json` and its diagnostics.
-   Ending observation does not stop the Job.
-
-**Checkpoint:** the collection Job finished. A feed exposes only what its publisher currently
-provides; success does not mean its entire historical archive was imported.
-
-Next: [Find what you saved](/guide/search).
+Next: [Connect More Sources](/guide/sources), or [Use Your Information](/guide/daily-use).

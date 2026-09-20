@@ -64,7 +64,19 @@ export default defineConfig({
             { text: 'Collect Your First Source', link: '/guide/first-source' },
             { text: 'Find What You Saved', link: '/guide/search' },
             { text: 'Schedule Collection and Indexing', link: '/guide/schedules' },
-            { text: 'Connect More Sources', link: '/guide/sources' },
+            {
+              text: 'Connect More Sources',
+              link: '/guide/sources',
+              items: [
+                { text: 'RSS and Atom', link: '/guide/sources/rss' },
+                { text: 'GitHub Stars and Lists', link: '/guide/sources/github' },
+                { text: 'Email over IMAP', link: '/guide/sources/mail' },
+                { text: 'Telegram Inbox', link: '/guide/sources/telegram' },
+                { text: 'Twitter / X Bookmarks', link: '/guide/sources/twitter' },
+                { text: 'Memos-Compatible Capture', link: '/guide/sources/memos' },
+                { text: 'Run a Collection', link: '/guide/collect' },
+              ],
+            },
             {
               text: 'Use Your Information',
               link: '/guide/daily-use',
@@ -85,6 +97,13 @@ export default defineConfig({
         },
       ],
       '/developer/': [
+        {
+          text: 'Ecosystem Developers',
+          items: [
+            { text: 'Build on InKCre', link: '/developer/ecosystem/' },
+            { text: 'Build a Source Extension', link: '/developer/ecosystem/source-extension' },
+          ],
+        },
         {
           text: 'Developer Guide',
           items: [
