@@ -6,42 +6,20 @@ description: Connect the Web app and everyday tools, with optional AI organizati
 # Use Your Information
 
 Start with a working instance and [a successful search](/guide/search). Retain your Core URL,
-PostgREST URL, and private JWT secret. If someone else operates the instance, ask them to register
-your browser Peer rather than assuming database access.
+PostgREST URL, and private JWT secret. If someone else operates the instance, ask them to authorize
+your access rather than assuming you may connect a browser Peer.
 
 ## Read and explore in the Web app
 
-The browser needs its **own** Client ID. Do not reuse the Core Peer ID: the browser excludes its own
-identity when looking for another Peer to execute a capability. Settings does not yet create this
-record for you.
+First [connect the Web app](/guide/connect). Current Settings generates and registers the browser's
+own Client ID; do not manually create a Peer or reuse Core's identity.
 
-1. In your dedicated Neon project's **SQL Editor**, select the same default branch and `neondb`
-   database as deployment. For a manually hosted database, use your PostgreSQL SQL client against
-   the initialized InKCre database instead. Run this once to register your browser:
-
-   ```sql
-   INSERT INTO inkcre.peers (id, name, config)
-   VALUES (
-     gen_random_uuid(),
-     'My web browser',
-     '{"extension_registry_url":"https://registry.inkcre.dev"}'::jsonb
-   )
-   RETURNING id;
-   ```
-
-   Save the returned UUID as your browser Client ID. This adds one record without replacing Core's
-   record. Reuse it when reconnecting this browser.
-
-2. Wake Core `/readyz`, then open [Web app Settings](https://app.inkcre.dev/settings).
-3. Enter **PostgreSQL REST URL** = PostgREST base URL, **JWT Secret** = your saved secret, and
-   **Client ID** = the new browser UUID. Choose **Save**, then reload. The Clients list should
-   include Core, reporting online.
-4. Open **Info Base**, search for the phrase that worked in the [search guide](/guide/search), and
-   inspect a result. Use **View content** for supported content and the graph view to follow
-   relationships. The list is a search surface, not every stored Block. Some source renderers need a
-   compatible Web Extension; the CLI's `get_text` remains a way to read Core-resolved text.
-5. Bookmark the app. Another browser/device needs its own connection setup. **Export** omits the
-   secret and is not an info-base backup.
+1. Open **Info Base** and search for the phrase that worked in the [search guide](/guide/search).
+2. Select a result, use **View content** where supported, and explore its relationships in the
+   graph. The list is a search surface, not every stored Block. Some rich renderers need a
+   compatible browser Extension; an Agent can use the CLI's `get_text` to read Core-resolved text.
+3. Bookmark the app. A new browser/device needs its own connection. **Export** omits the secret and
+   is not an info-base backup.
 
 ## Use your information from a terminal or AI tool
 

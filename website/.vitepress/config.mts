@@ -60,7 +60,9 @@ export default defineConfig({
         {
           text: 'User Guide',
           items: [
-            { text: 'Connect the CLI', link: '/guide/connect-cli' },
+            { text: 'Connect to Your Instance', link: '/guide/connect' },
+            { text: 'CLI / Agent Connection', link: '/guide/connect-cli' },
+            { text: 'Prepare an Extension', link: '/guide/extensions' },
             { text: 'Collect Your First Source', link: '/guide/first-source' },
             { text: 'Find What You Saved', link: '/guide/search' },
             { text: 'Schedule Collection and Indexing', link: '/guide/schedules' },

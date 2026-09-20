@@ -1,9 +1,45 @@
 ---
 title: RSS and Atom
+outline: false
 description: Install the RSS collector and collect your first feed.
 ---
 
 # RSS and Atom
+
+Start with a [connected interface](/guide/connect). Choose Web for your own setup, or CLI / Agent
+for terminal instructions.
+
+<InterfaceGuide>
+<template #web>
+
+## Set up in the Web app
+
+Choose a publication's **RSS or Atom feed URL**, not its normal homepage.
+
+1. [Prepare the Extension](/guide/extensions): `inkcre/rss` version `0.2.0` for Core Host `0.2.x`.
+   If it is not installed, your operator or Agent must complete the one-time Core install.
+2. Open **Sources** and the create-source form. Set **Nickname** to `My first feed`.
+3. Choose **Type** `extensions.rss.rss.Source`, or `extensions.rss.atom.Source` for Atom.
+4. Paste this object into **Config**, replacing the feed URL:
+
+```json
+{
+  "feed_url": "https://YOUR-PUBLICATION/FEED",
+  "fetch_full_text": false,
+  "download_enclosures": false
+}
+```
+
+5. Save/create the Source, then open it from the list. [Run a Collection](/guide/collect) and
+   inspect its Job before [indexing and searching](/guide/search).
+
+The Config editor takes only the object above, not a CLI wrapper containing `nickname` and `config`.
+These options avoid extra article fetches and attachment downloads. A feed exposes only what its
+publisher currently provides; a successful Job is not an import of the full archive. After finding a
+known item, [schedule collection](/guide/schedules).
+
+</template>
+<template #cli>
 
 Before you start, [connect the CLI](/guide/connect-cli) to your instance.
 
@@ -25,8 +61,9 @@ check the [RSS release listing](https://registry.inkcre.dev/v1/extensions/inkcre
 published release with a compatible `python.host_sdk_version`. Do not guess a version or use
 `latest`. If already installed, inspect `inkcre-cli extension get inkcre/rss` before changing it.
 
-The type list should contain `extensions.rss.rss.Source` and `extensions.rss.atom.Source`. The Web
-app's Extensions switch controls its browser runtime; it does not enable this Core collector.
+The type list should contain `extensions.rss.rss.Source` and `extensions.rss.atom.Source`. In the
+Web app, select Core under **Control Extension on Client** to control the collector, not **This
+browser**.
 
 ## Add and run the source
 
@@ -61,3 +98,6 @@ app's Extensions switch controls its browser runtime; it does not enable this Co
 provides; success does not mean its entire historical archive was imported.
 
 Next: [Find what you saved](/guide/search), then [schedule collection](/guide/schedules).
+
+</template>
+</InterfaceGuide>

@@ -52,6 +52,15 @@ are resolved from the rewritten route, not the source file location.
 
 ## Page Authoring
 
+- User procedures default to client-web. Use the shared `InterfaceGuide` component with `#web` and
+  `#cli` slots for alternate steps on the same route; CLI instructions primarily serve Agents and
+  operators. The choice survives client-side navigation, not a full reload. Without JavaScript, both
+  sections remain readable. Keep shared prerequisites and limitations outside the slots.
+- Set `outline: false` on interface-switching pages: the default VitePress outline includes hidden
+  slot headings. Do not expose links to invisible instructions. The site sidebar remains available.
+- State actual interface gaps instead of implying feature parity. Core package installation and
+  lexical maintenance still need CLI/operator steps; a browser wizard requires a compatible native
+  distribution as well as its Core collector. Check both against published Registry releases.
 - Keep exactly one H1 per page.
 - Add a concise page `description` in frontmatter.
 - Give headings explicit custom anchors only when another page or external consumer needs a durable

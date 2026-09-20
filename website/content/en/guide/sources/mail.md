@@ -1,9 +1,58 @@
 ---
 title: Email over IMAP
+outline: false
 description: Connect your IMAP mailbox to InKCre.
 ---
 
 # Email over IMAP
+
+Start with a [connected interface](/guide/connect). Choose Web for your own setup, or CLI / Agent
+for terminal instructions.
+
+<InterfaceGuide>
+<template #web>
+
+## Set up in the Web app
+
+1. Find your provider's IMAP hostname and enable IMAP if required. Obtain an app-specific password
+   where supported. An ordinary password cannot replace an unsupported authentication method.
+2. [Prepare the Extension](/guide/extensions): `inkcre/mail` version `0.3.0` on Core Host `0.2.x`.
+   Have your operator or Agent install the Core package if it is absent.
+3. Open **Sources** and the create-source form. Use **Nickname** `My mail` and **Type**
+   `extensions.mail.source.Source`.
+4. Paste this into **Config**, replace the host and credentials, and save/create:
+
+```json
+{
+  "protocol": "imap",
+  "parameters": {
+    "host": "YOUR-IMAP-HOST",
+    "port": 993,
+    "security": "tls",
+    "username": "YOUR-MAIL-LOGIN",
+    "password": "YOUR-APP-PASSWORD"
+  },
+  "ordinary_mark_as_seen": false,
+  "synchronize_deletions": false
+}
+```
+
+5. Send yourself a test message **after creating the Source**, then [collect once](/guide/collect).
+   Ordinary collection begins with new mail; an empty result does not prove authentication failed.
+   Inspect the Job's mailbox diagnostics. These settings preserve unread state.
+6. To collect older mail, open the Source's new-collection Job dialog, select **Historical
+   backfill**, and enter a small date range as its run Config:
+
+```json
+{ "since": "2026-09-01", "before": "2026-09-08" }
+```
+
+Choose dates appropriate to your mailbox. The start is included and the end excluded. Observe that
+Job, then [index and search](/guide/search) for a known email. This collector does not send mail or
+generate email digests. Keep credentials and diagnostics private.
+
+</template>
+<template #cli>
 
 Start with a working instance and a [connected CLI](/guide/connect-cli). The version below targets
 Core Host `0.2.x`; check the linked release listing for other Host versions. If already installed,
@@ -64,3 +113,6 @@ and [published releases](https://registry.inkcre.dev/v1/extensions/inkcre/mail).
 
 Next: [index and search for a known item](/guide/search), then
 [schedule collection](/guide/schedules).
+
+</template>
+</InterfaceGuide>

@@ -8,9 +8,10 @@ description: Follow the self-hosted path from deployment to collecting and using
 This is the [Self-Hosted](/self-hosted/) path through InKCre: you will operate your own instance.
 For the application's What, Why, and How, begin with [Getting Started](/getting-started).
 
-You will use a browser, a text editor, and a few terminal commands. No InKCre development setup or
-AI model is needed for the first collection-and-search journey. Each guide below is self-contained
-and can also be used with an existing compatible instance.
+You will use the Web app for interactive setup. A trusted Agent or operator can handle the remaining
+terminal-only operations, such as installing Core collectors and scheduling indexing. No InKCre
+development setup or AI model is needed for the first collection-and-search journey. Each guide
+below is self-contained and can also be used with an existing compatible instance.
 
 ## 1. Deploy an instance
 
@@ -28,7 +29,7 @@ Core URL, a PostgREST URL, your private JWT secret, and the Core Peer ID.
 
 Follow these shared user guides in order. If you already have an instance, start here.
 
-1. [Connect the CLI](/guide/connect-cli) and verify authenticated access.
+1. [Connect to your instance](/guide/connect), using the Web app or the CLI for your Agent.
 2. [Collect your first source](/guide/first-source); a public RSS or Atom feed is a simple starting
    point.
 3. [Find what you saved](/guide/search): maintain the lexical index, search, and inspect a result.

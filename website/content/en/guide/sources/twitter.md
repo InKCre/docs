@@ -1,18 +1,77 @@
 ---
 title: Twitter / X Bookmarks
+outline: false
 description: Authorize an X account and collect its bookmarked posts.
 ---
 
 # Twitter / X Bookmarks
 
 This guide uses the official X API to collect your own bookmarks. Start with a
-[connected CLI](/guide/connect-cli), a Core Host `0.2.x` instance with a public HTTPS URL, and an X
-account containing a recent bookmark whose text you recognize.
+[connected interface](/guide/connect), a Core Host `0.2.x` instance with a public HTTPS URL, and an
+X account containing a recent bookmark whose text you recognize.
 
 You also need an X developer app with OAuth 2.0 user authorization and access to the required API
 endpoints. API access can incur charges; check your app's access and billing before starting. The
 [X Bookmarks documentation](https://docs.x.com/x-api/posts/bookmarks/introduction) owns provider
 requirements. An app-only bearer token is not a substitute for authorizing your account.
+
+<InterfaceGuide>
+<template #web>
+
+## Use the Twitter setup wizard
+
+The browser-side Twitter Extension provides a visual **Setup** wizard. You do not need the OAuth
+script when that wizard is available with a compatible Core Extension.
+
+> **Check the installed release first.** The public Registry currently lists `0.4.0` for Core Host
+> `0.2.x` **without a browser distribution**. Release `0.3.0` has a browser distribution, but its
+> Python package targets Core Host `0.1.x`. Do not downgrade your Core Extension or overwrite the
+> shared version just to obtain the wizard. Ask your operator for a release compatible with both
+> Hosts. If none is available for your instance, the CLI / Agent instructions provide the working
+> Core `0.2.x` path.
+
+### 1. Open Setup
+
+1. [Prepare the Extension](/guide/extensions) on Core. The installed release must also provide a
+   compatible browser distribution for this path.
+2. In **Extensions**, choose **This browser** under **Control Extension on Client**, enable
+   `inkcre/twitter`, and click its **Setup** button.
+3. Choose your online Core Peer/client in the wizard. Enable Twitter there if prompted. Core handles
+   the callback and collection; browser enablement alone is insufficient.
+
+### 2. Authorize your X account
+
+1. Copy the callback URL displayed by the wizard. In your X developer app's authentication settings,
+   configure OAuth 2.0 for a confidential web-app client, and register that URL exactly.
+2. Enter the OAuth **Client ID** and **Client Secret** in the wizard—not the API Key/Secret. Save
+   the application (**Save OAuth App**, or **Save application** in newer layouts).
+3. Choose **Create authorization link**, then **Open X authorization**. Approve the intended X
+   account in the new tab and return to the wizard. It observes the authorization result.
+4. Verify the connected handle before continuing. Complete authorization within ten minutes.
+
+Authorization is Extension-wide: all Twitter bookmark Sources in the deployment use this account.
+Replacing the OAuth application can disconnect it; read the reset confirmation before proceeding.
+Never paste your InKCre JWT secret into X. Keep provider credentials and authorization links
+private.
+
+### 3. Set up collection
+
+1. Choose an existing **Bookmark Source**, or enter a nickname and choose **Create Bookmark
+   Source**. Do not create another Source if the one you want already exists.
+2. Choose **Collect bookmarks daily at**. The time is interpreted in Core's timezone, not
+   necessarily your browser's timezone. Choose **Continue**.
+3. Review the handle, Source and schedule, then explicitly choose **Start collecting bookmarks**.
+
+The final action enables the schedule **and submits an immediate collection Job**. It does not mean
+that Job has finished. Open the Source's Jobs in client-web, [inspect the run](/guide/collect), then
+[index and search](/guide/search) for a recent bookmark. Do not add a second collection schedule
+after using the wizard.
+
+To disconnect later, stop its collection schedule first, then use **Disconnect** in the wizard's
+account step. You can separately revoke the app in X. Neither action removes collected information.
+
+</template>
+<template #cli>
 
 ## 1. Enable the Core Extension
 
@@ -25,7 +84,7 @@ inkcre-cli source types
 Look for `extensions.twitter.bookmark.Source`. If already installed, inspect
 `inkcre-cli extension get inkcre/twitter` before changing it. Check the
 [release listing](https://registry.inkcre.dev/v1/extensions/inkcre/twitter) for other Host versions.
-This procedure does not require a browser-side Twitter Extension.
+This CLI / Agent procedure does not require a browser-side Twitter Extension.
 
 ## 2. Connect your X account
 
@@ -33,7 +92,8 @@ Authorization belongs to the **Extension**, not an individual Source. All Twitte
 in this deployment use the connected account. Do not switch accounts to create a second user's
 Source: that changes the account used by existing Sources too.
 
-The CLI does not expose this Extension's OAuth setup commands. The following local script calls its
+Prefer the visual wizard when a compatible browser release is available. For an Agent/operator using
+this path, the CLI does not expose OAuth setup commands. The following local script calls its
 authenticated setup API. Use the Python environment from [Connect the CLI](/guide/connect-cli),
 which already supplies `httpx` and `PyJWT`. If someone else operates Core, ask them to perform
 setup; do not ask them to share their signing secret.
@@ -134,6 +194,9 @@ Use the returned Job ID with [Run a Collection](/guide/collect), then
 [index and search](/guide/search) for text from a recent bookmark. Once that works, add a
 [schedule](/guide/schedules).
 
+</template>
+</InterfaceGuide>
+
 **Scope:** an ordinary run reads one page, with `result_limit` from 5 to 100 (default 40), stopping
 at the previously seen bookmark when present. This is not a guaranteed archive of all bookmarks,
 folders, replies, or unbookmarks. The current `full` option also performs a single page fetch per
@@ -151,7 +214,7 @@ lose.
 - **Finished but no new items:** check the connected handle and bookmark a new recognizable post.
 
 To stop collection, disable its Cron first. An operator can disconnect the stored account using
-authenticated `DELETE /twitter/setup/account` with the same request pattern above, and separately
+authenticated `DELETE /twitter/setup/account` using the CLI / Agent request pattern, and separately
 revoke the app in X's account settings. Disconnecting does not delete previously collected data. The
 alternate `twikit` backend exists, but its account-login mechanics are not this OAuth walkthrough.
 

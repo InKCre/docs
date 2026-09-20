@@ -51,8 +51,8 @@ does not create an instance for you.
   first collection. [Advanced](/self-hosted/advanced) covers manual deployment and operating it on
   infrastructure you choose.
 - **Already have access to an instance:** obtain connection details from the person operating it,
-  then follow [Connect the CLI](/guide/connect-cli), [collect a source](/guide/first-source), and
-  [connect your everyday tools](/guide/daily-use). Skip the deployment steps. Only connect
+  then [connect the Web app or your Agent](/guide/connect), [collect a source](/guide/first-source),
+  and [connect your everyday tools](/guide/daily-use). Skip the deployment steps. Only connect
   information and tools you are authorized to use with that instance.
 
 This guide does not assume a hosted sign-up service or separate private user accounts inside an

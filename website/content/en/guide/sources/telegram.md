@@ -1,9 +1,50 @@
 ---
 title: Send or forward messages from Telegram
+outline: false
 description: Connect a personal Telegram capture inbox to InKCre.
 ---
 
 # Send or forward messages from Telegram
+
+Start with a [connected interface](/guide/connect). Choose Web for your own setup, or CLI / Agent
+for terminal instructions.
+
+<InterfaceGuide>
+<template #web>
+
+## Set up in the Web app
+
+1. Create a dedicated bot with [@BotFather](https://t.me/botfather): send `/newbot`, follow the
+   prompts, and retain its token.
+2. Obtain your own numeric user ID using
+   [Telegram Desktop's data export](https://telegram.org/blog/export-and-more). Open **Settings →
+   Advanced → Export Telegram data**, include personal information, and choose JSON. Use
+   `personal_information.user_id`, not your `@username` or the bot's ID. Telegram may require
+   another-device confirmation or a waiting period.
+3. [Prepare the Extension](/guide/extensions): `inkcre/telegram` version `0.3.0` on Core Host
+   `0.2.x`. Your operator or Agent handles installation if it is absent.
+4. Open **Sources** and the create-source form. Enter **Nickname** `My Telegram inbox` and choose
+   **Type** `extensions.telegram.source.Source`. Paste this into **Config**, replace both values,
+   and save/create:
+
+```json
+{
+  "bot_token": "YOUR-BOT-TOKEN",
+  "bound_user_id": 123456789,
+  "download_attachments": false
+}
+```
+
+5. Send a distinctive private message to the bot, then [collect once](/guide/collect). Saved
+   messages receive a 👍 reaction. [Index and search](/guide/search) for the text.
+6. [Schedule collection](/guide/schedules); `*/5 * * * *` polls every five minutes while Core runs.
+
+Use one bot per Source. This is an inbox, not group/channel history import or a notification
+destination. Attachments remain metadata-only unless `download_attachments` is enabled. Telegram
+retains updates for a limited time; keep another copy if your instance sleeps.
+
+</template>
+<template #cli>
 
 Start with a working instance and a [connected CLI](/guide/connect-cli). The version below targets
 Core Host `0.2.x`; check the linked release listing for other Host versions. If already installed,
@@ -55,3 +96,6 @@ notification destination. Attachments are metadata-only in this example; enable
 
 Next: [index and search for a known item](/guide/search), then
 [schedule collection](/guide/schedules).
+
+</template>
+</InterfaceGuide>

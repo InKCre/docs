@@ -8,8 +8,9 @@ description: Connect the command-line tool to an existing InKCre instance.
 You need a ready Core URL and the instance's private JWT secret. Obtain them from your deployment or
 its operator. Keep the secret private; it grants instance authority, not an isolated personal login.
 
-The CLI handles setup operations that do not yet have a Web form. It connects over HTTPS; it does
-not run another server on your computer.
+The CLI is primarily for your trusted Agent, and also supports manual terminal use. For your own
+interactive setup, start with [Connect to Your Instance](/guide/connect) and choose the Web app. The
+CLI connects over HTTPS; it does not run another server on your computer.
 
 1. Install [Python](https://www.python.org/downloads/) 3.12 or later if needed. Check
    `python --version` in a terminal; use `python3` if that is your system's command name.

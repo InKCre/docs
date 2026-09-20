@@ -6,8 +6,13 @@ description: Choose an independent setup guide for each information source.
 # Connect More Sources
 
 Use the guide for the information you want to bring into InKCre. Each page starts from a working
-instance and a [connected CLI](/guide/connect-cli); you do not need to complete the RSS tutorial
+instance and a [connected interface](/guide/connect); you do not need to complete the RSS tutorial
 first.
+
+Choose **Web app** for your own setup or **CLI / Agent** for terminal instructions. The choice
+follows you between guide pages. Shared prerequisites and source limitations apply to both. The
+[Extension guide](/guide/extensions) distinguishes browser setup from Core installation and calls
+out operations that still need an operator or Agent.
 
 | What you want to collect                     | Setup guide                                      | What you need                            |
 | -------------------------------------------- | ------------------------------------------------ | ---------------------------------------- |
