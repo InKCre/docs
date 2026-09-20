@@ -58,10 +58,24 @@ export default defineConfig({
       '/': [
         { text: 'Getting Started', link: '/getting-started' },
         {
+          text: 'User Guide',
+          items: [
+            { text: 'Connect the CLI', link: '/guide/connect-cli' },
+            { text: 'Collect Your First Source', link: '/guide/first-source' },
+            { text: 'Find What You Saved', link: '/guide/search' },
+            { text: 'Schedule Collection and Indexing', link: '/guide/schedules' },
+            { text: 'Connect More Sources', link: '/guide/sources' },
+            { text: 'Use Your Information', link: '/guide/daily-use' },
+            { text: 'Troubleshooting', link: '/guide/troubleshooting' },
+          ],
+        },
+        {
           text: 'Self-Hosted',
           items: [
             { text: 'Overview', link: '/self-hosted/' },
             { text: 'Getting Started', link: '/self-hosted/getting-started' },
+            { text: 'Render and Neon', link: '/self-hosted/render-neon' },
+            { text: 'Heroku and Neon', link: '/self-hosted/heroku-neon' },
             { text: 'Advanced', link: '/self-hosted/advanced' },
           ],
         },

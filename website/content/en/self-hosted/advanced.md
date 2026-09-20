@@ -75,5 +75,6 @@ The Core runtime documentation linked above owns exact commands and recovery pro
 ## Continue with collection and use
 
 Once Core and PostgREST are ready, retain both URLs, the private JWT secret, and the Core Peer
-identity. Return to [connecting the CLI](/self-hosted/getting-started#connect-cli), then follow the
-same collection, retrieval, and client setup steps as a quick deployment.
+identity. Continue with [Connect the CLI](/guide/connect-cli),
+[your first source](/guide/first-source), [search](/guide/search), and
+[everyday tools](/guide/daily-use). These shared guides apply to manual and quick deployments alike.

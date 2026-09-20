@@ -51,9 +51,9 @@ does not create an instance for you.
   first collection. [Advanced](/self-hosted/advanced) covers manual deployment and operating it on
   infrastructure you choose.
 - **Already have access to an instance:** obtain connection details from the person operating it,
-  then follow the [CLI connection steps](/self-hosted/getting-started#connect-cli) and subsequent
-  collection and client setup sections. Skip the deployment steps. Only connect information and
-  tools you are authorized to use with that instance.
+  then follow [Connect the CLI](/guide/connect-cli), [collect a source](/guide/first-source), and
+  [connect your everyday tools](/guide/daily-use). Skip the deployment steps. Only connect
+  information and tools you are authorized to use with that instance.
 
 This guide does not assume a hosted sign-up service or separate private user accounts inside an
 instance. Access arrangements and trust matter; do not treat a shared instance as an isolated
@@ -68,9 +68,9 @@ each requires.
 
 ### 3. Find and use what you collected
 
-Maintain the search index, search for something you remember, and open a result. Then connect the
-Web app or a tool you already use so that the collection is accessible in your daily work. The
-walkthrough covers these steps after deployment; they apply to an existing compatible instance too.
+Follow [Find What You Saved](/guide/search) to maintain the search index, search for something you
+remember, and open a result. Then [Use Your Information](/guide/daily-use) to connect the Web app or
+a tool you already use. These guides work independently of your deployment choice.
 
 AI organization and semantic retrieval are optional next steps with their own provider and
 maintenance setup. InKCre does not automatically configure a daily digest or Telegram/email push

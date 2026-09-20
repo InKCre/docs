@@ -29,9 +29,13 @@ pnpm --dir website audit --audit-level high
 - Future Chinese source will live under `content/zh/` and be published under `/zh/`.
 - Only English is active until the Chinese route set is complete or the locale switch has a
   deliberate fallback.
-- The current routes are `/`, `/getting-started`, `/self-hosted/`, `/self-hosted/getting-started`,
-  `/self-hosted/advanced`, `/developer/`, `/developer/architecture`, `/developer/contributing`, and
-  `/about/`.
+- `/getting-started` owns the application-level What, Why, and How introduction.
+- `/self-hosted/` contains its Getting Started path, Render/Heroku quick-deployment guides, and
+  Advanced guide. Its Getting Started page orders the journey rather than duplicating procedures.
+- `/guide/` leaf pages own reusable client, collection, retrieval, scheduling, source, daily-use,
+  and troubleshooting procedures. Link to these pages from any onboarding path rather than to
+  sections buried inside the self-hosted walkthrough.
+- `/developer/` contains architecture and contribution guidance; `/about/` describes the project.
 - Section indexes use trailing-slash routes, such as `/developer/`.
 - Leaf pages use lowercase ASCII kebab-case routes without an extension, such as
   `/developer/architecture`.
