@@ -12,8 +12,8 @@ Relative import paths are resolved from each producer's document location. Do no
 Install the locked toolchain once, then build a set from the producer repository root:
 
 ```sh
-pnpm --dir docs/_shared/website install --frozen-lockfile
-INKCRE_DOCS_VERSION=0.2.0 pnpm --dir docs/_shared/website exec vitepress build \
+pnpm --dir docs/_shared/website --ignore-workspace install --frozen-lockfile
+INKCRE_DOCS_VERSION=0.2.0 pnpm --dir docs/_shared/website --ignore-workspace exec vitepress build \
   "$PWD/extensions/memos/docs/global"
 ```
 
@@ -21,6 +21,9 @@ The output is `<set>/.vitepress/dist/`. `INKCRE_DOCS_VERSION` is required and mu
 Release targeted by publication. Set `INKCRE_DOCS_REGISTRY_URL` when publishing to another Registry;
 it defaults to the public first-party Registry. The build requires no publisher credential or final
 snapshot hostname. Root-relative links work at the snapshot's root origin.
+
+`--ignore-workspace` is required when the producer itself uses pnpm workspaces: the shared website
+has its own lockfile and toolchain and must not be resolved as another producer workspace package.
 
 Use `/` for the overview and stable leaf routes for complete procedures. Local search, narrow-screen
 navigation, version/scope labels, and the existing `InterfaceGuide` Web/CLI selector are shared.
