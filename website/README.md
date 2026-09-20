@@ -29,8 +29,8 @@ pnpm --dir website audit --audit-level high
 - Future Chinese source will live under `content/zh/` and be published under `/zh/`.
 - Only English is active until the Chinese route set is complete or the locale switch has a
   deliberate fallback.
-- The current published routes are `/`, `/developer/`, `/developer/architecture`,
-  `/developer/contributing`, and `/about/`.
+- The current routes are `/`, `/self-hosted/`, `/self-hosted/getting-started`, `/developer/`,
+  `/developer/architecture`, `/developer/contributing`, and `/about/`.
 - Section indexes use trailing-slash routes, such as `/developer/`.
 - Leaf pages use lowercase ASCII kebab-case routes without an extension, such as
   `/developer/architecture`.
