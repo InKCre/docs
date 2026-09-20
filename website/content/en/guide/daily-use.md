@@ -54,12 +54,16 @@ assistant you trust can use the installed CLI and named connection. For example:
 The connection has owner authority; only give it to a tool you trust. Its model provider may receive
 the content it reads.
 
-For clients that connect over MCP instead of running terminal commands, follow the
-[MCP Sink setup](https://github.com/InKCre/core-py/blob/main/docs/40-deployment/mcp-sink.md). Create
-and enable a `core.mcp.v1` Sink with a separate PAT, then configure Bearer authentication for
-`https://YOUR-CORE-HOST/sinks/SINK_ID/mcp`. This needs explicit Sink and client setup; the CLI has
-no `sink` command. The MCP PAT is not `JWT_SECRET`. Check the client's authentication support or the
-documented tunnel before choosing this route.
+## Connect a Sink to ChatGPT
+
+A Sink exposes InKCre capabilities to an external tool. Follow
+[Connect ChatGPT through MCP](/guide/sinks/chatgpt) to create the MCP Sink, run Secure MCP Tunnel,
+add the ChatGPT connection, and verify a real retrieval. It explains the separate credentials and
+what must keep running; no CLI `sink` command is required.
+
+For another MCP host that can send a Bearer PAT directly, the
+[Core MCP Sink reference](https://github.com/InKCre/core-py/blob/main/docs/40-deployment/mcp-sink.md)
+owns the endpoint and authentication contract.
 
 These paths make your saved information available on demand. They do not configure proactive
 notifications or a daily briefing.

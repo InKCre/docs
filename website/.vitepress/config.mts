@@ -65,7 +65,11 @@ export default defineConfig({
             { text: 'Find What You Saved', link: '/guide/search' },
             { text: 'Schedule Collection and Indexing', link: '/guide/schedules' },
             { text: 'Connect More Sources', link: '/guide/sources' },
-            { text: 'Use Your Information', link: '/guide/daily-use' },
+            {
+              text: 'Use Your Information',
+              link: '/guide/daily-use',
+              items: [{ text: 'Sinks: ChatGPT via MCP', link: '/guide/sinks/chatgpt' }],
+            },
             { text: 'Troubleshooting', link: '/guide/troubleshooting' },
           ],
         },
