@@ -70,7 +70,11 @@ same-repository run, the trusted Preview workflow checks out that exact head, bu
 publishes an isolated, deterministic, short-lived preview. Fork pull requests receive no preview
 credentials, preview origins remain `noindex`, and closing the pull request replaces the live
 preview with a trusted closed-preview tombstone. The stable `preview-docs-pr-N` branch alias is the
-user-facing preview URL and is recorded against the pull-request head in GitHub; Cloudflare retains
+user-facing preview URL. The `docs preview` commit status on the exact pull-request head links to
+that URL after deployment and smoke checks succeed; pending, failed, or cancelled runs link to the
+workflow logs. The workflow's automatic environment deployment record belongs to its trusted
+`main` controller, so the explicit commit status provides the PR-facing entry point. Changes to
+this `workflow_run` controller take effect after merging into `main`. Cloudflare retains
 the underlying immutable deployments in its history. If automatic retirement fails, the cleanup
 workflow can be run manually for the closed pull-request number. A preview build is never promoted
 to production.

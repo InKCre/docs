@@ -78,12 +78,28 @@ jobs:
     permissions:
       contents: read
       deployments: write
+      statuses: write
     runs-on: ubuntu-latest
     timeout-minutes: 15
     environment:
       name: preview
       url: ${{ steps.pages.outputs.pages-deployment-alias-url }}
     steps:
+      - name: Mark the pull-request preview pending
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          PREVIEW_HEAD_SHA: ${{ needs.identity.outputs.head_sha }}
+        with:
+          script: |
+            await github.rest.repos.createCommitStatus({
+              ...context.repo,
+              sha: process.env.PREVIEW_HEAD_SHA,
+              context: 'docs preview',
+              state: 'pending',
+              description: '正在构建并部署预览',
+              target_url: `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+            })
+
       - name: Checkout the trusted preview controller
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -142,3 +158,24 @@ jobs:
           CLOUDFLARE_PAGES_DEPLOYMENT_ID: ${{ steps.pages.outputs.pages-deployment-id }}
           CLOUDFLARE_PAGES_DEPLOYMENT_URL: ${{ steps.pages.outputs.pages-deployment-alias-url }}
           INKCRE_PAGES_SMOKE_MODE: preview
+
+      - name: Report the preview result on the pull-request commit
+        if: ${{ always() }}
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          PREVIEW_HEAD_SHA: ${{ needs.identity.outputs.head_sha }}
+          PREVIEW_RESULT: ${{ job.status }}
+          PREVIEW_URL: ${{ steps.pages.outputs.pages-deployment-alias-url }}
+        with:
+          script: |
+            const succeeded = process.env.PREVIEW_RESULT === 'success'
+            await github.rest.repos.createCommitStatus({
+              ...context.repo,
+              sha: process.env.PREVIEW_HEAD_SHA,
+              context: 'docs preview',
+              state: succeeded ? 'success' : 'error',
+              description: succeeded ? '预览已就绪，点击查看' : '预览失败或取消，点击查看日志',
+              target_url: succeeded
+                ? process.env.PREVIEW_URL
+                : `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+            })
