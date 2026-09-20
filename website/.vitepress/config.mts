@@ -49,18 +49,20 @@ export default defineConfig({
   },
   themeConfig: {
     nav: [
-      { text: 'Self-Hosted', link: '/self-hosted/' },
+      { text: 'Getting Started', link: '/getting-started' },
       { text: 'Developer', link: '/developer/' },
       { text: 'About', link: '/about/' },
       { text: 'GitHub', link: 'https://github.com/InKCre' },
     ],
     sidebar: {
-      '/self-hosted/': [
+      '/': [
+        { text: 'Getting Started', link: '/getting-started' },
         {
           text: 'Self-Hosted',
           items: [
             { text: 'Overview', link: '/self-hosted/' },
             { text: 'Getting Started', link: '/self-hosted/getting-started' },
+            { text: 'Advanced', link: '/self-hosted/advanced' },
           ],
         },
       ],

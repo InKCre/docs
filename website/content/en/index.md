@@ -13,8 +13,8 @@ hero:
     indexing, and downstream use.
   actions:
     - theme: brand
-      text: Self-Hosted
-      link: /self-hosted/
+      text: Getting Started
+      link: /getting-started
     - theme: alt
       text: Developer Guide
       link: /developer/
@@ -39,8 +39,8 @@ features:
 InKCre is evolving rapidly. Product behavior, interfaces, and developer contracts may change as the
 project tests and solidifies its foundations.
 
-Want to run your own instance? Start with [Self-Hosted](/self-hosted/) to choose a deployment path,
-then follow its Getting Started guide to collect and use your information. The
+Start with [Getting Started](/getting-started) to learn what InKCre does, why you might use it, and
+how to begin. Running your own instance is one path, covered by [Self-Hosted](/self-hosted/). The
 [Developer Guide](/developer/) is for contributors; [About InKCre](/about/) explains the project's
 identity and direction.
 

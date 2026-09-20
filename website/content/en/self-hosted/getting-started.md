@@ -121,44 +121,10 @@ deployment procedure and recovery details live in the
 
 ### Manual deployment {#manual-deployment}
 
-You can use your own machine, VPS, containers, or other hosting. No GitHub fork, Neon account,
-Render account, or Heroku account is inherently required. These providers automate a portable
-runtime consisting of:
-
-| Component                                                   | Responsibility                                                                          |
-| ----------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| PostgreSQL with the required extensions, including pgvector | Persists the info-base and shared configuration.                                        |
-| Database initializer                                        | Creates/migrates the schema, provisions runtime roles, and reconciles built-in records. |
-| PostgREST                                                   | Exposes the admitted database API used by the Web client.                               |
-| Core Python program                                         | Runs collection, Jobs, Extensions, and the Core HTTP API.                               |
-
-The initializer is a deployment step, not an additional always-running service. Core and PostgREST
-connect to the same initialized database with different runtime roles. The CLI connects to Core; the
-Web client uses PostgREST and discovers Core capabilities. The Web app itself can remain at
-`app.inkcre.dev` or be hosted separately.
-
-For a manual installation, work through these steps using the runtime documentation for the Core
-revision you selected:
-
-1. Provision PostgreSQL with the required extensions. Retain an owner connection for initialization
-   and migrations; do not use that privileged connection as the application's runtime connection.
-2. Run Core's ordered database initializer with the runtime profile. It provisions schema and roles
-   as well as migrations: starting an empty database and only launching Python is not enough. The
-   [database lifecycle guide](https://github.com/InKCre/core-py/blob/main/docs/40-deployment/database-contract.md)
-   owns the initializer commands, credentials, and readiness checks.
-3. Configure PostgREST with the `authenticator` connection, the admitted `inkcre` schema, and the
-   deployment's JWT settings. Configure Core with the `inkcre_core` connection and matching JWT
-   settings. Keep the migration-owner credentials out of both running services.
-4. Start the Core Python program with its pinned dependencies, or use its container image, and start
-   PostgREST. The [Core README](https://github.com/InKCre/core-py#readme) and
-   [container/runtime guide](https://github.com/InKCre/core-py/blob/main/docs/40-deployment/docker.md)
-   own the supported entry points. The Compose stack is a useful topology reference, but its
-   development credentials and defaults are not a production configuration.
-5. Configure HTTPS and reachable service URLs, advertise Core's public address in its Peer
-   configuration, and arrange process restarts, backups, and upgrades. Verify Core `/readyz` and
-   authenticated database access before connecting clients. The
-   [runtime orchestration guide](https://github.com/InKCre/core-py/blob/main/docs/40-deployment/runtime-orchestration.md)
-   explains readiness and capability availability.
+For your own database, server, or container setup, follow
+[Advanced Self-Hosting](/self-hosted/advanced#manual-deployment). It covers PostgreSQL
+initialization, PostgREST, the Core Python program, and operating responsibilities. Return here
+after deployment to connect clients and collect your first source.
 
 **Checkpoint for every deployment path:** you have a ready Core URL, a PostgREST URL, your private
 JWT secret, and a persistent Core Peer identity. Continue below; collecting and using information
