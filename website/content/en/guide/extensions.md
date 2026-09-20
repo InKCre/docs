@@ -16,17 +16,24 @@ authority. Do not change a working installation merely to match an example.
 
 ## Prepare the Core collector
 
-1. Open **Extensions** and look for the name from your source guide.
-2. If it is absent, ask your operator or trusted Agent to install the guide's exact **Core** release
-   using the CLI instructions. This is currently a one-time prerequisite: **Install New Extension**
-   uses the browser Host and requires a browser distribution. Selecting Core below it does not turn
-   that form into a Python-package installer. RSS, for example, has only a Python distribution.
-3. Refresh the page. In **Control Extension on Client**, select your online **Core** client, then
-   turn on the Extension's switch. Enabling only **This browser** does not start a Core collector.
+1. Open **Extensions**. In **Control Extension on Client**, select your online **Core** client.
+2. Look for the name from your source guide. If it is absent, enter its **Extension Name** and exact
+   **Version** in **Install New Extension**, then select **Install Extension**. The selected Core
+   validates the Python release; Python-only collectors such as RSS do not need a browser package.
+3. Turn on the Extension's switch while Core is still selected. Installation alone does not start
+   it. Enabling only **This browser** does not start a Core collector.
 4. If the guide requires Extension-wide settings, open **Edit Config**, enter its configuration
    object, and save. Source account settings belong in **Sources**, unless the guide says otherwise.
 5. Open **Sources**, create a Source, and check that its **Type** is available. A listed
    installation alone does not prove that the collector is running.
+
+An offline client cannot validate an installation. If installation fails, keep your entered name and
+version, read the error, and check the selected client and release compatibility before trying
+again. An older Core may need an update to support installation through this Web control. Do not
+switch to **This browser** as a workaround for a Python-only collector.
+
+For an existing installation at another version, use **Change Version** only after checking both
+Hosts and disabling every client using it. Version and configuration are shared across the instance.
 
 ## Browser Extensions and setup wizards
 
@@ -35,7 +42,7 @@ with compatible Python **and** browser distributions, enable it on Core, then se
 browser** and enable it there too. Open **Setup** when that button appears.
 
 Do not install a different shared version to obtain a wizard without checking both Hosts. The
-[Twitter guide](/guide/sources/twitter) explains the currently published version mismatch.
+[Twitter guide](/guide/sources/twitter) walks through its paired Core and browser setup.
 
 </template>
 <template #cli>

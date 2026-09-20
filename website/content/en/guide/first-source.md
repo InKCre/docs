@@ -20,8 +20,8 @@ includes its own prerequisites and setup.
 An **Extension** supplies a collector implementation; a **Source** is one configured use of it. For
 example, install the RSS Extension once, then create one Source per feed. Installing it does not
 automatically enable it or collect anything. [Prepare the Extension](/guide/extensions) on Core,
-then configure the Source in the Web app. Python-only Extension installation currently needs a
-one-time operator or Agent step; it does not require doing all later setup in a terminal.
+then configure the Source in the Web app. Select the online Core client when installing a
+Python-only collector; the browser does not need to run that Extension itself.
 
 ## Complete the first loop
 

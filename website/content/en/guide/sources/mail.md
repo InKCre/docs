@@ -17,7 +17,7 @@ for terminal instructions.
 1. Find your provider's IMAP hostname and enable IMAP if required. Obtain an app-specific password
    where supported. An ordinary password cannot replace an unsupported authentication method.
 2. [Prepare the Extension](/guide/extensions): `inkcre/mail` version `0.3.0` on Core Host `0.2.x`.
-   Have your operator or Agent install the Core package if it is absent.
+   Select the online Core client to install and enable the collector.
 3. Open **Sources** and the create-source form. Use **Nickname** `My mail` and **Type**
    `extensions.mail.source.Source`.
 4. Paste this into **Config**, replace the host and credentials, and save/create:

@@ -18,7 +18,7 @@ for terminal instructions.
    [GitHub's token instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
    Its account and permissions determine what the collector can see.
 2. [Prepare the Extension](/guide/extensions): `inkcre/github` version `0.3.0` on Core Host `0.2.x`.
-   Your operator or Agent handles the Core install if needed.
+   Select the online Core client to install and enable the collector.
 3. Open **Sources** and the create-source form. Enter **Nickname** `My GitHub saves` and choose
    **Type** `extensions.github.stars.Source`.
 4. Enter this object in **Config**, replace the token, and save/create:

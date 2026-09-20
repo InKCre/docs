@@ -17,7 +17,8 @@ for terminal instructions.
 Choose a publication's **RSS or Atom feed URL**, not its normal homepage.
 
 1. [Prepare the Extension](/guide/extensions): `inkcre/rss` version `0.2.0` for Core Host `0.2.x`.
-   If it is not installed, your operator or Agent must complete the one-time Core install.
+   Select your online Core client to install it, then enable it there. No CLI or browser Extension
+   is needed for this collector.
 2. Open **Sources** and the create-source form. Set **Nickname** to `My first feed`.
 3. Choose **Type** `extensions.rss.rss.Source`, or `extensions.rss.atom.Source` for Atom.
 4. Paste this object into **Config**, replacing the feed URL:

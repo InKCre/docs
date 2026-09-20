@@ -17,8 +17,9 @@ for terminal instructions.
 This is a write-in capture endpoint, **not** an importer for an existing Memos server. It implements
 a bounded Memos `0.29.1` API subset; the previously accepted client is MoeMemos Android `2.0.4`.
 
-1. Ask your operator or Agent to install `inkcre/memos` version `0.2.0` for Core Host `0.2.x`,
-   following [Prepare an Extension](/guide/extensions). Configure it before enabling it.
+1. In the Web app, select your online Core client and install `inkcre/memos` version `0.2.0` for
+   Core Host `0.2.x`, following [Prepare an Extension](/guide/extensions). Configure it before
+   enabling it.
 2. Generate a dedicated token in your password manager: the literal prefix `memos_pat_` followed by
    exactly **32 random ASCII letters or digits**. Save it securely. Never use your JWT secret.
 3. Open **Extensions → inkcre/memos → Edit Config** and save:
