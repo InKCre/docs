@@ -48,7 +48,7 @@ Extension 卡片提供实际存在的 global / python / module-federation 文档
 
 另外，Web Memos 当前版本 0.1 的单次 minor intent 只准备到 0.2，而新 Python 功能发行目标为 0.3；普通 Changesets 不支持任意目标版本。正式 Version PR 必须对齐二者，不能发布一个需要新 Python API 的旧 0.2 MF。新 Web Runtime 也须先经正常发布，消费者才能根据真实产物更新冻结依赖；本地候选通过不表示公开依赖已可用。
 
-Runtime 的 SDK 类型依赖已改为固定 client-web 源码 SHA 的真实构建：按原仓库 lock 构建/pack，将产物置于 Runtime 私有 node_modules 并只替换本 workspace 的链接，不写 pnpm 共享 store。已删除 ambient SDK stub；源码类型、声明构建与 HTTP 边界检查均使用真实 SDK。此准备不建立新 SDK 发布渠道。
+Runtime 的 SDK 类型依赖已改为固定 client-web 源码 SHA 的真实构建：只检出 packages/core，使用原 SDK 源码和构建配置、ext-reg 自身冻结依赖构建，将产物置于 Runtime 私有 node_modules 并只替换本 workspace 的链接，不写 pnpm 共享 store。已删除 ambient SDK stub；源码类型、声明构建与 HTTP 边界检查均使用真实 SDK。这是本仓库锁定环境的兼容验证，不宣称复现尚未发布的官方 SDK 制品，也不建立新 SDK 发布渠道。
 
 ## 提交顺序与验证
 
@@ -72,6 +72,8 @@ Runtime 的 SDK 类型依赖已改为固定 client-web 源码 SHA 的真实构�
 
 真实隔离 Core、PostgREST、Registry 与 MF 候选完成首次准备、保存失败、启用结果未知、启用失败、地址缺失后的恢复，以及重开无 mutation、复制、键盘、390px 和 memo CRUD。Registry 通过真实发布 API 接收 Python/MF 与三组 VitePress 文档，浏览器点击三种 scope 外链和 MF 锚点成功；文档 404/503 不阻断设置。普通 Web Config 直接产生 PostgREST PATCH，PAT A→B 后 A 401/B 200，撤销后均 401，无 Core 重启或重复 enable。PAT 已撤销。MoeMemos 设备 UI 未验收。
 
-远端发现固定 SDK 构建的完整锁文件元数据需要读取 GitHub Packages。9cc3d7a 复用生产者的只读自动 token 配置，但运行 35586812437 仍返回跨仓库 403；没有添加私人 token、修改包权限或关闭供应链检查。该构建依赖尚未解决，Registry 不能宣称远端门禁通过。
+原实现安装整个 producer workspace，其锁文件元数据要求读取无关的 UI 包；只读 token 仍403。9615b0d 改为 ext-reg 自身冻结构建环境，不安装 Web 根 workspace，并撤回额外包认证。无 token、禁用用户 npmrc、全新 store 的冻结安装下载212包且复用0包；真实 SDK/Runtime 构建、类型、HTTP边界与完整本地 PG/Moto 门禁通过。远端运行35587933605全通过，含完整门禁、镜像构建和真实HTTP/数据库smoke，未关闭供应链检查。Web在2f06923重新消费最终Runtime候选，完整pnpm check通过；没有改源码、manifest或lock来伪造正式依赖。
 
 交付仍受三项发行协调限制：Host SDK 0.3 及旧 Python 插件兼容范围待用户确认；Runtime 新接口尚未正式发布，Web 保留现有公开 0.1 依赖，因此干净 CI/preview 尚不能通过；Memos MF/Python 0.3 需在正式 Version PR 对齐。用户教程按目标发行编写，不能先于这些依赖单独交付。本轮不合并、不发布、不部署生产。
+
+验收结束已关闭本轮 Core/Web/Registry/Moto、SSH 转发，并清理三个精确命名的专用测试容器及其可重建数据。没有清理用户既有开发或预览实例；任务脚本、构建候选、截图和活动 packet 保留。
