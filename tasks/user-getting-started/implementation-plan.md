@@ -65,3 +65,13 @@ Runtime 的 SDK 类型依赖已改为固定 client-web 源码 SHA 的真实构�
 ## 完成标准与回退
 
 各仓库改动、文档、候选产物集成和门禁有可回读证据；PR 保持现有 draft/ready 状态，列明相关 PR、未发布依赖及剩余限制。每次提交只包含当前任务文件，不带本地凭据、运行数据或他人改动。代码回退以各仓库任务提交为单位；本轮不改 DB schema，因此无需数据迁移回退。
+
+## 本轮实现与验收结果
+
+实施计划 efe5cef 先行提交。Core b3626a1、Registry Runtime 5789d4a、Web 2f06923 已推送原 PR。Core 全门禁通过（14 passed、62 skipped），数据库项目另在 disposable PostgreSQL/pgvector 17 运行，Memos 集成 16 passed。Registry 完整 PG/Moto 门禁及 Web 完整门禁均使用真实 SDK/Runtime 候选通过，不能替代下述公开依赖门禁。
+
+真实隔离 Core、PostgREST、Registry 与 MF 候选完成首次准备、保存失败、启用结果未知、启用失败、地址缺失后的恢复，以及重开无 mutation、复制、键盘、390px 和 memo CRUD。Registry 通过真实发布 API 接收 Python/MF 与三组 VitePress 文档，浏览器点击三种 scope 外链和 MF 锚点成功；文档 404/503 不阻断设置。普通 Web Config 直接产生 PostgREST PATCH，PAT A→B 后 A 401/B 200，撤销后均 401，无 Core 重启或重复 enable。PAT 已撤销。MoeMemos 设备 UI 未验收。
+
+远端发现固定 SDK 构建的完整锁文件元数据需要读取 GitHub Packages。9cc3d7a 复用生产者的只读自动 token 配置，但运行 35586812437 仍返回跨仓库 403；没有添加私人 token、修改包权限或关闭供应链检查。该构建依赖尚未解决，Registry 不能宣称远端门禁通过。
+
+交付仍受三项发行协调限制：Host SDK 0.3 及旧 Python 插件兼容范围待用户确认；Runtime 新接口尚未正式发布，Web 保留现有公开 0.1 依赖，因此干净 CI/preview 尚不能通过；Memos MF/Python 0.3 需在正式 Version PR 对齐。用户教程按目标发行编写，不能先于这些依赖单独交付。本轮不合并、不发布、不部署生产。

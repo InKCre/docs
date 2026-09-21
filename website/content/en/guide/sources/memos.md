@@ -17,22 +17,22 @@ for terminal instructions.
 This is a write-in capture endpoint, **not** an importer for an existing Memos server. It implements
 a bounded Memos `0.29.1` API subset; the previously accepted client is MoeMemos Android `2.0.4`.
 
-1. In the Web app, select your online Core client and install `inkcre/memos` version `0.2.0` for
-   Core Host `0.2.x`, following [Prepare an Extension](/guide/extensions). Configure it before
-   enabling it.
-2. Generate a dedicated token in your password manager: the literal prefix `memos_pat_` followed by
-   exactly **32 random ASCII letters or digits**. Save it securely. Never use your JWT secret.
-3. Open **Extensions → inkcre/memos → Edit Config** and save:
-
-```json
-{ "personal_access_token": "YOUR-GENERATED-MEMOS-PAT" }
-```
-
-4. Select Core under **Control Extension on Client** and enable Memos.
-5. In the supported Memos client's server/account setup, enter `https://YOUR-CORE-HOST/memos` and
-   the dedicated token. Do not use PostgREST or append `/api/v1`.
-6. Write a distinctive note, refresh the client, and reopen it. Then
+1. In **Extensions**, select your online Core under **Control Extension on Client** and install
+   `inkcre/memos` version `0.3.0` for Core Host SDK `0.3.x`. For an existing installation, follow
+   the version-change instructions in [Prepare an Extension](/guide/extensions).
+2. Select **This browser**, enable Memos there, and open **Setup**. The same release supplies the
+   browser setup and Core service; do not install a different version for each client.
+3. Choose your Core if more than one is available, then select **Prepare connection**. Setup
+   generates or reuses a dedicated PAT and enables Memos on that Core when necessary.
+4. Copy **Server URL** and **Personal Access Token** into the supported Memos client's account
+   setup. Use the complete URL shown, not PostgREST, and do not append `/api/v1`.
+5. Write a distinctive note, refresh the client, and reopen it. Then
    [index and search](/guide/search) for the same text in InKCre.
+
+If setup reports a missing public address, set your Core's **Public HTTP Base URL** in **Clients →
+Config**, then refresh setup. The address must be reachable from your Memos client. The **Memos
+connection help** link opens the installed version's step-by-step guide; the Extension card also
+links its available global, Core, and Web documentation.
 
 There is no Source to create or collection schedule: the client writes notes directly. Index
 maintenance remains separate. Other client versions may use unsupported endpoints.
@@ -49,11 +49,11 @@ implements a bounded Memos `0.29.1` API subset; the previously accepted client i
 
 ## 1. Configure the Extension
 
-Start with a [connected CLI](/guide/connect-cli) and a Core HTTPS URL. Install the Core Host `0.2.x`
-release, or inspect `inkcre-cli extension get inkcre/memos` if already installed:
+Start with a [connected CLI](/guide/connect-cli) and a Core HTTPS URL. Install the Core Host SDK
+`0.3.x` release, or inspect `inkcre-cli extension get inkcre/memos` if already installed:
 
 ```sh
-inkcre-cli extension install inkcre/memos --version 0.2.0
+inkcre-cli extension install inkcre/memos --version 0.3.0
 ```
 
 Generate a dedicated PAT and save it in your password manager. Its required format is `memos_pat_`
