@@ -25,6 +25,14 @@ Record durable data and behavior contracts that span more than one unit reposito
 - `running` means the current runtime has actually started that extension and applied its runtime side effects.
 - Starting or stopping an extension is not a pure flag flip; it changes runtime capabilities and API surface for that client.
 
+## Extension Documentation Hosting Contract
+
+- Author-built static documentation, exact Release/scope identity, conditional whole-site
+  corrections, snapshot-origin isolation, and consumer discovery follow the
+  [Extension Documentation Hosting Contract](extension-documentation-hosting.md).
+- Registry owns hosting and executable API details; authors own site content and structure.
+  Documentation does not become an installable Distribution or alter Host lifecycle authority.
+
 ## Info-Base Ownership Contract
 
 - Collection, organization, application, graph authority, resolver/storage composition, and

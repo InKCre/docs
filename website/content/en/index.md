@@ -13,6 +13,9 @@ hero:
     indexing, and downstream use.
   actions:
     - theme: brand
+      text: Getting Started
+      link: /getting-started
+    - theme: alt
       text: Developer Guide
       link: /developer/
     - theme: alt
@@ -36,9 +39,10 @@ features:
 InKCre is evolving rapidly. Product behavior, interfaces, and developer contracts may change as the
 project tests and solidifies its foundations.
 
-This site currently focuses on a concise [Developer Guide](/developer/) and the project's
-[identity and direction](/about/). It does not yet present a stable User Manual or a complete
-third-party development platform.
+Start with [Getting Started](/getting-started) to learn what InKCre does, why you might use it, and
+how to begin. Running your own instance is one path, covered by [Self-Hosted](/self-hosted/). The
+[Developer Guide](/developer/) is for contributors; [About InKCre](/about/) explains the project's
+identity and direction.
 
 ## Start with the current foundations
 

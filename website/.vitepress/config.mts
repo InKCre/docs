@@ -49,12 +49,63 @@ export default defineConfig({
   },
   themeConfig: {
     nav: [
+      { text: 'Getting Started', link: '/getting-started' },
       { text: 'Developer', link: '/developer/' },
       { text: 'About', link: '/about/' },
       { text: 'GitHub', link: 'https://github.com/InKCre' },
     ],
     sidebar: {
+      '/': [
+        { text: 'Getting Started', link: '/getting-started' },
+        {
+          text: 'User Guide',
+          items: [
+            { text: 'Connect to Your Instance', link: '/guide/connect' },
+            { text: 'CLI / Agent Connection', link: '/guide/connect-cli' },
+            { text: 'Prepare an Extension', link: '/guide/extensions' },
+            { text: 'Collect Your First Source', link: '/guide/first-source' },
+            { text: 'Find What You Saved', link: '/guide/search' },
+            { text: 'Schedule Collection and Indexing', link: '/guide/schedules' },
+            {
+              text: 'Connect More Sources',
+              link: '/guide/sources',
+              items: [
+                { text: 'RSS and Atom', link: '/guide/sources/rss' },
+                { text: 'GitHub Stars and Lists', link: '/guide/sources/github' },
+                { text: 'Email over IMAP', link: '/guide/sources/mail' },
+                { text: 'Telegram Inbox', link: '/guide/sources/telegram' },
+                { text: 'Twitter / X Bookmarks', link: '/guide/sources/twitter' },
+                { text: 'Memos-Compatible Capture', link: '/guide/sources/memos' },
+                { text: 'Run a Collection', link: '/guide/collect' },
+              ],
+            },
+            {
+              text: 'Use Your Information',
+              link: '/guide/daily-use',
+              items: [{ text: 'Sinks: ChatGPT via MCP', link: '/guide/sinks/chatgpt' }],
+            },
+            { text: 'Troubleshooting', link: '/guide/troubleshooting' },
+          ],
+        },
+        {
+          text: 'Self-Hosted',
+          items: [
+            { text: 'Overview', link: '/self-hosted/' },
+            { text: 'Getting Started', link: '/self-hosted/getting-started' },
+            { text: 'Render and Neon', link: '/self-hosted/render-neon' },
+            { text: 'Heroku and Neon', link: '/self-hosted/heroku-neon' },
+            { text: 'Advanced', link: '/self-hosted/advanced' },
+          ],
+        },
+      ],
       '/developer/': [
+        {
+          text: 'Ecosystem Developers',
+          items: [
+            { text: 'Build on InKCre', link: '/developer/ecosystem/' },
+            { text: 'Build a Source Extension', link: '/developer/ecosystem/source-extension' },
+          ],
+        },
         {
           text: 'Developer Guide',
           items: [

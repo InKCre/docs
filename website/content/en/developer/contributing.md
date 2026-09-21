@@ -8,6 +8,10 @@ description: Route an InKCre change to its canonical owner and repository-specif
 InKCre welcomes code, documentation, design, and ecosystem contributions. Start by identifying the
 owner of the change; then follow that owner's current development and review contract.
 
+If you want to connect another service without changing InKCre itself, use the
+[ecosystem developer guide](/developer/ecosystem/) instead. Your Extension can live in your own
+repository; it does not need to become a Core contribution.
+
 > [!NOTE] There is no copied, universal setup or contribution procedure. Toolchains and commands
 > belong to the repository that runs and verifies them.
 

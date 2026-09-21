@@ -80,8 +80,10 @@ activity are separate states:
 - **enabled**: a particular client is permitted to run it;
 - **running**: the current runtime has started it and applied its side effects.
 
-The lifecycle and ownership model exists, but a stable third-party package format and SDK guide are
-not yet public contracts.
+Core supports native Python wheels with versioned Registry releases and explicit Host compatibility.
+The [Source Extension tutorial](/developer/ecosystem/source-extension) covers the current Core Host
+0.2 path. Its Source programming interfaces still import Core modules; the delivery Toolkit is not a
+standalone Source SDK or a promise of compatibility with every future Host.
 
 ### APIs
 

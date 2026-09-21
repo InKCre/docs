@@ -29,8 +29,16 @@ pnpm --dir website audit --audit-level high
 - Future Chinese source will live under `content/zh/` and be published under `/zh/`.
 - Only English is active until the Chinese route set is complete or the locale switch has a
   deliberate fallback.
-- The current published routes are `/`, `/developer/`, `/developer/architecture`,
-  `/developer/contributing`, and `/about/`.
+- `/getting-started` owns the application-level What, Why, and How introduction.
+- `/self-hosted/` contains its Getting Started path, Render/Heroku quick-deployment guides, and
+  Advanced guide. Its Getting Started page orders the journey rather than duplicating procedures.
+- `/guide/` leaf pages own reusable client, collection, retrieval, scheduling, source, daily-use,
+  and troubleshooting procedures. Link to these pages from any onboarding path rather than to
+  sections buried inside the self-hosted walkthrough.
+- `/guide/sources` selects independent source tutorials under `/guide/sources/`; `/guide/collect`
+  owns shared collection and Job observation. Memos is documented separately as write-in capture.
+- `/developer/` separates ecosystem integration guidance under `/developer/ecosystem/` from
+  architecture and core contribution guidance; `/about/` describes the project.
 - Section indexes use trailing-slash routes, such as `/developer/`.
 - Leaf pages use lowercase ASCII kebab-case routes without an extension, such as
   `/developer/architecture`.
@@ -44,6 +52,15 @@ are resolved from the rewritten route, not the source file location.
 
 ## Page Authoring
 
+- User procedures default to client-web. Use the shared `InterfaceGuide` component with `#web` and
+  `#cli` slots for alternate steps on the same route; CLI instructions primarily serve Agents and
+  operators. The choice survives client-side navigation, not a full reload. Without JavaScript, both
+  sections remain readable. Keep shared prerequisites and limitations outside the slots.
+- Set `outline: false` on interface-switching pages: the default VitePress outline includes hidden
+  slot headings. Do not expose links to invisible instructions. The site sidebar remains available.
+- State actual interface gaps instead of implying feature parity. Core package installation and
+  lexical maintenance still need CLI/operator steps; a browser wizard requires a compatible native
+  distribution as well as its Core collector. Check both against published Registry releases.
 - Keep exactly one H1 per page.
 - Add a concise page `description` in frontmatter.
 - Give headings explicit custom anchors only when another page or external consumer needs a durable
@@ -70,10 +87,13 @@ same-repository run, the trusted Preview workflow checks out that exact head, bu
 publishes an isolated, deterministic, short-lived preview. Fork pull requests receive no preview
 credentials, preview origins remain `noindex`, and closing the pull request replaces the live
 preview with a trusted closed-preview tombstone. The stable `preview-docs-pr-N` branch alias is the
-user-facing preview URL and is recorded against the pull-request head in GitHub; Cloudflare retains
-the underlying immutable deployments in its history. If automatic retirement fails, the cleanup
-workflow can be run manually for the closed pull-request number. A preview build is never promoted
-to production.
+user-facing preview URL. The `docs preview` commit status on the exact pull-request head links to
+that URL after deployment and smoke checks succeed; pending, failed, or cancelled runs link to the
+workflow logs. The workflow's automatic environment deployment record belongs to its trusted `main`
+controller, so the explicit commit status provides the PR-facing entry point. Changes to this
+`workflow_run` controller take effect after merging into `main`. Cloudflare retains the underlying
+immutable deployments in its history. If automatic retirement fails, the cleanup workflow can be run
+manually for the closed pull-request number. A preview build is never promoted to production.
 
 Protected `main` is the publication authority. `Pages deployment` runs for a push to `main`; failed
 runs can be rerun for the same commit, while rollback starts by reverting `main` through a pull
