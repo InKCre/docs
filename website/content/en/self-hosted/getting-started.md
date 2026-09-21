@@ -1,12 +1,13 @@
 ---
-title: Getting Started
-description: Follow the self-hosted path from deployment to collecting and using your information.
+title: Set Up a Self-Hosted Instance
+description: Deploy your own instance, then join the shared user journey for collection and use.
 ---
 
-# Self-Hosted Getting Started
+# Set Up a Self-Hosted Instance
 
-This is the [Self-Hosted](/self-hosted/) path through InKCre: you will operate your own instance.
-For the application's What, Why, and How, begin with [Getting Started](/getting-started).
+This [Self-Hosted](/self-hosted/) guide gives you an instance that you operate. For the
+application's What, Why, and linear first-use journey, begin with
+[Getting Started](/getting-started).
 
 You will use the Web app for interactive setup. A trusted Agent or operator can handle the remaining
 terminal-only operations, such as installing Core collectors and scheduling indexing. No InKCre
@@ -37,15 +38,17 @@ Follow these shared user guides in order. If you already have an instance, start
 **Checkpoint:** you can retrieve a real item from your source. Collection and indexing are separate;
 neither requires you to set up AI organization first.
 
-## 3. Make it useful day to day
+## 3. Continue through the User Guide
 
-- [Schedule collection and indexing](/guide/schedules) after the manual steps work.
+Finish the linear Getting Started journey with [Use Your Information](/guide/daily-use). After the
+manual steps work, choose the separate User Guide topics that match your needs:
+
+- [Schedule collection](/guide/schedules).
+- [Schedule index maintenance](/guide/index-schedule).
 - [Connect more sources](/guide/sources), such as GitHub saves, email, and Telegram messages.
-- [Use your information](/guide/daily-use) from the Web app, a terminal, or a trusted assistant.
-  This also explains optional AI organization and MCP access.
+- [Advanced Self-Hosting](/self-hosted/advanced) for backups, upgrades, and manual operations.
 
 These paths make information available on demand. They do not configure automatic daily digests or
 Telegram/email push notifications. Hosting that sleeps cannot guarantee continuous collection.
 
-If a step fails, use [Troubleshooting](/guide/troubleshooting). For backups, upgrades, and ongoing
-hosting responsibilities, return to [Advanced Self-Hosting](/self-hosted/advanced).
+If a step fails, use [Troubleshooting](/guide/troubleshooting).

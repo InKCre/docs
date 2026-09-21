@@ -47,9 +47,9 @@ as the [Web app](https://app.inkcre.dev/settings), connects to that instance. Op
 does not create an instance for you.
 
 - **Run your own instance:** choose [Self-Hosted](/self-hosted/). Its
-  [Getting Started](/self-hosted/getting-started) guide walks through quick deployment and your
-  first collection. [Advanced](/self-hosted/advanced) covers manual deployment and operating it on
-  infrastructure you choose.
+  [setup guide](/self-hosted/getting-started) walks through quick deployment before you rejoin this
+  journey. [Advanced Self-Hosting](/self-hosted/advanced) covers manual deployment and operating it
+  on infrastructure you choose.
 - **Already have access to an instance:** obtain connection details from the person operating it,
   then [connect the Web app or your Agent](/guide/connect), [collect a source](/guide/first-source),
   and [connect your everyday tools](/guide/daily-use). Skip the deployment steps. Only connect
@@ -70,7 +70,8 @@ permissions each requires.
 
 Follow [Find What You Saved](/guide/search) to maintain the search index, search for something you
 remember, and open a result. Then [Use Your Information](/guide/daily-use) to connect the Web app or
-a tool you already use. These guides work independently of your deployment choice.
+a tool you already use. This completes the linear Getting Started path, independently of your
+deployment choice.
 
 AI organization and semantic retrieval are optional next steps with their own provider and
 maintenance setup. InKCre does not automatically configure a daily digest or Telegram/email push
@@ -79,6 +80,9 @@ notifications: making information available in your tools is distinct from proac
 ## Your next step
 
 If you do not have an instance yet, open [Self-Hosted](/self-hosted/) and choose a deployment path.
-If you want to understand or contribute to the implementation, use the
-[Developer Guide](/developer/) instead. For the project's values and direction, read
-[About InKCre](/about/).
+After the first-use path works, the User Guide covers optional topics such as
+[more sources](/guide/sources), [collection schedules](/guide/schedules),
+[index-maintenance schedules](/guide/index-schedule), and
+[advanced self-hosting](/self-hosted/advanced). If you want to understand or contribute to the
+implementation, use the [Developer Guide](/developer/) instead. For the project's values and
+direction, read [About InKCre](/about/).

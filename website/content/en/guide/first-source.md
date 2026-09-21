@@ -30,10 +30,11 @@ Python-only collector; the browser does not need to run that Extension itself.
 2. [Run a Collection](/guide/collect) and wait for the returned **Job ID** to finish. These are
    different IDs: the Source persists across runs; each Job represents one run.
 3. [Find What You Saved](/guide/search): maintain the lexical index and search for a known item.
-4. Only after that works, [schedule collection and indexing](/guide/schedules).
 
 **Done means you retrieved a real item**, not just that installation or a Job succeeded. A
 successful empty collection may be normal; each source guide explains what is eligible for
 collection.
 
-Next: [Connect More Sources](/guide/sources), or [Use Your Information](/guide/daily-use).
+Next: [Use Your Information](/guide/daily-use). After the Getting Started path works, you can
+[connect more sources](/guide/sources), [schedule collection](/guide/schedules), or
+[schedule index maintenance](/guide/index-schedule).

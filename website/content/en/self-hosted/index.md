@@ -10,8 +10,8 @@ sources it collects, and which clients can access it. You also manage credential
 availability, backups, and updates. This section is for users choosing that responsibility.
 
 For the application-level introduction and access choices, start with
-[Getting Started](/getting-started). Here, choose between the step-by-step
-[self-hosted walkthrough](/self-hosted/getting-started) and
+[Getting Started](/getting-started). Self-hosting is a separate User Guide topic: use the
+[instance setup guide](/self-hosted/getting-started) for a fork-based deployment, or
 [Advanced Self-Hosting](/self-hosted/advanced) for manual deployment and operations.
 
 ## Choose a deployment path
@@ -29,8 +29,9 @@ plans need particular care if you want continuous collection.
 
 ## From an empty instance to useful information
 
-Follow [Getting Started](/self-hosted/getting-started) to deploy an instance, collect one RSS feed,
-find a saved item, and add the sources you use. The guide then connects the instance to the Web app
-and everyday tools. It assumes basic technical familiarity but no InKCre development setup.
+Follow [Set Up a Self-Hosted Instance](/self-hosted/getting-started) to deploy an instance, then
+return to the shared [Getting Started](/getting-started) path to connect, collect one source, find a
+saved item, and use it. The setup guide assumes basic technical familiarity but no InKCre
+development setup.
 
 If you already operate a compatible instance, begin at [connecting the CLI](/guide/connect-cli).

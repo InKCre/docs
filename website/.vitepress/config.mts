@@ -56,16 +56,22 @@ export default defineConfig({
     ],
     sidebar: {
       '/': [
-        { text: 'Getting Started', link: '/getting-started' },
         {
           text: 'User Guide',
           items: [
-            { text: 'Connect to Your Instance', link: '/guide/connect' },
+            {
+              text: 'Getting Started',
+              link: '/getting-started',
+              items: [
+                { text: 'Connect to Your Instance', link: '/guide/connect' },
+                { text: 'Prepare an Extension', link: '/guide/extensions' },
+                { text: 'Collect Your First Source', link: '/guide/first-source' },
+                { text: 'Run a Collection', link: '/guide/collect' },
+                { text: 'Find What You Saved', link: '/guide/search' },
+                { text: 'Use Your Information', link: '/guide/daily-use' },
+              ],
+            },
             { text: 'CLI / Agent Connection', link: '/guide/connect-cli' },
-            { text: 'Prepare an Extension', link: '/guide/extensions' },
-            { text: 'Collect Your First Source', link: '/guide/first-source' },
-            { text: 'Find What You Saved', link: '/guide/search' },
-            { text: 'Schedule Collection and Indexing', link: '/guide/schedules' },
             {
               text: 'Connect More Sources',
               link: '/guide/sources',
@@ -76,25 +82,25 @@ export default defineConfig({
                 { text: 'Telegram Inbox', link: '/guide/sources/telegram' },
                 { text: 'Twitter / X Bookmarks', link: '/guide/sources/twitter' },
                 { text: 'Memos-Compatible Capture', link: '/guide/sources/memos' },
-                { text: 'Run a Collection', link: '/guide/collect' },
               ],
             },
+            { text: 'Schedule Collection', link: '/guide/schedules' },
+            { text: 'Schedule Index Maintenance', link: '/guide/index-schedule' },
             {
-              text: 'Use Your Information',
-              link: '/guide/daily-use',
+              text: 'Sinks',
               items: [{ text: 'Sinks: ChatGPT via MCP', link: '/guide/sinks/chatgpt' }],
             },
+            {
+              text: 'Self-Hosted',
+              link: '/self-hosted/',
+              items: [
+                { text: 'Set Up an Instance', link: '/self-hosted/getting-started' },
+                { text: 'Render and Neon', link: '/self-hosted/render-neon' },
+                { text: 'Heroku and Neon', link: '/self-hosted/heroku-neon' },
+                { text: 'Advanced Self-Hosting', link: '/self-hosted/advanced' },
+              ],
+            },
             { text: 'Troubleshooting', link: '/guide/troubleshooting' },
-          ],
-        },
-        {
-          text: 'Self-Hosted',
-          items: [
-            { text: 'Overview', link: '/self-hosted/' },
-            { text: 'Getting Started', link: '/self-hosted/getting-started' },
-            { text: 'Render and Neon', link: '/self-hosted/render-neon' },
-            { text: 'Heroku and Neon', link: '/self-hosted/heroku-neon' },
-            { text: 'Advanced', link: '/self-hosted/advanced' },
           ],
         },
       ],

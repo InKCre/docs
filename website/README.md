@@ -30,13 +30,17 @@ pnpm --dir website audit --audit-level high
 - Only English is active until the Chinese route set is complete or the locale switch has a
   deliberate fallback.
 - `/getting-started` owns the application-level What, Why, and How introduction.
-- `/self-hosted/` contains its Getting Started path, Render/Heroku quick-deployment guides, and
-  Advanced guide. Its Getting Started page orders the journey rather than duplicating procedures.
+- `/getting-started` and its sidebar children form one linear path inside the User Guide. Advanced
+  topics such as more sources and self-hosting remain separate User Guide sections.
+- `/self-hosted/` contains instance setup, Render/Heroku quick-deployment guides, and the Advanced
+  guide. It is not a second Getting Started hierarchy.
 - `/guide/` leaf pages own reusable client, collection, retrieval, scheduling, source, daily-use,
   and troubleshooting procedures. Link to these pages from any onboarding path rather than to
   sections buried inside the self-hosted walkthrough.
 - `/guide/sources` selects independent source tutorials under `/guide/sources/`; `/guide/collect`
-  owns shared collection and Job observation. Memos is documented separately as write-in capture.
+  owns shared collection and Job observation. Collection scheduling and index-maintenance scheduling
+  stay on separate pages; indexing is retrieval support, not Organization. Memos is documented
+  separately as write-in capture.
 - `/developer/` separates ecosystem integration guidance under `/developer/ecosystem/` from
   architecture and core contribution guidance; `/about/` describes the project.
 - Section indexes use trailing-slash routes, such as `/developer/`.

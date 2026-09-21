@@ -8,7 +8,7 @@ description:
 
 This guide is for people who want to manage the runtime directly or move beyond the fork-based quick
 deployments. If you want the shortest route to your first collected information, start with
-[Self-Hosted Getting Started](/self-hosted/getting-started).
+[Set Up a Self-Hosted Instance](/self-hosted/getting-started).
 
 ## Manual deployment
 

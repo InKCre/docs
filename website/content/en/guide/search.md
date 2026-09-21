@@ -25,8 +25,9 @@ inkcre-cli job wait JOB_ID --for 30s
 ```
 
 Replace `JOB_ID` with the returned number. Inspect its state and diagnostics; maintenance handles a
-bounded batch, so a larger import can need another run. An [index schedule](/guide/schedules) avoids
-needing this manual step for every collection.
+bounded batch, so a larger import can need another run. An
+[index-maintenance schedule](/guide/index-schedule) avoids needing this manual step for every
+collection.
 
 2. Open **Info Base** in client-web. Enter a distinctive phrase from the collected item and search.
 3. Select a result, inspect its details, use **View content** where supported, and follow its graph
@@ -37,7 +38,7 @@ needing this manual step for every collection.
 separate; an AI key is not required for lexical search. Source-derived relationships do not mean
 that InKCre has automatically summarized or reorganized everything with AI.
 
-Next: [Schedule Collection and Indexing](/guide/schedules).
+Next: [Use Your Information](/guide/daily-use).
 
 </template>
 <template #cli>
@@ -72,11 +73,13 @@ inkcre-cli graph neighborhood block:123
 **Checkpoint:** you can retrieve a real item you recognize and see its source relationships. You
 have completed the first loop: source → saved information → information you can use.
 
-This first form of organization comes from the source: feed items belong to feeds, GitHub
-repositories can belong to Lists, and mail has sender and mailbox relationships. It does not mean
-InKCre has already summarized, tagged, or reorganized everything with AI.
+These source-derived relationships came from collection: feed items belong to feeds, GitHub
+repositories can belong to Lists, and mail has sender and mailbox relationships. They are not an
+Organization operation and do not mean InKCre has already summarized, tagged, or reorganized the
+information with AI.
 
-Next: [Keep collecting and searching](/guide/schedules).
+Next: [Use Your Information](/guide/daily-use). To automate maintenance later, add an
+[index-maintenance schedule](/guide/index-schedule).
 
 </template>
 </InterfaceGuide>
