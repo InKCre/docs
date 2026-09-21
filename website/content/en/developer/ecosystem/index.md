@@ -26,9 +26,9 @@ Release. Core installs that release, a Peer enables it, and the running Host act
 These are separate steps. Browser code is a separate native distribution, not automatically produced
 by a Python wheel.
 
-The Source tutorial targets **Core Host 0.2.x**. Its Python programming interfaces currently import
-Core modules; they are not an independent, universally stable Source SDK. The Extension Toolkit
-builds delivery metadata and preview registries; it does not run collectors or replace Core.
+The Source tutorial targets **Core Host SDK 0.3.x**. Its Python programming interfaces currently
+import Core modules; they are not an independent, universally stable Source SDK. The Extension
+Toolkit builds delivery metadata and preview registries; it does not run collectors or replace Core.
 
 ## Trust and delivery
 

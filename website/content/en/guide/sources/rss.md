@@ -16,9 +16,9 @@ for terminal instructions.
 
 Choose a publication's **RSS or Atom feed URL**, not its normal homepage.
 
-1. [Prepare the Extension](/guide/extensions): `inkcre/rss` version `0.2.0` for Core Host `0.2.x`.
-   Select your online Core client to install it, then enable it there. No CLI or browser Extension
-   is needed for this collector.
+1. [Prepare the Extension](/guide/extensions): `inkcre/rss` version `0.2.1` for Core Host SDK
+   `0.3.x`. Select your online Core client to install it, then enable it there. No CLI or browser
+   Extension is needed for this collector.
 2. Open **Sources** and the create-source form. Set **Nickname** to `My first feed`.
 3. Choose **Type** `extensions.rss.rss.Source`, or `extensions.rss.atom.Source` for Atom.
 4. Paste this object into **Config**, replacing the feed URL:
@@ -52,15 +52,15 @@ is not usually a feed URL. Look for an RSS/Subscribe link on the publication.
 Install the RSS Extension on Core, then enable it:
 
 ```sh
-inkcre-cli extension install inkcre/rss --version 0.2.0
+inkcre-cli extension install inkcre/rss --version 0.2.1
 inkcre-cli extension enable inkcre/rss
 inkcre-cli source types
 ```
 
-Version `0.2.0` is a published Python release for Core Host `0.2.x`. For a different Host version,
-check the [RSS release listing](https://registry.inkcre.dev/v1/extensions/inkcre/rss) for a
-published release with a compatible `python.host_sdk_version`. Do not guess a version or use
-`latest`. If already installed, inspect `inkcre-cli extension get inkcre/rss` before changing it.
+Version `0.2.1` supports Core Host SDK `0.3.x`. For a different Host version, check the
+[RSS release listing](https://registry.inkcre.dev/v1/extensions/inkcre/rss) for a published release
+with a compatible `python.host_sdk_version`. Do not guess a version or use `latest`. If already
+installed, inspect `inkcre-cli extension get inkcre/rss` before changing it.
 
 The type list should contain `extensions.rss.rss.Source` and `extensions.rss.atom.Source`. In the
 Web app, select Core under **Control Extension on Client** to control the collector, not **This

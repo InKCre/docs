@@ -49,10 +49,10 @@ Do not install a different shared version to obtain a wizard without checking bo
 
 ## Install and enable on Core
 
-Use the name and version in your source guide. For example, RSS on Core Host `0.2.x`:
+Use the name and version in your source guide. For example, RSS on Core Host SDK `0.3.x`:
 
 ```sh
-inkcre-cli extension install inkcre/rss --version 0.2.0
+inkcre-cli extension install inkcre/rss --version 0.2.1
 inkcre-cli extension enable inkcre/rss
 inkcre-cli source types
 ```

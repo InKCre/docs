@@ -21,8 +21,8 @@ for terminal instructions.
    Advanced → Export Telegram data**, include personal information, and choose JSON. Use
    `personal_information.user_id`, not your `@username` or the bot's ID. Telegram may require
    another-device confirmation or a waiting period.
-3. [Prepare the Extension](/guide/extensions): `inkcre/telegram` version `0.3.0` on Core Host
-   `0.2.x`. Select the online Core client to install and enable it.
+3. [Prepare the Extension](/guide/extensions): `inkcre/telegram` version `0.3.1` on Core Host SDK
+   `0.3.x`. Select the online Core client to install and enable it.
 4. Open **Sources** and the create-source form. Enter **Nickname** `My Telegram inbox` and choose
    **Type** `extensions.telegram.source.Source`. Paste this into **Config**, replace both values,
    and save/create:
@@ -47,9 +47,9 @@ retains updates for a limited time; keep another copy if your instance sleeps.
 <template #cli>
 
 Start with a working instance and a [connected CLI](/guide/connect-cli). The version below targets
-Core Host `0.2.x`; check the linked release listing for other Host versions. If already installed,
-inspect `inkcre-cli extension get inkcre/telegram` before changing it. Keep credential files and
-command output private.
+Core Host SDK `0.3.x`; check the linked release listing for other Host versions. If already
+installed, inspect `inkcre-cli extension get inkcre/telegram` before changing it. Keep credential
+files and command output private.
 
 1. Create a dedicated bot with [@BotFather](https://t.me/botfather): send `/newbot`, follow its
    naming prompts, and retain the token. Obtain your own numeric user ID using
@@ -60,7 +60,7 @@ command output private.
 2. Install and enable the Core Extension:
 
    ```sh
-   inkcre-cli extension install inkcre/telegram --version 0.3.0
+   inkcre-cli extension install inkcre/telegram --version 0.3.1
    inkcre-cli extension enable inkcre/telegram
    ```
 

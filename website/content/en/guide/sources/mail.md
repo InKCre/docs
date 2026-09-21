@@ -16,8 +16,8 @@ for terminal instructions.
 
 1. Find your provider's IMAP hostname and enable IMAP if required. Obtain an app-specific password
    where supported. An ordinary password cannot replace an unsupported authentication method.
-2. [Prepare the Extension](/guide/extensions): `inkcre/mail` version `0.3.0` on Core Host `0.2.x`.
-   Select the online Core client to install and enable the collector.
+2. [Prepare the Extension](/guide/extensions): `inkcre/mail` version `0.3.1` on Core Host SDK
+   `0.3.x`. Select the online Core client to install and enable the collector.
 3. Open **Sources** and the create-source form. Use **Nickname** `My mail` and **Type**
    `extensions.mail.source.Source`.
 4. Paste this into **Config**, replace the host and credentials, and save/create:
@@ -55,9 +55,9 @@ generate email digests. Keep credentials and diagnostics private.
 <template #cli>
 
 Start with a working instance and a [connected CLI](/guide/connect-cli). The version below targets
-Core Host `0.2.x`; check the linked release listing for other Host versions. If already installed,
-inspect `inkcre-cli extension get inkcre/mail` before changing it. Keep credential files and command
-output private.
+Core Host SDK `0.3.x`; check the linked release listing for other Host versions. If already
+installed, inspect `inkcre-cli extension get inkcre/mail` before changing it. Keep credential files
+and command output private.
 
 1. Find your provider's IMAP hostname and enable IMAP if required. Obtain an app-specific password
    where supported. Accounts requiring an unsupported authentication method cannot be connected by
@@ -65,7 +65,7 @@ output private.
 2. Install and enable the Core Extension:
 
    ```sh
-   inkcre-cli extension install inkcre/mail --version 0.3.0
+   inkcre-cli extension install inkcre/mail --version 0.3.1
    inkcre-cli extension enable inkcre/mail
    ```
 

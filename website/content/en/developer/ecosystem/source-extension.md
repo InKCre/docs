@@ -1,13 +1,13 @@
 ---
 title: Build a Source Extension
 description:
-  Build an independent Python collector and try its wheel in a Core Host 0.2 test deployment.
+  Build an independent Python collector and try its wheel in a Core Host SDK 0.3 test deployment.
 ---
 
 # Build a Source Extension
 
 This is for Python developers adding an integration, not contributors changing Core. Your Extension
-lives in its own repository. It runs inside a matching **Core Host 0.2.x** environment because
+lives in its own repository. It runs inside a matching **Core Host SDK 0.3.x** environment because
 Source and graph APIs currently import Core's `app.*` modules. Installing the delivery Toolkit alone
 does not provide those runtime APIs.
 
@@ -18,7 +18,7 @@ pagination, custom Resolver, or UI; it is not a general-purpose JSON importer.
 ## 1. Prepare an isolated test setup
 
 Use Python 3.12 and a separate [Core deployment](/self-hosted/) with disposable data. Connect the
-[CLI](/guide/connect-cli) to that instance and ensure it is running Host 0.2.x. Do not use your
+[CLI](/guide/connect-cli) to that instance and ensure it is running Host SDK 0.3.x. Do not use your
 personal information store to experiment with trusted in-process code.
 
 Prepare an HTTP endpoint reachable **from Core** that returns this JSON:
@@ -71,7 +71,7 @@ notebook = "extensions.notebook:Extension"
 name = "yourname/notebook"
 nickname = "Notebook"
 host-sdk = "core-py"
-host-sdk-version = ">=0.2.0 <0.3.0"
+host-sdk-version = ">=0.3.0 <0.4.0"
 
 [tool.setuptools.packages.find]
 include = ["extensions.notebook*"]

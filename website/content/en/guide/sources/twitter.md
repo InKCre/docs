@@ -7,8 +7,8 @@ description: Authorize an X account and collect its bookmarked posts.
 # Twitter / X Bookmarks
 
 This guide uses the official X API to collect your own bookmarks. Start with a
-[connected interface](/guide/connect), a Core Host `0.2.x` instance with a public HTTPS URL, and an
-X account containing a recent bookmark whose text you recognize.
+[connected interface](/guide/connect), a Core Host SDK `0.3.x` instance with a public HTTPS URL, and
+an X account containing a recent bookmark whose text you recognize.
 
 You also need an X developer app with OAuth 2.0 user authorization and access to the required API
 endpoints. API access can incur charges; check your app's access and billing before starting. The
@@ -23,16 +23,16 @@ requirements. An app-only bearer token is not a substitute for authorizing your 
 The browser-side Twitter Extension provides a visual **Setup** wizard. You do not need the OAuth
 script when that wizard is available with a compatible Core Extension.
 
-Use `inkcre/twitter` version `0.4.0` with Core Host `0.2.x` and a compatible Web Host. Both Hosts
-use the same installed version: Core runs the Python collector, while the browser loads the setup
-wizard from that release's Module Federation distribution. If browser enablement reports a missing
-distribution, have your operator check the release publication and Registry configuration. Do not
-downgrade to `0.3.0`: its Python package targets Core Host `0.1.x`.
+Use `inkcre/twitter` version `0.4.1` with Core Host SDK `0.3.x` and a compatible Web Host. Both
+Hosts use the same installed version: Core runs the Python collector, while the browser loads the
+setup wizard from that release's Module Federation distribution. If browser enablement reports a
+missing distribution, have your operator check the release publication and Registry configuration.
+Do not downgrade to `0.3.0`: its Python package targets Core Host `0.1.x`.
 
 ### 1. Open Setup
 
 1. [Prepare the Extension](/guide/extensions) on Core with name `inkcre/twitter` and version
-   `0.4.0`, then enable it on Core.
+   `0.4.1`, then enable it on Core.
 2. In **Extensions**, choose **This browser** under **Control Extension on Client**, enable
    `inkcre/twitter`, and click its **Setup** button.
 3. Choose your online Core Peer/client in the wizard. Enable Twitter there if prompted. Core handles
@@ -75,7 +75,7 @@ account step. You can separately revoke the app in X. Neither action removes col
 ## 1. Enable the Core Extension
 
 ```sh
-inkcre-cli extension install inkcre/twitter --version 0.4.0
+inkcre-cli extension install inkcre/twitter --version 0.4.1
 inkcre-cli extension enable inkcre/twitter
 inkcre-cli source types
 ```

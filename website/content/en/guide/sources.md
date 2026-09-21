@@ -33,9 +33,9 @@ Install and enable its Core Extension, complete any account authorization, creat
 [scheduling](/guide/schedules). More successful Jobs do not by themselves prove that more
 information was imported.
 
-The guides pin published releases for Core Host `0.2.x`. Inspect existing installations before
-changing versions and consult the linked Registry release listing for compatibility. Keep local
-configuration files, tokens, and management-command output private.
+The guides use compatible Extension versions for Core Host SDK `0.3.x`. Inspect existing
+installations before changing versions and consult the linked Registry release listing for
+compatibility. Keep local configuration files, tokens, and management-command output private.
 
 ## Build a missing collector
 

@@ -17,8 +17,8 @@ for terminal instructions.
 1. Create a personal access token for the account whose Stars and Lists you want to collect, using
    [GitHub's token instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
    Its account and permissions determine what the collector can see.
-2. [Prepare the Extension](/guide/extensions): `inkcre/github` version `0.3.0` on Core Host `0.2.x`.
-   Select the online Core client to install and enable the collector.
+2. [Prepare the Extension](/guide/extensions): `inkcre/github` version `0.3.1` on Core Host SDK
+   `0.3.x`. Select the online Core client to install and enable the collector.
 3. Open **Sources** and the create-source form. Enter **Nickname** `My GitHub saves` and choose
    **Type** `extensions.github.stars.Source`.
 4. Enter this object in **Config**, replace the token, and save/create:
@@ -37,9 +37,9 @@ not a code backup or a full GitHub activity archive.
 <template #cli>
 
 Start with a working instance and a [connected CLI](/guide/connect-cli). The version below targets
-Core Host `0.2.x`; check the linked release listing for other Host versions. If already installed,
-inspect `inkcre-cli extension get inkcre/github` before changing it. Keep credential files and
-command output private.
+Core Host SDK `0.3.x`; check the linked release listing for other Host versions. If already
+installed, inspect `inkcre-cli extension get inkcre/github` before changing it. Keep credential
+files and command output private.
 
 1. Create a personal access token for the account whose Stars and Lists you want to collect,
    following
@@ -48,7 +48,7 @@ command output private.
 2. Enable the Extension:
 
    ```sh
-   inkcre-cli extension install inkcre/github --version 0.3.0
+   inkcre-cli extension install inkcre/github --version 0.3.1
    inkcre-cli extension enable inkcre/github
    ```
 

@@ -4,7 +4,7 @@
 
 2026-09-21，用户确认架构重查后的方案，授权实施、提交、推送与验证。先独立提交本计划，再实施。沿用 Core #110、Docs #28、Web #115、Registry #41 的分支和 worktree；不合并、不正式发布、不修改生产配置。本文件是本地总任务 packet 的实施附件，不另立任务控制入口。
 
-用户应能在 client-web 中准备 Memos 的 URL 与 PAT，通过普通帮助链接查看对应发行的作者文档。Extension 初始化不包办 Source 的配置和采集。Twitter 保持不动，RSS/GitHub 不增加 setup，Mail/Telegram 的 Source 改进不在本轮。
+用户应能在 client-web 中准备 Memos 的 URL 与 PAT，通过普通帮助链接查看对应发行的作者文档。Extension 初始化不包办 Source 的配置和采集。Twitter 功能/UI 保持不动，RSS/GitHub 不增加 setup，Mail/Telegram 的 Source 改进不在本轮。2026-09-21 用户进一步回复“纳入”，授权第一方 Python 的 SDK 0.3 兼容调整及必要配套发行意图，包括 Twitter；不扩大合并、正式发布或生产部署权限。
 
 ## 实施边界
 
@@ -44,7 +44,7 @@ Extension 卡片提供实际存在的 global / python / module-federation 文档
 
 新 Memos Python 与 MF 使用同一新 Extension Release，正常提交 release intent，不覆盖公开 0.2.0。验证真实 Runtime/SDK 产物和发行预检。本轮的提交推送授权不等于合并、包发布或生产部署授权。
 
-候选安装纠正了此前的版本轴判断：Core pyproject.toml 的服务发行版本是 0.5.0，现有 fragment 准备到 0.6.0；app/version.py 的 Host SDK 仍为 0.2.0，release.py 不会更新它。新公共接口需单独明确 SDK 版本，而不是假设普通 Version PR 自动推进到 0.3。当前新 Memos 声明 >=0.3 <0.4，并在显式 SDK 0.3 的隔离候选中验证；任务分支未因此擅自推进所有旧插件。已向用户询问是否纳入第一方 Python 兼容性调整（包括 Twitter 仅兼容声明、不改功能/UI）。
+Core pyproject.toml 的服务发行版本是 0.5.0，现有 fragment 准备到 0.6.0；app/version.py 的 Host SDK 是独立轴，release.py 不会更新它。用户确认纳入后，c215705 已显式将 Host SDK 推进到0.3，并为 GitHub、Learn English、Mail、RSS、Telegram、Twitter 保留 >=0.2 下界、扩展上界到<0.4；Memos 使用新接口，继续要求>=0.3 <0.4。兼容性变化使用项目本地 changed/patch intent，旧发行不改写。Twitter/Mail 的 MF 同步增加 patch intent，确保共享 exact Release 仍同时具有两种 Distribution，不改功能/UI/Web SDK 范围。
 
 另外，Web Memos 当前版本 0.1 的单次 minor intent 只准备到 0.2，而新 Python 功能发行目标为 0.3；普通 Changesets 不支持任意目标版本。正式 Version PR 必须对齐二者，不能发布一个需要新 Python API 的旧 0.2 MF。新 Web Runtime 也须先经正常发布，消费者才能根据真实产物更新冻结依赖；本地候选通过不表示公开依赖已可用。
 
@@ -74,6 +74,24 @@ Runtime 的 SDK 类型依赖已改为固定 client-web 源码 SHA 的真实构�
 
 原实现安装整个 producer workspace，其锁文件元数据要求读取无关的 UI 包；只读 token 仍403。9615b0d 改为 ext-reg 自身冻结构建环境，不安装 Web 根 workspace，并撤回额外包认证。无 token、禁用用户 npmrc、全新 store 的冻结安装下载212包且复用0包；真实 SDK/Runtime 构建、类型、HTTP边界与完整本地 PG/Moto 门禁通过。远端运行35587933605全通过，含完整门禁、镜像构建和真实HTTP/数据库smoke，未关闭供应链检查。Web在2f06923重新消费最终Runtime候选，完整pnpm check通过；没有改源码、manifest或lock来伪造正式依赖。
 
-交付仍受三项发行协调限制：Host SDK 0.3 及旧 Python 插件兼容范围待用户确认；Runtime 新接口尚未正式发布，Web 保留现有公开 0.1 依赖，因此干净 CI/preview 尚不能通过；Memos MF/Python 0.3 需在正式 Version PR 对齐。用户教程按目标发行编写，不能先于这些依赖单独交付。本轮不合并、不发布、不部署生产。
+SDK兼容调整已获确认并实现。剩余发行协调限制：Runtime 新接口尚未正式发布，Web 保留现有公开 0.1 依赖，因此干净 CI/preview 尚不能通过；Memos MF/Python 0.3 需在正式 Version PR 对齐。用户教程按目标发行编写，不能先于这些依赖单独交付。本轮不合并、不发布、不部署生产。
 
 验收结束已关闭本轮 Core/Web/Registry/Moto、SSH 转发，并清理三个精确命名的专用测试容器及其可重建数据。没有清理用户既有开发或预览实例；任务脚本、构建候选、截图和活动 packet 保留。
+
+## SDK 0.3 兼容调整的补充验收
+
+Core c215705 已提交推送，Web d5949f5 仅新增 Twitter/Mail patch changeset。Core 本地 pdm run check（14 passed、62 skipped）、release admission、pip check及远端仓库/数据库检查通过。未新增依赖或修改插件行为，任务分支的包版本和生成changelog未改。
+
+隔离目录 `/tmp/inkcre-sdk03.hNrOQD` 从真实提交准备版本、构建并finalize七个wheel。移开该副本的producer源码后，实际Core SDK0.3通过静态Registry HTTP下载、依赖预检、pip安装、标准entry point加载及wheel文件归属检查；七个均通过，pip check无缺失依赖。SDK预检确认六个旧插件接受0.2/0.3、拒绝0.4，Memos拒绝0.2、接受0.3。脚本为Core工作区 `tasks/heroku-self-hosting/check-sdk03-wheels.py`。这是发行与加载兼容证据，不是第三方账号采集或所有插件生命周期的重复验收。
+
+| Python候选 | 版本 | 配套MF候选 |
+| --- | --- | --- |
+| GitHub | 0.3.1 | 不需要 |
+| Learn English | 0.2.1 | 不需要 |
+| Mail | 0.3.1 | 0.3.1 |
+| Memos | 0.3.0 | 既有0.3目标，版本准备协调仍待完成 |
+| RSS | 0.2.1 | 不需要 |
+| Telegram | 0.3.1 | 不需要 |
+| Twitter | 0.4.1 | 0.4.1 |
+
+Twitter/Mail MF 在独立副本中通过正常Changesets准备上述版本、构建及资源闭包检查；功能源码、构建配置、导出与Web SDK范围未变。真实Python+MF组合静态Registry由Toolkit构建，在同一exact Release上通过Core SDK0.3和Web Runtime SDK0.3预检，MF manifest返回200。证据在Web task的 `evidence/sdk03-mf-companion.json`；原Web工作区完整pnpm check通过，但公开Runtime依赖阻塞仍然存在。教程同步采用新兼容版本，生态作者示例以SDK0.3为目标；不再把已授权的兼容范围列为待确认。
