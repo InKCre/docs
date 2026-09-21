@@ -94,7 +94,7 @@ export default defineConfig({
               text: 'Self-Hosted',
               link: '/self-hosted/',
               items: [
-                { text: 'Set Up an Instance', link: '/self-hosted/getting-started' },
+                { text: 'Set Up an Instance', link: '/self-hosted/setup' },
                 { text: 'Render and Neon', link: '/self-hosted/render-neon' },
                 { text: 'Heroku and Neon', link: '/self-hosted/heroku-neon' },
                 { text: 'Advanced Self-Hosting', link: '/self-hosted/advanced' },

@@ -55,4 +55,4 @@ public fork. This deployment does not isolate different users from one another. 
 information and trusted devices.
 
 Next: [Connect the CLI](/guide/connect-cli), or return to the
-[self-hosted setup guide](/self-hosted/getting-started).
+[self-hosted setup guide](/self-hosted/setup).

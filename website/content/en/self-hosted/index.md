@@ -11,7 +11,7 @@ availability, backups, and updates. This section is for users choosing that resp
 
 For the application-level introduction and access choices, start with
 [Getting Started](/getting-started). Self-hosting is a separate User Guide topic: use the
-[instance setup guide](/self-hosted/getting-started) for a fork-based deployment, or
+[instance setup guide](/self-hosted/setup) for a fork-based deployment, or
 [Advanced Self-Hosting](/self-hosted/advanced) for manual deployment and operations.
 
 ## Choose a deployment path
@@ -29,9 +29,8 @@ plans need particular care if you want continuous collection.
 
 ## From an empty instance to useful information
 
-Follow [Set Up a Self-Hosted Instance](/self-hosted/getting-started) to deploy an instance, then
-return to the shared [Getting Started](/getting-started) path to connect, collect one source, find a
-saved item, and use it. The setup guide assumes basic technical familiarity but no InKCre
-development setup.
+Follow [Set Up a Self-Hosted Instance](/self-hosted/setup) to deploy an instance, then return to the
+shared [Getting Started](/getting-started) path to connect, collect one source, find a saved item,
+and use it. The setup guide assumes basic technical familiarity but no InKCre development setup.
 
 If you already operate a compatible instance, begin at [connecting the CLI](/guide/connect-cli).

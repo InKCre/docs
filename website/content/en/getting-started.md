@@ -47,9 +47,9 @@ as the [Web app](https://app.inkcre.dev/settings), connects to that instance. Op
 does not create an instance for you.
 
 - **Run your own instance:** choose [Self-Hosted](/self-hosted/). Its
-  [setup guide](/self-hosted/getting-started) walks through quick deployment before you rejoin this
-  journey. [Advanced Self-Hosting](/self-hosted/advanced) covers manual deployment and operating it
-  on infrastructure you choose.
+  [setup guide](/self-hosted/setup) walks through quick deployment before you rejoin this journey.
+  [Advanced Self-Hosting](/self-hosted/advanced) covers manual deployment and operating it on
+  infrastructure you choose.
 - **Already have access to an instance:** obtain connection details from the person operating it,
   then [connect the Web app or your Agent](/guide/connect), [collect a source](/guide/first-source),
   and [connect your everyday tools](/guide/daily-use). Skip the deployment steps. Only connect
