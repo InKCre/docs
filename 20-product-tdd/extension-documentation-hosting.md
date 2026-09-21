@@ -57,7 +57,17 @@ Namespace publication authority also controls that namespace's documentation. Cr
 requires a conditional create; replacing it requires the observed current entity tag. Only after
 all files are available may Registry atomically move that set's entry to the new snapshot. A failed
 upload or conflicting replacement leaves the previous entry intact. Clients resolve uncertain
-responses by reading the resulting content identity before retrying the same candidate.
+responses by retrying the same saved publication candidate. Its snapshot identity also identifies
+that publication: once committed, the exact same target, content, provenance, and original write
+precondition return the original commit receipt without changing the current-set pointer. Reusing
+the identity for a different committed request is a conflict. A receipt confirms a historical commit,
+not that its snapshot is still current; another publication may already have superseded it.
+
+Clients may make bounded best-effort retries, but hosting does not guarantee eventual delivery.
+When a receipt cannot be obtained, the outcome remains unknown and the candidate must remain
+available for a later retry. Clients do not refresh the write precondition, generate a replacement
+identity, or infer failure merely because a response was lost. Authentication and Release lifecycle
+rules also apply when confirming an earlier commit.
 
 Documentation can be corrected without a new Extension Release. There is no separate documentation
 semantic version, automatic inheritance between Releases, or many-to-many applicability mapping.
