@@ -2,7 +2,7 @@
 
 ## 授权与目标
 
-2026-09-21，用户确认架构重查后的方案，授权实施、提交、推送与验证。先独立提交本计划，再实施。沿用 Core #110、Docs #28、Web #115、Registry #41 的分支和 worktree；不合并、不正式发布、不修改生产配置。本文件是 [总任务 packet](packet.md) 的实施附件，不另立任务控制入口。
+2026-09-21，用户确认架构重查后的方案，授权实施、提交、推送与验证。先独立提交本计划，再实施。沿用 Core #110、Docs #28、Web #115、Registry #41 的分支和 worktree；不合并、不正式发布、不修改生产配置。本文件是本地总任务 packet 的实施附件，不另立任务控制入口。
 
 用户应能在 client-web 中准备 Memos 的 URL 与 PAT，通过普通帮助链接查看对应发行的作者文档。Extension 初始化不包办 Source 的配置和采集。Twitter 保持不动，RSS/GitHub 不增加 setup，Mail/Telegram 的 Source 改进不在本轮。
 
@@ -34,7 +34,7 @@ Extension 卡片提供实际存在的 global / python / module-federation 文档
 
 ### 4. 普通配置的运行时生效
 
-已发现的顺序操作问题是 Web Config 直写数据库而 Memos 鉴权读取进程内配置。实施前按现有配置合同与实际调用链确定最小修正，并记录具体生效语义；不预定逐请求读取、广播或新 getter。先咨询 advisor，再由主代理决定落点。若必须改变用户已确认的产品语义或共享合同，先说明差异并请求复核，不以本计划授权推导新同步架构。
+已发现的顺序操作问题是 Web Config 直写数据库而 Memos 鉴权读取进程内配置。经现有合同和 advisor 复核，Memos 原有 Unit TDD 已承诺无需重建路由的替换/撤销，因此在每个受保护请求通过既有 EXTENSION_HOST.get 读取 canonical config，再恢复 MemosConfig 类型。读取失败不回退旧配置，不新增 fresh getter、广播或缓存。有效保存完成后发起的请求采用新值，不追溯取消已通过鉴权的请求。共享合同无需更改。
 
 验收必须覆盖一个用户正常修改/撤销 PAT 后的声明行为；不要求两窗口并发初始化唯一性或多 Core 下一请求立即一致。
 
@@ -42,7 +42,13 @@ Extension 卡片提供实际存在的 global / python / module-federation 文档
 
 在原有 Unit TDD 修正 Web StatePort/独立 Runtime 的已证实漂移，并更新原 Memos global/python/MF 教程。新共享合同若确有必要，先在 Docs Hub 修改并推送，再分别提交 Spoke 引用；不从 Spoke 编辑 docs/_shared。
 
-新 Memos Python 与 MF 使用同一新 Extension Release，正常提交 release intent，不覆盖公开 0.2.0。验证真实 Runtime/SDK 产物和发行预检。Core #110 既有 added intent 将推进 0.3，而现有第一方 Python 声明上界 <0.3：明确记录并检查该发布依赖，不擅自重发 Twitter、不绕过兼容门禁。本轮的提交推送授权不等于合并、包发布或生产部署授权。
+新 Memos Python 与 MF 使用同一新 Extension Release，正常提交 release intent，不覆盖公开 0.2.0。验证真实 Runtime/SDK 产物和发行预检。本轮的提交推送授权不等于合并、包发布或生产部署授权。
+
+候选安装纠正了此前的版本轴判断：Core pyproject.toml 的服务发行版本是 0.5.0，现有 fragment 准备到 0.6.0；app/version.py 的 Host SDK 仍为 0.2.0，release.py 不会更新它。新公共接口需单独明确 SDK 版本，而不是假设普通 Version PR 自动推进到 0.3。当前新 Memos 声明 >=0.3 <0.4，并在显式 SDK 0.3 的隔离候选中验证；任务分支未因此擅自推进所有旧插件。已向用户询问是否纳入第一方 Python 兼容性调整（包括 Twitter 仅兼容声明、不改功能/UI）。
+
+另外，Web Memos 当前版本 0.1 的单次 minor intent 只准备到 0.2，而新 Python 功能发行目标为 0.3；普通 Changesets 不支持任意目标版本。正式 Version PR 必须对齐二者，不能发布一个需要新 Python API 的旧 0.2 MF。新 Web Runtime 也须先经正常发布，消费者才能根据真实产物更新冻结依赖；本地候选通过不表示公开依赖已可用。
+
+Runtime 的 SDK 类型依赖已改为固定 client-web 源码 SHA 的真实构建：按原仓库 lock 构建/pack，将产物置于 Runtime 私有 node_modules 并只替换本 workspace 的链接，不写 pnpm 共享 store。已删除 ambient SDK stub；源码类型、声明构建与 HTTP 边界检查均使用真实 SDK。此准备不建立新 SDK 发布渠道。
 
 ## 提交顺序与验证
 
