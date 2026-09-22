@@ -52,8 +52,8 @@ does not create an instance for you.
   [Custom Self-Hosting](/self-hosted/custom) covers a step-by-step deployment on infrastructure you
   choose.
 - **Already deployed your instance:** reuse the connection details you retained, then
-  [connect the Web app or your Agent](/guide/connect), [collect a source](/guide/first-source), and
-  [connect your everyday tools](/guide/daily-use). Skip the deployment steps.
+  [connect the Web app](/guide/connect), [prepare an Extension](/guide/extensions), and
+  [collect a source](/guide/first-source). Skip the deployment steps.
 
 This guide assumes one user-owned deployment. InKCre is not a hosted sign-up service or a multi-user
 account system; keep its instance authority on devices and tools you trust.
@@ -65,12 +65,11 @@ Choose [your first source](/guide/first-source); a public RSS feed is an easy st
 Once you can retrieve a known item, add personal sources one at a time, with the credentials and
 permissions each requires.
 
-### 3. Find and use what you collected
+### 3. Find what you collected
 
 Follow [Find What You Saved](/guide/search) to maintain the search index, search for something you
-remember, and open a result. Then [Browse and Use Your Information](/guide/daily-use) to connect the
-Web app or a tool you already use. This completes the linear Getting Started path, independently of
-your deployment choice.
+remember, and open a result. Finding a real item completes the linear Getting Started path,
+independently of your deployment choice.
 
 Model-assisted Organization and semantic retrieval are optional next steps with their own provider
 and maintenance setup. InKCre does not automatically configure a daily digest or Telegram/email push
@@ -79,9 +78,10 @@ notifications: making information available in your tools is distinct from proac
 ## Your next step
 
 If you do not have an instance yet, open [Self-Hosted](/self-hosted/) and choose a deployment path.
-After the first-use path works, the User Guide covers optional topics such as
+After the first-use path works, continue with the User Guide's formal chapters for
 [more sources](/guide/sources), [collection schedules](/guide/schedules),
 [Organization and retrieval maintenance](/guide/organization), and
-[custom self-hosting](/self-hosted/custom). If you want to understand or contribute to the
-implementation, use the [Developer Guide](/developer/) instead. For the project's values and
-direction, read [About InKCre](/about/).
+[browsing or connecting applications to your information](/guide/daily-use). You can also return to
+[Self-Hosted](/self-hosted/) for deployment operations and customization. If you want to understand
+or contribute to the implementation, use the [Developer Guide](/developer/) instead. For the
+project's values and direction, read [About InKCre](/about/).

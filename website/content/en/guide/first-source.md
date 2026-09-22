@@ -40,6 +40,7 @@ collection from the row._
 successful empty collection may be normal; each source guide explains what is eligible for
 collection.
 
-Next: [Browse and Use Your Information](/guide/daily-use). After the Getting Started path works, you
-can [connect more sources](/guide/sources), [schedule collection](/guide/schedules), or
+After you [find a real item](/guide/search), Getting Started is complete. Continue with
+[Application / Use](/guide/daily-use), [connect more sources](/guide/sources),
+[schedule collection](/guide/schedules), or
 [organize information and maintain retrieval support](/guide/organization).

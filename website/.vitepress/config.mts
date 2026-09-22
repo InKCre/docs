@@ -59,13 +59,21 @@ export default defineConfig({
         {
           text: 'User Guide',
           items: [
-            { text: 'Getting Started', link: '/getting-started' },
             {
-              text: 'Collection',
+              text: 'Getting Started',
+              link: '/getting-started',
               items: [
+                { text: 'Connect the Web App', link: '/guide/connect' },
                 { text: 'Prepare an Extension', link: '/guide/extensions' },
                 { text: 'Collect Your First Source', link: '/guide/first-source' },
                 { text: 'Run a Collection', link: '/guide/collect' },
+                { text: 'Find What You Saved', link: '/guide/search' },
+              ],
+            },
+            {
+              text: 'Collection',
+              link: '/guide/sources',
+              items: [
                 {
                   text: 'Connect More Sources',
                   link: '/guide/sources',
@@ -86,10 +94,9 @@ export default defineConfig({
               items: [{ text: 'Organize Your Information', link: '/guide/organization' }],
             },
             {
-              text: 'Use',
+              text: 'Application / Use',
+              link: '/guide/daily-use',
               items: [
-                { text: 'Connect the Web App', link: '/guide/connect' },
-                { text: 'Find What You Saved', link: '/guide/search' },
                 { text: 'Browse and Use Your Information', link: '/guide/daily-use' },
                 { text: 'CLI / Agent Connection', link: '/guide/connect-cli' },
                 { text: 'ChatGPT via MCP', link: '/guide/sinks/chatgpt' },

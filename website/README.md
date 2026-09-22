@@ -30,13 +30,15 @@ pnpm --dir website audit --audit-level high
 - Only English is active until the Chinese route set is complete or the locale switch has a
   deliberate fallback.
 - `/getting-started` owns the application-level What, Why, and How introduction.
-- `/getting-started` introduces one linear path whose pages are filed under Collection and Use in
-  the task-oriented sidebar. Optional topics remain outside that first-use sequence.
+- `/getting-started` owns a linear first-use path in the User Guide: connect the Web app, prepare an
+  Extension, collect and retrieve the first source. These steps remain grouped under Getting Started
+  in the sidebar instead of being filed by the capabilities they happen to exercise.
 - `/self-hosted/` contains instance setup, Render/Heroku quick-deployment guides, and the Custom
   guide. It is not a second Getting Started hierarchy.
-- The User Guide sidebar groups reusable procedures by Collection, Organization, and Use. Web and
-  Agent connections, Info Base browsing, and Sinks are Use topics; self-hosting remains a separate
-  deployment section.
+- After Getting Started, the User Guide groups reusable procedures into Collection, Organization,
+  Application / Use, and Self-Hosted chapters. Info Base browsing, Agent connections, and Sinks are
+  Application / Use topics. An Extension may provide Source, Sink, Organization, or other behavior,
+  so preparing the first Extension belongs to the onboarding journey rather than Collection.
 - `/guide/sources` selects independent source tutorials under `/guide/sources/`; `/guide/collect`
   owns shared collection and Job observation. Collection scheduling stays separate from Organization
   guidance; indexing is retrieval support, not Organization. Memos is documented separately as

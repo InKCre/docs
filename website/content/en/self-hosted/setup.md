@@ -40,11 +40,12 @@ neither requires you to set up Organization first.
 
 ## 3. Continue through the User Guide
 
-Finish the linear Getting Started journey with [Browse and Use Your Information](/guide/daily-use).
-After the manual steps work, choose the separate User Guide topics that match your needs:
+Finding a real item completes the linear Getting Started journey. Continue with the separate User
+Guide chapters that match your needs:
 
 - [Schedule collection](/guide/schedules).
 - [Organize information and maintain retrieval support](/guide/organization).
+- [Browse and use your information](/guide/daily-use), including CLI, Agent, and Sink connections.
 - [Connect more sources](/guide/sources), such as GitHub saves, email, and Telegram messages.
 - [Custom Self-Hosting](/self-hosted/custom) for more infrastructure choices and manual operations.
 
