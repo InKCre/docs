@@ -14,7 +14,7 @@ You need a [connected interface](/guide/connect) and a publication's RSS or Atom
 Choose a publication's **RSS or Atom feed URL**, not its normal homepage.
 
 1. [Prepare the Extension](/guide/extensions): `inkcre/rss` version `0.2.1` for Core Host SDK
-   `0.3.x`. Select your online Core client to install it, then enable it there. No CLI or browser
+   `0.3.x`. Select your online Core Peer to install it, then enable it there. No CLI or browser
    Extension is needed for this collector.
 2. Open **Sources** and the create-source form. Set **Nickname** to `My first feed`.
 3. Choose **Type** `extensions.rss.rss.Source`, or `extensions.rss.atom.Source` for Atom.

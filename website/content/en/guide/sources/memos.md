@@ -30,8 +30,8 @@ a bounded Memos `0.29.1` API subset; the previously accepted client is MoeMemos 
 
 _Copy both values from Setup; keep the PAT masked and private._
 
-If setup reports a missing public address, set your Core's **Public HTTP Base URL** in **Clients →
-Config**, then refresh setup. The address must be reachable from your Memos client. The **Memos
+If setup reports a missing public address, set your Core's **Public HTTP Base URL** in **Peers →
+Edit Config**, then refresh setup. The address must be reachable from your Memos client. The **Memos
 connection help** link opens the installed version's step-by-step guide; the Extension card also
 links its available global, Core, and Web documentation.
 

@@ -38,8 +38,8 @@ while Heroku runs two apps: Core and PostgREST.
 4. Open **Actions → Deploy self-hosted InKCre to Heroku → Run workflow**, select your fork's `main`
    branch, and wait for the run to succeed.
 5. Save the Core URL, PostgREST URL, and Core Peer ID from its summary, then continue to
-   [Connect the Web App](/guide/connect). After saving the connection, find Core in the **Clients**
-   list. If it is offline, choose **Wake** and refresh; an Eco dyno may take time to start.
+   [Connect the Web App](/guide/connect). After saving the connection, find Core in **Peers**. If it
+   is offline, start it from Heroku and refresh; an Eco dyno may take time to start.
 
 The workflow runs one Eco web dyno per app. Heroku charges and
 [Eco sleep behavior](https://devcenter.heroku.com/articles/eco-dyno-hours) apply. Keep the same

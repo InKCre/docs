@@ -37,8 +37,8 @@ are different from sign-in passwords.
 6. Open the completed run's summary. Save the **Core URL**, **PostgREST URL**, and **Core Peer ID**.
    The workflow deliberately does not print your secret; retain the original value.
 7. Continue to [Connect the Web App](/guide/connect). After saving the connection, find Core in the
-   **Clients** list. If it is offline, choose **Wake** and refresh; a sleeping service may take time
-   to start.
+   **Peers** list. If it is offline, start it from Render and refresh; a sleeping service may take
+   time to start.
 
 **Checkpoint:** deployment succeeded, and you have both service URLs and your `JWT_SECRET`. Use the
 **Core URL** for the CLI and the **PostgREST URL** for the Web app later.

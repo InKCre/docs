@@ -11,14 +11,14 @@ URL, and private JWT secret.
 ## Read and explore in the Web app
 
 First [connect the Web app](/guide/connect). Current Settings generates and registers the browser's
-own Client ID; do not manually create a Peer or reuse Core's identity.
+own Peer ID; do not manually create a Peer or reuse Core's identity.
 
 1. Open **Info Base** and search for the phrase that worked in the [search guide](/guide/search).
 2. Select a result, use **View content** where supported, and explore its relationships in the
    graph. The list is a search surface, not every stored Block. Some rich renderers need a
    compatible browser Extension; an Agent can use the CLI's `get_text` to read Core-resolved text.
-3. Bookmark the app. A new browser/device needs its own connection. **Export** omits the secret and
-   is not an info-base backup.
+3. Bookmark the app. A new browser/device needs its own connection. A Settings **Export** restores
+   the complete browser connection, including its secret, but is not an information backup.
 
 ![Info Base graph centered on one Block and its direct relationships](/images/client-web/info-base-graph.png)
 

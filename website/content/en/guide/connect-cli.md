@@ -53,7 +53,7 @@ CLI connects over HTTPS; it does not run another server on your computer.
    directory. Protect that file too.
 
 **Checkpoint:** `connection check` can read your instance. For `401`, check the secret; for a
-connection failure, check the Core URL and wake Core from Web app Settings. In later terminal
+connection failure, check the Core URL and start Core from your hosting dashboard. In later terminal
 sessions, reactivate the environment before using `inkcre-cli`.
 
 The [CLI reference](https://github.com/InKCre/core-py/blob/main/cli/README.md) owns command details.

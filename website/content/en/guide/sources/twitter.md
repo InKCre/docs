@@ -35,8 +35,8 @@ missing distribution, check the release publication and Registry configuration. 
    `0.4.1`, then enable it on Core.
 2. In **Extensions**, choose **This browser** under **Control Extension on Client**, enable
    `inkcre/twitter`, and click its **Setup** button.
-3. Choose your online Core Peer/client in the wizard. Enable Twitter there if prompted. Core handles
-   the callback and collection; browser enablement alone is insufficient.
+3. Choose your online Core Peer in the wizard. Enable Twitter there if prompted. Core handles the
+   callback and collection; browser enablement alone is insufficient.
 
 ![Twitter setup wizard showing the account-connection step](/images/client-web/twitter-setup.png)
 

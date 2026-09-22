@@ -1,7 +1,7 @@
 ---
 title: Prepare an Extension
 outline: false
-description: Install a collector and enable it on the client that will run it.
+description: Install a collector and enable it on the Peer that will run it.
 ---
 
 # Prepare an Extension
@@ -16,7 +16,8 @@ authority. Do not change a working installation merely to match an example.
 
 ## Prepare the Core collector
 
-1. Open **Extensions**. In **Control Extension on Client**, select your online **Core** client.
+1. Open **Extensions**. In **Control Extension on Peer**, select your online **Core** Peer. The
+   selector shows each Peer's name and application version.
 2. Look for the name from your source guide. If it is absent, enter its **Extension Name** and exact
    **Version** in **Install New Extension**, then select **Install Extension**. The selected Core
    validates the Python release; Python-only collectors such as RSS do not need a browser package.
@@ -27,18 +28,18 @@ authority. Do not change a working installation merely to match an example.
 5. Open **Sources**, create a Source, and check that its **Type** is available. A listed
    installation alone does not prove that the collector is running.
 
-![Client-web Extensions showing installation fields, client selection, and enabled Extensions](/images/client-web/extension-management.png)
+![Client-web Extensions showing installation fields, Peer selection, and enabled Extensions](/images/client-web/extension-management.png)
 
 _Select Core before installing or enabling a collector; select This browser only for browser-side
 capabilities._
 
-An offline client cannot validate an installation. If installation fails, keep your entered name and
-version, read the error, and check the selected client and release compatibility before trying
-again. An older Core may need an update to support installation through this Web control. Do not
-switch to **This browser** as a workaround for a Python-only collector.
+An offline Peer cannot validate an installation. If installation fails, keep your entered name and
+version, read the error, and check the selected Peer and release compatibility before trying again.
+An older Core may need an update to support installation through this Web control. Do not switch to
+**This browser** as a workaround for a Python-only collector.
 
 For an existing installation at another version, use **Change Version** only after checking both
-Hosts and disabling every client using it. Version and configuration are shared across the instance.
+Hosts and disabling every Peer using it. Version and configuration are shared across the instance.
 
 ## Browser Extensions and setup wizards
 

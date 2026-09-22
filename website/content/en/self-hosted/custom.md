@@ -83,8 +83,8 @@ capabilities. The
 [container guide](https://github.com/InKCre/core-py/blob/main/docs/40-deployment/docker.md) and
 [Core README](https://github.com/InKCre/core-py#readme) own the supported entry points.
 
-**Checkpoint:** after you connect client-web, Core appears in **Clients**. If it is offline, use
-**Wake** and refresh until the Peer is online and publishes its capabilities.
+**Checkpoint:** after you connect client-web, Core appears in **Peers**. If it is offline, start the
+service and refresh until the Peer is online and publishes its capabilities.
 
 ## 6. Connect and complete a real journey
 

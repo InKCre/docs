@@ -20,7 +20,7 @@ ID.
    `personal_information.user_id`, not your `@username` or the bot's ID. Telegram may require
    another-device confirmation or a waiting period.
 3. [Prepare the Extension](/guide/extensions): `inkcre/telegram` version `0.3.1` on Core Host SDK
-   `0.3.x`. Select the online Core client to install and enable it.
+   `0.3.x`. Select the online Core Peer to install and enable it.
 4. Open **Sources** and the create-source form. Enter **Nickname** `My Telegram inbox` and choose
    **Type** `extensions.telegram.source.Source`. Paste this into **Config**, replace both values,
    and save/create:
