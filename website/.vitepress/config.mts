@@ -2,7 +2,7 @@ import { defineConfig, type HeadConfig } from 'vitepress'
 import { canonicalOrigin, defaultLanguage } from '../scripts/site-contract.mjs'
 
 const description =
-  'InKCre collects information from the tools you use and makes it available when you need it.'
+  'InKCre collects information from the tools you use so you can find it and put it to use.'
 
 export default defineConfig({
   srcDir: 'content',

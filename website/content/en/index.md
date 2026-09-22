@@ -2,15 +2,14 @@
 layout: home
 title: InKCre
 description:
-  InKCre collects information from the tools you use, keeps it available beyond the original source,
-  and lets you find it again or use it when needed.
+  InKCre collects information from the tools you use so you can find it and put it to use.
 
 hero:
   name: InKCre
   text: Make saved information useful.
   tagline:
-    Collect information from the tools you already use, keep it available beyond the original
-    source, and find it again or use it through the tools you connect.
+    Collect information so you and the tools you connect can find and use it. Improve it when that
+    helps.
   image:
     src: /images/inkcre-mark.svg
     alt: InKCre mark
@@ -40,7 +39,6 @@ features:
 ---
 
 <section class="inkcre-home-story">
-  <p class="inkcre-home-eyebrow">WHY INKCRE</p>
   <h2>Saving information is only the beginning.</h2>
   <p>
     Many knowledge tools begin with a workspace where you write and organize. InKCre begins with
@@ -55,24 +53,20 @@ features:
 </section>
 
 <section class="inkcre-home-flow" aria-labelledby="inkcre-information-flow">
-  <p class="inkcre-home-eyebrow">ONE USEFUL LOOP</p>
   <h2 id="inkcre-information-flow">From where information lives to where it becomes useful.</h2>
   <div class="inkcre-flow" role="list">
     <div class="inkcre-flow-stage" role="listitem">
-      <span>01 · COLLECT</span>
-      <strong>Existing sources</strong>
+      <strong>Collect from existing sources</strong>
       <p>RSS, GitHub, email, Telegram, bookmarks, and capture clients.</p>
     </div>
     <div class="inkcre-flow-connector" aria-hidden="true">→</div>
     <div class="inkcre-flow-stage inkcre-flow-stage--core" role="listitem">
-      <span>02 · KEEP</span>
-      <strong>Your InKCre instance</strong>
+      <strong>Keep it in your InKCre instance</strong>
       <p>Information remains available independently of the original collector or client.</p>
     </div>
     <div class="inkcre-flow-connector" aria-hidden="true">→</div>
     <div class="inkcre-flow-stage" role="listitem">
-      <span>03 · USE</span>
-      <strong>Your next task</strong>
+      <strong>Use it in your next task</strong>
       <p>Search, browse, connect an application, or retrieve it with a tool you connected.</p>
     </div>
   </div>
@@ -80,7 +74,6 @@ features:
 
 <section class="inkcre-home-start">
   <div>
-    <p class="inkcre-home-eyebrow">START SMALL</p>
     <h2>Complete one useful loop first.</h2>
     <p>
       Deploy your instance, connect one source, collect a real item, and find it again. The User Guide

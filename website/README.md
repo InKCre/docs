@@ -60,9 +60,10 @@ are resolved from the rewritten route, not the source file location.
 ## Product Language
 
 - Lead initial user-facing pages with the outcome and familiar objects: InKCre collects information
-  from tools people already use, keeps it available beyond the original source or client, and lets
-  people find it again or use it through connected tools. Wording may vary with context, but it must
-  preserve that collection, continued availability, and use-centered meaning.
+  so people and the tools they connect can find and use it; InKCre can improve collected information
+  when that helps. Wording may vary with context, but it must preserve that collection and
+  use-centered meaning. Source independence, storage, and self-hosting are supporting properties,
+  not the value claim itself.
 - Introduce InKCre-specific vocabulary only after the reader has a concrete workflow that needs it.
   In particular, do not make `info-base`, Blocks, Relations, Peers, or capability ownership part of
   the home hero or the initial Getting Started explanation. Define such terms where they help the
@@ -77,7 +78,8 @@ are resolved from the rewritten route, not the source file location.
   item through a supported integration and later finds it through another connected tool without
   running Organization. Initial product copy must allow that successful path, must be understandable
   without internal vocabulary, and must not imply arbitrary integrations, automatic synchronization,
-  or generated answers.
+  uniform capabilities across connected tools, or generated answers. Finding useful information is
+  already a successful use; the product need not complete the surrounding task automatically.
 
 ## Page Authoring
 

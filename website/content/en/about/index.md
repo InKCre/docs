@@ -6,9 +6,9 @@ description: The identity, purpose, values, and current stage of InKCre.
 # About InKCre
 
 InKCre is an open project that helps people put information to use. It collects information from the
-tools where it already lives, keeps it available beyond any one source or client, and lets people
-find it again or use it through connected tools when needed. The project and the public development
-effort share the name **InKCre**.
+tools where it already lives so people and connected tools can find and use it. InKCre can also
+improve collected information when that helps. The project and the public development effort share
+the name **InKCre**.
 
 ## Why InKCre exists
 

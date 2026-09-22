@@ -80,15 +80,6 @@
   max-width: 840px;
 }
 
-.inkcre-home-eyebrow,
-.inkcre-flow-stage > span {
-  margin: 0 0 12px;
-  color: var(--vp-c-text-2);
-  font-family: var(--inkcre-mono);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-}
-
 .inkcre-home-story h2,
 .inkcre-home-flow h2,
 .inkcre-home-start h2 {
@@ -98,7 +89,7 @@
   line-height: 1.12;
 }
 
-.inkcre-home-story > p:not(.inkcre-home-eyebrow) {
+.inkcre-home-story > p {
   color: var(--vp-c-text-2);
   font-size: 18px;
   line-height: 1.7;
@@ -169,11 +160,11 @@
 .inkcre-home-link {
   flex: none;
   padding: 12px 0;
-  border-bottom: 1px solid currentColor;
   color: var(--vp-c-text-1);
   font-family: var(--inkcre-mono);
   font-weight: 600;
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .inkcre-home-link:hover {
