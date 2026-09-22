@@ -6,13 +6,11 @@ description: Connect a personal Telegram capture inbox to InKCre.
 
 # Send or forward messages from Telegram
 
-Start with a [connected interface](/guide/connect). Choose Web for your own setup, or CLI / Agent
-for terminal instructions.
+You need a [connected interface](/guide/connect), a dedicated Telegram bot, and your numeric user
+ID.
 
 <InterfaceGuide>
 <template #web>
-
-## Set up in the Web app
 
 1. Create a dedicated bot with [@BotFather](https://t.me/botfather): send `/newbot`, follow the
    prompts, and retain its token.
@@ -27,13 +25,13 @@ for terminal instructions.
    **Type** `extensions.telegram.source.Source`. Paste this into **Config**, replace both values,
    and save/create:
 
-```json
-{
-  "bot_token": "YOUR-BOT-TOKEN",
-  "bound_user_id": 123456789,
-  "download_attachments": false
-}
-```
+   ```json
+   {
+     "bot_token": "YOUR-BOT-TOKEN",
+     "bound_user_id": 123456789,
+     "download_attachments": false
+   }
+   ```
 
 5. Send a distinctive private message to the bot, then [collect once](/guide/collect). Saved
    messages receive a 👍 reaction. [Index and search](/guide/search) for the text.

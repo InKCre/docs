@@ -6,13 +6,10 @@ description: Connect your IMAP mailbox to InKCre.
 
 # Email over IMAP
 
-Start with a [connected interface](/guide/connect). Choose Web for your own setup, or CLI / Agent
-for terminal instructions.
+You need a [connected interface](/guide/connect) and IMAP credentials for your mailbox.
 
 <InterfaceGuide>
 <template #web>
-
-## Set up in the Web app
 
 1. Find your provider's IMAP hostname and enable IMAP if required. Obtain an app-specific password
    where supported. An ordinary password cannot replace an unsupported authentication method.
@@ -22,20 +19,20 @@ for terminal instructions.
    `extensions.mail.source.Source`.
 4. Paste this into **Config**, replace the host and credentials, and save/create:
 
-```json
-{
-  "protocol": "imap",
-  "parameters": {
-    "host": "YOUR-IMAP-HOST",
-    "port": 993,
-    "security": "tls",
-    "username": "YOUR-MAIL-LOGIN",
-    "password": "YOUR-APP-PASSWORD"
-  },
-  "ordinary_mark_as_seen": false,
-  "synchronize_deletions": false
-}
-```
+   ```json
+   {
+     "protocol": "imap",
+     "parameters": {
+       "host": "YOUR-IMAP-HOST",
+       "port": 993,
+       "security": "tls",
+       "username": "YOUR-MAIL-LOGIN",
+       "password": "YOUR-APP-PASSWORD"
+     },
+     "ordinary_mark_as_seen": false,
+     "synchronize_deletions": false
+   }
+   ```
 
 5. Send yourself a test message **after creating the Source**, then [collect once](/guide/collect).
    Ordinary collection begins with new mail; an empty result does not prove authentication failed.
@@ -43,9 +40,9 @@ for terminal instructions.
 6. To collect older mail, open the Source's new-collection Job dialog, select **Historical
    backfill**, and enter a small date range as its run Config:
 
-```json
-{ "since": "2026-09-01", "before": "2026-09-08" }
-```
+   ```json
+   { "since": "2026-09-01", "before": "2026-09-08" }
+   ```
 
 Choose dates appropriate to your mailbox. The start is included and the end excluded. Observe that
 Job, then [index and search](/guide/search) for a known email. This collector does not send mail or

@@ -23,19 +23,6 @@ hero:
     - theme: alt
       text: GitHub
       link: https://github.com/InKCre
-
-features:
-  - title: Meet information where it lives
-    details:
-      Collect from feeds, saved items, inboxes, and other tools instead of copying everything by
-      hand.
-  - title: Keep it within your control
-    details:
-      Run your own instance and keep useful information available beyond any one source or client.
-  - title: Put it to work
-    details:
-      Find what you saved, follow its relationships, or use it through connected tools and
-      assistants.
 ---
 
 <section class="inkcre-home-story">
@@ -61,8 +48,8 @@ features:
     </div>
     <div class="inkcre-flow-connector" aria-hidden="true">→</div>
     <div class="inkcre-flow-stage inkcre-flow-stage--core" role="listitem">
-      <strong>Keep it in your InKCre instance</strong>
-      <p>Information remains available independently of the original collector or client.</p>
+      <strong>Bring it into InKCre</strong>
+      <p>Give collected information a stable place for search and connected capabilities.</p>
     </div>
     <div class="inkcre-flow-connector" aria-hidden="true">→</div>
     <div class="inkcre-flow-stage" role="listitem">
@@ -86,7 +73,5 @@ features:
 ## Built in the open
 
 InKCre is evolving rapidly. Product behavior, interfaces, and developer contracts may change as the
-project tests and solidifies its foundations.
-
-The [Developer Guide](/developer/) explains the system and routes contributions.
-[About InKCre](/about/) describes the project's identity, values, and direction.
+project tests and solidifies its foundations. The [Developer Guide](/developer/) explains the system
+and routes contributions; [About InKCre](/about/) describes the project's identity and direction.

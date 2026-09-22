@@ -73,7 +73,7 @@
 
 .inkcre-home-story,
 .inkcre-home-flow {
-  padding-top: 80px;
+  padding-top: 64px;
 }
 
 .inkcre-home-story {
@@ -139,8 +139,8 @@
   align-items: end;
   justify-content: space-between;
   gap: 48px;
-  margin-top: 96px;
-  margin-bottom: 80px;
+  margin-top: 72px;
+  margin-bottom: 64px;
   padding-top: 48px;
   padding-bottom: 48px;
   border-top: 1px solid var(--vp-c-divider);

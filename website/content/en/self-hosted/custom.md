@@ -10,8 +10,7 @@ or when you want to control each service directly. It is more customizable, not 
 seniority. The steps below explain what each component does, what you need to retain, and how to
 check your progress.
 
-For the shortest maintained deployment, use [Set Up a Self-Hosted Instance](/self-hosted/setup)
-instead.
+For the shortest maintained deployment, choose a fork workflow from [Self-Hosted](/self-hosted/).
 
 ## What you will run
 

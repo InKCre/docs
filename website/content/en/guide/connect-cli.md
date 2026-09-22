@@ -60,4 +60,4 @@ The [CLI reference](https://github.com/InKCre/core-py/blob/main/cli/README.md) o
 `--help` explains a command; `--schema` on input-taking commands shows the configuration accepted by
 your running instance.
 
-Next: [Collect your first source](/guide/first-source).
+Next: [Choose your first source](/guide/first-source).

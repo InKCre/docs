@@ -32,22 +32,12 @@ InKCre is also known in Chinese as **第三持存** (_tertiary retention_).
 These values guide the project's direction. They do not imply that every corresponding product or
 governance mechanism is already complete.
 
-### Open source
-
-InKCre is developed in the open and should remain inspectable and contributable.
-
-### User control
-
-People should retain meaningful control over their information and product behavior.
-
-### Self-hosting
-
-Running InKCre on infrastructure controlled by its users is a core direction.
-
-### Community-driven
-
-The project and its ecosystem should be shaped through open participation rather than only by a
-closed central team.
+- **Open source:** InKCre is developed in the open and should remain inspectable and contributable.
+- **User control:** people should retain meaningful control over their information and product
+  behavior.
+- **Self-hosting:** running InKCre on infrastructure controlled by its users is a core direction.
+- **Community-driven:** the project and its ecosystem should be shaped through open participation,
+  not only by a closed central team.
 
 ## Current stage
 

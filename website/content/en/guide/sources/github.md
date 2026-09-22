@@ -6,13 +6,10 @@ description: Connect your GitHub saves to InKCre.
 
 # GitHub Stars and Lists
 
-Start with a [connected interface](/guide/connect). Choose Web for your own setup, or CLI / Agent
-for terminal instructions.
+You need a [connected interface](/guide/connect) and a GitHub personal access token.
 
 <InterfaceGuide>
 <template #web>
-
-## Set up in the Web app
 
 1. Create a personal access token for the account whose Stars and Lists you want to collect, using
    [GitHub's token instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
@@ -23,9 +20,9 @@ for terminal instructions.
    **Type** `extensions.github.stars.Source`.
 4. Enter this object in **Config**, replace the token, and save/create:
 
-```json
-{ "github_token": "YOUR-GITHUB-TOKEN" }
-```
+   ```json
+   { "github_token": "YOUR-GITHUB-TOKEN" }
+   ```
 
 5. Open the saved Source and [collect once](/guide/collect). [Index and search](/guide/search) for a
    repository you starred before [adding a schedule](/guide/schedules).

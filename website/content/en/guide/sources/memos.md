@@ -6,13 +6,10 @@ description: Write notes into InKCre from a supported Memos client.
 
 # Memos-Compatible Capture
 
-Start with a [connected interface](/guide/connect). Choose Web for your own setup, or CLI / Agent
-for terminal instructions.
+You need a [connected interface](/guide/connect) and a supported Memos client.
 
 <InterfaceGuide>
 <template #web>
-
-## Configure in the Web app
 
 This is a write-in capture endpoint, **not** an importer for an existing Memos server. It implements
 a bounded Memos `0.29.1` API subset; the previously accepted client is MoeMemos Android `2.0.4`.

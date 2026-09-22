@@ -6,13 +6,10 @@ description: Execute one Source collection and distinguish its Source ID from it
 
 # Run a Collection
 
-Start with a [connected interface](/guide/connect). Choose Web for your own setup, or CLI / Agent
-for terminal instructions.
+You need a [connected interface](/guide/connect) and a configured Source.
 
 <InterfaceGuide>
 <template #web>
-
-## Collect in the Web app
 
 1. Open **Sources** and select the Source you created.
 2. Open its new-collection Job dialog (**New Job**, or **New task** in newer layouts).
@@ -32,7 +29,7 @@ _A finished Job is the place to verify what the collector actually did._
 The Source ID persists across runs; each run has its own Job ID. A successful empty collection can
 be normal. Do not repeatedly create Jobs to work around a provider error.
 
-Next: [index and search](/guide/search), then [schedule collection](/guide/schedules).
+Next: [index and search](/guide/search).
 
 </template>
 <template #cli>
@@ -65,7 +62,7 @@ Read source-specific diagnostics even after success. Do not repeatedly create Jo
 provider error or an observation timeout; fix the reported cause first. Review output for private
 information before sharing it.
 
-Next: [index and search for a known item](/guide/search), then [schedule](/guide/schedules).
+Next: [index and search for a known item](/guide/search).
 
 </template>
 </InterfaceGuide>

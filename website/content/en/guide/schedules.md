@@ -6,13 +6,10 @@ description: Keep information sources current with explicit collection schedules
 
 # Schedule Collection
 
-Start with a [connected interface](/guide/connect). Choose Web for your own setup, or CLI / Agent
-for terminal instructions.
+You need a [connected interface](/guide/connect) and a Source with one successful manual run.
 
 <InterfaceGuide>
 <template #web>
-
-## Schedule collection in the Web app
 
 First complete [a manual collection](/guide/collect) and [find a known item](/guide/search).
 
@@ -32,16 +29,14 @@ _Schedules and recent Jobs belong to the selected Source; confirm its name and t
 the schedule._
 
 This schedule only collects from the Source. It does not maintain a search index or run
-Organization. Configure [retrieval maintenance separately](/guide/organization) if you want newly
-collected items to become searchable without a manual maintenance Job.
-
-Next: [Organize Your Information](/guide/organization), or [Connect More Sources](/guide/sources).
+Organization. Configure [search maintenance separately](/guide/search#keep-search-current) if you
+want newly collected items to become searchable without a manual maintenance Job.
 
 </template>
 <template #cli>
 
-First complete [one collection](/guide/first-source) and [a successful search](/guide/search). Keep
-the Source ID returned when you created the Source.
+First complete [one collection](/guide/collect) and [a successful search](/guide/search). Keep the
+Source ID returned when you created the Source.
 
 After the manual run works, create `collect-hourly.json`, replacing `42` with your Source ID:
 
@@ -62,7 +57,8 @@ Cron ID with `inkcre-cli cron get ID`; `last_job` identifies the Job to check. P
 Core must run. Sleeping hosts miss occurrences and do not automatically catch up.
 
 Collection does not update search indexes or run Organization. Continue with
-[Organize Your Information](/guide/organization), or [Add More Sources](/guide/sources).
+[search maintenance](/guide/search#keep-search-current) if newly collected items should become
+searchable without a manual Job.
 
 </template>
 </InterfaceGuide>

@@ -49,5 +49,4 @@ owns the endpoint and authentication contract.
 These paths make your saved information available on demand. They do not configure proactive
 notifications or a daily briefing.
 
-Next: [Organize Your Information](/guide/organization), or use
-[Troubleshooting](/guide/troubleshooting) when a workflow fails.
+Use [Troubleshooting](/guide/troubleshooting) when a workflow fails.

@@ -1,7 +1,7 @@
 ---
 title: Organize Your Information
 outline: false
-description: Improve information already in your info-base and keep retrieval support current.
+description: Improve information already collected in your InKCre instance.
 ---
 
 # Organize Your Information
@@ -66,31 +66,5 @@ inkcre-cli cron create --job-type core.organization.media_interpretation.v1 --in
 Inspect the returned Cron and its later Jobs. Use a different frequency only when your incoming
 media volume and provider budget justify it.
 
-## Keep retrieval support current
-
-Lexical maintenance makes existing info-base content searchable by remembered words. It does not
-collect information or author graph meaning. Ask your trusted Agent to check whether the instance
-already has a maintenance schedule; create only one if it does not:
-
-```sh
-inkcre-cli cron create --job-type core.feature_retrieval.lexical.maintain.v1 --input-json '{"schedule":"*/10 * * * *","job_parameters":{}}'
-```
-
-This five-field schedule runs every ten minutes while Core is available. Inspect the returned Cron
-and its `last_job`; maintenance processes a bounded batch, and the Job carries its own result and
-diagnostics. Avoid duplicate schedules. Sleeping hosts miss occurrences and do not automatically
-catch up.
-
-To pause future maintenance while keeping the Cron record, run:
-
-```sh
-inkcre-cli cron disable ID
-```
-
-Replace `ID` with the actual Cron ID. Pausing index maintenance does not stop collection,
-Organization, or remove stored information. Likewise, a [collection schedule](/guide/schedules) does
-not maintain this index. Semantic retrieval uses its own embedding profile and maintenance; an LLM
-key or lexical schedule does not enable it.
-
-Next: [Connect More Sources](/guide/sources), or
-[Browse and Use Your Information](/guide/daily-use).
+Search indexes and embeddings are retrieval support, not Organization output. Maintain them through
+[Find What You Saved](/guide/search#keep-search-current).

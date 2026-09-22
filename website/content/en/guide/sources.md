@@ -43,5 +43,3 @@ An Extension can add a Source without becoming part of the Core repository. If y
 want to connect another service, follow
 [Build a Source Extension](/developer/ecosystem/source-extension). That is the ecosystem developer
 path; changing InKCre itself has a separate [contributor guide](/developer/contributing).
-
-Next: [Browse and Use Your Information](/guide/daily-use).

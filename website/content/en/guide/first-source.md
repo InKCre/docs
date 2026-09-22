@@ -1,15 +1,13 @@
 ---
-title: Collect Your First Source
-description: Choose a source and complete your first collection and search.
+title: Choose Your First Source
+description: Choose one small information source for your first collection.
 ---
 
-# Collect Your First Source
+# Choose Your First Source
 
 Start with a working instance and a [connected Web app or Agent](/guide/connect). The guides default
 to Web instructions, with a CLI / Agent alternative. You do not need to connect every account at
 once: choose one small source with an item you will recognize.
-
-## Choose your first source
 
 [RSS or Atom](/guide/sources/rss) is a useful first choice because a public feed needs no account
 credentials. If you prefer your own saved information, start with
@@ -23,13 +21,12 @@ automatically enable it or collect anything. [Prepare the Extension](/guide/exte
 then configure the Source in the Web app. Select the online Core client when installing a
 Python-only collector; the browser does not need to run that Extension itself.
 
-## Complete the first loop
+## Continue the first loop
 
-1. Follow your chosen source's guide to enable its Extension and create the Source. Open its details
-   in the Web app, or retain the returned **Source ID** when using the CLI.
-2. [Run a Collection](/guide/collect) and wait for the returned **Job ID** to finish. These are
-   different IDs: the Source persists across runs; each Job represents one run.
-3. [Find What You Saved](/guide/search): maintain the lexical index and search for a known item.
+1. [Prepare the Extension](/guide/extensions) named by your source guide.
+2. Return to that guide to create the Source.
+3. [Run a Collection](/guide/collect) and wait for its Job to finish.
+4. [Find What You Saved](/guide/search) and open a known item.
 
 ![The client-web Sources page showing saved Sources and their collection actions](/images/client-web/sources-overview.png)
 
@@ -40,7 +37,4 @@ collection from the row._
 successful empty collection may be normal; each source guide explains what is eligible for
 collection.
 
-After you [find a real item](/guide/search), Getting Started is complete. Continue with
-[Application / Use](/guide/daily-use), [connect more sources](/guide/sources),
-[schedule collection](/guide/schedules), or
-[organize information and maintain retrieval support](/guide/organization).
+After you find a real item, Getting Started is complete.

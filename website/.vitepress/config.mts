@@ -65,8 +65,8 @@ export default defineConfig({
               link: '/getting-started',
               items: [
                 { text: 'Connect the Web App', link: '/guide/connect' },
+                { text: 'Choose Your First Source', link: '/guide/first-source' },
                 { text: 'Prepare an Extension', link: '/guide/extensions' },
-                { text: 'Collect Your First Source', link: '/guide/first-source' },
                 { text: 'Run a Collection', link: '/guide/collect' },
                 { text: 'Find What You Saved', link: '/guide/search' },
               ],
@@ -107,7 +107,6 @@ export default defineConfig({
               text: 'Self-Hosted',
               link: '/self-hosted/',
               items: [
-                { text: 'Set Up an Instance', link: '/self-hosted/setup' },
                 { text: 'Render and Neon', link: '/self-hosted/render-neon' },
                 { text: 'Heroku and Neon', link: '/self-hosted/heroku-neon' },
                 { text: 'Custom Self-Hosting', link: '/self-hosted/custom' },

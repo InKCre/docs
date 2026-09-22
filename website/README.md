@@ -30,11 +30,11 @@ pnpm --dir website audit --audit-level high
 - Only English is active until the Chinese route set is complete or the locale switch has a
   deliberate fallback.
 - `/getting-started` owns the application-level What, Why, and How introduction.
-- `/getting-started` owns a linear first-use path in the User Guide: connect the Web app, prepare an
-  Extension, collect and retrieve the first source. These steps remain grouped under Getting Started
-  in the sidebar instead of being filed by the capabilities they happen to exercise.
-- `/self-hosted/` contains instance setup, Render/Heroku quick-deployment guides, and the Custom
-  guide. It is not a second Getting Started hierarchy.
+- `/getting-started` owns a linear first-use path in the User Guide: connect the Web app, choose a
+  Source, prepare its Extension, collect, and retrieve a real item. These steps remain grouped under
+  Getting Started instead of being filed by the capabilities they happen to exercise.
+- `/self-hosted/` selects Render/Heroku quick deployment or Custom Self-Hosting. It is not a second
+  Getting Started hierarchy.
 - After Getting Started, the User Guide groups reusable procedures into Collection, Organization,
   Application / Use, and Self-Hosted chapters. Info Base browsing, Agent connections, and Sinks are
   Application / Use topics. An Extension may provide Source, Sink, Organization, or other behavior,
@@ -51,8 +51,8 @@ pnpm --dir website audit --audit-level high
 - Source ordering belongs in navigation configuration, not numeric filename prefixes.
 - Once a published route has external references, treat it as a compatibility contract and move it
   only with a direct permanent redirect.
-- `scripts/site-contract.mjs` owns the route matrix shared by generated-output and deployment
-  verification.
+- `scripts/site-contract.mjs` owns the canonical origin and locale shared by site generation and
+  deployment verification.
 
 Internal Markdown links target rewritten public routes and omit `.md` and `.html`. Relative links
 are resolved from the rewritten route, not the source file location.
@@ -83,6 +83,21 @@ are resolved from the rewritten route, not the source file location.
 
 ## Page Authoring
 
+- Give each page one primary reader, one task, and one observable completion state. An introduction
+  explains; a tutorial leads to a result; a guide supports a task; a reference supplies facts. Do
+  not make one page perform all four jobs.
+- Keep one linear first-success path under Getting Started. Formal User Guide pages must remain
+  independently useful and should not add a generic **Next** link when no real dependency exists.
+- Repeat shared context only when entering the page directly without it could cause an incorrect or
+  unsafe action. Link to the owning explanation instead of restating it.
+- Use headings to answer a reader's question or name an action. Avoid decorative eyebrow text,
+  all-caps labels, and a subsection that contains only one short sentence.
+- Keep commands, screenshots, results, and caveats inside the step they explain. Use a table for
+  comparison, not to fit prose into columns. Bold names visible in the interface; use code style for
+  literal values, identifiers, and commands.
+- Review a changed page with its navigation entry and exit. Render at least one representative
+  procedure in desktop light mode and at narrow width; confirm that hidden interface variants,
+  lists, code, tables, screenshots, and links remain understandable.
 - User procedures default to client-web. Use the shared `InterfaceGuide` component with `#web` and
   `#cli` slots for alternate steps on the same route; CLI instructions primarily serve Agents. The
   choice survives client-side navigation, not a full reload. Without JavaScript, both sections

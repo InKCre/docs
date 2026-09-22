@@ -53,4 +53,4 @@ Source or Job in the Web app. Do not share connection files or JWT secrets in pu
 </template>
 </InterfaceGuide>
 
-Next: [Collect Your First Source](/guide/first-source).
+Next: [Choose Your First Source](/guide/first-source).

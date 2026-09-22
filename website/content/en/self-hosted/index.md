@@ -9,11 +9,8 @@ Self-hosting means operating your own InKCre instance: you choose where informat
 sources it collects, and which clients can access it. You also manage credentials, hosting
 availability, backups, and updates. This section is for users choosing that responsibility.
 
-For the application-level introduction and access choices, start with
-[Getting Started](/getting-started). Self-hosting is a separate User Guide topic: use the
-[instance setup guide](/self-hosted/setup) for a fork-based deployment, or
-[Custom Self-Hosting](/self-hosted/custom) for a step-by-step deployment on infrastructure you
-choose.
+For the application-level introduction and first-use journey, start with
+[Getting Started](/getting-started). This section covers only the instance you operate.
 
 ## Choose a deployment path
 
@@ -28,10 +25,5 @@ provides a ready-made deployment workflow; it is not required to run InKCre. Bot
 produce your own instance rather than access to a shared hosted account. Their sleeping compute
 plans need particular care if you want continuous collection.
 
-## From an empty instance to useful information
-
-Follow [Set Up a Self-Hosted Instance](/self-hosted/setup) to deploy an instance, then return to the
-shared [Getting Started](/getting-started) path to connect, collect one source, find a saved item,
-and use it. The setup guide assumes basic technical familiarity but no InKCre development setup.
-
-If you already operate a compatible instance, begin at [connecting the CLI](/guide/connect-cli).
+After deployment, retain the Core URL, PostgREST URL, JWT secret, and Core Peer ID, then
+[connect the Web app](/guide/connect). If you already operate a compatible instance, start there.

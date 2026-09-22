@@ -6,13 +6,10 @@ description: Install the RSS collector and collect your first feed.
 
 # RSS and Atom
 
-Start with a [connected interface](/guide/connect). Choose Web for your own setup, or CLI / Agent
-for terminal instructions.
+You need a [connected interface](/guide/connect) and a publication's RSS or Atom feed URL.
 
 <InterfaceGuide>
 <template #web>
-
-## Set up in the Web app
 
 Choose a publication's **RSS or Atom feed URL**, not its normal homepage.
 
@@ -23,13 +20,13 @@ Choose a publication's **RSS or Atom feed URL**, not its normal homepage.
 3. Choose **Type** `extensions.rss.rss.Source`, or `extensions.rss.atom.Source` for Atom.
 4. Paste this object into **Config**, replacing the feed URL:
 
-```json
-{
-  "feed_url": "https://YOUR-PUBLICATION/FEED",
-  "fetch_full_text": false,
-  "download_enclosures": false
-}
-```
+   ```json
+   {
+     "feed_url": "https://YOUR-PUBLICATION/FEED",
+     "fetch_full_text": false,
+     "download_enclosures": false
+   }
+   ```
 
 5. Save/create the Source, then open it from the list. [Run a Collection](/guide/collect) and
    inspect its Job before [indexing and searching](/guide/search).

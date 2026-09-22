@@ -53,5 +53,4 @@ limited personal login. Do not paste it into an online JWT generator, an issue, 
 public fork. This deployment is for one user; do not share it as a multi-user service. Start with
 your own information and trusted devices.
 
-Next: [Connect the Web App](/guide/connect), or return to the
-[self-hosted setup guide](/self-hosted/setup).
+Next: [Connect the Web App](/guide/connect).

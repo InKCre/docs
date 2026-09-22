@@ -6,28 +6,24 @@ description: Index collected information and retrieve it by remembered words.
 
 # Find What You Saved
 
-Start with a [connected interface](/guide/connect). Choose Web for your own setup, or CLI / Agent
-for terminal instructions.
+You need a [connected interface](/guide/connect) and at least one completed collection.
 
 <InterfaceGuide>
 <template #web>
 
-## Find information in the Web app
-
-First finish [one collection](/guide/first-source).
+First finish [one collection](/guide/collect).
 
 1. Ask your trusted Agent to run lexical-index maintenance after collection. This is currently a CLI
    operation, not a button in the Web app:
 
-```sh
-inkcre-cli job create --type core.feature_retrieval.lexical.maintain.v1 --input-json '{"parameters":{}}'
-inkcre-cli job wait JOB_ID --for 30s
-```
+   ```sh
+   inkcre-cli job create --type core.feature_retrieval.lexical.maintain.v1 --input-json '{"parameters":{}}'
+   inkcre-cli job wait JOB_ID --for 30s
+   ```
 
-Replace `JOB_ID` with the returned number. Inspect its state and diagnostics; maintenance handles a
-bounded batch, so a larger import can need another run. An
-[retrieval-maintenance schedule](/guide/organization) avoids needing this manual step for every
-collection.
+   Replace `JOB_ID` with the returned number. Inspect its state and diagnostics; maintenance handles
+   a bounded batch, so a larger import can need another run. A maintenance schedule avoids this
+   manual step after every collection.
 
 2. Open **Info Base** in client-web. Enter a distinctive phrase from the collected item and search.
 3. Select a result, inspect its details, use **View content** where supported, and follow its graph
@@ -49,7 +45,7 @@ Next: [Browse and Use Your Information](/guide/daily-use).
 <template #cli>
 
 You need a connected CLI and at least one completed collection. If you have not collected anything
-yet, start with [your first source](/guide/first-source).
+yet, [choose your first source](/guide/first-source).
 
 Collection and indexing are separate. Create a lexical-index maintenance Job after collection to
 enable search by remembered words, without an AI provider:
@@ -83,8 +79,30 @@ repositories can belong to Lists, and mail has sender and mailbox relationships.
 Organization operation and do not mean InKCre has already summarized, tagged, or reorganized the
 information with AI.
 
-Next: [Browse and Use Your Information](/guide/daily-use). To automate maintenance later, add an
-[retrieval-maintenance schedule](/guide/organization).
+Next: [Browse and Use Your Information](/guide/daily-use).
 
 </template>
 </InterfaceGuide>
+
+## Keep search current
+
+Lexical maintenance makes collected information searchable by remembered words. It does not collect
+information or author graph meaning. Ask your trusted Agent to check whether the instance already
+has a maintenance schedule; create only one if it does not:
+
+```sh
+inkcre-cli cron create --job-type core.feature_retrieval.lexical.maintain.v1 --input-json '{"schedule":"*/10 * * * *","job_parameters":{}}'
+```
+
+This schedule runs every ten minutes while Core is available. Inspect the returned Cron and its
+`last_job`; maintenance processes a bounded batch, and the Job carries its own result and
+diagnostics. Sleeping hosts miss occurrences and do not automatically catch up. Pause future runs
+without deleting the Cron record with:
+
+```sh
+inkcre-cli cron disable ID
+```
+
+Replace `ID` with the Cron ID. Pausing index maintenance does not stop collection or Organization
+and does not remove stored information. Semantic retrieval has its own configuration and
+maintenance; an LLM key or lexical schedule does not enable it.
