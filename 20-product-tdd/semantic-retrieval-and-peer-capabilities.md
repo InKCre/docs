@@ -97,9 +97,9 @@ business facade
 - Runtime Peers are equal participants around shared database authority but may implement
   different executable capabilities. Caller/provider or client/server describes one
   interaction edge, not a fixed deployment hierarchy.
-- One Peer row owns a validated full capability-advertisement snapshot and one lease expiry.
-  Each advertisement contains an exact capability ID plus an inbound interface whose exact
-  protocol ID owns its parameter schema.
+- One Peer row owns its runtime application version, a validated full
+  capability-advertisement snapshot, and one lease expiry. Each advertisement contains an exact
+  capability ID plus an inbound interface whose exact protocol ID owns its parameter schema.
 - Discovery exposes support and Peer liveness. Readiness is internal to the business service
   and never becomes advertisement metadata. Lease evaluation uses database time; the lease
   owner chooses its TTL because always-on and scale-to-zero deployments differ.

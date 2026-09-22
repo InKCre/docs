@@ -62,6 +62,19 @@ reset must converge to the same result.
 checked-in identifiers and is not a production-data source. Artifact-owned catalogs are
 reconciled independently from development seed.
 
+## Peer Runtime Identity
+
+One Peer row keeps its stable identity and Human-owned display name separately from facts published
+by the running application. `application_version` is the exact release version of the application
+currently running that Peer. It is not a browser version, Peer protocol version, or Extension Host
+SDK compatibility version.
+
+The application writes `application_version` when it registers and refreshes it after an upgrade.
+Registration may also refresh other runtime-owned facts such as the configuration schema, but it
+must not overwrite a display name that a person changed. Historical rows may have no application
+version; consumers keep them usable and present the version as unknown until that Peer registers
+again.
+
 `reset-dev` requires both an explicit destructive confirmation and a database-owned
 development identity. It refuses production, preview, and unknown databases.
 

@@ -52,12 +52,12 @@
 
 - canonical business meaning: a user-facing application through which a person interacts with InKCre or a compatible product protocol.
 - user-visible or business lifecycle language: the app or interface a person uses.
-- notes on ambiguity with framework terms: technical architecture uses `peer` for runtime nodes; product, marketing, landing, and other non-technical material may continue to say client where that is what a person experiences.
+- notes on ambiguity with framework terms: use `client` only for an actual application or a protocol-native client role; it is not a product-facing synonym for an InKCre runtime Peer.
 
 ## peer
 
 - canonical business meaning: one running node that participates in a deployment around the shared info-base and may provide or consume capabilities.
-- user-visible or business lifecycle language: normally hidden behind the product's clients and deployment.
+- user-visible or business lifecycle language: the named runtime shown when a person manages where InKCre capabilities run.
 - notes on ambiguity with framework terms: peer equality describes shared authority and participation, not identical execution ability; one interaction may still have caller/provider or client/server roles.
 
 ## job
