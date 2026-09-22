@@ -6,20 +6,21 @@ description:
 
 # Getting Started
 
-InKCre helps you collect information scattered across your tools, keep it under your control, and
-make it available when you or your trusted tools need it. Start here to understand the experience,
-then choose how you will access an instance. You do not need to be an InKCre developer to begin.
+InKCre helps you collect information scattered across your tools, keep it available beyond the
+original source, and find it again or use it through the tools you connect. Start here to understand
+the experience, then choose how you will access an instance. You do not need to be an InKCre
+developer to begin.
 
 ## What is InKCre?
 
 InKCre collects information from the tools where it already lives and keeps it available beyond the
 original source or collector. When it would make that information more useful, InKCre can also
 improve what has already been collected. You can then find it yourself or make it available to other
-trusted tools.
+tools you connect.
 
 For example, you might collect articles from RSS feeds, keep track of saved GitHub repositories, and
 capture messages you forward to a Telegram bot. Later, you can find an article from a phrase you
-remember, follow its related information, or make it available to a trusted assistant.
+remember, follow its related information, or use it through an assistant you connect.
 
 Collection, Organization, and Application are connected capabilities, not mandatory stages. A
 collector may preserve source relationships without performing Organization, and you can retrieve

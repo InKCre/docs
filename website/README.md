@@ -60,9 +60,9 @@ are resolved from the rewritten route, not the source file location.
 ## Product Language
 
 - Lead initial user-facing pages with the outcome and familiar objects: InKCre collects information
-  from tools people already use, keeps it under their control, and makes it available to people and
-  trusted tools when needed. Wording may vary with context, but it must preserve that collection,
-  user control, and use-centered meaning.
+  from tools people already use, keeps it available beyond the original source or client, and lets
+  people find it again or use it through connected tools. Wording may vary with context, but it must
+  preserve that collection, continued availability, and use-centered meaning.
 - Introduce InKCre-specific vocabulary only after the reader has a concrete workflow that needs it.
   In particular, do not make `info-base`, Blocks, Relations, Peers, or capability ownership part of
   the home hero or the initial Getting Started explanation. Define such terms where they help the
@@ -71,8 +71,13 @@ are resolved from the rewritten route, not the source file location.
   on information already collected when that improves use. Application makes information useful to
   people or downstream tools. These are independent capabilities, not mandatory stages.
 - Prefer a concrete way information becomes useful—finding a saved item, following a relationship,
-  or retrieving it from a trusted tool—over phrases such as “a shared base” or “reusable
+  or retrieving it from a connected tool—over phrases such as “a shared base” or “reusable
   information” that name an attribute without explaining its value.
+- Review meaning with a simple counterexample, not only a terminology search: a person collects one
+  item through a supported integration and later finds it through another connected tool without
+  running Organization. Initial product copy must allow that successful path, must be understandable
+  without internal vocabulary, and must not imply arbitrary integrations, automatic synchronization,
+  or generated answers.
 
 ## Page Authoring
 

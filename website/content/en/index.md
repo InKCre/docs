@@ -2,15 +2,15 @@
 layout: home
 title: InKCre
 description:
-  InKCre collects information from the tools you use, keeps it under your control, and makes it
-  available when you need it.
+  InKCre collects information from the tools you use, keeps it available beyond the original source,
+  and lets you find it again or use it when needed.
 
 hero:
   name: InKCre
   text: Make saved information useful.
   tagline:
-    Collect information from the tools you already use, keep it under your control, and make it
-    available to you and your trusted tools when it matters.
+    Collect information from the tools you already use, keep it available beyond the original
+    source, and find it again or use it through the tools you connect.
   image:
     src: /images/inkcre-mark.svg
     alt: InKCre mark
@@ -35,7 +35,7 @@ features:
       Run your own instance and keep useful information available beyond any one source or client.
   - title: Put it to work
     details:
-      Find what you saved, follow its relationships, or make it available to trusted tools and
+      Find what you saved, follow its relationships, or use it through connected tools and
       assistants.
 ---
 
@@ -50,7 +50,7 @@ features:
   <p>
     It does not require every item to pass through one prescribed workflow. Collect what matters,
     improve selected information when that helps, then use it through search, connected applications,
-    or trusted assistants.
+    or assistants you connect.
   </p>
 </section>
 
@@ -73,7 +73,7 @@ features:
     <div class="inkcre-flow-stage" role="listitem">
       <span>03 · USE</span>
       <strong>Your next task</strong>
-      <p>Search, browse, connect an application, or let a trusted tool retrieve it.</p>
+      <p>Search, browse, connect an application, or retrieve it with a tool you connected.</p>
     </div>
   </div>
 </section>
