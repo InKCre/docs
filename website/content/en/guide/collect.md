@@ -25,6 +25,10 @@ for terminal instructions.
 5. If creation could not be confirmed, check the Jobs list before submitting again. A timeout does
    not prove the first request did nothing.
 
+![A finished RSS collection Job with its Source, timestamps, state, and diagnostics](/images/client-web/collection-job.png)
+
+_A finished Job is the place to verify what the collector actually did._
+
 The Source ID persists across runs; each run has its own Job ID. A successful empty collection can
 be normal. Do not repeatedly create Jobs to work around a provider error.
 

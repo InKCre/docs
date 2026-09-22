@@ -20,8 +20,8 @@ Choose **one** deployment guide:
 
 - [Render and Neon](/self-hosted/render-neon): fork-based quick deployment on Render.
 - [Heroku and Neon](/self-hosted/heroku-neon): the equivalent quick deployment on Heroku.
-- [Advanced Self-Hosting](/self-hosted/advanced): initialize PostgreSQL, configure PostgREST, and
-  run Core on infrastructure you choose.
+- [Custom Self-Hosting](/self-hosted/custom): initialize PostgreSQL, configure PostgREST, and run
+  Core on infrastructure you choose.
 
 Neon and the compute providers are convenience options, not requirements. At the end, retain a ready
 Core URL, a PostgREST URL, your private JWT secret, and the Core Peer ID.
@@ -36,7 +36,7 @@ Follow these shared user guides in order. If you already have an instance, start
 3. [Find what you saved](/guide/search): maintain the lexical index, search, and inspect a result.
 
 **Checkpoint:** you can retrieve a real item from your source. Collection and indexing are separate;
-neither requires you to set up AI organization first.
+neither requires you to set up Organization first.
 
 ## 3. Continue through the User Guide
 
@@ -44,9 +44,9 @@ Finish the linear Getting Started journey with [Use Your Information](/guide/dai
 manual steps work, choose the separate User Guide topics that match your needs:
 
 - [Schedule collection](/guide/schedules).
-- [Schedule index maintenance](/guide/index-schedule).
+- [Organize information and maintain retrieval support](/guide/organization).
 - [Connect more sources](/guide/sources), such as GitHub saves, email, and Telegram messages.
-- [Advanced Self-Hosting](/self-hosted/advanced) for backups, upgrades, and manual operations.
+- [Custom Self-Hosting](/self-hosted/custom) for more infrastructure choices and manual operations.
 
 These paths make information available on demand. They do not configure automatic daily digests or
 Telegram/email push notifications. Hosting that sleeps cannot guarantee continuous collection.

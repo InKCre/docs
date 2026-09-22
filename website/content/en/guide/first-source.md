@@ -37,4 +37,4 @@ collection.
 
 Next: [Use Your Information](/guide/daily-use). After the Getting Started path works, you can
 [connect more sources](/guide/sources), [schedule collection](/guide/schedules), or
-[schedule index maintenance](/guide/index-schedule).
+[organize information and maintain retrieval support](/guide/organization).

@@ -26,13 +26,18 @@ inkcre-cli job wait JOB_ID --for 30s
 
 Replace `JOB_ID` with the returned number. Inspect its state and diagnostics; maintenance handles a
 bounded batch, so a larger import can need another run. An
-[index-maintenance schedule](/guide/index-schedule) avoids needing this manual step for every
+[retrieval-maintenance schedule](/guide/organization) avoids needing this manual step for every
 collection.
 
 2. Open **Info Base** in client-web. Enter a distinctive phrase from the collected item and search.
 3. Select a result, inspect its details, use **View content** where supported, and follow its graph
    relationships. Some content needs a compatible browser Extension for rich rendering; an Agent can
    also retrieve Core-resolved text through the CLI.
+
+![Lexical search in Info Base returning a collected RSS item](/images/client-web/lexical-search.png)
+
+_Search for a phrase you recognize; the result should be the information itself, not merely a
+successful maintenance Job._
 
 **Checkpoint:** you found a real item and its source relationships. Collection and indexing are
 separate; an AI key is not required for lexical search. Source-derived relationships do not mean
@@ -79,7 +84,7 @@ Organization operation and do not mean InKCre has already summarized, tagged, or
 information with AI.
 
 Next: [Use Your Information](/guide/daily-use). To automate maintenance later, add an
-[index-maintenance schedule](/guide/index-schedule).
+[retrieval-maintenance schedule](/guide/organization).
 
 </template>
 </InterfaceGuide>

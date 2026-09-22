@@ -1,6 +1,6 @@
 ---
 title: Use Your Information
-description: Connect the Web app and everyday tools, with optional AI organization.
+description: Connect the Web app and everyday tools, with optional Organization.
 ---
 
 # Use Your Information
@@ -46,17 +46,11 @@ owns the endpoint and authentication contract.
 These paths make your saved information available on demand. They do not configure proactive
 notifications or a daily briefing.
 
-## Add AI organization when you need it
+## Organize information when it improves later use
 
-Once collection and reading work, configure a model provider and Agent for rumination, then
-explicitly reconsider a Block. Follow the
-[Core organization configuration](https://github.com/InKCre/core-py/blob/main/docs/30-unit-tdd/organization.md)
-for the Agent and deployment settings before using **Ruminate** or
-`inkcre-cli organization ruminate BLOCK_ID`.
-
-Inspect the Job and graph afterward. A valid result may add nothing. Re-index after new content is
-added to find it by words. Semantic search additionally needs an embedding provider/profile and
-maintenance; an LLM API key alone does not enable it. Selected content leaves your instance for
-configured AI providers and may incur charges.
+Once collection and reading work, follow [Organize Your Information](/guide/organization) to choose
+one concrete improvement, configure the required Agent, run a best-effort Organization Job, and
+inspect its graph effect. That guide also keeps lexical and semantic retrieval maintenance separate
+from Organization. An LLM API key alone does not enable every capability.
 
 Next: [Troubleshooting](/guide/troubleshooting).

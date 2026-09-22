@@ -2,15 +2,15 @@
 layout: home
 title: InKCre
 description:
-  InKCre collects information, organizes it into a reusable info-base, and makes it available for
-  later use.
+  InKCre collects information into a reusable info-base, can improve what is already there, and
+  makes it available for later use.
 
 hero:
   name: InKCre
   text: A shared base for reusable information.
   tagline:
-    Collect information, organize it into an info-base, and make it available for later retrieval,
-    indexing, and downstream use.
+    Collect information into an info-base, improve it when useful, and retrieve or use it where you
+    work.
   actions:
     - theme: brand
       text: Getting Started
@@ -27,11 +27,11 @@ hero:
 
 features:
   - title: Collect
-    details: Bring information from external systems into durable, reusable units.
+    details: Map information from external systems into durable Blocks and Relations.
   - title: Organize
-    details: Connect blocks and relations inside a shared information base.
+    details: Improve information already in the info-base when that helps later use.
   - title: Use
-    details: Retrieve, index, and apply organized information in downstream work.
+    details: Find, navigate, and apply information with the retrieval support each task needs.
 ---
 
 ## Under active development

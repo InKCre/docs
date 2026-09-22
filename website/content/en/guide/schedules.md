@@ -27,11 +27,10 @@ First complete [a manual collection](/guide/collect) and [find a known item](/gu
    CLI if you want to retain it for later re-enabling.
 
 This schedule only collects from the Source. It does not maintain a search index or run
-Organization. Configure [index maintenance separately](/guide/index-schedule) if you want newly
+Organization. Configure [retrieval maintenance separately](/guide/organization) if you want newly
 collected items to become searchable without a manual maintenance Job.
 
-Next: [Schedule Index Maintenance](/guide/index-schedule), or
-[Connect More Sources](/guide/sources).
+Next: [Organize Your Information](/guide/organization), or [Connect More Sources](/guide/sources).
 
 </template>
 <template #cli>
@@ -58,7 +57,7 @@ Cron ID with `inkcre-cli cron get ID`; `last_job` identifies the Job to check. P
 Core must run. Sleeping hosts miss occurrences and do not automatically catch up.
 
 Collection does not update search indexes or run Organization. Continue with
-[Schedule Index Maintenance](/guide/index-schedule), or [Add More Sources](/guide/sources).
+[Organize Your Information](/guide/organization), or [Add More Sources](/guide/sources).
 
 </template>
 </InterfaceGuide>

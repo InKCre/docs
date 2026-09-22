@@ -38,6 +38,10 @@ Do not downgrade to `0.3.0`: its Python package targets Core Host `0.1.x`.
 3. Choose your online Core Peer/client in the wizard. Enable Twitter there if prompted. Core handles
    the callback and collection; browser enablement alone is insufficient.
 
+![Twitter setup wizard showing the account-connection step](/images/client-web/twitter-setup.png)
+
+_The wizard keeps preparation, account connection, Source selection, and review as separate steps._
+
 ### 2. Authorize your X account
 
 1. Copy the callback URL displayed by the wizard. In your X developer app's authentication settings,

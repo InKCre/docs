@@ -7,7 +7,7 @@ description: Deploy your own InKCre instance using a GitHub fork, Neon, and Hero
 
 Use this fork-based quick deployment if you do not have an instance yet. You need GitHub, Neon, and
 a compute-provider account. These providers are convenience options, not InKCre requirements;
-[Advanced Self-Hosting](/self-hosted/advanced) covers your own infrastructure.
+[Custom Self-Hosting](/self-hosted/custom) covers your own infrastructure.
 
 Keep credentials in a password manager. API keys let the workflow act on your hosting accounts; they
 are different from sign-in passwords.

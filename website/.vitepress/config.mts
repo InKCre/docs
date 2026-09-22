@@ -85,7 +85,7 @@ export default defineConfig({
               ],
             },
             { text: 'Schedule Collection', link: '/guide/schedules' },
-            { text: 'Schedule Index Maintenance', link: '/guide/index-schedule' },
+            { text: 'Organize Your Information', link: '/guide/organization' },
             {
               text: 'Sinks',
               items: [{ text: 'Sinks: ChatGPT via MCP', link: '/guide/sinks/chatgpt' }],
@@ -97,7 +97,7 @@ export default defineConfig({
                 { text: 'Set Up an Instance', link: '/self-hosted/setup' },
                 { text: 'Render and Neon', link: '/self-hosted/render-neon' },
                 { text: 'Heroku and Neon', link: '/self-hosted/heroku-neon' },
-                { text: 'Advanced Self-Hosting', link: '/self-hosted/advanced' },
+                { text: 'Custom Self-Hosting', link: '/self-hosted/custom' },
               ],
             },
             { text: 'Troubleshooting', link: '/guide/troubleshooting' },

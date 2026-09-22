@@ -12,7 +12,8 @@ availability, backups, and updates. This section is for users choosing that resp
 For the application-level introduction and access choices, start with
 [Getting Started](/getting-started). Self-hosting is a separate User Guide topic: use the
 [instance setup guide](/self-hosted/setup) for a fork-based deployment, or
-[Advanced Self-Hosting](/self-hosted/advanced) for manual deployment and operations.
+[Custom Self-Hosting](/self-hosted/custom) for a step-by-step deployment on infrastructure you
+choose.
 
 ## Choose a deployment path
 
@@ -20,7 +21,7 @@ For the application-level introduction and access choices, start with
 | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | Fork quick deployment: Neon + Render | Provider accounts and GitHub settings; the workflow initializes the database and deploys Core and PostgREST.                     | [Render walkthrough](/self-hosted/render-neon) |
 | Fork quick deployment: Neon + Heroku | The same topology on Heroku, with its billing and runtime settings.                                                              | [Heroku walkthrough](/self-hosted/heroku-neon) |
-| Manual deployment                    | PostgreSQL initialization, PostgREST, the Core Python process or container, and hosting operations on infrastructure you choose. | [Advanced](/self-hosted/advanced)              |
+| Custom deployment                    | PostgreSQL initialization, PostgREST, the Core Python process or container, and hosting operations on infrastructure you choose. | [Custom guide](/self-hosted/custom)            |
 
 Neon, Render, and Heroku are convenient deployment options, not product dependencies. Forking
 provides a ready-made deployment workflow; it is not required to run InKCre. Both quick deployments

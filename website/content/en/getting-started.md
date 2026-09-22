@@ -6,23 +6,24 @@ description:
 
 # Getting Started
 
-InKCre helps you turn information scattered across your tools into a collection you can return to
+InKCre helps you bring information scattered across your tools into an info-base you can return to
 and use. Start here to understand the experience, then choose how you will access an instance. You
 do not need to be an InKCre developer to begin.
 
 ## What is InKCre?
 
-InKCre collects information, organizes it in an **info-base**, and makes it available for retrieval
-and use in other tools. Think of the info-base as your reusable collection, including connections
-between pieces of information rather than only a folder of copies.
+InKCre collects information into an **info-base**, can organize information already there when that
+improves later use, and makes it available for retrieval and other tools. Think of the info-base as
+reusable product memory built from Blocks and Relations, rather than only a folder of copies.
 
 For example, you might collect articles from RSS feeds, keep track of saved GitHub repositories, and
 capture messages you forward to a Telegram bot. Later, you can find an article from a phrase you
 remember, follow its related information, or make it available to a trusted assistant.
 
-These are connected capabilities, not mandatory stages: you can collect and retrieve information
-without first configuring AI organization. Extensions provide integrations with different sources
-and tools; each integration has its own setup and limits.
+Collection, Organization, and Application are connected capabilities, not mandatory stages. A
+collector may preserve source relationships without performing Organization, and you can retrieve
+information without first configuring an AI provider. Extensions add integrations with different
+sources and tools; each has its own setup and limits.
 
 ## Why use it?
 
@@ -30,9 +31,9 @@ Saving information is useful only if you can find and reuse it. An article in on
 in another, and a note in a third can become difficult to bring together when you need them.
 
 InKCre gives that information a common home without making its usefulness depend on the original
-collector or a single client. You choose the sources that matter, then access the collection from
-the Web app, the command line, or connected tools in your workflow. Self-hosting also lets you
-choose where the instance runs and where its information is stored.
+collector or a single client. You choose the sources that matter, then access the info-base from the
+Web app, the command line, or connected tools in your workflow. Self-hosting also lets you choose
+where the instance runs and where its information is stored.
 
 Start with a concrete need—such as finding useful articles from your subscriptions—rather than
 connecting every source at once. One working source and a successful search are a better first
@@ -48,8 +49,8 @@ does not create an instance for you.
 
 - **Run your own instance:** choose [Self-Hosted](/self-hosted/). Its
   [setup guide](/self-hosted/setup) walks through quick deployment before you rejoin this journey.
-  [Advanced Self-Hosting](/self-hosted/advanced) covers manual deployment and operating it on
-  infrastructure you choose.
+  [Custom Self-Hosting](/self-hosted/custom) covers a step-by-step deployment on infrastructure you
+  choose.
 - **Already have access to an instance:** obtain connection details from the person operating it,
   then [connect the Web app or your Agent](/guide/connect), [collect a source](/guide/first-source),
   and [connect your everyday tools](/guide/daily-use). Skip the deployment steps. Only connect
@@ -73,8 +74,8 @@ remember, and open a result. Then [Use Your Information](/guide/daily-use) to co
 a tool you already use. This completes the linear Getting Started path, independently of your
 deployment choice.
 
-AI organization and semantic retrieval are optional next steps with their own provider and
-maintenance setup. InKCre does not automatically configure a daily digest or Telegram/email push
+Model-assisted Organization and semantic retrieval are optional next steps with their own provider
+and maintenance setup. InKCre does not automatically configure a daily digest or Telegram/email push
 notifications: making information available in your tools is distinct from proactively sending it.
 
 ## Your next step
@@ -82,7 +83,7 @@ notifications: making information available in your tools is distinct from proac
 If you do not have an instance yet, open [Self-Hosted](/self-hosted/) and choose a deployment path.
 After the first-use path works, the User Guide covers optional topics such as
 [more sources](/guide/sources), [collection schedules](/guide/schedules),
-[index-maintenance schedules](/guide/index-schedule), and
-[advanced self-hosting](/self-hosted/advanced). If you want to understand or contribute to the
+[Organization and retrieval maintenance](/guide/organization), and
+[custom self-hosting](/self-hosted/custom). If you want to understand or contribute to the
 implementation, use the [Developer Guide](/developer/) instead. For the project's values and
 direction, read [About InKCre](/about/).

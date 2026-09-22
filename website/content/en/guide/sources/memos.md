@@ -29,6 +29,10 @@ a bounded Memos `0.29.1` API subset; the previously accepted client is MoeMemos 
 5. Write a distinctive note, refresh the client, and reopen it. Then
    [index and search](/guide/search) for the same text in InKCre.
 
+![Memos setup showing a ready Server URL and masked Personal Access Token](/images/client-web/memos-setup.png)
+
+_Copy both values from Setup; keep the PAT masked and private._
+
 If setup reports a missing public address, set your Core's **Public HTTP Base URL** in **Clients →
 Config**, then refresh setup. The address must be reachable from your Memos client. The **Memos
 connection help** link opens the installed version's step-by-step guide; the Extension card also
