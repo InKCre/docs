@@ -51,14 +51,12 @@ does not create an instance for you.
   [setup guide](/self-hosted/setup) walks through quick deployment before you rejoin this journey.
   [Custom Self-Hosting](/self-hosted/custom) covers a step-by-step deployment on infrastructure you
   choose.
-- **Already have access to an instance:** obtain connection details from the person operating it,
-  then [connect the Web app or your Agent](/guide/connect), [collect a source](/guide/first-source),
-  and [connect your everyday tools](/guide/daily-use). Skip the deployment steps. Only connect
-  information and tools you are authorized to use with that instance.
+- **Already deployed your instance:** reuse the connection details you retained, then
+  [connect the Web app or your Agent](/guide/connect), [collect a source](/guide/first-source), and
+  [connect your everyday tools](/guide/daily-use). Skip the deployment steps.
 
-This guide does not assume a hosted sign-up service or separate private user accounts inside an
-instance. Access arrangements and trust matter; do not treat a shared instance as an isolated
-personal account.
+This guide assumes one user-owned deployment. InKCre is not a hosted sign-up service or a multi-user
+account system; keep its instance authority on devices and tools you trust.
 
 ### 2. Collect one useful source
 
@@ -70,9 +68,9 @@ permissions each requires.
 ### 3. Find and use what you collected
 
 Follow [Find What You Saved](/guide/search) to maintain the search index, search for something you
-remember, and open a result. Then [Use Your Information](/guide/daily-use) to connect the Web app or
-a tool you already use. This completes the linear Getting Started path, independently of your
-deployment choice.
+remember, and open a result. Then [Browse and Use Your Information](/guide/daily-use) to connect the
+Web app or a tool you already use. This completes the linear Getting Started path, independently of
+your deployment choice.
 
 Model-assisted Organization and semantic retrieval are optional next steps with their own provider
 and maintenance setup. InKCre does not automatically configure a daily digest or Telegram/email push

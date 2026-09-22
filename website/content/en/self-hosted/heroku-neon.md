@@ -37,8 +37,9 @@ while Heroku runs two apps: Core and PostgREST.
 
 4. Open **Actions → Deploy self-hosted InKCre to Heroku → Run workflow**, select your fork's `main`
    branch, and wait for the run to succeed.
-5. Save the Core URL, PostgREST URL, and Core Peer ID from its summary. Open Core `/readyz` and wait
-   for HTTP `200`, then continue to [Connect the CLI](/guide/connect-cli).
+5. Save the Core URL, PostgREST URL, and Core Peer ID from its summary, then continue to
+   [Connect the Web App](/guide/connect). After saving the connection, find Core in the **Clients**
+   list. If it is offline, choose **Wake** and refresh; an Eco dyno may take time to start.
 
 The workflow runs one Eco web dyno per app. Heroku charges and
 [Eco sleep behavior](https://devcenter.heroku.com/articles/eco-dyno-hours) apply. Keep the same
@@ -49,8 +50,8 @@ deployment procedure and recovery details live in the
 
 **Keep your instance credentials private.** `JWT_SECRET` grants control of the instance, not a
 limited personal login. Do not paste it into an online JWT generator, an issue, a chat, or your
-public fork. This deployment does not isolate different users from one another. Start with your own
-information and trusted devices.
+public fork. This deployment is for one user; do not share it as a multi-user service. Start with
+your own information and trusted devices.
 
-Next: [Connect the CLI](/guide/connect-cli), or return to the
+Next: [Connect the Web App](/guide/connect), or return to the
 [self-hosted setup guide](/self-hosted/setup).

@@ -51,6 +51,11 @@ Choose dates appropriate to your mailbox. The start is included and the end excl
 Job, then [index and search](/guide/search) for a known email. This collector does not send mail or
 generate email digests. Keep credentials and diagnostics private.
 
+![A collected email opened in Info Base with content, attachments, and related messages](/images/client-web/mail-content.png)
+
+_After indexing, open a collected message from Info Base to read its content and follow related
+mail._
+
 </template>
 <template #cli>
 

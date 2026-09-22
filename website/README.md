@@ -30,13 +30,13 @@ pnpm --dir website audit --audit-level high
 - Only English is active until the Chinese route set is complete or the locale switch has a
   deliberate fallback.
 - `/getting-started` owns the application-level What, Why, and How introduction.
-- `/getting-started` and its sidebar children form one linear path inside the User Guide. Optional
-  topics such as more sources and self-hosting remain separate User Guide sections.
+- `/getting-started` introduces one linear path whose pages are filed under Collection and Use in
+  the task-oriented sidebar. Optional topics remain outside that first-use sequence.
 - `/self-hosted/` contains instance setup, Render/Heroku quick-deployment guides, and the Custom
   guide. It is not a second Getting Started hierarchy.
-- `/guide/` leaf pages own reusable client, collection, retrieval, scheduling, source, daily-use,
-  and troubleshooting procedures. Link to these pages from any onboarding path rather than to
-  sections buried inside the self-hosted walkthrough.
+- The User Guide sidebar groups reusable procedures by Collection, Organization, and Use. Web and
+  Agent connections, Info Base browsing, and Sinks are Use topics; self-hosting remains a separate
+  deployment section.
 - `/guide/sources` selects independent source tutorials under `/guide/sources/`; `/guide/collect`
   owns shared collection and Job observation. Collection scheduling stays separate from Organization
   guidance; indexing is retrieval support, not Organization. Memos is documented separately as
@@ -58,13 +58,13 @@ are resolved from the rewritten route, not the source file location.
 ## Page Authoring
 
 - User procedures default to client-web. Use the shared `InterfaceGuide` component with `#web` and
-  `#cli` slots for alternate steps on the same route; CLI instructions primarily serve Agents and
-  operators. The choice survives client-side navigation, not a full reload. Without JavaScript, both
-  sections remain readable. Keep shared prerequisites and limitations outside the slots.
+  `#cli` slots for alternate steps on the same route; CLI instructions primarily serve Agents. The
+  choice survives client-side navigation, not a full reload. Without JavaScript, both sections
+  remain readable. Keep shared prerequisites and limitations outside the slots.
 - Set `outline: false` on interface-switching pages: the default VitePress outline includes hidden
   slot headings. Do not expose links to invisible instructions. The site sidebar remains available.
 - State actual interface gaps instead of implying feature parity. Core package installation and
-  lexical maintenance still need CLI/operator steps; a browser wizard requires a compatible native
+  lexical maintenance may still need the user's Agent; a browser wizard requires a compatible native
   distribution as well as its Core collector. Check both against published Registry releases.
 - Keep exactly one H1 per page.
 - Add a concise page `description` in frontmatter.

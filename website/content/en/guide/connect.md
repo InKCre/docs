@@ -7,26 +7,30 @@ description: Use the Web app yourself, or connect a trusted Agent through the CL
 # Connect to Your Instance
 
 Use **client-web** for your own day-to-day setup and reading. The **CLI** is primarily an interface
-for your trusted Agent, and also works for operators who prefer a terminal. You do not need to
-configure every interface before starting. The selector on these guides changes the instructions,
-not your instance, and keeps your choice while navigating the site.
+for your trusted Agent. You do not need to configure every interface before starting. The selector
+on these guides changes the instructions, not your instance, and keeps your choice while navigating
+the site.
 
 <InterfaceGuide>
 <template #web>
 
 ## Connect the Web app
 
-1. Retain your deployment's **PostgREST URL**, private **JWT secret**, and Core URL. Wake Core by
-   opening its `/readyz` endpoint. Ask the operator for access if this is not your deployment.
+1. Retain your deployment's **PostgREST URL**, private **JWT secret**, and Core URL.
 2. Open [Web app Settings](https://app.inkcre.dev/settings). Only enter your secret into a Web app
-   you trust: it grants instance authority, not an isolated personal login.
+   you trust: it grants full deployment authority, not a limited app session.
 3. Enter the PostgREST base URL in **PostgreSQL REST URL**, and the secret in **JWT Secret**. Do not
    substitute the Core URL for PostgREST.
 4. Keep the generated **Client ID**. It is this browser's identity; do not reuse Core's Peer ID.
    Current Settings registers the browser when you save, so no manual SQL insert is needed.
 5. Set **Extension Registry URL** to `https://registry.inkcre.dev`, then choose **Save**. Check the
-   **Clients** list for your Core instance and its online state. If it is offline, wake Core and
-   refresh before trying a delegated operation.
+   **Clients** list for your Core instance and its online state. If it is offline, choose **Wake**
+   for that client, then refresh before trying a delegated operation.
+
+![Client-web Settings showing the browser Client ID, Registry URL, and Clients section](/images/client-web/settings-overview.png)
+
+_Settings keeps this browser's identity, Registry URL, and discovered clients together. Labels
+follow the language selected in client-web._
 
 The connection belongs to this browser origin. Set up another browser/device separately. An
 **Export** excludes the secret and is not a backup of your information.

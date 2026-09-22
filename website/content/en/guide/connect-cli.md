@@ -5,8 +5,8 @@ description: Connect the command-line tool to an existing InKCre instance.
 
 # Connect the CLI
 
-You need a ready Core URL and the instance's private JWT secret. Obtain them from your deployment or
-its operator. Keep the secret private; it grants instance authority, not an isolated personal login.
+You need a ready Core URL and the instance's private JWT secret from your deployment. Keep the
+secret private; it grants full deployment authority, not a limited app session.
 
 The CLI is primarily for your trusted Agent, and also supports manual terminal use. For your own
 interactive setup, start with [Connect to Your Instance](/guide/connect) and choose the Web app. The
@@ -37,8 +37,8 @@ CLI connects over HTTPS; it does not run another server on your computer.
    }
    ```
 
-   Replace both values, preserving the quotes. Use the Core base URL without `/readyz`. This file
-   contains a credential; keep it private.
+   Replace both values, preserving the quotes. Use the Core base URL without an endpoint path. This
+   file contains a credential; keep it private.
 
 4. From that folder, save and check the connection:
 
@@ -53,8 +53,8 @@ CLI connects over HTTPS; it does not run another server on your computer.
    directory. Protect that file too.
 
 **Checkpoint:** `connection check` can read your instance. For `401`, check the secret; for a
-connection failure, check the Core URL and wake `/readyz`. In later terminal sessions, reactivate
-the environment before using `inkcre-cli`.
+connection failure, check the Core URL and wake Core from Web app Settings. In later terminal
+sessions, reactivate the environment before using `inkcre-cli`.
 
 The [CLI reference](https://github.com/InKCre/core-py/blob/main/cli/README.md) owns command details.
 `--help` explains a command; `--schema` on input-taking commands shows the configuration accepted by

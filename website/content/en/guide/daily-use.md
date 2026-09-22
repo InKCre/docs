@@ -1,13 +1,12 @@
 ---
-title: Use Your Information
-description: Connect the Web app and everyday tools, with optional Organization.
+title: Browse and Use Your Information
+description: Browse the info-base and connect it to the tools where you work.
 ---
 
-# Use Your Information
+# Browse and Use Your Information
 
-Start with a working instance and [a successful search](/guide/search). Retain your Core URL,
-PostgREST URL, and private JWT secret. If someone else operates the instance, ask them to authorize
-your access rather than assuming you may connect a browser Peer.
+Start with your instance and [a successful search](/guide/search). Retain your Core URL, PostgREST
+URL, and private JWT secret.
 
 ## Read and explore in the Web app
 
@@ -20,6 +19,10 @@ own Client ID; do not manually create a Peer or reuse Core's identity.
    compatible browser Extension; an Agent can use the CLI's `get_text` to read Core-resolved text.
 3. Bookmark the app. A new browser/device needs its own connection. **Export** omits the secret and
    is not an info-base backup.
+
+![Info Base graph centered on one Block and its direct relationships](/images/client-web/info-base-graph.png)
+
+_Open a result's neighborhood to move from one Block to the information directly related to it._
 
 ## Use your information from a terminal or AI tool
 
@@ -46,11 +49,5 @@ owns the endpoint and authentication contract.
 These paths make your saved information available on demand. They do not configure proactive
 notifications or a daily briefing.
 
-## Organize information when it improves later use
-
-Once collection and reading work, follow [Organize Your Information](/guide/organization) to choose
-one concrete improvement, configure the required Agent, run a best-effort Organization Job, and
-inspect its graph effect. That guide also keeps lexical and semantic retrieval maintenance separate
-from Organization. An LLM API key alone does not enable every capability.
-
-Next: [Troubleshooting](/guide/troubleshooting).
+Next: [Organize Your Information](/guide/organization), or use
+[Troubleshooting](/guide/troubleshooting) when a workflow fails.

@@ -9,7 +9,7 @@ This [Self-Hosted](/self-hosted/) guide gives you an instance that you operate. 
 application's What, Why, and linear first-use journey, begin with
 [Getting Started](/getting-started).
 
-You will use the Web app for interactive setup. A trusted Agent or operator can handle the remaining
+You will use the Web app for interactive setup. Your trusted Agent can handle the remaining
 terminal-only operations, such as installing Core collectors and scheduling indexing. No InKCre
 development setup or AI model is needed for the first collection-and-search journey. Each guide
 below is self-contained and can also be used with an existing compatible instance.
@@ -40,8 +40,8 @@ neither requires you to set up Organization first.
 
 ## 3. Continue through the User Guide
 
-Finish the linear Getting Started journey with [Use Your Information](/guide/daily-use). After the
-manual steps work, choose the separate User Guide topics that match your needs:
+Finish the linear Getting Started journey with [Browse and Use Your Information](/guide/daily-use).
+After the manual steps work, choose the separate User Guide topics that match your needs:
 
 - [Schedule collection](/guide/schedules).
 - [Organize information and maintain retrieval support](/guide/organization).

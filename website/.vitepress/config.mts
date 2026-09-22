@@ -59,36 +59,41 @@ export default defineConfig({
         {
           text: 'User Guide',
           items: [
+            { text: 'Getting Started', link: '/getting-started' },
             {
-              text: 'Getting Started',
-              link: '/getting-started',
+              text: 'Collection',
               items: [
-                { text: 'Connect to Your Instance', link: '/guide/connect' },
                 { text: 'Prepare an Extension', link: '/guide/extensions' },
                 { text: 'Collect Your First Source', link: '/guide/first-source' },
                 { text: 'Run a Collection', link: '/guide/collect' },
-                { text: 'Find What You Saved', link: '/guide/search' },
-                { text: 'Use Your Information', link: '/guide/daily-use' },
+                {
+                  text: 'Connect More Sources',
+                  link: '/guide/sources',
+                  items: [
+                    { text: 'RSS and Atom', link: '/guide/sources/rss' },
+                    { text: 'GitHub Stars and Lists', link: '/guide/sources/github' },
+                    { text: 'Email over IMAP', link: '/guide/sources/mail' },
+                    { text: 'Telegram Inbox', link: '/guide/sources/telegram' },
+                    { text: 'Twitter / X Bookmarks', link: '/guide/sources/twitter' },
+                    { text: 'Memos-Compatible Capture', link: '/guide/sources/memos' },
+                  ],
+                },
+                { text: 'Schedule Collection', link: '/guide/schedules' },
               ],
             },
-            { text: 'CLI / Agent Connection', link: '/guide/connect-cli' },
             {
-              text: 'Connect More Sources',
-              link: '/guide/sources',
+              text: 'Organization',
+              items: [{ text: 'Organize Your Information', link: '/guide/organization' }],
+            },
+            {
+              text: 'Use',
               items: [
-                { text: 'RSS and Atom', link: '/guide/sources/rss' },
-                { text: 'GitHub Stars and Lists', link: '/guide/sources/github' },
-                { text: 'Email over IMAP', link: '/guide/sources/mail' },
-                { text: 'Telegram Inbox', link: '/guide/sources/telegram' },
-                { text: 'Twitter / X Bookmarks', link: '/guide/sources/twitter' },
-                { text: 'Memos-Compatible Capture', link: '/guide/sources/memos' },
+                { text: 'Connect the Web App', link: '/guide/connect' },
+                { text: 'Find What You Saved', link: '/guide/search' },
+                { text: 'Browse and Use Your Information', link: '/guide/daily-use' },
+                { text: 'CLI / Agent Connection', link: '/guide/connect-cli' },
+                { text: 'ChatGPT via MCP', link: '/guide/sinks/chatgpt' },
               ],
-            },
-            { text: 'Schedule Collection', link: '/guide/schedules' },
-            { text: 'Organize Your Information', link: '/guide/organization' },
-            {
-              text: 'Sinks',
-              items: [{ text: 'Sinks: ChatGPT via MCP', link: '/guide/sinks/chatgpt' }],
             },
             {
               text: 'Self-Hosted',

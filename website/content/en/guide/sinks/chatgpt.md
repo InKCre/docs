@@ -21,8 +21,7 @@ operate; it does not have to run beside Core. Keep it running whenever ChatGPT n
 ## Before you start
 
 - Have a working instance and complete [a known-item search](/guide/search) first. Retain its Core
-  URL and private JWT secret. If someone else operates the instance, ask them to perform the Sink
-  setup rather than requesting their administrator credentials.
+  URL and private JWT secret.
 - Install the CLI environment from [Connect the CLI](/guide/connect-cli). The setup example below
   uses its installed Python dependencies because the CLI does not yet have a `sink` command.
 - Confirm that your ChatGPT account/workspace permits developer-mode MCP connections and that you
@@ -84,11 +83,11 @@ with httpx.Client(timeout=30, headers={"Authorization": f"Bearer {token}"}) as c
     print(f"MCP endpoint: {core_url}/sinks/{sink_id}/mcp")
 ```
 
-Save the printed Sink ID and MCP endpoint. Enabling applies to the Core Peer you contacted. Do not
-append this path to the PostgREST URL or to `/readyz`.
+Save the printed Sink ID and MCP endpoint. Enabling applies to the Core Peer you contacted. Append
+the Sink path to the Core base URL, not the PostgREST URL.
 
 If a request times out or enabling fails, inspect the existing Sink before repeating creation: the
-first write may already have succeeded. The operator can use authenticated `GET /sinks` and
+first write may already have succeeded. You can use authenticated `GET /sinks` and
 `POST /sinks/{id}/enable` with the same short-lived Bearer JWT pattern. Do not publish a Sink
 management response; it can contain configuration credentials. The authoritative API and lifecycle
 details are in
@@ -136,11 +135,10 @@ Replace the tunnel ID and server URL before running. The environment value conta
 are needed because discovery/probes and regular calls reach the protected Sink separately. See the
 [tunnel configuration reference](https://github.com/openai/tunnel-client/blob/master/docs/configuration.md).
 
-In another terminal, run `curl --fail http://127.0.0.1:8080/readyz`; continue when it returns
-HTTP 200. The local diagnostics UI is at `http://127.0.0.1:8080/ui`. If port 8080 is occupied,
-choose another loopback port in the command and both URLs. Keep this listener local; do not expose
-its UI as the MCP endpoint. Core must remain reachable too, including when hosted on a sleeping
-plan.
+Wait until the tunnel client reports that it is ready. Its local diagnostics UI is available from
+the loopback address shown in its output. If port 8080 is occupied, choose another loopback port in
+the command. Keep this listener local; do not expose its UI as the MCP endpoint. Core must remain
+reachable too, including when hosted on a sleeping plan.
 
 ## 4. Add the connection in ChatGPT
 
@@ -191,6 +189,6 @@ results.
 Refresh the ChatGPT connection after changing server tool metadata, then test in a new chat.
 Stopping `tunnel-client` interrupts this tunnel path; closing its terminal or sleeping its host does
 the same. Remove the connection from ChatGPT when no longer needed. To revoke the endpoint itself,
-the operator can call authenticated `POST /sinks/{id}/disable`; disable before deleting a Sink. For
-a leaked PAT, rotate the Sink config and update the tunnel environment before restarting it. Never
-disable PAT authentication just to make discovery pass.
+you can call authenticated `POST /sinks/{id}/disable`; disable before deleting a Sink. For a leaked
+PAT, rotate the Sink config and update the tunnel environment before restarting it. Never disable
+PAT authentication just to make discovery pass.

@@ -27,6 +27,11 @@ authority. Do not change a working installation merely to match an example.
 5. Open **Sources**, create a Source, and check that its **Type** is available. A listed
    installation alone does not prove that the collector is running.
 
+![Client-web Extensions showing installation fields, client selection, and enabled Extensions](/images/client-web/extension-management.png)
+
+_Select Core before installing or enabling a collector; select This browser only for browser-side
+capabilities._
+
 An offline client cannot validate an installation. If installation fails, keep your entered name and
 version, read the error, and check the selected client and release compatibility before trying
 again. An older Core may need an update to support installation through this Web control. Do not

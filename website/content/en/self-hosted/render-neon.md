@@ -36,8 +36,9 @@ are different from sign-in passwords.
    and rerun using the same credentials.
 6. Open the completed run's summary. Save the **Core URL**, **PostgREST URL**, and **Core Peer ID**.
    The workflow deliberately does not print your secret; retain the original value.
-7. Open the Core URL with `/readyz` appended. Continue when it returns HTTP `200`. A sleeping
-   service may take time to start.
+7. Continue to [Connect the Web App](/guide/connect). After saving the connection, find Core in the
+   **Clients** list. If it is offline, choose **Wake** and refresh; a sleeping service may take time
+   to start.
 
 **Checkpoint:** deployment succeeded, and you have both service URLs and your `JWT_SECRET`. Use the
 **Core URL** for the CLI and the **PostgREST URL** for the Web app later.
@@ -51,8 +52,8 @@ procedure and recovery details live in the
 
 **Keep your instance credentials private.** `JWT_SECRET` grants control of the instance, not a
 limited personal login. Do not paste it into an online JWT generator, an issue, a chat, or your
-public fork. This deployment does not isolate different users from one another. Start with your own
-information and trusted devices.
+public fork. This deployment is for one user; do not share it as a multi-user service. Start with
+your own information and trusted devices.
 
-Next: [Connect the CLI](/guide/connect-cli), or return to the
+Next: [Connect the Web App](/guide/connect), or return to the
 [self-hosted setup guide](/self-hosted/setup).

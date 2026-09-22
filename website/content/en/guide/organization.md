@@ -20,8 +20,8 @@ without running Organization first.
 1. Finish [one collection](/guide/collect) and [retrieve a known item](/guide/search).
 2. Choose a concrete improvement, such as interpreting an image or reconsidering one Block in its
    immediate context. Do not run Organization merely to make the graph look tidy.
-3. Ask your operator to configure a compatible model provider and Agent for the exact behavior.
-   Organization may send selected content to that provider and may incur charges.
+3. Configure a compatible model provider and Agent for the exact behavior. Organization may send
+   selected content to that provider and may incur charges.
 
 The
 [Core Organization guide](https://github.com/InKCre/core-py/blob/main/docs/30-unit-tdd/organization.md)
@@ -31,7 +31,7 @@ run Organization.
 ## Reconsider one Block
 
 For one item that would benefit from additional context or connections, retain its Block ID and ask
-a trusted Agent or operator to run:
+your trusted Agent to run:
 
 ```sh
 inkcre-cli organization ruminate BLOCK_ID
@@ -44,8 +44,8 @@ writing when the Agent has no useful change. It does not replace or delete the o
 ## Run Organization automatically
 
 Some Organization behaviors select their own candidates, including media interpretation. They use
-ordinary typed Jobs and do not receive a schedule automatically. First ask your operator to verify
-that the chosen behavior is configured and available on an online Peer. Run it once and inspect its
+ordinary typed Jobs and do not receive a schedule automatically. First use your Agent to verify that
+the chosen behavior is configured and available on the online Core Peer. Run it once and inspect its
 Job and graph effects before creating a Cron.
 
 For example, a configured media-interpreting instance can run this parameterless Job type:
@@ -69,8 +69,8 @@ media volume and provider budget justify it.
 ## Keep retrieval support current
 
 Lexical maintenance makes existing info-base content searchable by remembered words. It does not
-collect information or author graph meaning. Ask your operator or trusted Agent to check whether the
-instance already has a maintenance schedule; create only one if it does not:
+collect information or author graph meaning. Ask your trusted Agent to check whether the instance
+already has a maintenance schedule; create only one if it does not:
 
 ```sh
 inkcre-cli cron create --job-type core.feature_retrieval.lexical.maintain.v1 --input-json '{"schedule":"*/10 * * * *","job_parameters":{}}'
@@ -92,4 +92,5 @@ Organization, or remove stored information. Likewise, a [collection schedule](/g
 not maintain this index. Semantic retrieval uses its own embedding profile and maintenance; an LLM
 key or lexical schedule does not enable it.
 
-Next: [Connect More Sources](/guide/sources), or [Use Your Information](/guide/daily-use).
+Next: [Connect More Sources](/guide/sources), or
+[Browse and Use Your Information](/guide/daily-use).

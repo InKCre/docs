@@ -12,7 +12,7 @@ first.
 Choose **Web app** for your own setup or **CLI / Agent** for terminal instructions. The choice
 follows you between guide pages. Shared prerequisites and source limitations apply to both. The
 [Extension guide](/guide/extensions) distinguishes browser setup from Core installation and calls
-out operations that still need an operator or Agent.
+out operations that still need your Agent.
 
 | What you want to collect                     | Setup guide                                      | What you need                            |
 | -------------------------------------------- | ------------------------------------------------ | ---------------------------------------- |
@@ -44,4 +44,4 @@ want to connect another service, follow
 [Build a Source Extension](/developer/ecosystem/source-extension). That is the ecosystem developer
 path; changing InKCre itself has a separate [contributor guide](/developer/contributing).
 
-Next: [Use Your Information](/guide/daily-use).
+Next: [Browse and Use Your Information](/guide/daily-use).

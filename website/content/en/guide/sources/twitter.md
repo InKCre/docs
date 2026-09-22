@@ -26,8 +26,8 @@ script when that wizard is available with a compatible Core Extension.
 Use `inkcre/twitter` version `0.4.1` with Core Host SDK `0.3.x` and a compatible Web Host. Both
 Hosts use the same installed version: Core runs the Python collector, while the browser loads the
 setup wizard from that release's Module Federation distribution. If browser enablement reports a
-missing distribution, have your operator check the release publication and Registry configuration.
-Do not downgrade to `0.3.0`: its Python package targets Core Host `0.1.x`.
+missing distribution, check the release publication and Registry configuration. Do not downgrade to
+`0.3.0`: its Python package targets Core Host `0.1.x`.
 
 ### 1. Open Setup
 
@@ -95,11 +95,10 @@ Authorization belongs to the **Extension**, not an individual Source. All Twitte
 in this deployment use the connected account. Do not switch accounts to create a second user's
 Source: that changes the account used by existing Sources too.
 
-Prefer the visual wizard when a compatible browser release is available. For an Agent/operator using
-this path, the CLI does not expose OAuth setup commands. The following local script calls its
+Prefer the visual wizard when a compatible browser release is available. For your Agent using this
+path, the CLI does not expose OAuth setup commands. The following local script calls its
 authenticated setup API. Use the Python environment from [Connect the CLI](/guide/connect-cli),
-which already supplies `httpx` and `PyJWT`. If someone else operates Core, ask them to perform
-setup; do not ask them to share their signing secret.
+which already supplies `httpx` and `PyJWT`.
 
 Save this as `connect-twitter.py`, then run `python connect-twitter.py`. It first prints the exact
 callback URL. In your X app's user authentication settings, enable OAuth 2.0, choose a confidential
@@ -164,7 +163,7 @@ with httpx.Client(timeout=30) as client:
 Approve the account you intend to collect. The Extension requests `tweet.read`, `users.read`,
 `bookmark.read`, and `offline.access` so it can refresh authorization. Complete the browser flow
 within ten minutes. Keep credentials and the authorization URL private; never enter `JWT_SECRET`
-into X. Account tokens stay in the deployment, whose operator and admitted Peers are trusted.
+into X. Account tokens stay in your deployment and are available to its admitted Peers.
 
 If the callback URL is missing or wrong, fix the Core Peer's `http_public_base_url` before
 proceeding; it must identify Core's public HTTPS origin, yielding `/twitter/auth/callback`. Starting
@@ -216,7 +215,7 @@ lose.
 - **429:** respect the provider's rate limit instead of repeatedly submitting Jobs.
 - **Finished but no new items:** check the connected handle and bookmark a new recognizable post.
 
-To stop collection, disable its Cron first. An operator can disconnect the stored account using
+To stop collection, disable its Cron first. Your Agent can disconnect the stored account using
 authenticated `DELETE /twitter/setup/account` using the CLI / Agent request pattern, and separately
 revoke the app in X's account settings. Disconnecting does not delete previously collected data. The
 alternate `twikit` backend exists, but its account-login mechanics are not this OAuth walkthrough.

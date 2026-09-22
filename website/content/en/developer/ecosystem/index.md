@@ -5,8 +5,8 @@ description: Add integrations to InKCre without contributing to its core impleme
 
 # Ecosystem Developers
 
-Build an integration for your own workflow or distribute it to other InKCre operators. You do not
-need to contribute it to the Core repository. Start with the boundary your integration needs:
+Build an integration for your own workflow or distribute it to other InKCre users. You do not need
+to contribute it to the Core repository. Start with the boundary your integration needs:
 
 | Goal                                               | Integration path                                                                                                              |
 | -------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
@@ -34,13 +34,13 @@ Toolkit builds delivery metadata and preview registries; it does not run collect
 ## Trust and delivery
 
 An admitted Extension is trusted in-process code, not sandboxed user content. A malicious package
-could access the runtime's information and credentials. Operators must review what they install;
+could access the runtime's information and credentials. Users must review what they install;
 Registry publication is not proof of isolation. Use a separate test deployment and non-sensitive
 fixtures during development, with its own database and credentials.
 
 Package identity, Host compatibility, dependencies, and immutable releases are part of delivering a
 usable integration. Keep your own package, tests, release history, and user setup guide in your
-repository. A public Registry requires its operator's namespace and publishing authorization; a
-private development preview does not grant those rights.
+repository. A public Registry requires a namespace and publishing authorization; a private
+development preview does not grant those rights.
 
 Continue with [Build a Source Extension](/developer/ecosystem/source-extension).

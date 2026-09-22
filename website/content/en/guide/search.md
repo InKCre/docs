@@ -16,8 +16,8 @@ for terminal instructions.
 
 First finish [one collection](/guide/first-source).
 
-1. Ask your operator or trusted Agent to run lexical-index maintenance after collection. This is
-   currently a CLI operation, not a button in the Web app:
+1. Ask your trusted Agent to run lexical-index maintenance after collection. This is currently a CLI
+   operation, not a button in the Web app:
 
 ```sh
 inkcre-cli job create --type core.feature_retrieval.lexical.maintain.v1 --input-json '{"parameters":{}}'
@@ -43,7 +43,7 @@ successful maintenance Job._
 separate; an AI key is not required for lexical search. Source-derived relationships do not mean
 that InKCre has automatically summarized or reorganized everything with AI.
 
-Next: [Use Your Information](/guide/daily-use).
+Next: [Browse and Use Your Information](/guide/daily-use).
 
 </template>
 <template #cli>
@@ -83,7 +83,7 @@ repositories can belong to Lists, and mail has sender and mailbox relationships.
 Organization operation and do not mean InKCre has already summarized, tagged, or reorganized the
 information with AI.
 
-Next: [Use Your Information](/guide/daily-use). To automate maintenance later, add an
+Next: [Browse and Use Your Information](/guide/daily-use). To automate maintenance later, add an
 [retrieval-maintenance schedule](/guide/organization).
 
 </template>

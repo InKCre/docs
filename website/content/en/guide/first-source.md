@@ -31,10 +31,15 @@ Python-only collector; the browser does not need to run that Extension itself.
    different IDs: the Source persists across runs; each Job represents one run.
 3. [Find What You Saved](/guide/search): maintain the lexical index and search for a known item.
 
+![The client-web Sources page showing saved Sources and their collection actions](/images/client-web/sources-overview.png)
+
+_Each row is one configured Source. Open it to inspect configuration and history, or run a manual
+collection from the row._
+
 **Done means you retrieved a real item**, not just that installation or a Job succeeded. A
 successful empty collection may be normal; each source guide explains what is eligible for
 collection.
 
-Next: [Use Your Information](/guide/daily-use). After the Getting Started path works, you can
-[connect more sources](/guide/sources), [schedule collection](/guide/schedules), or
+Next: [Browse and Use Your Information](/guide/daily-use). After the Getting Started path works, you
+can [connect more sources](/guide/sources), [schedule collection](/guide/schedules), or
 [organize information and maintain retrieval support](/guide/organization).
