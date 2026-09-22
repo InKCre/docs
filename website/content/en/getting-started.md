@@ -6,15 +6,16 @@ description:
 
 # Getting Started
 
-InKCre helps you bring information scattered across your tools into an info-base you can return to
-and use. Start here to understand the experience, then choose how you will access an instance. You
-do not need to be an InKCre developer to begin.
+InKCre helps you collect information scattered across your tools, keep it under your control, and
+make it available when you or your trusted tools need it. Start here to understand the experience,
+then choose how you will access an instance. You do not need to be an InKCre developer to begin.
 
 ## What is InKCre?
 
-InKCre collects information into an **info-base**, can organize information already there when that
-improves later use, and makes it available for retrieval and other tools. Think of the info-base as
-reusable product memory built from Blocks and Relations, rather than only a folder of copies.
+InKCre collects information from the tools where it already lives and keeps it available beyond the
+original source or collector. When it would make that information more useful, InKCre can also
+improve what has already been collected. You can then find it yourself or make it available to other
+trusted tools.
 
 For example, you might collect articles from RSS feeds, keep track of saved GitHub repositories, and
 capture messages you forward to a Telegram bot. Later, you can find an article from a phrase you
@@ -30,8 +31,8 @@ sources and tools; each has its own setup and limits.
 Saving information is useful only if you can find and reuse it. An article in one app, a repository
 in another, and a note in a third can become difficult to bring together when you need them.
 
-InKCre gives that information a common home without making its usefulness depend on the original
-collector or a single client. You choose the sources that matter, then access the info-base from the
+InKCre keeps that information available without making its usefulness depend on the original
+collector or a single client. You choose the sources that matter, then use the information from the
 Web app, the command line, or connected tools in your workflow. Self-hosting also lets you choose
 where the instance runs and where its information is stored.
 
@@ -43,9 +44,9 @@ milestone than a large collection you cannot yet use.
 
 ### 1. Choose how to access an instance
 
-An **instance** stores your info-base and runs capabilities such as collection. A **client**, such
-as the [Web app](https://app.inkcre.dev/settings), connects to that instance. Opening the Web app
-does not create an instance for you.
+An **instance** stores your collected information and runs capabilities such as collection. A
+**client**, such as the [Web app](https://app.inkcre.dev/settings), connects to that instance.
+Opening the Web app does not create an instance for you.
 
 - **Run your own instance:** choose [Self-Hosted](/self-hosted/). Its
   [setup guide](/self-hosted/setup) walks through quick deployment before you rejoin this journey.

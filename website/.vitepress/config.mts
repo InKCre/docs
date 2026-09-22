@@ -2,7 +2,7 @@ import { defineConfig, type HeadConfig } from 'vitepress'
 import { canonicalOrigin, defaultLanguage } from '../scripts/site-contract.mjs'
 
 const description =
-  'Public documentation for InKCre, an actively developed system for reusable information.'
+  'InKCre collects information from the tools you use and makes it available when you need it.'
 
 export default defineConfig({
   srcDir: 'content',
@@ -48,6 +48,7 @@ export default defineConfig({
     )
   },
   themeConfig: {
+    logo: '/images/inkcre-mark.svg',
     nav: [
       { text: 'Getting Started', link: '/getting-started' },
       { text: 'Developer', link: '/developer/' },

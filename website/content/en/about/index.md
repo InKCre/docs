@@ -5,17 +5,20 @@ description: The identity, purpose, values, and current stage of InKCre.
 
 # About InKCre
 
-InKCre is an open project for collecting information into reusable product memory, improving that
-information when useful, and making it available for later work. The project and the public
-development effort share the name **InKCre**.
+InKCre is an open project that helps people put information to use. It collects information from the
+tools where it already lives, keeps it reusable beyond any one source or client, and makes it
+available to people and trusted tools when needed. The project and the public development effort
+share the name **InKCre**.
 
 ## Why InKCre exists
 
-Information is distributed across many systems. Collection alone does not preserve its value when
-the result remains source-specific, difficult to connect, or unavailable to later work.
+Information is distributed across many systems. Saving or collecting more of it is not enough when
+the result remains tied to one source, difficult to find, or unavailable at the point of use.
 
-InKCre exists to help information remain reusable through independent Collection, Organization, and
-Application capabilities. A useful item does not have to pass through every capability first.
+Many knowledge tools begin with a workspace where people write and organize. InKCre begins with
+information already scattered across the tools they use and focuses on helping that information
+create value again. Independent Collection, Organization, and Application capabilities support that
+goal; a useful item does not have to pass through every capability first.
 
 ## The name
 
