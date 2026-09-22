@@ -81,6 +81,25 @@ are resolved from the rewritten route, not the source file location.
 - Do not create empty pages or navigation for future User Manual, database, Extension, API, or
   Chinese sections.
 
+### Web Screenshots
+
+- Add a screenshot when it helps the reader identify a control, confirm a saved state, or compare a
+  result. Keep prose authoritative; do not use screenshots as decorative substitutes for steps.
+- Capture client-web in light mode at a desktop viewport. Use 1:1, 4:3, or approximately 16:9, and
+  crop to the application viewport rather than including the browser toolbar or desktop. Use a
+  mobile viewport only when the procedure specifically documents the mobile experience.
+- Show the smallest useful state around the documented action. Preserve enough surrounding UI for
+  orientation instead of cropping to an isolated button or field.
+- Use fixtures or placeholders where possible. Remove personal content and real credentials; mask
+  secrets before capture, and inspect the final pixels rather than relying only on the control's
+  intended masking behavior.
+- Store client-web images under `content/public/images/client-web/` with stable, kebab-case names.
+  Alt text identifies the surface and visible state; the following italic caption explains what the
+  reader should notice or do.
+- Before publishing, inspect the rendered page at desktop width, confirm that text remains legible,
+  and verify the image route in the exact preview deployment. Keep raw acceptance evidence in the
+  task packet rather than publishing browser chrome, credentials, or transient diagnostics.
+
 Update canonical Hub truth first when a public page reveals a real product or cross-unit contract
 mismatch. Public-only identity, About, and presentation facts remain website-owned and do not need
 an artificial Hub mirror.

@@ -27,10 +27,10 @@ the site.
    **Clients** list for your Core instance and its online state. If it is offline, choose **Wake**
    for that client, then refresh before trying a delegated operation.
 
-![Client-web Settings showing the browser Client ID, Registry URL, and Clients section](/images/client-web/settings-overview.png)
+![Client-web Settings showing a browser Client ID and the Extension Registry URL](/images/client-web/settings-overview.png)
 
-_Settings keeps this browser's identity, Registry URL, and discovered clients together. Labels
-follow the language selected in client-web._
+_Keep this browser's generated Client ID and use the public Registry URL. Labels follow the language
+selected in client-web._
 
 The connection belongs to this browser origin. Set up another browser/device separately. An
 **Export** excludes the secret and is not a backup of your information.
