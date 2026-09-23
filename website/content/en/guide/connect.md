@@ -21,9 +21,8 @@ the site.
    you trust: it grants full deployment authority, not a limited app session.
 3. Enter the PostgREST base URL in **PostgreSQL REST URL**, and the secret in **JWT Secret**. Do not
    substitute the Core URL for PostgREST.
-4. Select **Save** in **Connection**. The generated browser identity is available under **Connection
-   details**; do not replace it with Core's Peer ID. Language changes take effect separately,
-   without saving the connection again.
+4. Select **Save** in **Connection**. Language changes take effect separately, without saving the
+   connection again.
 5. Open **Peers**. Confirm that **This browser** and Core appear with their application versions.
    Use **Refresh** after Core starts if its state has not updated yet.
 6. To use the public Extension Registry, select **Edit Config** on **This browser**, set
