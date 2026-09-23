@@ -21,14 +21,15 @@ the site.
    you trust: it grants full deployment authority, not a limited app session.
 3. Enter the PostgREST base URL in **PostgreSQL REST URL**, and the secret in **JWT Secret**. Do not
    substitute the Core URL for PostgREST.
-4. Keep the generated **Peer ID**. It is this browser's identity; do not reuse Core's Peer ID.
-   Choose your language, then select **Save**. No manual database setup is needed.
+4. Select **Save** in **Connection**. The generated browser identity is available under **Connection
+   details**; do not replace it with Core's Peer ID. Language changes take effect separately,
+   without saving the connection again.
 5. Open **Peers**. Confirm that **This browser** and Core appear with their application versions.
    Use **Refresh** after Core starts if its state has not updated yet.
 6. To use the public Extension Registry, select **Edit Config** on **This browser**, set
    `extension_registry_url` to `https://registry.inkcre.dev`, and save.
 
-![Client-web Settings showing the connection fields and browser Peer ID](/images/client-web/settings-overview.png)
+![Client-web Settings showing connection and local preferences](/images/client-web/settings-overview.png)
 
 _Settings stores this browser's connection and language. Peer-specific configuration lives under
 Peers._
@@ -38,9 +39,9 @@ Peers._
 _Peers shows the runtimes connected to this deployment. Edit a Peer when configuration belongs to
 that runtime._
 
-The connection belongs to this browser origin. Set up another browser/device separately. An
-**Export** includes the URL, Peer ID, JWT secret, and language so another browser can restore this
-experience. Keep the file private. It is not a backup of your information.
+The connection belongs to this browser origin. To restore it in another browser, use **Export** and
+**Import** under **Backup and restore**. Keep the file private: it includes your JWT secret. This
+restores browser settings, not a backup of your collected information.
 
 **Checkpoint:** Settings saves successfully and you can open **Sources**. An empty list is normal
 for a new instance; a connection error is not an empty list.

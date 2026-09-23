@@ -33,8 +33,9 @@ If enablement fails, check that the affected Peer is online and that this releas
 compatible distribution for it. Do not choose **This browser** as a workaround for a Python-only
 collector.
 
-For an existing installation at another version, use **Change Version** only after checking both
-Hosts and disabling every Peer using it. Version and configuration are shared across the deployment.
+For an existing installation, expand **Version and removal** to change its version or uninstall it.
+Check both Hosts and disable every Peer using it first. Version and configuration are shared across
+the deployment. **Documentation** opens links to the guides published with that exact release.
 
 ## Browser Extensions and setup wizards
 

@@ -16,9 +16,9 @@ You need a [connected interface](/guide/connect) and a configured Source.
 3. Select ordinary collection and leave run **Config** as `{}`, unless your source guide supplies
    other options. Confirm once. This configuration applies to the run, not the Source's saved
    account settings.
-4. Open the resulting Job from the Source's Jobs list. Wait for **finished**; refresh its details
-   while it remains pending/running. Read **State** and **Logs**, including source-specific
-   diagnostics.
+4. Inspect the resulting Job. Its status updates while pending/running; wait for **finished** and
+   read **State** and **Logs**, including source-specific diagnostics. If a read fails, use
+   **Retry** to resume observation of the same Job.
 5. If creation could not be confirmed, check the Jobs list before submitting again. A timeout does
    not prove the first request did nothing.
 
