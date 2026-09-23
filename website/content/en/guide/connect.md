@@ -7,29 +7,40 @@ description: Use the Web app yourself, or connect a trusted Agent through the CL
 # Connect to Your Instance
 
 Use **client-web** for your own day-to-day setup and reading. The **CLI** is primarily an interface
-for your trusted Agent, and also works for operators who prefer a terminal. You do not need to
-configure every interface before starting. The selector on these guides changes the instructions,
-not your instance, and keeps your choice while navigating the site.
+for your trusted Agent. You do not need to configure every interface before starting. The selector
+on these guides changes the instructions, not your instance, and keeps your choice while navigating
+the site.
 
 <InterfaceGuide>
 <template #web>
 
 ## Connect the Web app
 
-1. Retain your deployment's **PostgREST URL**, private **JWT secret**, and Core URL. Wake Core by
-   opening its `/readyz` endpoint. Ask the operator for access if this is not your deployment.
+1. Retain your deployment's **PostgREST URL**, private **JWT secret**, and Core URL.
 2. Open [Web app Settings](https://app.inkcre.dev/settings). Only enter your secret into a Web app
-   you trust: it grants instance authority, not an isolated personal login.
+   you trust: it grants full deployment authority, not a limited app session.
 3. Enter the PostgREST base URL in **PostgreSQL REST URL**, and the secret in **JWT Secret**. Do not
    substitute the Core URL for PostgREST.
-4. Keep the generated **Client ID**. It is this browser's identity; do not reuse Core's Peer ID.
-   Current Settings registers the browser when you save, so no manual SQL insert is needed.
-5. Set **Extension Registry URL** to `https://registry.inkcre.dev`, then choose **Save**. Check the
-   **Clients** list for your Core instance and its online state. If it is offline, wake Core and
-   refresh before trying a delegated operation.
+4. Select **Save** in **Connection**. Language changes take effect separately, without saving the
+   connection again.
+5. Open **Peers**. Confirm that **This browser** and Core appear with their application versions.
+   Use **Refresh** after Core starts if its state has not updated yet.
+6. To use the public Extension Registry, select **Edit Config** on **This browser**, set
+   `extension_registry_url` to `https://registry.inkcre.dev`, and save.
 
-The connection belongs to this browser origin. Set up another browser/device separately. An
-**Export** excludes the secret and is not a backup of your information.
+![Client-web Settings showing connection and local preferences](/images/client-web/settings-overview.png)
+
+_Settings stores this browser's connection and language. Peer-specific configuration lives under
+Peers._
+
+![Client-web Peers showing the current browser and Core with their versions and states](/images/client-web/peers-overview.png)
+
+_Peers shows the runtimes connected to this deployment. Edit a Peer when configuration belongs to
+that runtime._
+
+The connection belongs to this browser origin. To restore it in another browser, use **Export** and
+**Import** under **Backup and restore**. Keep the file private: it includes your JWT secret. This
+restores browser settings, not a backup of your collected information.
 
 **Checkpoint:** Settings saves successfully and you can open **Sources**. An empty list is normal
 for a new instance; a connection error is not an empty list.
@@ -49,4 +60,4 @@ Source or Job in the Web app. Do not share connection files or JWT secrets in pu
 </template>
 </InterfaceGuide>
 
-Next: [Collect Your First Source](/guide/first-source).
+Next: [Choose Your First Source](/guide/first-source).

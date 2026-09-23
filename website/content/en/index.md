@@ -2,49 +2,76 @@
 layout: home
 title: InKCre
 description:
-  InKCre collects information, organizes it into a reusable info-base, and makes it available for
-  later use.
+  InKCre collects information from the tools you use so you can find it and put it to use.
 
 hero:
   name: InKCre
-  text: A shared base for reusable information.
+  text: Make saved information useful.
   tagline:
-    Collect information, organize it into an info-base, and make it available for later retrieval,
-    indexing, and downstream use.
+    Collect information so you and the tools you connect can find and use it. Improve it when that
+    helps.
+  image:
+    src: /images/inkcre-mark.svg
+    alt: InKCre mark
   actions:
     - theme: brand
       text: Getting Started
       link: /getting-started
     - theme: alt
-      text: Developer Guide
-      link: /developer/
-    - theme: alt
-      text: About InKCre
+      text: Why InKCre
       link: /about/
     - theme: alt
       text: GitHub
       link: https://github.com/InKCre
-
-features:
-  - title: Collect
-    details: Bring information from external systems into durable, reusable units.
-  - title: Organize
-    details: Connect blocks and relations inside a shared information base.
-  - title: Use
-    details: Retrieve, index, and apply organized information in downstream work.
 ---
 
-## Under active development
+<section class="inkcre-home-story">
+  <h2>Saving information is only the beginning.</h2>
+  <p>
+    Many knowledge tools begin with a workspace where you write and organize. InKCre begins with
+    useful information already scattered across the tools you use—and with the question of how that
+    information can help you again.
+  </p>
+  <p>
+    It does not require every item to pass through one prescribed workflow. Collect what matters,
+    improve selected information when that helps, then use it through search, connected applications,
+    or assistants you connect.
+  </p>
+</section>
+
+<section class="inkcre-home-flow" aria-labelledby="inkcre-information-flow">
+  <h2 id="inkcre-information-flow">From where information lives to where it becomes useful.</h2>
+  <div class="inkcre-flow" role="list">
+    <div class="inkcre-flow-stage" role="listitem">
+      <strong>Collect from existing sources</strong>
+      <p>RSS, GitHub, email, Telegram, bookmarks, and capture clients.</p>
+    </div>
+    <div class="inkcre-flow-connector" aria-hidden="true">→</div>
+    <div class="inkcre-flow-stage inkcre-flow-stage--core" role="listitem">
+      <strong>Bring it into InKCre</strong>
+      <p>Give collected information a stable place for search and connected capabilities.</p>
+    </div>
+    <div class="inkcre-flow-connector" aria-hidden="true">→</div>
+    <div class="inkcre-flow-stage" role="listitem">
+      <strong>Use it in your next task</strong>
+      <p>Search, browse, connect an application, or retrieve it with a tool you connected.</p>
+    </div>
+  </div>
+</section>
+
+<section class="inkcre-home-start">
+  <div>
+    <h2>Complete one useful loop first.</h2>
+    <p>
+      Deploy your instance, connect one source, collect a real item, and find it again. The User Guide
+      takes you through that path step by step.
+    </p>
+  </div>
+  <a class="inkcre-home-link" href="/getting-started">Start the guide <span aria-hidden="true">→</span></a>
+</section>
+
+## Built in the open
 
 InKCre is evolving rapidly. Product behavior, interfaces, and developer contracts may change as the
-project tests and solidifies its foundations.
-
-Start with [Getting Started](/getting-started) to learn what InKCre does, why you might use it, and
-how to begin. Running your own instance is one path, covered by [Self-Hosted](/self-hosted/). The
-[Developer Guide](/developer/) is for contributors; [About InKCre](/about/) explains the project's
-identity and direction.
-
-## Start with the current foundations
-
-Read the [shared architecture](/developer/architecture) to understand the info-base and its peer
-runtimes, or use [Contributing](/developer/contributing) to find the repository that owns a change.
+project tests and solidifies its foundations. The [Developer Guide](/developer/) explains the system
+and routes contributions; [About InKCre](/about/) describes the project's identity and direction.

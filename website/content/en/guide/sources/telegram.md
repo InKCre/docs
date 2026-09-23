@@ -6,13 +6,11 @@ description: Connect a personal Telegram capture inbox to InKCre.
 
 # Send or forward messages from Telegram
 
-Start with a [connected interface](/guide/connect). Choose Web for your own setup, or CLI / Agent
-for terminal instructions.
+You need a [connected interface](/guide/connect), a dedicated Telegram bot, and your numeric user
+ID.
 
 <InterfaceGuide>
 <template #web>
-
-## Set up in the Web app
 
 1. Create a dedicated bot with [@BotFather](https://t.me/botfather): send `/newbot`, follow the
    prompts, and retain its token.
@@ -21,19 +19,12 @@ for terminal instructions.
    Advanced → Export Telegram data**, include personal information, and choose JSON. Use
    `personal_information.user_id`, not your `@username` or the bot's ID. Telegram may require
    another-device confirmation or a waiting period.
-3. [Prepare the Extension](/guide/extensions): `inkcre/telegram` version `0.3.1` on Core Host SDK
-   `0.3.x`. Select the online Core client to install and enable it.
+3. [Prepare the Extension](/guide/extensions): `inkcre/telegram` version `0.3.2` on Core Host SDK
+   `0.3.x`. Follow the Registry-to-Web installation steps, then use **Enable…** on the installed
+   Extension to select your online Core Peer.
 4. Open **Sources** and the create-source form. Enter **Nickname** `My Telegram inbox` and choose
-   **Type** `extensions.telegram.source.Source`. Paste this into **Config**, replace both values,
-   and save/create:
-
-```json
-{
-  "bot_token": "YOUR-BOT-TOKEN",
-  "bound_user_id": 123456789,
-  "download_attachments": false
-}
-```
+   **Type** `extensions.telegram.source.Source`. In the **Form** tab, enter the bot token and your
+   numeric user ID. Leave **Download attachments** off for the first run, then create the Source.
 
 5. Send a distinctive private message to the bot, then [collect once](/guide/collect). Saved
    messages receive a 👍 reaction. [Index and search](/guide/search) for the text.
@@ -60,7 +51,7 @@ files and command output private.
 2. Install and enable the Core Extension:
 
    ```sh
-   inkcre-cli extension install inkcre/telegram --version 0.3.1
+   inkcre-cli extension install inkcre/telegram --version 0.3.2
    inkcre-cli extension enable inkcre/telegram
    ```
 

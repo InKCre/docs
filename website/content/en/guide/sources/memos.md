@@ -6,22 +6,20 @@ description: Write notes into InKCre from a supported Memos client.
 
 # Memos-Compatible Capture
 
-Start with a [connected interface](/guide/connect). Choose Web for your own setup, or CLI / Agent
-for terminal instructions.
+You need a [connected interface](/guide/connect) and a supported Memos client.
 
 <InterfaceGuide>
 <template #web>
 
-## Configure in the Web app
-
 This is a write-in capture endpoint, **not** an importer for an existing Memos server. It implements
 a bounded Memos `0.29.1` API subset; the previously accepted client is MoeMemos Android `2.0.4`.
 
-1. In **Extensions**, select your online Core under **Control Extension on Client** and install
-   `inkcre/memos` version `0.3.0` for Core Host SDK `0.3.x`. For an existing installation, follow
-   the version-change instructions in [Prepare an Extension](/guide/extensions).
-2. Select **This browser**, enable Memos there, and open **Setup**. The same release supplies the
-   browser setup and Core service; do not install a different version for each client.
+1. [Prepare the Extension](/guide/extensions): use **Browse Registry** to select `inkcre/memos`
+   version `0.3.0` for Core Host SDK `0.3.x`, then confirm the installation back in the Web app. For
+   an existing installation, follow that guide's version-change instructions.
+2. In **Extensions**, choose **Enable…** on Memos, select **This browser**, confirm, and open
+   **Setup**. The same release supplies the browser setup and Core service; do not install a
+   different version for each client.
 3. Choose your Core if more than one is available, then select **Prepare connection**. Setup
    generates or reuses a dedicated PAT and enables Memos on that Core when necessary.
 4. Copy **Server URL** and **Personal Access Token** into the supported Memos client's account
@@ -29,8 +27,12 @@ a bounded Memos `0.29.1` API subset; the previously accepted client is MoeMemos 
 5. Write a distinctive note, refresh the client, and reopen it. Then
    [index and search](/guide/search) for the same text in InKCre.
 
-If setup reports a missing public address, set your Core's **Public HTTP Base URL** in **Clients →
-Config**, then refresh setup. The address must be reachable from your Memos client. The **Memos
+![Memos setup showing a ready Server URL and masked Personal Access Token](/images/client-web/memos-setup.png)
+
+_Copy both values from Setup; keep the PAT masked and private._
+
+If setup reports a missing public address, set your Core's **Public HTTP Base URL** in **Peers →
+Edit Config**, then refresh setup. The address must be reachable from your Memos client. The **Memos
 connection help** link opens the installed version's step-by-step guide; the Extension card also
 links its available global, Core, and Web documentation.
 

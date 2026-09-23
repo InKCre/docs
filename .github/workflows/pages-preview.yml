@@ -83,8 +83,33 @@ jobs:
     timeout-minutes: 15
     environment:
       name: preview
-      url: ${{ steps.pages.outputs.pages-deployment-alias-url }}
+      deployment: false
     steps:
+      - name: Create the exact pull-request deployment
+        id: deployment
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          PREVIEW_HEAD_SHA: ${{ needs.identity.outputs.head_sha }}
+        with:
+          script: |
+            const { data: deployment } = await github.rest.repos.createDeployment({
+              ...context.repo,
+              ref: process.env.PREVIEW_HEAD_SHA,
+              environment: 'preview',
+              auto_merge: false,
+              required_contexts: [],
+              transient_environment: true,
+              production_environment: false,
+              description: 'Cloudflare Pages pull-request preview',
+            })
+            core.setOutput('deployment_id', String(deployment.id))
+            await github.rest.repos.createDeploymentStatus({
+              ...context.repo,
+              deployment_id: deployment.id,
+              state: 'in_progress',
+              log_url: `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+            })
+
       - name: Mark the pull-request preview pending
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         env:
@@ -158,6 +183,24 @@ jobs:
           CLOUDFLARE_PAGES_DEPLOYMENT_ID: ${{ steps.pages.outputs.pages-deployment-id }}
           CLOUDFLARE_PAGES_DEPLOYMENT_URL: ${{ steps.pages.outputs.pages-deployment-alias-url }}
           INKCRE_PAGES_SMOKE_MODE: preview
+
+      - name: Report the exact pull-request deployment
+        if: ${{ always() && steps.deployment.outputs.deployment_id != '' }}
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          DEPLOYMENT_ID: ${{ steps.deployment.outputs.deployment_id }}
+          PREVIEW_RESULT: ${{ job.status }}
+          PREVIEW_URL: ${{ steps.pages.outputs.pages-deployment-alias-url }}
+        with:
+          script: |
+            const succeeded = process.env.PREVIEW_RESULT === 'success'
+            await github.rest.repos.createDeploymentStatus({
+              ...context.repo,
+              deployment_id: Number(process.env.DEPLOYMENT_ID),
+              state: succeeded ? 'success' : 'failure',
+              log_url: `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              ...(process.env.PREVIEW_URL ? { environment_url: process.env.PREVIEW_URL } : {}),
+            })
 
       - name: Report the preview result on the pull-request commit
         if: ${{ always() }}

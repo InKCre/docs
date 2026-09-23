@@ -1,18 +1,15 @@
 ---
-title: Schedule Collection and Indexing
+title: Schedule Collection
 outline: false
-description: Keep sources and search indexes current with explicit schedules.
+description: Keep information sources current with explicit collection schedules.
 ---
 
-# Schedule Collection and Indexing
+# Schedule Collection
 
-Start with a [connected interface](/guide/connect). Choose Web for your own setup, or CLI / Agent
-for terminal instructions.
+You need a [connected interface](/guide/connect) and a Source with one successful manual run.
 
 <InterfaceGuide>
 <template #web>
-
-## Schedule collection in the Web app
 
 First complete [a manual collection](/guide/collect) and [find a known item](/guide/search).
 
@@ -26,26 +23,20 @@ First complete [a manual collection](/guide/collect) and [find a known item](/gu
    Existing Jobs and collected information remain. An Agent can instead disable a Cron through the
    CLI if you want to retain it for later re-enabling.
 
-## Keep the search index current
+![A Source details page with saved configuration, collection scheduling, and recent Jobs](/images/client-web/source-schedule.png)
 
-The Source schedule does **not** maintain the lexical index. Ask your operator or Agent to create
-one separate index-maintenance schedule if the instance does not already have it:
+_Schedules and recent Jobs belong to the selected Source; confirm its name and type before changing
+the schedule._
 
-```sh
-inkcre-cli cron create --job-type core.feature_retrieval.lexical.maintain.v1 --input-json '{"schedule":"*/10 * * * *","job_parameters":{}}'
-```
-
-This is currently a CLI operation. Inspect the resulting Cron and its `last_job`, and avoid
-duplicate schedules. Independent indexing means newly collected items may not be searchable
-immediately.
-
-Next: [Connect More Sources](/guide/sources).
+This schedule only collects from the Source. It does not maintain a search index or run
+Organization. Configure [search maintenance separately](/guide/search#keep-search-current) if you
+want newly collected items to become searchable without a manual maintenance Job.
 
 </template>
 <template #cli>
 
-First complete [one collection](/guide/first-source) and [a successful search](/guide/search). Keep
-the Source ID returned when you created the Source.
+First complete [one collection](/guide/collect) and [a successful search](/guide/search). Keep the
+Source ID returned when you created the Source.
 
 After the manual run works, create `collect-hourly.json`, replacing `42` with your Source ID:
 
@@ -60,28 +51,14 @@ After the manual run works, create `collect-hourly.json`, replacing `42` with yo
 inkcre-cli cron create --job-type core.source.collect.v1 --input collect-hourly.json
 ```
 
-This five-field schedule means “at minute zero of every hour.” Add independent index maintenance so
-later items become searchable. Save this as `index-periodically.json`:
+This five-field schedule means “at minute zero of every hour.” Create it once. Inspect its returned
+Cron ID with `inkcre-cli cron get ID`; `last_job` identifies the Job to check. Pause it with
+`inkcre-cli cron disable ID`. Replace `ID` with the actual number. Your terminal may be closed, but
+Core must run. Sleeping hosts miss occurrences and do not automatically catch up.
 
-```json
-{
-  "schedule": "*/10 * * * *",
-  "job_parameters": {}
-}
-```
-
-```sh
-inkcre-cli cron create --job-type core.feature_retrieval.lexical.maintain.v1 --input index-periodically.json
-inkcre-cli cron list
-```
-
-Create each schedule once. Inspect its returned Cron ID with `inkcre-cli cron get ID`; `last_job`
-identifies the Job to check. Pause it with `inkcre-cli cron disable ID`. Replace `ID` with the
-actual number. Your terminal may be closed, but Core must run. Sleeping hosts miss occurrences and
-do not automatically catch up. Independent indexing also means new items may not become searchable
-immediately.
-
-Next: [Add more sources](/guide/sources).
+Collection does not update search indexes or run Organization. Continue with
+[search maintenance](/guide/search#keep-search-current) if newly collected items should become
+searchable without a manual Job.
 
 </template>
 </InterfaceGuide>

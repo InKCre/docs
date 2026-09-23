@@ -81,7 +81,7 @@ namespaces = true
 The product coordinate (`yourname/notebook`), Python project name, and module path serve different
 purposes. The entry-point name and Extension's `ext_id` must agree. Declare direct dependencies;
 Core checks them against its existing environment and will not fetch arbitrary missing dependencies
-while enabling your Extension. A new dependency may require an operator-built Core image.
+while enabling your Extension. A new dependency may require a custom Core image.
 
 Save `extensions/notebook/__init__.py`:
 
@@ -126,7 +126,7 @@ class Note(BaseModel):
 
 
 class Source(SourceBase[SourceConfig], config_cls=SourceConfig):
-    """Save changes to one operator-selected JSON document as text snapshots."""
+    """Save changes to one user-selected JSON document as text snapshots."""
 
     async def collect(self, job: JobModel, config: BaseModel) -> None:
         source_config = await self.get_config()
@@ -165,9 +165,9 @@ indexable.
 
 This is a snapshot collector: a changed response creates another snapshot; returning to older text
 can create another one too. It neither reconciles a whole remote collection nor deletes earlier
-snapshots. The endpoint is selected by the trusted operator, not exposed as a public URL-fetching
-API. For a real service, add its authentication, bounded response handling, native identity,
-pagination, rate limits, and incremental state according to that service's contract.
+snapshots. The endpoint is selected by the user, not exposed as a public URL-fetching API. For a
+real service, add its authentication, bounded response handling, native identity, pagination, rate
+limits, and incremental state according to that service's contract.
 
 Source configuration is long-lived input, Source state remembers progress, and Job parameters/state
 belong to one execution. Use `collect_config_cls` for typed per-run options and
@@ -223,8 +223,8 @@ public Registry.
 In the terminal with your CLI, inspect `inkcre-cli peer get self` and
 `inkcre-cli config get extension.registry`. Record the prior setting (a missing config is normal). A
 Peer-level `extension_registry_url` override takes precedence; use a test Peer without an override
-or have its operator adjust that override. On this **isolated test instance only**, set the
-deployment Registry origin, replacing the URL if Core is remote:
+or adjust that override. On this **isolated test instance only**, set the deployment Registry
+origin, replacing the URL if Core is remote:
 
 ```sh
 inkcre-cli config replace extension.registry --schema-id extension.registry.config.v1 --input-json '{"extension_registry_url":"http://127.0.0.1:8766"}'
@@ -272,9 +272,9 @@ overwrite published bytes or treat disable/re-enable as Python module reload.
 
 Keep the package in your own repository. To distribute through a Registry, obtain permission for
 your namespace, prepare the exact release association, upload the finalized wheel, and publish the
-release using the [Extension Toolkit](https://github.com/InKCre/ext-reg/tree/main/toolkit).
-Operators then install your exact coordinate/version and follow your source-specific setup guide.
-The static preview is a development path, not authorization to publish to `registry.inkcre.dev`.
+release using the [Extension Toolkit](https://github.com/InKCre/ext-reg/tree/main/toolkit). Users
+then install your exact coordinate/version and follow your source-specific setup guide. The static
+preview is a development path, not authorization to publish to `registry.inkcre.dev`.
 
 For larger collectors, study the
 [RSS implementation](https://github.com/InKCre/core-py/tree/main/extensions/rss) for incremental

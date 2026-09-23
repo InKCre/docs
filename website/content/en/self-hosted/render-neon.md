@@ -7,7 +7,7 @@ description: Deploy your own InKCre instance using a GitHub fork, Neon, and Rend
 
 Use this fork-based quick deployment if you do not have an instance yet. You need GitHub, Neon, and
 a compute-provider account. These providers are convenience options, not InKCre requirements;
-[Advanced Self-Hosting](/self-hosted/advanced) covers your own infrastructure.
+[Custom Self-Hosting](/self-hosted/custom) covers your own infrastructure.
 
 Keep credentials in a password manager. API keys let the workflow act on your hosting accounts; they
 are different from sign-in passwords.
@@ -36,8 +36,9 @@ are different from sign-in passwords.
    and rerun using the same credentials.
 6. Open the completed run's summary. Save the **Core URL**, **PostgREST URL**, and **Core Peer ID**.
    The workflow deliberately does not print your secret; retain the original value.
-7. Open the Core URL with `/readyz` appended. Continue when it returns HTTP `200`. A sleeping
-   service may take time to start.
+7. Continue to [Connect the Web App](/guide/connect). After saving the connection, find Core in the
+   **Peers** list. If it is offline, start it from Render and refresh; a sleeping service may take
+   time to start.
 
 **Checkpoint:** deployment succeeded, and you have both service URLs and your `JWT_SECRET`. Use the
 **Core URL** for the CLI and the **PostgREST URL** for the Web app later.
@@ -51,8 +52,7 @@ procedure and recovery details live in the
 
 **Keep your instance credentials private.** `JWT_SECRET` grants control of the instance, not a
 limited personal login. Do not paste it into an online JWT generator, an issue, a chat, or your
-public fork. This deployment does not isolate different users from one another. Start with your own
-information and trusted devices.
+public fork. This deployment is for one user; do not share it as a multi-user service. Start with
+your own information and trusted devices.
 
-Next: [Connect the CLI](/guide/connect-cli), or return to the
-[self-hosted walkthrough](/self-hosted/getting-started).
+Next: [Connect the Web App](/guide/connect).

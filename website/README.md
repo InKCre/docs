@@ -30,36 +30,82 @@ pnpm --dir website audit --audit-level high
 - Only English is active until the Chinese route set is complete or the locale switch has a
   deliberate fallback.
 - `/getting-started` owns the application-level What, Why, and How introduction.
-- `/self-hosted/` contains its Getting Started path, Render/Heroku quick-deployment guides, and
-  Advanced guide. Its Getting Started page orders the journey rather than duplicating procedures.
-- `/guide/` leaf pages own reusable client, collection, retrieval, scheduling, source, daily-use,
-  and troubleshooting procedures. Link to these pages from any onboarding path rather than to
-  sections buried inside the self-hosted walkthrough.
+- `/getting-started` owns a linear first-use path in the User Guide: connect the Web app, choose a
+  Source, prepare its Extension, collect, and retrieve a real item. These steps remain grouped under
+  Getting Started instead of being filed by the capabilities they happen to exercise.
+- `/self-hosted/` selects Render/Heroku quick deployment or Custom Self-Hosting. It is not a second
+  Getting Started hierarchy.
+- After Getting Started, the User Guide groups reusable procedures into Collection, Organization,
+  Application / Use, and Self-Hosted chapters. Info Base browsing, Agent connections, and Sinks are
+  Application / Use topics. An Extension may provide Source, Sink, Organization, or other behavior,
+  so preparing the first Extension belongs to the onboarding journey rather than Collection.
 - `/guide/sources` selects independent source tutorials under `/guide/sources/`; `/guide/collect`
-  owns shared collection and Job observation. Memos is documented separately as write-in capture.
+  owns shared collection and Job observation. Collection scheduling stays separate from Organization
+  guidance; indexing is retrieval support, not Organization. Memos is documented separately as
+  write-in capture.
 - `/developer/` separates ecosystem integration guidance under `/developer/ecosystem/` from
   architecture and core contribution guidance; `/about/` describes the project.
 - Section indexes use trailing-slash routes, such as `/developer/`.
 - Leaf pages use lowercase ASCII kebab-case routes without an extension, such as
   `/developer/architecture`.
 - Source ordering belongs in navigation configuration, not numeric filename prefixes.
-- Published routes are compatibility contracts. Move one only with a direct permanent redirect.
-- `scripts/site-contract.mjs` owns the route matrix shared by generated-output and deployment
-  verification.
+- Once a published route has external references, treat it as a compatibility contract and move it
+  only with a direct permanent redirect.
+- `scripts/site-contract.mjs` owns the canonical origin and locale shared by site generation and
+  deployment verification.
 
 Internal Markdown links target rewritten public routes and omit `.md` and `.html`. Relative links
 are resolved from the rewritten route, not the source file location.
 
+## Product Language
+
+- Lead initial user-facing pages with the outcome and familiar objects: InKCre collects information
+  so people and the tools they connect can find and use it; InKCre can improve collected information
+  when that helps. Wording may vary with context, but it must preserve that collection and
+  use-centered meaning. Source independence, storage, and self-hosting are supporting properties,
+  not the value claim itself.
+- Introduce InKCre-specific vocabulary only after the reader has a concrete workflow that needs it.
+  In particular, do not make `info-base`, Blocks, Relations, Peers, or capability ownership part of
+  the home hero or the initial Getting Started explanation. Define such terms where they help the
+  reader act or understand architecture.
+- Keep capability boundaries precise. Collection brings information into InKCre. Organization acts
+  on information already collected when that improves use. Application makes information useful to
+  people or downstream tools. These are independent capabilities, not mandatory stages.
+- Prefer a concrete way information becomes useful—finding a saved item, following a relationship,
+  or retrieving it from a connected tool—over phrases such as “a shared base” or “reusable
+  information” that name an attribute without explaining its value.
+- Review meaning with a simple counterexample, not only a terminology search: a person collects one
+  item through a supported integration and later finds it through another connected tool without
+  running Organization. Initial product copy must allow that successful path, must be understandable
+  without internal vocabulary, and must not imply arbitrary integrations, automatic synchronization,
+  uniform capabilities across connected tools, or generated answers. Finding useful information is
+  already a successful use; the product need not complete the surrounding task automatically.
+
 ## Page Authoring
 
+- Give each page one primary reader, one task, and one observable completion state. An introduction
+  explains; a tutorial leads to a result; a guide supports a task; a reference supplies facts. Do
+  not make one page perform all four jobs.
+- Keep one linear first-success path under Getting Started. Formal User Guide pages must remain
+  independently useful and should not add a generic **Next** link when no real dependency exists.
+- Repeat shared context only when entering the page directly without it could cause an incorrect or
+  unsafe action. Link to the owning explanation instead of restating it.
+- Use headings to answer a reader's question or name an action. Avoid decorative eyebrow text,
+  all-caps labels, and a subsection that contains only one short sentence.
+- Keep commands, screenshots, results, and caveats inside the step they explain. Use a table for
+  comparison, not to fit prose into columns. Bold names visible in the interface; use code style for
+  literal values, identifiers, and commands.
+- Review a changed page with its navigation entry and exit. Render at least one representative
+  procedure in desktop light mode and at narrow width; confirm that hidden interface variants,
+  lists, code, tables, screenshots, and links remain understandable.
 - User procedures default to client-web. Use the shared `InterfaceGuide` component with `#web` and
-  `#cli` slots for alternate steps on the same route; CLI instructions primarily serve Agents and
-  operators. The choice survives client-side navigation, not a full reload. Without JavaScript, both
-  sections remain readable. Keep shared prerequisites and limitations outside the slots.
+  `#cli` slots for alternate steps on the same route; CLI instructions primarily serve Agents. The
+  choice survives client-side navigation, not a full reload. Without JavaScript, both sections
+  remain readable. Keep shared prerequisites and limitations outside the slots.
 - Set `outline: false` on interface-switching pages: the default VitePress outline includes hidden
   slot headings. Do not expose links to invisible instructions. The site sidebar remains available.
 - State actual interface gaps instead of implying feature parity. Core package installation and
-  lexical maintenance still need CLI/operator steps; a browser wizard requires a compatible native
+  lexical maintenance may still need the user's Agent; a browser wizard requires a compatible native
   distribution as well as its Core collector. Check both against published Registry releases.
 - Keep exactly one H1 per page.
 - Add a concise page `description` in frontmatter.
@@ -73,6 +119,25 @@ are resolved from the rewritten route, not the source file location.
   content is committed. The VitePress home layout intentionally has no document footer.
 - Do not create empty pages or navigation for future User Manual, database, Extension, API, or
   Chinese sections.
+
+### Web Screenshots
+
+- Add a screenshot when it helps the reader identify a control, confirm a saved state, or compare a
+  result. Keep prose authoritative; do not use screenshots as decorative substitutes for steps.
+- Capture client-web in light mode at a desktop viewport. Use 1:1, 4:3, or approximately 16:9, and
+  crop to the application viewport rather than including the browser toolbar or desktop. Use a
+  mobile viewport only when the procedure specifically documents the mobile experience.
+- Show the smallest useful state around the documented action. Preserve enough surrounding UI for
+  orientation instead of cropping to an isolated button or field.
+- Use fixtures or placeholders where possible. Remove personal content and real credentials; mask
+  secrets before capture, and inspect the final pixels rather than relying only on the control's
+  intended masking behavior.
+- Store client-web images under `content/public/images/client-web/` with stable, kebab-case names.
+  Alt text identifies the surface and visible state; the following italic caption explains what the
+  reader should notice or do.
+- Before publishing, inspect the rendered page at desktop width, confirm that text remains legible,
+  and verify the image route in the exact preview deployment. Keep raw acceptance evidence in the
+  task packet rather than publishing browser chrome, credentials, or transient diagnostics.
 
 Update canonical Hub truth first when a public page reveals a real product or cross-unit contract
 mismatch. Public-only identity, About, and presentation facts remain website-owned and do not need

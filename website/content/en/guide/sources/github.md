@@ -6,26 +6,21 @@ description: Connect your GitHub saves to InKCre.
 
 # GitHub Stars and Lists
 
-Start with a [connected interface](/guide/connect). Choose Web for your own setup, or CLI / Agent
-for terminal instructions.
+You need a [connected interface](/guide/connect) and a GitHub personal access token.
 
 <InterfaceGuide>
 <template #web>
 
-## Set up in the Web app
-
 1. Create a personal access token for the account whose Stars and Lists you want to collect, using
    [GitHub's token instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
    Its account and permissions determine what the collector can see.
-2. [Prepare the Extension](/guide/extensions): `inkcre/github` version `0.3.1` on Core Host SDK
-   `0.3.x`. Select the online Core client to install and enable the collector.
+2. [Prepare the Extension](/guide/extensions): `inkcre/github` version `0.3.2` on Core Host SDK
+   `0.3.x`. Follow the Registry-to-Web installation steps, then use **Enable…** on the installed
+   Extension to select your online Core Peer.
 3. Open **Sources** and the create-source form. Enter **Nickname** `My GitHub saves` and choose
    **Type** `extensions.github.stars.Source`.
-4. Enter this object in **Config**, replace the token, and save/create:
-
-```json
-{ "github_token": "YOUR-GITHUB-TOKEN" }
-```
+4. In the **Form** tab, enter your personal access token in **GitHub token**, then create the
+   Source. Use the **JSON** tab only if you prefer to edit the raw configuration.
 
 5. Open the saved Source and [collect once](/guide/collect). [Index and search](/guide/search) for a
    repository you starred before [adding a schedule](/guide/schedules).
@@ -48,7 +43,7 @@ files and command output private.
 2. Enable the Extension:
 
    ```sh
-   inkcre-cli extension install inkcre/github --version 0.3.1
+   inkcre-cli extension install inkcre/github --version 0.3.2
    inkcre-cli extension enable inkcre/github
    ```
 

@@ -2,7 +2,7 @@ import { defineConfig, type HeadConfig } from 'vitepress'
 import { canonicalOrigin, defaultLanguage } from '../scripts/site-contract.mjs'
 
 const description =
-  'Public documentation for InKCre, an actively developed system for reusable information.'
+  'InKCre collects information from the tools you use so you can find it and put it to use.'
 
 export default defineConfig({
   srcDir: 'content',
@@ -48,6 +48,7 @@ export default defineConfig({
     )
   },
   themeConfig: {
+    logo: '/images/inkcre-mark.svg',
     nav: [
       { text: 'Getting Started', link: '/getting-started' },
       { text: 'Developer', link: '/developer/' },
@@ -56,45 +57,62 @@ export default defineConfig({
     ],
     sidebar: {
       '/': [
-        { text: 'Getting Started', link: '/getting-started' },
         {
           text: 'User Guide',
           items: [
-            { text: 'Connect to Your Instance', link: '/guide/connect' },
-            { text: 'CLI / Agent Connection', link: '/guide/connect-cli' },
-            { text: 'Prepare an Extension', link: '/guide/extensions' },
-            { text: 'Collect Your First Source', link: '/guide/first-source' },
-            { text: 'Find What You Saved', link: '/guide/search' },
-            { text: 'Schedule Collection and Indexing', link: '/guide/schedules' },
             {
-              text: 'Connect More Sources',
-              link: '/guide/sources',
+              text: 'Getting Started',
+              link: '/getting-started',
               items: [
-                { text: 'RSS and Atom', link: '/guide/sources/rss' },
-                { text: 'GitHub Stars and Lists', link: '/guide/sources/github' },
-                { text: 'Email over IMAP', link: '/guide/sources/mail' },
-                { text: 'Telegram Inbox', link: '/guide/sources/telegram' },
-                { text: 'Twitter / X Bookmarks', link: '/guide/sources/twitter' },
-                { text: 'Memos-Compatible Capture', link: '/guide/sources/memos' },
+                { text: 'Connect the Web App', link: '/guide/connect' },
+                { text: 'Choose Your First Source', link: '/guide/first-source' },
+                { text: 'Prepare an Extension', link: '/guide/extensions' },
                 { text: 'Run a Collection', link: '/guide/collect' },
+                { text: 'Find What You Saved', link: '/guide/search' },
               ],
             },
             {
-              text: 'Use Your Information',
+              text: 'Collection',
+              link: '/guide/sources',
+              items: [
+                {
+                  text: 'Connect More Sources',
+                  link: '/guide/sources',
+                  items: [
+                    { text: 'RSS and Atom', link: '/guide/sources/rss' },
+                    { text: 'GitHub Stars and Lists', link: '/guide/sources/github' },
+                    { text: 'Email over IMAP', link: '/guide/sources/mail' },
+                    { text: 'Telegram Inbox', link: '/guide/sources/telegram' },
+                    { text: 'Twitter / X Bookmarks', link: '/guide/sources/twitter' },
+                    { text: 'Memos-Compatible Capture', link: '/guide/sources/memos' },
+                  ],
+                },
+                { text: 'Schedule Collection', link: '/guide/schedules' },
+              ],
+            },
+            {
+              text: 'Organization',
+              items: [{ text: 'Organize Your Information', link: '/guide/organization' }],
+            },
+            {
+              text: 'Application / Use',
               link: '/guide/daily-use',
-              items: [{ text: 'Sinks: ChatGPT via MCP', link: '/guide/sinks/chatgpt' }],
+              items: [
+                { text: 'Browse and Use Your Information', link: '/guide/daily-use' },
+                { text: 'CLI / Agent Connection', link: '/guide/connect-cli' },
+                { text: 'ChatGPT via MCP', link: '/guide/sinks/chatgpt' },
+              ],
+            },
+            {
+              text: 'Self-Hosted',
+              link: '/self-hosted/',
+              items: [
+                { text: 'Render and Neon', link: '/self-hosted/render-neon' },
+                { text: 'Heroku and Neon', link: '/self-hosted/heroku-neon' },
+                { text: 'Custom Self-Hosting', link: '/self-hosted/custom' },
+              ],
             },
             { text: 'Troubleshooting', link: '/guide/troubleshooting' },
-          ],
-        },
-        {
-          text: 'Self-Hosted',
-          items: [
-            { text: 'Overview', link: '/self-hosted/' },
-            { text: 'Getting Started', link: '/self-hosted/getting-started' },
-            { text: 'Render and Neon', link: '/self-hosted/render-neon' },
-            { text: 'Heroku and Neon', link: '/self-hosted/heroku-neon' },
-            { text: 'Advanced', link: '/self-hosted/advanced' },
           ],
         },
       ],

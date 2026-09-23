@@ -1,45 +1,47 @@
 ---
 title: Prepare an Extension
 outline: false
-description: Install a collector and enable it on the client that will run it.
+description: Install a collector and enable it on the Peer that will run it.
 ---
 
 # Prepare an Extension
 
-Start with a [connected interface](/guide/connect). Your source guide supplies an Extension name, an
-exact compatible version, and its Source type. An Extension is installed once in the deployment;
-enabled clients share that version and configuration. Only install code you trust with the host's
-authority. Do not change a working installation merely to match an example.
+Start with a [connected interface](/guide/connect). Your source guide supplies an Extension name,
+version, and Source type. An Extension is installed once in the deployment; enabled Peers share its
+version and configuration. Only install code you trust with the host's authority. Do not change a
+working installation merely to match an example.
 
 <InterfaceGuide>
 <template #web>
 
 ## Prepare the Core collector
 
-1. Open **Extensions**. In **Control Extension on Client**, select your online **Core** client.
-2. Look for the name from your source guide. If it is absent, enter its **Extension Name** and exact
-   **Version** in **Install New Extension**, then select **Install Extension**. The selected Core
-   validates the Python release; Python-only collectors such as RSS do not need a browser package.
-3. Turn on the Extension's switch while Core is still selected. Installation alone does not start
-   it. Enabling only **This browser** does not start a Core collector.
-4. If the guide requires Extension-wide settings, open **Edit Config**, enter its configuration
-   object, and save. Source account settings belong in **Sources**, unless the guide says otherwise.
-5. Open **Sources**, create a Source, and check that its **Type** is available. A listed
-   installation alone does not prove that the collector is running.
+1. Open **Extensions** in the Web app and choose **Browse Registry**. Search for the Extension named
+   in your source guide, open its details, and select that guide's exact version. The Registry page
+   shows its Core and Web distributions. Choose **Install in** your Web app, check the Extension and
+   version on the returned page, then choose **Install**. This does not require a Peer selection or
+   start the Extension.
+2. Back in **Extensions**, choose **Enable…** on the installed Extension. In the dialog, select your
+   online **Core** Peer by name and version, then choose **Enable selected**. You may select more
+   than one Peer. A Python collector such as RSS runs on Core, not **This browser**.
+3. If the guide requires Extension-wide settings, open **Edit Config** and save them. Source account
+   settings belong in **Sources**, unless the guide says otherwise.
+4. Open **Sources**, create a Source, and check that its **Type** is available. An installed entry
+   alone does not prove that the collector is running.
 
-An offline client cannot validate an installation. If installation fails, keep your entered name and
-version, read the error, and check the selected client and release compatibility before trying
-again. An older Core may need an update to support installation through this Web control. Do not
-switch to **This browser** as a workaround for a Python-only collector.
+If enablement fails, check that the affected Peer is online and that this release includes a
+compatible distribution for it. Do not choose **This browser** as a workaround for a Python-only
+collector.
 
-For an existing installation at another version, use **Change Version** only after checking both
-Hosts and disabling every client using it. Version and configuration are shared across the instance.
+For an existing installation, expand **Version and removal** to change its version or uninstall it.
+Check both Hosts and disable every Peer using it first. Version and configuration are shared across
+the deployment. **Documentation** opens links to the guides published with that exact release.
 
 ## Browser Extensions and setup wizards
 
 A browser Extension adds capabilities such as content rendering or a **Setup** wizard. For a release
-with compatible Python **and** browser distributions, enable it on Core, then select **This
-browser** and enable it there too. Open **Setup** when that button appears.
+with compatible Python **and** browser distributions, enable it on Core, then use **Enable…** again
+to select **This browser**. Open **Setup** when that button appears.
 
 Do not install a different shared version to obtain a wizard without checking both Hosts. The
 [Twitter guide](/guide/sources/twitter) walks through its paired Core and browser setup.
@@ -58,7 +60,7 @@ inkcre-cli source types
 ```
 
 For an existing installation, inspect `inkcre-cli extension get inkcre/rss` first. Version changes
-affect all clients using the installation. Configuration and command output may contain credentials;
+affect all Peers using the installation. Configuration and command output may contain credentials;
 keep them private.
 
 </template>

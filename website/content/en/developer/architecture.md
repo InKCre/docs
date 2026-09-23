@@ -1,103 +1,115 @@
 ---
 title: Architecture
-description: A shared mental model of the InKCre info-base, peer runtimes, and ecosystem surfaces.
+description:
+  A shared mental model of the InKCre info-base, knowledge capabilities, and peer runtimes.
 ---
 
 # Architecture
 
-InKCre turns collected information into reusable product memory. Its architecture separates
-collection, authoritative organization, interpretation, raw-content retrieval, and downstream use so
-that no single runtime or transport becomes the whole product.
+InKCre is built around one reusable **info-base**. Collection brings information into it;
+Organization may improve information already there; Application retrieves, navigates, or uses it.
+These are independent actions over shared graph authority, not mandatory stages in a pipeline.
 
-## Product flow
+## Knowledge capabilities
 
 ```text
-external systems
-  -> sources collect information
-  -> blocks and relations enter the info-base
-  -> resolvers interpret; storage retrieves raw content when needed
-  -> sinks retrieve, index, and serve downstream use
+source-native input -> Collection -----------+
+                                                |
+                                                v
+                                       Blocks + Relations
+                                                |
+                     Organization -------------+------------- Application
+                     improve later use                       obtain useful results
 ```
 
-A **source** gathers data from an external system. The **info-base** owns the persisted blocks and
-relations that make information durable and reusable. A **resolver** interprets a block and its
-local graph context, while **storage** retrieves raw content that is not inline in the block. A
-**sink** consumes organized information for retrieval, indexing, embedding, or another downstream
-workflow.
+- **Collection** maps source-native information into durable Blocks and Relations. Correct source
+  mapping may create a graph; that does not make every collected relationship an Organization
+  result.
+- **Organization** acts on information already in the info-base when splitting, merging, linking,
+  interpreting, or another change can improve later use. It may honestly make no change.
+- **Application** finds, navigates, compares, or otherwise uses existing information. Lexical
+  indexes, embeddings, and projections support these queries but do not become graph authority or
+  Organization output.
+
+A **Resolver** derives use-facing meaning from a Block, its hydrated content, and the direct context
+required by its contract. **Storage** owns actual bytes and opaque pointers. Neither silently gains
+Collection or Organization authority.
 
 See the canonical [product glossary](https://github.com/InKCre/docs/blob/main/10-prd/glossary.md)
-for the complete shared vocabulary.
+and
+[knowledge capability contract](https://github.com/InKCre/docs/blob/main/20-product-tdd/knowledge-capability-contract.md)
+for the shared semantics.
+
+## Info-base authority
+
+Persisted Blocks and Relations are the shared information authority. Source-native objects, resolver
+output, search indexes, embeddings, and client views may represent or accelerate parts of that
+information, but none creates a parallel authoritative store merely because its native shape is
+convenient.
+
+PostgreSQL owns shared persisted state. The admitted `inkcre` schema exposes versioned relations and
+functions to authenticated Peers through native PostgreSQL or PostgREST. Direct database
+participation means using that protocol—not arbitrary SQL access to internal schemas or provider
+objects.
+
+The canonical
+[peer database runtime contract](https://github.com/InKCre/docs/blob/main/20-product-tdd/peer-database-runtime-contract.md)
+defines principals, protocol admission, lifecycle, readiness, and JWT claims.
 
 ## Peer runtimes, not frontend and backend tiers
 
-`core-py`, `client-web`, and future units are peers around the same shared info-base. PostgreSQL is
-authoritative for shared persisted state. `core-py` owns migrations and the executable database
-lifecycle contract, but that responsibility does not make it the owner of every request path or
-product behavior.
+`core-py`, `client-web`, and compatible future runtimes participate as Peers around the same
+info-base. `core-py` owns migrations and the executable database lifecycle contract, but it is not a
+central owner of every request path or product behavior.
 
-The web client demonstrates this topology today: its database client reads and writes through
-PostgREST while other runtime behavior can use native HTTP surfaces. The durable boundary is the
-admitted protocol, not a permanent frontend/backend hierarchy.
+Client-web demonstrates this topology: database operations use PostgREST, while runtime-owned
+capabilities may use native HTTP surfaces advertised by an online Peer. The durable boundary is the
+admitted protocol and capability contract, not a permanent frontend/backend hierarchy.
 
 Read the canonical
 [unit topology](https://github.com/InKCre/docs/blob/main/20-product-tdd/unit-topology.md) and
 [state authority](https://github.com/InKCre/docs/blob/main/20-product-tdd/system-state-and-authority.md)
 for the cross-unit contract.
 
-## Database protocol
-
-The `inkcre` PostgreSQL schema is the admitted, versioned relation and function surface for
-authenticated peers. Native PostgreSQL and PostgREST expose the same admitted semantics through
-different transports.
-
-Direct database participation therefore does **not** mean arbitrary SQL access. A usable peer must
-respect the admitted schema, explicit privileges, migration and lifecycle state, protocol revision,
-and coordinated compatibility rules. Administrative schemas, provider internals, and objects without
-contract admission are outside the protocol.
-
-The canonical
-[peer database runtime contract](https://github.com/InKCre/docs/blob/main/20-product-tdd/peer-database-runtime-contract.md)
-defines protocol admission, principals, lifecycle, readiness, JWT claims, and portable acceptance.
-
 ## Ecosystem surfaces {#ecosystem-surfaces}
 
-### Database peers
+### Database Peers
 
-Database peer participation is the foundational ecosystem surface. An authenticated runtime can use
-native PostgreSQL or PostgREST to operate the admitted protocol without becoming subordinate to one
-central application server.
-
-The current contract is concrete, but a complete third-party guide for identity, privileges,
-compatibility, and worked examples is still deferred.
+An authenticated runtime can participate through native PostgreSQL or PostgREST while respecting the
+admitted schema, privileges, protocol revision, and compatibility rules. Administrative schemas and
+provider internals remain outside that surface.
 
 ### Extensions
 
-An Extension is an installable capability that adds source, resolver, or sink behavior without
-forking core ownership boundaries. Installation, client-scoped enablement, and current runtime
-activity are separate states:
+An Extension packages one or more capabilities for a compatible Host. A deployment installs one
+exact version; each Peer records whether it should enable that Extension. For normal operation,
+**online Peer + enabled intent** means the Host is expected to run it best-effort. There is no
+second durable `running` flag for users to maintain. Runtime errors and capability observations can
+still show that expected activation failed.
 
-- **installed**: the deployment has the package and persisted installation record;
-- **enabled**: a particular client is permitted to run it;
-- **running**: the current runtime has started it and applied its side effects.
+Core supports Python wheels with explicit Host compatibility. A release may also contain a browser
+distribution for client-web setup or rendering. The
+[Source Extension tutorial](/developer/ecosystem/source-extension) covers the current Core Host SDK
+`0.3.x` path; those programming interfaces still import Core modules and are not a standalone,
+permanently stable Source SDK.
 
-Core supports native Python wheels with versioned Registry releases and explicit Host compatibility.
-The [Source Extension tutorial](/developer/ecosystem/source-extension) covers the current Core Host
-0.2 path. Its Source programming interfaces still import Core modules; the delivery Toolkit is not a
-standalone Source SDK or a promise of compatibility with every future Host.
+### Native HTTP and sinks
 
-### APIs
-
-PostgREST and native HTTP implementations expose real integration surfaces. Their existence does not
-by itself create a versioned public API promise. Endpoint reference, authentication examples, and
-compatibility policy will be documented when a supported external contract is ready.
+An Extension may expose its own HTTP protocol through its Host, and a Sink may make admitted
+capabilities available to another tool. These are integration surfaces, not ownership shortcuts:
+retrieval remains Application, Organization remains explicit, and transport does not redefine graph
+authority.
 
 ## Boundaries worth preserving
 
-- Sources may propose graph data; the info-base owns persisted graph insertion.
-- Source, info-base, and sink responsibilities remain distinct.
-- Resolver interpretation and storage retrieval remain distinct.
-- Embeddings are sink-owned even when ingestion triggers their generation.
-- Extension `installed`, `enabled`, and `running` states must not collapse into one flag.
+- Collection, Organization, and Application remain independent actions rather than information
+  states or a mandatory pipeline.
+- Source-authored facts remain distinguishable from Organization-authored meaning.
+- Blocks and Relations remain authoritative; indexes, embeddings, projections, and caches are
+  derived support.
+- Resolver meaning and Storage byte access remain distinct.
+- Delivery owner, Host, Peer enablement, and capability owner do not collapse merely because one
+  first-party repository currently implements several of them.
 
 These boundaries are maintained in the canonical
 [product rules](https://github.com/InKCre/docs/blob/main/10-prd/behavior/rules-and-invariants.md)

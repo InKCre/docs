@@ -5,16 +5,20 @@ description: The identity, purpose, values, and current stage of InKCre.
 
 # About InKCre
 
-InKCre is an open project for making collected information durable, organized, and reusable. The
-project and the public development effort share the name **InKCre**.
+InKCre is an open project that helps people put information to use. It collects information from the
+tools where it already lives so people and connected tools can find and use it. InKCre can also
+improve collected information when that helps. The project and the public development effort share
+the name **InKCre**.
 
 ## Why InKCre exists
 
-Information is distributed across many systems. Collection alone does not preserve its value when
-the result remains source-specific, difficult to connect, or unavailable to later work.
+Information is distributed across many systems. Saving or collecting more of it is not enough when
+the result remains tied to one source, difficult to find, or unavailable at the point of use.
 
-InKCre exists to help information remain reusable—from collection and organization to later use and
-creation.
+Many knowledge tools begin with a workspace where people write and organize. InKCre begins with
+information already scattered across the tools they use and focuses on helping that information
+create value again. Independent Collection, Organization, and Application capabilities support that
+goal; a useful item does not have to pass through every capability first.
 
 ## The name
 
@@ -28,22 +32,12 @@ InKCre is also known in Chinese as **第三持存** (_tertiary retention_).
 These values guide the project's direction. They do not imply that every corresponding product or
 governance mechanism is already complete.
 
-### Open source
-
-InKCre is developed in the open and should remain inspectable and contributable.
-
-### User control
-
-People should retain meaningful control over their information and product behavior.
-
-### Self-hosting
-
-Running InKCre on infrastructure controlled by its users is a core direction.
-
-### Community-driven
-
-The project and its ecosystem should be shaped through open participation rather than only by a
-closed central team.
+- **Open source:** InKCre is developed in the open and should remain inspectable and contributable.
+- **User control:** people should retain meaningful control over their information and product
+  behavior.
+- **Self-hosting:** running InKCre on infrastructure controlled by its users is a core direction.
+- **Community-driven:** the project and its ecosystem should be shaped through open participation,
+  not only by a closed central team.
 
 ## Current stage
 
