@@ -15,8 +15,8 @@ You need a [connected interface](/guide/connect) and a GitHub personal access to
    [GitHub's token instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
    Its account and permissions determine what the collector can see.
 2. [Prepare the Extension](/guide/extensions): `inkcre/github` version `0.3.2` on Core Host SDK
-   `0.3.x`. Install it from **Discover**, then select the online Core Peer under **Installed → Run
-   on Peer** and enable the collector.
+   `0.3.x`. Follow the Registry-to-Web installation steps, then select the online Core Peer under
+   **Extensions → Run on Peer** and enable the collector.
 3. Open **Sources** and the create-source form. Enter **Nickname** `My GitHub saves` and choose
    **Type** `extensions.github.stars.Source`.
 4. In the **Form** tab, enter your personal access token in **GitHub token**, then create the

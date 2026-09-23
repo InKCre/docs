@@ -16,13 +16,14 @@ working installation merely to match an example.
 
 ## Prepare the Core collector
 
-1. Open **Extensions → Discover**. Search for the Extension named in your source guide, open its
-   details, and check the **Version**. Published versions show whether they include Core and Web
-   distributions. Select the version in your guide, then choose **Install**. Installation does not
-   require a Peer selection and does not start the Extension.
-2. Open **Installed**. Under **Run on Peer**, select your online **Core** Peer; the selector shows
-   each Peer's name and application version. Turn on the Extension's switch. A Python collector such
-   as RSS runs on Core, not **This browser**.
+1. Open **Extensions** in the Web app and choose **Browse Registry**. Search for the Extension named
+   in your source guide, open its details, and select that guide's exact version. The Registry page
+   shows its Core and Web distributions. Choose **Install in** your Web app, check the Extension and
+   version on the returned page, then choose **Install**. This does not require a Peer selection or
+   start the Extension.
+2. Back in **Extensions**, under **Run on Peer**, select your online **Core** Peer; the selector
+   shows each Peer's name and application version. Turn on the Extension's switch. A Python
+   collector such as RSS runs on Core, not **This browser**.
 3. If the guide requires Extension-wide settings, open **Edit Config** and save them. Source account
    settings belong in **Sources**, unless the guide says otherwise.
 4. Open **Sources**, create a Source, and check that its **Type** is available. An installed entry

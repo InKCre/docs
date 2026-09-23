@@ -14,10 +14,10 @@ You need a [connected interface](/guide/connect) and a supported Memos client.
 This is a write-in capture endpoint, **not** an importer for an existing Memos server. It implements
 a bounded Memos `0.29.1` API subset; the previously accepted client is MoeMemos Android `2.0.4`.
 
-1. In **Extensions → Discover**, install `inkcre/memos` version `0.3.0` for Core Host SDK `0.3.x`.
-   For an existing installation, follow the version-change instructions in
-   [Prepare an Extension](/guide/extensions).
-2. Under **Installed → Run on Peer**, select **This browser**, enable Memos there, and open
+1. [Prepare the Extension](/guide/extensions): use **Browse Registry** to select `inkcre/memos`
+   version `0.3.0` for Core Host SDK `0.3.x`, then confirm the installation back in the Web app. For
+   an existing installation, follow that guide's version-change instructions.
+2. Under **Extensions → Run on Peer**, select **This browser**, enable Memos there, and open
    **Setup**. The same release supplies the browser setup and Core service; do not install a
    different version for each client.
 3. Choose your Core if more than one is available, then select **Prepare connection**. Setup
