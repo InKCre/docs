@@ -18,8 +18,8 @@ includes its own prerequisites and setup.
 An **Extension** supplies a collector implementation; a **Source** is one configured use of it. For
 example, install the RSS Extension once, then create one Source per feed. Installing it does not
 automatically enable it or collect anything. [Prepare the Extension](/guide/extensions) on Core,
-then configure the Source in the Web app. Select the online Core Peer when installing a Python-only
-collector; the browser does not need to run that Extension itself.
+then configure the Source in the Web app. Installation does not need a Peer selection; select the
+online Core Peer when enabling a Python collector. The browser does not need to run it.
 
 ## Continue the first loop
 

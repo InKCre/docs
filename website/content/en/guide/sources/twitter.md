@@ -33,7 +33,7 @@ missing distribution, check the release publication and Registry configuration. 
 
 1. [Prepare the Extension](/guide/extensions) on Core with name `inkcre/twitter` and version
    `0.4.1`, then enable it on Core.
-2. In **Extensions**, choose **This browser** under **Control Extension on Client**, enable
+2. In **Extensions → Installed**, choose **This browser** under **Run on Peer**, enable
    `inkcre/twitter`, and click its **Setup** button.
 3. Choose your online Core Peer in the wizard. Enable Twitter there if prompted. Core handles the
    callback and collection; browser enablement alone is insufficient.

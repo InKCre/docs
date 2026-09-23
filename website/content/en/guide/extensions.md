@@ -6,40 +6,34 @@ description: Install a collector and enable it on the Peer that will run it.
 
 # Prepare an Extension
 
-Start with a [connected interface](/guide/connect). Your source guide supplies an Extension name, an
-exact compatible version, and its Source type. An Extension is installed once in the deployment;
-enabled clients share that version and configuration. Only install code you trust with the host's
-authority. Do not change a working installation merely to match an example.
+Start with a [connected interface](/guide/connect). Your source guide supplies an Extension name,
+version, and Source type. An Extension is installed once in the deployment; enabled Peers share its
+version and configuration. Only install code you trust with the host's authority. Do not change a
+working installation merely to match an example.
 
 <InterfaceGuide>
 <template #web>
 
 ## Prepare the Core collector
 
-1. Open **Extensions**. In **Control Extension on Peer**, select your online **Core** Peer. The
-   selector shows each Peer's name and application version.
-2. Look for the name from your source guide. If it is absent, enter its **Extension Name** and exact
-   **Version** in **Install New Extension**, then select **Install Extension**. The selected Core
-   validates the Python release; Python-only collectors such as RSS do not need a browser package.
-3. Turn on the Extension's switch while Core is still selected. Installation alone does not start
-   it. Enabling only **This browser** does not start a Core collector.
-4. If the guide requires Extension-wide settings, open **Edit Config**, enter its configuration
-   object, and save. Source account settings belong in **Sources**, unless the guide says otherwise.
-5. Open **Sources**, create a Source, and check that its **Type** is available. A listed
-   installation alone does not prove that the collector is running.
+1. Open **Extensions → Discover**. Search for the Extension named in your source guide, open its
+   details, and check the **Version**. Published versions show whether they include Core and Web
+   distributions. Select the version in your guide, then choose **Install**. Installation does not
+   require a Peer selection and does not start the Extension.
+2. Open **Installed**. Under **Run on Peer**, select your online **Core** Peer; the selector shows
+   each Peer's name and application version. Turn on the Extension's switch. A Python collector such
+   as RSS runs on Core, not **This browser**.
+3. If the guide requires Extension-wide settings, open **Edit Config** and save them. Source account
+   settings belong in **Sources**, unless the guide says otherwise.
+4. Open **Sources**, create a Source, and check that its **Type** is available. An installed entry
+   alone does not prove that the collector is running.
 
-![Client-web Extensions showing installation fields, Peer selection, and enabled Extensions](/images/client-web/extension-management.png)
-
-_Select Core before installing or enabling a collector; select This browser only for browser-side
-capabilities._
-
-An offline Peer cannot validate an installation. If installation fails, keep your entered name and
-version, read the error, and check the selected Peer and release compatibility before trying again.
-An older Core may need an update to support installation through this Web control. Do not switch to
-**This browser** as a workaround for a Python-only collector.
+If enablement fails, check that the selected Peer is online and that this release includes a
+compatible distribution for it. Do not switch to **This browser** as a workaround for a Python-only
+collector.
 
 For an existing installation at another version, use **Change Version** only after checking both
-Hosts and disabling every Peer using it. Version and configuration are shared across the instance.
+Hosts and disabling every Peer using it. Version and configuration are shared across the deployment.
 
 ## Browser Extensions and setup wizards
 
@@ -64,7 +58,7 @@ inkcre-cli source types
 ```
 
 For an existing installation, inspect `inkcre-cli extension get inkcre/rss` first. Version changes
-affect all clients using the installation. Configuration and command output may contain credentials;
+affect all Peers using the installation. Configuration and command output may contain credentials;
 keep them private.
 
 </template>
