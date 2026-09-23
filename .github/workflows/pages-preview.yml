@@ -81,6 +81,9 @@ jobs:
       statuses: write
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    environment:
+      name: preview
+      deployment: false
     steps:
       - name: Create the exact pull-request deployment
         id: deployment
