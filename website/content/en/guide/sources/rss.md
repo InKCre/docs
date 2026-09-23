@@ -18,20 +18,12 @@ Choose a publication's **RSS or Atom feed URL**, not its normal homepage.
    Extension is needed for this collector.
 2. Open **Sources** and the create-source form. Set **Nickname** to `My first feed`.
 3. Choose **Type** `extensions.rss.rss.Source`, or `extensions.rss.atom.Source` for Atom.
-4. Paste this object into **Config**, replacing the feed URL:
-
-   ```json
-   {
-     "feed_url": "https://YOUR-PUBLICATION/FEED",
-     "fetch_full_text": false,
-     "download_enclosures": false
-   }
-   ```
+4. In the **Form** tab, enter the feed URL. Turn **Fetch full text** off and leave **Download
+   enclosures** off for the first run.
 
 5. Save/create the Source, then open it from the list. [Run a Collection](/guide/collect) and
    inspect its Job before [indexing and searching](/guide/search).
 
-The Config editor takes only the object above, not a CLI wrapper containing `nickname` and `config`.
 These options avoid extra article fetches and attachment downloads. A feed exposes only what its
 publisher currently provides; a successful Job is not an import of the full archive. After finding a
 known item, [schedule collection](/guide/schedules).

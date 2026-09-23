@@ -13,26 +13,13 @@ You need a [connected interface](/guide/connect) and IMAP credentials for your m
 
 1. Find your provider's IMAP hostname and enable IMAP if required. Obtain an app-specific password
    where supported. An ordinary password cannot replace an unsupported authentication method.
-2. [Prepare the Extension](/guide/extensions): `inkcre/mail` version `0.3.1` on Core Host SDK
+2. [Prepare the Extension](/guide/extensions): `inkcre/mail` version `0.3.2` on Core Host SDK
    `0.3.x`. Select the online Core Peer to install and enable the collector.
 3. Open **Sources** and the create-source form. Use **Nickname** `My mail` and **Type**
    `extensions.mail.source.Source`.
-4. Paste this into **Config**, replace the host and credentials, and save/create:
-
-   ```json
-   {
-     "protocol": "imap",
-     "parameters": {
-       "host": "YOUR-IMAP-HOST",
-       "port": 993,
-       "security": "tls",
-       "username": "YOUR-MAIL-LOGIN",
-       "password": "YOUR-APP-PASSWORD"
-     },
-     "ordinary_mark_as_seen": false,
-     "synchronize_deletions": false
-   }
-   ```
+4. In the **Form** tab, set **Protocol** to `imap`. Under **Parameters**, enter the hostname, port
+   `993`, TLS security, username, and app password. Turn **Ordinary mark as seen** off and leave
+   **Synchronize deletions** off, then create the Source.
 
 5. Send yourself a test message **after creating the Source**, then [collect once](/guide/collect).
    Ordinary collection begins with new mail; an empty result does not prove authentication failed.
@@ -67,7 +54,7 @@ and command output private.
 2. Install and enable the Core Extension:
 
    ```sh
-   inkcre-cli extension install inkcre/mail --version 0.3.1
+   inkcre-cli extension install inkcre/mail --version 0.3.2
    inkcre-cli extension enable inkcre/mail
    ```
 
