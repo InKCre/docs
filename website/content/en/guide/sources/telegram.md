@@ -20,8 +20,8 @@ ID.
    `personal_information.user_id`, not your `@username` or the bot's ID. Telegram may require
    another-device confirmation or a waiting period.
 3. [Prepare the Extension](/guide/extensions): `inkcre/telegram` version `0.3.2` on Core Host SDK
-   `0.3.x`. Follow the Registry-to-Web installation steps, then select the online Core Peer under
-   **Extensions → Run on Peer** and enable it.
+   `0.3.x`. Follow the Registry-to-Web installation steps, then use **Enable…** on the installed
+   Extension to select your online Core Peer.
 4. Open **Sources** and the create-source form. Enter **Nickname** `My Telegram inbox` and choose
    **Type** `extensions.telegram.source.Source`. In the **Form** tab, enter the bot token and your
    numeric user ID. Leave **Download attachments** off for the first run, then create the Source.

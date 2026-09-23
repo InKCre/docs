@@ -21,16 +21,16 @@ working installation merely to match an example.
    shows its Core and Web distributions. Choose **Install in** your Web app, check the Extension and
    version on the returned page, then choose **Install**. This does not require a Peer selection or
    start the Extension.
-2. Back in **Extensions**, under **Run on Peer**, select your online **Core** Peer; the selector
-   shows each Peer's name and application version. Turn on the Extension's switch. A Python
-   collector such as RSS runs on Core, not **This browser**.
+2. Back in **Extensions**, choose **Enable…** on the installed Extension. In the dialog, select your
+   online **Core** Peer by name and version, then choose **Enable selected**. You may select more
+   than one Peer. A Python collector such as RSS runs on Core, not **This browser**.
 3. If the guide requires Extension-wide settings, open **Edit Config** and save them. Source account
    settings belong in **Sources**, unless the guide says otherwise.
 4. Open **Sources**, create a Source, and check that its **Type** is available. An installed entry
    alone does not prove that the collector is running.
 
-If enablement fails, check that the selected Peer is online and that this release includes a
-compatible distribution for it. Do not switch to **This browser** as a workaround for a Python-only
+If enablement fails, check that the affected Peer is online and that this release includes a
+compatible distribution for it. Do not choose **This browser** as a workaround for a Python-only
 collector.
 
 For an existing installation at another version, use **Change Version** only after checking both
@@ -39,8 +39,8 @@ Hosts and disabling every Peer using it. Version and configuration are shared ac
 ## Browser Extensions and setup wizards
 
 A browser Extension adds capabilities such as content rendering or a **Setup** wizard. For a release
-with compatible Python **and** browser distributions, enable it on Core, then select **This
-browser** and enable it there too. Open **Setup** when that button appears.
+with compatible Python **and** browser distributions, enable it on Core, then use **Enable…** again
+to select **This browser**. Open **Setup** when that button appears.
 
 Do not install a different shared version to obtain a wizard without checking both Hosts. The
 [Twitter guide](/guide/sources/twitter) walks through its paired Core and browser setup.

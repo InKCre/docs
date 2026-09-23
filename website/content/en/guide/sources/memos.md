@@ -17,7 +17,7 @@ a bounded Memos `0.29.1` API subset; the previously accepted client is MoeMemos 
 1. [Prepare the Extension](/guide/extensions): use **Browse Registry** to select `inkcre/memos`
    version `0.3.0` for Core Host SDK `0.3.x`, then confirm the installation back in the Web app. For
    an existing installation, follow that guide's version-change instructions.
-2. Under **Extensions → Run on Peer**, select **This browser**, enable Memos there, and open
+2. In **Extensions**, choose **Enable…** on Memos, select **This browser**, confirm, and open
    **Setup**. The same release supplies the browser setup and Core service; do not install a
    different version for each client.
 3. Choose your Core if more than one is available, then select **Prepare connection**. Setup

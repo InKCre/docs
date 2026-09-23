@@ -14,8 +14,8 @@ You need a [connected interface](/guide/connect) and IMAP credentials for your m
 1. Find your provider's IMAP hostname and enable IMAP if required. Obtain an app-specific password
    where supported. An ordinary password cannot replace an unsupported authentication method.
 2. [Prepare the Extension](/guide/extensions): `inkcre/mail` version `0.3.2` on Core Host SDK
-   `0.3.x`. Follow the Registry-to-Web installation steps, then select the online Core Peer under
-   **Extensions → Run on Peer** and enable the collector.
+   `0.3.x`. Follow the Registry-to-Web installation steps, then use **Enable…** on the installed
+   Extension to select your online Core Peer.
 3. Open **Sources** and the create-source form. Use **Nickname** `My mail` and **Type**
    `extensions.mail.source.Source`.
 4. In the **Form** tab, set **Protocol** to `imap`. Under **Parameters**, enter the hostname, port
