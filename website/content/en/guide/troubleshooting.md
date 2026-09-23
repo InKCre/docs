@@ -16,6 +16,7 @@ Use the symptom below to find the next check. Keep credentials out of logs or sc
 | Job stays pending                        | Confirm Core is awake and its collector enabled. Job creation only confirms acceptance.                        |
 | Collection finished but search empty     | Confirm the source exposed the item; run lexical maintenance and inspect diagnostics.                          |
 | CLI works but Web cannot find a provider | Refresh Peers and check that the browser and Core have different Peer IDs.                                     |
+| An old Peer remains in the list          | Stop it, refresh Peers until offline, then choose **Delete Peer**. Its Extension enablement is cleared.        |
 | Old mail missing                         | Ordinary collection starts with new mail. Request a historical backfill.                                       |
 | Truncated content or no attachment bytes | First-run examples avoid extra downloads. Check the collector's settings.                                      |
 | Request outcome uncertain                | Read the Job or resulting data before repeating a write; a lost response does not prove nothing happened.      |
