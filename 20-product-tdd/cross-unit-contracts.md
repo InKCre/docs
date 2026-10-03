@@ -17,6 +17,10 @@ Record durable data and behavior contracts that span more than one unit reposito
   readiness, JWT claims, and portable acceptance. Unit repositories own only their
   implementation and provider-specific deployment mechanics.
 
+## 跨 Peer 可观测性契约
+
+[跨 Peer 可观测性契约](observability-contract.md)拥有部署/Peer 观测身份、标准传播、持久 Job 提交关联、AI 诊断与内容边界。遥测不接管业务状态或协议准入；各 Unit 与部署 owner 分别交付采集、存储和查询实现。
+
 ## Extension State Contract
 
 - `installed`, `enabled`, and `running` are different states and must not be collapsed into one concept.
