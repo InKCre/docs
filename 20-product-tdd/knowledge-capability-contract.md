@@ -178,6 +178,8 @@ external API uses one of those words.
   running work stays running until its executor has exited and released its resources. Repeated
   requests do not rewrite terminal outcomes. Stopping never promises rollback, retry, or reversal
   of already dispatched external work. Each executor observes stop intent for its own active work.
+- 跨 Peer 的 Job 提交上下文与执行诊断遵守[跨 Peer 可观测性契约](observability-contract.md)。
+  观测关联不改变领取、执行、取消、终态或协议准入，也不提供重试与完整性语义。
 - An observer's wait budget is separate from the Job execution budget. Ending observation does not
   request cancellation. A final observed record is evidence of that observation, not a claim that
   the database has remained unchanged since it was read.
