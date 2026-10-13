@@ -28,6 +28,8 @@ Define cross-unit technical boundaries and ownership so changes do not leak resp
 
 ## Knowledge Capability Topology
 
+Extension 的不同 Distribution 为所在 Peer 增加可不同、互补或重叠的能力，共同参与同一逻辑插件的共享业务与信息。它们可以直接操作已准入的协议、解释持久图、提交或领取工作，也可在需要远端执行时使用 delegation；不能以语言、仓库或当前能力分工预设中心实现与附属实现。发布、精确安装选择和共享状态的边界遵循 [Extension 分发发布与 Peer 参与契约](extension-release-and-installation.md)。
+
 - The [Knowledge Capability Contract](knowledge-capability-contract.md) owns the shared
   collection, organization, application, graph, resolver, storage, and extension-protocol
   boundaries.

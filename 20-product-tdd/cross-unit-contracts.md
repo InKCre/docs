@@ -23,15 +23,11 @@ Record durable data and behavior contracts that span more than one unit reposito
 
 ## Extension State Contract
 
-- `installed`, `enabled`, and `running` are different states and must not be collapsed into one concept.
-- `installed` means the deployment has the extension package and its persisted installation record.
-- `enabled` means a specific client is allowed to run that extension.
-- `running` means the current runtime has actually started that extension and applied its runtime side effects.
-- Starting or stopping an extension is not a pure flag flip; it changes runtime capabilities and API surface for that client.
+[Extension 分发发布与 Peer 参与契约](extension-release-and-installation.md)拥有独立原生发布坐标、部署共享业务状态、Peer 精确安装选择，以及启用意图和实际运行的区别。插件拥有业务与数据兼容，各 Unit 分别拥有构建发布流程和宿主执行边界。
 
 ## Extension Documentation Hosting Contract
 
-- Author-built static documentation, exact Release/scope identity, conditional whole-site
+- Author-built static documentation, exact native Release identity and historical scope compatibility, conditional whole-site
   corrections, snapshot-origin isolation, and consumer discovery follow the
   [Extension Documentation Hosting Contract](extension-documentation-hosting.md).
 - Registry owns hosting and executable API details; authors own site content and structure.
