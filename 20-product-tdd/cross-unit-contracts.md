@@ -23,7 +23,7 @@ Record durable data and behavior contracts that span more than one unit reposito
 
 ## Extension State Contract
 
-[Extension Release 与安装契约](extension-release-and-installation.md)拥有原生分发交付承诺、发布完整性，以及部署安装、各 Peer 启用和实际运行的区别。版本变更须保护已有宿主支持，并把明确的支持移除与临时不可读取区分；各 Unit 分别实现发布与宿主判断。
+[Extension Release 与安装契约](extension-release-and-installation.md)拥有共同 Release 身份、全部原生关联的发布完整性，以及部署安装、Peer 启用和实际运行的区别。各 Unit 分别拥有构建发布流程和宿主判断。
 
 ## Extension Documentation Hosting Contract
 
