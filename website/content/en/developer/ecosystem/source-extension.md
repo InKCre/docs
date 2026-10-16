@@ -277,10 +277,10 @@ then install your exact coordinate/version and follow your source-specific setup
 preview is a development path, not authorization to publish to `registry.inkcre.dev`.
 
 For larger collectors, study the
-[RSS implementation](https://github.com/InKCre/core-py/tree/main/extensions/rss) for incremental
+[RSS implementation](https://github.com/InKCre/impl-py/tree/main/extensions/rss) for incremental
 reconciliation and the
-[Source runtime](https://github.com/InKCre/core-py/blob/main/app/business/source/main.py) for
+[Source runtime](https://github.com/InKCre/impl-py/blob/main/app/business/source/main.py) for
 current signatures. The
-[native distribution contract](https://github.com/InKCre/core-py/blob/main/docs/40-deployment/native-extension-distribution.md)
+[native distribution contract](https://github.com/InKCre/impl-py/blob/main/docs/40-deployment/native-extension-distribution.md)
 owns Host installation, dependency admission, restart, and release rules. Pin and test the Host
 compatibility you declare; a working example is not a promise that every `app.*` API is stable.

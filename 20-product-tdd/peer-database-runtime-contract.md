@@ -114,7 +114,7 @@ individually.
 
 PostgREST and native HTTP runtimes validate the same claim vectors. A missing, malformed,
 expired, overlong, wrong-secret, wrong-role, wrong-issuer, or wrong-audience token is denied.
-The contract does not assign secret custody to `core-py`; each deployment supplies the same
+The contract does not assign secret custody to `impl-py`; each deployment supplies the same
 secret independently to the runtimes that validate it.
 
 ## Artifact And Environment Contract

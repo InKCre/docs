@@ -24,7 +24,7 @@ without running Organization first.
    selected content to that provider and may incur charges.
 
 The
-[Core Organization guide](https://github.com/InKCre/core-py/blob/main/docs/30-unit-tdd/organization.md)
+[Core Organization guide](https://github.com/InKCre/impl-py/blob/main/docs/30-unit-tdd/organization.md)
 owns the current behavior and configuration contracts. A configured model alone does not schedule or
 run Organization.
 

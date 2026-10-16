@@ -13,7 +13,7 @@ Record durable ownership of authoritative state across units and distinguish it 
 
 - PostgreSQL is authoritative for shared persisted InKCre state.
 - The `inkcre` schema is the versioned protocol surface admitted to authenticated peers.
-- `core-py` currently owns migrations and the executable lifecycle contract; this is schema
+- `impl-py` currently owns migrations and the executable lifecycle contract; this is schema
   authority, not request-path or product-tier authority over other peers.
 - Production rows are operational recovery data and must never be reproduced as development
   seed.
@@ -25,12 +25,9 @@ Record durable ownership of authoritative state across units and distinguish it 
 
 ## Extension Installation Authority
 
-- 一个部署对一个 Extension 保持一个逻辑身份、共享配置和业务状态。不同运行端通过各自的能力共同参与该业务，持久数据不归某个执行节点所有。
-- 共享业务 state 的更新属于已准入 Peer 协议，原生与 PostgREST Peer 依据插件契约维护同一数据；当前 Python 实现了写入流程不构成 Core 独占写权。身份、数据形状与匿名拒绝仍由协议边界约束，插件继续拥有事务和业务并发不变量。
-- 精确原生分发版本和启用意图属于 `Peer × Extension` 的持久参与记录。同一插件可以在不同 Peer 使用不同版本；一个 Peer 的选择不改变其他 Peer，也不建立部署全局包版本。
-- 实际加载版本、运行成功、失败与重启需求是对应宿主报告的运行事实，不能从安装选择、启用意图或过期 lease 推断。
-- 配置编辑 schema 保留其精确分发来源；它是选定运行端的编辑说明，不改变共享配置权威，也不证明其他分发理解同一写入。
-- 安装选择与 client-scoped permission、当前运行活动分别记录。具体发布、参与和历史迁移遵循 [Extension 分发发布与 Peer 参与契约](extension-release-and-installation.md)。
+- Extension installation state is authoritative at the deployment level.
+- One deployment must not carry multiple installed records for the same extension ID.
+- Installation state is distinct from client-scoped permission and distinct from current runtime activity.
 - Validated extension configuration is deployment-scoped durable state. External protocol
   profiles or credentials projected from that configuration do not create an InKCre User or
   tenant authority.

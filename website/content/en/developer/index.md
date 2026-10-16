@@ -41,8 +41,8 @@ This is not a promise of unrestricted database access or a complete API compatib
 | Repository                                                  | Role and development entry                                                                                                                                       |
 | ----------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [`InKCre/docs`](https://github.com/InKCre/docs)             | Shared product and cross-unit documentation Hub; source of this website. Start with its [README](https://github.com/InKCre/docs#readme).                         |
-| [`InKCre/core-py`](https://github.com/InKCre/core-py)       | Python core runtime, migrations, and database lifecycle authority. Follow its [contributing guide](https://github.com/InKCre/core-py/blob/main/CONTRIBUTING.md). |
-| [`InKCre/client-web`](https://github.com/InKCre/client-web) | Web client, browser Extensions, and shared client infrastructure. Start with its [README](https://github.com/InKCre/client-web#readme).                          |
+| [`InKCre/impl-py`](https://github.com/InKCre/impl-py)       | Python core runtime, migrations, and database lifecycle authority. Follow its [contributing guide](https://github.com/InKCre/impl-py/blob/main/CONTRIBUTING.md). |
+| [`InKCre/impl-ts`](https://github.com/InKCre/impl-ts) | Web client, browser Extensions, and shared client infrastructure. Start with its [README](https://github.com/InKCre/impl-ts#readme).                          |
 | [`InKCre/ui`](https://github.com/InKCre/ui)                 | Design system, tokens, and shared Web UI packages. Start with its [README](https://github.com/InKCre/ui#readme).                                                 |
 
 The [InKCre GitHub organization](https://github.com/InKCre) contains prototypes and historical

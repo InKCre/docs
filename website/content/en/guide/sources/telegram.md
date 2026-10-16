@@ -82,7 +82,7 @@ files and command output private.
 Use one bot for one Source. This is a capture inbox, not group/channel history import or a
 notification destination. Attachments are metadata-only in this example; enable
 `download_attachments` when you want their bytes saved too. See the
-[Telegram collector](https://github.com/InKCre/core-py/blob/main/extensions/telegram/README.md) and
+[Telegram collector](https://github.com/InKCre/impl-py/blob/main/extensions/telegram/README.md) and
 [published releases](https://registry.inkcre.dev/v1/extensions/inkcre/telegram).
 
 Next: [index and search for a known item](/guide/search), then

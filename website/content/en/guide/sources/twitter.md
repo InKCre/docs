@@ -221,4 +221,4 @@ revoke the app in X's account settings. Disconnecting does not delete previously
 alternate `twikit` backend exists, but its account-login mechanics are not this OAuth walkthrough.
 
 Implementation reference:
-[Twitter Extension](https://github.com/InKCre/core-py/tree/main/extensions/twitter).
+[Twitter Extension](https://github.com/InKCre/impl-py/tree/main/extensions/twitter).

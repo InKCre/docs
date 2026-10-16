@@ -64,7 +64,7 @@ files and command output private.
    for a repository you starred. Each run synchronizes current Stars and Lists; it is not a code
    backup or a full GitHub activity archive.
 
-See the [GitHub collector](https://github.com/InKCre/core-py/blob/main/extensions/github/README.md)
+See the [GitHub collector](https://github.com/InKCre/impl-py/blob/main/extensions/github/README.md)
 and [published releases](https://registry.inkcre.dev/v1/extensions/inkcre/github).
 
 Next: [index and search for a known item](/guide/search), then
