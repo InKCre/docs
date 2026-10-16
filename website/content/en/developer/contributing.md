@@ -22,8 +22,8 @@ repository; it does not need to become a Core contribution.
 | Product purpose, behavior, or shared vocabulary | [`InKCre/docs`](https://github.com/InKCre/docs) → [`10-prd/**`](https://github.com/InKCre/docs/tree/main/10-prd)                 |
 | Cross-unit state, topology, or interoperability | [`InKCre/docs`](https://github.com/InKCre/docs) → [`20-product-tdd/**`](https://github.com/InKCre/docs/tree/main/20-product-tdd) |
 | Hub/Spoke shared-document workflow              | [`InKCre/docs`](https://github.com/InKCre/docs) → [`00-meta/**`](https://github.com/InKCre/docs/tree/main/00-meta)               |
-| Core runtime, migrations, or database lifecycle | [`InKCre/core-py`](https://github.com/InKCre/core-py)                                                                            |
-| Web client or browser extension                 | [`InKCre/client-web`](https://github.com/InKCre/client-web)                                                                      |
+| Core runtime, migrations, or database lifecycle | [`InKCre/impl-py`](https://github.com/InKCre/impl-py)                                                                            |
+| Web client or browser extension                 | [`InKCre/impl-ts`](https://github.com/InKCre/impl-ts)                                                                            |
 | Design tokens or shared UI                      | [`InKCre/ui`](https://github.com/InKCre/ui)                                                                                      |
 | Public website content or presentation          | [`InKCre/docs`](https://github.com/InKCre/docs) → [`website/**`](https://github.com/InKCre/docs/tree/main/website)               |
 
@@ -41,8 +41,8 @@ After choosing an owner:
 
 Useful entry points:
 
-- [`core-py` contributing guide](https://github.com/InKCre/core-py/blob/main/CONTRIBUTING.md)
-- [`client-web` README](https://github.com/InKCre/client-web#readme)
+- [`impl-py` contributing guide](https://github.com/InKCre/impl-py/blob/main/CONTRIBUTING.md)
+- [`impl-ts` README](https://github.com/InKCre/impl-ts#readme)
 - [`ui` README](https://github.com/InKCre/ui#readme)
 - [`docs` README](https://github.com/InKCre/docs#readme)
 

@@ -43,7 +43,7 @@ add the ChatGPT connection, and verify a real retrieval. It explains the separat
 what must keep running; no CLI `sink` command is required.
 
 For another MCP host that can send a Bearer PAT directly, the
-[Core MCP Sink reference](https://github.com/InKCre/core-py/blob/main/docs/40-deployment/mcp-sink.md)
+[Core MCP Sink reference](https://github.com/InKCre/impl-py/blob/main/docs/40-deployment/mcp-sink.md)
 owns the endpoint and authentication contract.
 
 These paths make your saved information available on demand. They do not configure proactive

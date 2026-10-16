@@ -91,7 +91,7 @@ first write may already have succeeded. You can use authenticated `GET /sinks` a
 `POST /sinks/{id}/enable` with the same short-lived Bearer JWT pattern. Do not publish a Sink
 management response; it can contain configuration credentials. The authoritative API and lifecycle
 details are in
-[MCP Sink Operations](https://github.com/InKCre/core-py/blob/main/docs/40-deployment/mcp-sink.md).
+[MCP Sink Operations](https://github.com/InKCre/impl-py/blob/main/docs/40-deployment/mcp-sink.md).
 
 ## 2. Provision a tunnel and install its client
 

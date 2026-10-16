@@ -56,7 +56,7 @@ CLI connects over HTTPS; it does not run another server on your computer.
 connection failure, check the Core URL and start Core from your hosting dashboard. In later terminal
 sessions, reactivate the environment before using `inkcre-cli`.
 
-The [CLI reference](https://github.com/InKCre/core-py/blob/main/cli/README.md) owns command details.
+The [CLI reference](https://github.com/InKCre/impl-py/blob/main/cli/README.md) owns command details.
 `--help` explains a command; `--schema` on input-taking commands shows the configuration accepted by
 your running instance.
 

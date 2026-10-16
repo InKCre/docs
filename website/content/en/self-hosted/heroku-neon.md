@@ -15,7 +15,7 @@ are different from sign-in passwords.
 Choose Heroku instead of Render; you do not need both providers. The database still lives in Neon,
 while Heroku runs two apps: Core and PostgREST.
 
-1. Open [InKCre/core-py](https://github.com/InKCre/core-py), choose **Fork**, and enable workflows
+1. Open [InKCre/impl-py](https://github.com/InKCre/impl-py), choose **Fork**, and enable workflows
    in your fork's **Actions** tab. Create a dedicated project in [Neon](https://console.neon.tech),
    keeping the default `neondb` database and `neondb_owner` role. Save its project ID and create a
    Neon API key with access to it.
@@ -46,7 +46,7 @@ The workflow runs one Eco web dyno per app. Heroku charges and
 database passwords on reruns; replacing them is a coordinated credential rotation, not a routine
 redeploy. As with Render Free, sleeping Core cannot provide continuous collection. The maintained
 deployment procedure and recovery details live in the
-[Core Heroku self-hosting guide](https://github.com/InKCre/core-py/blob/main/docs/40-deployment/heroku-neon-self-host.md).
+[Core Heroku self-hosting guide](https://github.com/InKCre/impl-py/blob/main/docs/40-deployment/heroku-neon-self-host.md).
 
 **Keep your instance credentials private.** `JWT_SECRET` grants control of the instance, not a
 limited personal login. Do not paste it into an online JWT generator, an issue, a chat, or your

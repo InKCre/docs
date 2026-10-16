@@ -59,7 +59,7 @@ creates the limited roles, and reconciles built-in records. Launching Python aga
 database is not initialization.
 
 Use the exact command and image from the selected revision's
-[database lifecycle guide](https://github.com/InKCre/core-py/blob/main/docs/40-deployment/database-contract.md),
+[database lifecycle guide](https://github.com/InKCre/impl-py/blob/main/docs/40-deployment/database-contract.md),
 then run its read-only readiness command. The initializer is safe to repeat when deploying the same
 profile.
 
@@ -80,8 +80,8 @@ request with your deployment JWT reaches the admitted API.
 Run the pinned Python program or its container image with the `inkcre_core` database connection and
 the same JWT settings. Supply Core's public HTTPS base URL so its Peer can advertise callable HTTP
 capabilities. The
-[container guide](https://github.com/InKCre/core-py/blob/main/docs/40-deployment/docker.md) and
-[Core README](https://github.com/InKCre/core-py#readme) own the supported entry points.
+[container guide](https://github.com/InKCre/impl-py/blob/main/docs/40-deployment/docker.md) and
+[Core README](https://github.com/InKCre/impl-py#readme) own the supported entry points.
 
 **Checkpoint:** after you connect client-web, Core appears in **Peers**. If it is offline, start the
 service and refresh until the Peer is online and publishes its capabilities.
@@ -112,11 +112,11 @@ important information:
   collection succeeded.
 
 Provider-specific examples remain in the
-[Render deployment guide](https://github.com/InKCre/core-py/blob/main/docs/40-deployment/render-neon-self-host.md)
+[Render deployment guide](https://github.com/InKCre/impl-py/blob/main/docs/40-deployment/render-neon-self-host.md)
 and
-[Heroku deployment guide](https://github.com/InKCre/core-py/blob/main/docs/40-deployment/heroku-neon-self-host.md).
+[Heroku deployment guide](https://github.com/InKCre/impl-py/blob/main/docs/40-deployment/heroku-neon-self-host.md).
 The Core runtime documentation linked above owns exact commands and recovery procedures.
 
 The Core
-[runtime orchestration guide](https://github.com/InKCre/core-py/blob/main/docs/40-deployment/runtime-orchestration.md)
+[runtime orchestration guide](https://github.com/InKCre/impl-py/blob/main/docs/40-deployment/runtime-orchestration.md)
 owns readiness and shutdown details for the selected revision.

@@ -12,7 +12,7 @@ a compute-provider account. These providers are convenience options, not InKCre 
 Keep credentials in a password manager. API keys let the workflow act on your hosting accounts; they
 are different from sign-in passwords.
 
-1. Open [InKCre/core-py](https://github.com/InKCre/core-py), choose **Fork**, and create your
+1. Open [InKCre/impl-py](https://github.com/InKCre/impl-py), choose **Fork**, and create your
    repository copy. Open its **Actions** tab and enable workflows if GitHub asks.
 2. Create a project in [Neon](https://console.neon.tech). Keep the default `neondb` database and
    `neondb_owner` role. Save the project ID and create a Neon API key with access to it.
@@ -48,7 +48,7 @@ cannot guarantee continuous collection. Check
 [Render's current limits](https://render.com/docs/free) and your Neon plan before relying on them.
 Continuous scheduled collection needs hosting that keeps Core running. The maintained deployment
 procedure and recovery details live in the
-[Core self-hosting guide](https://github.com/InKCre/core-py/blob/main/docs/40-deployment/render-neon-self-host.md).
+[Core self-hosting guide](https://github.com/InKCre/impl-py/blob/main/docs/40-deployment/render-neon-self-host.md).
 
 **Keep your instance credentials private.** `JWT_SECRET` grants control of the instance, not a
 limited personal login. Do not paste it into an online JWT generator, an issue, a chat, or your

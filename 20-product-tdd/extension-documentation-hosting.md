@@ -14,9 +14,18 @@ installable by itself.
 
 ## Identity And Document Ownership
 
-新文档集属于一个精确 Native Release，即 Extension name、Distribution 类型和该分发版本。其发布者维护这个入口中的概念、操作、配置和限制；不以另一种分发的版本或 scope 声明文档适用关系。Web、CLI 和 Agent 是读者接口，不是额外的 Distribution。文档可选，不增加共同插件版本或独立文档语义版本。
+A documentation set belongs to one Extension name, one exact Release version, and one scope:
 
-历史统一 Release 的 `global`、`python`、`module-federation` 入口继续作为历史文档坐标读取。既有 Snapshot、发布 receipt、URL、ETag 和来源不因迁移被重新命名或赋予另一个 owner。尤其 `global` 不自动归给 Python 或 MF；有明确来源的历史分发文档可以引用复用，不能伪造一次新的 publication。新入口和历史入口各自保留身份，Registry 不合并、继承或静默替换它们。
+| Scope | Meaning | First-party source owner |
+| --- | --- | --- |
+| `global` | Extension-wide concepts, workflows, and limits across channels | `impl-py` |
+| `python` | Python Distribution operation and configuration | The Python producer in `impl-py` |
+| `module-federation` | Web Distribution interfaces and behavior | The MF producer in `impl-ts` |
+
+These are separate, optional sites, not inheritance or override layers. Registry does not merge
+them. A channel-specific set requires the corresponding Distribution association on that Release;
+global documentation does not require a Web Distribution. Web, CLI, and Agent instructions are
+reader interfaces, not additional Distribution channels.
 
 First-party sites share a template maintained in `InKCre/docs`, with producer repositories using
 an explicit template revision. This does not require ecosystem authors to adopt that template or
@@ -26,9 +35,16 @@ being copied into each consuming site.
 
 ## Discovery And Consumption
 
-Registry 的文档发现与安装元数据分开。新版消费者按精确原生分发选择查询自己的入口、内容身份、更新时间和发布来源；旧消费者查询历史统一版本及 scopes。新增文档不能破坏严格安装模型。
+Registry exposes documentation discovery separately from Release installation metadata. Consumers
+ask their configured Registry for the exact installed Release and receive the available scopes,
+stable entry addresses, current content identities, update times, and publication provenance.
+Adding documentation must not invalidate existing strict Release consumers.
 
-缺失的入口就是缺失。消费者可以明确提供历史文档链接，但不能静默替换分发、版本或 scope。站点内路径是作者与消费者的约定，Registry 不解释文档结构。消费者采用 Registry 返回的入口地址，不构造内容 hostname，也不假定文档与管理服务共享 origin。
+An absent scope is genuinely absent. Consumers may explicitly offer global documentation instead
+of a missing channel site, but must not silently substitute another scope or version. Page paths
+inside a site remain an agreement between its author and consumers, not Registry-defined content
+semantics. Consumers follow Registry-provided entry addresses rather than constructing content
+hostnames or assuming documentation shares the management origin.
 
 ## Publication And Corrections
 
@@ -53,14 +69,20 @@ available for a later retry. Clients do not refresh the write precondition, gene
 identity, or infer failure merely because a response was lost. Authentication and Release lifecycle
 rules also apply when confirming an earlier commit.
 
-文档可以在不发布新 Native Release 的情况下修订。更新一个分发的入口不会更新另一个分发，也不改变 wheel 或 MF 产物。没有跨版本自动继承或多对多适用矩阵。Snapshot 内容不可变，其身份用于完整性和资源一致性，不是另一套作者管理的版本。
+Documentation can be corrected without a new Extension Release. There is no separate documentation
+semantic version, automatic inheritance between Releases, or many-to-many applicability mapping.
+Updating one scope does not update another or mutate Python/MF artifacts. Snapshot content is
+immutable; its identity serves integrity and resource consistency, not a second author-managed
+version scheme.
 
-已发布历史快照在所属发布允许公开读取时继续可用，使已打开的页面能加载原有资源。即使底层字节去重，快照仍绑定其原始精确坐标；迁移不修改其发布凭证或暗示它仍是当前入口。
+Previously published snapshots remain available while their owning Release permits public reads,
+so an already opened page can finish loading its original resources. Each public snapshot remains
+bound to its exact Release and scope even when underlying byte storage is deduplicated.
 
 ## Static Content Boundary
 
 Each snapshot is served at the root of its own content origin, separate from Registry management
-and from other snapshots. A stable Native Release entry, or retained historical Release/scope entry, selects the current snapshot; navigation and
+and from other snapshots. A stable Release/scope entry selects the current snapshot; navigation and
 assets within that site continue to use that snapshot. This prevents mixed-version assets and
 separates script, browser storage, and Service Worker authority. Separate URL directories on one
 origin do not satisfy this boundary.
@@ -80,8 +102,6 @@ documentation origin. Concrete domain, DNS, TLS, and storage deployment choices 
 Registry-owned.
 
 ## Release Lifecycle
-
-新版文档遵循所属 Native Release 的生命周期。历史入口同时遵循原统一 Release 及其关联原生发布的限制，不能借旧 state 绕过 native block。类型明确的原生下载与文档入口分别检查对应 owner，历史 global 不能被任意重新归属以规避封禁。
 
 Documentation may be prepared alongside a preparing Release, but preparing content is not public.
 Published Releases expose their documentation normally. Yanked Releases retain exact-version

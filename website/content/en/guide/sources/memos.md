@@ -104,7 +104,7 @@ Remove the account from the client and rotate or clear `personal_access_token` t
 credential. Disable the Extension to withdraw its routes. These actions do not erase stored notes.
 
 See the [release listing](https://registry.inkcre.dev/v1/extensions/inkcre/memos) and the
-[Memos runtime contract](https://github.com/InKCre/core-py/blob/main/docs/30-unit-tdd/memos-extension.md).
+[Memos runtime contract](https://github.com/InKCre/impl-py/blob/main/docs/30-unit-tdd/memos-extension.md).
 
 </template>
 </InterfaceGuide>

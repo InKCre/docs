@@ -98,7 +98,7 @@ and command output private.
    collector does not send mail or create email digests.
 
 See the
-[Mail configuration](https://github.com/InKCre/core-py/blob/main/docs/30-unit-tdd/mail-extension.md)
+[Mail configuration](https://github.com/InKCre/impl-py/blob/main/docs/30-unit-tdd/mail-extension.md)
 and [published releases](https://registry.inkcre.dev/v1/extensions/inkcre/mail).
 
 Next: [index and search for a known item](/guide/search), then
