@@ -58,9 +58,9 @@ defines principals, protocol admission, lifecycle, readiness, and JWT claims.
 
 ## Peer runtimes, not frontend and backend tiers
 
-`impl-py`, `impl-ts`, and compatible future runtimes participate as Peers around the same
-info-base. `impl-py` owns migrations and the executable database lifecycle contract, but it is not a
-central owner of every request path or product behavior.
+`impl-py`, `impl-ts`, and compatible future runtimes participate as Peers around the same info-base.
+`impl-py` owns migrations and the executable database lifecycle contract, but it is not a central
+owner of every request path or product behavior.
 
 Client-web demonstrates this topology: database operations use PostgREST, while runtime-owned
 capabilities may use native HTTP surfaces advertised by an online Peer. The durable boundary is the
