@@ -49,13 +49,15 @@ Post 的受管出边 content 使用以下 JSON grammar；`type` 是表中的一�
 
 这些边由对应原生引用维护；只删除或替换本 grammar 管理的边，不改动用户组织关系、既有引用或旧 v1 `attachment` / `entities:url` 边。只知道 ID 的目标仍可导航到身份根，并明确表示未捕获内容。原生记录里的其他 ID 不因此获得一条未定义的关系类型。
 
-Media 根通过既有 content 为 `content` 的关系指向普通 `core.image.v1` 或 `core.video.v1` Block。普通媒体内容 Block 使用既有 HTTP Storage 指针。原生 Media、可读取内容与实际媒体字节是不同层次的信息，不能把三者混为已保全的本地文件。
+本版本的 Media 根只保存原生元数据，不预建持久的 `core.image.v1` / `core.video.v1` 内容 Block，也不建立 Media 到这些 Block 的 `content` 关系。Post 到 Media 的受管引用保持不变，媒体身份、字段合并和 query 仍以原生 Media 根为准。
 
 ## 媒体读取与独立使用
 
-本版本只保存原生元数据和可按需读取的 HTTP 指针，不持久化图片或视频字节，也不创建媒体下载 Job。只有符合 Twitter 媒体 HTTPS CDN 规则的地址可形成读取指针；无法形成安全指针的原生元数据仍保留。视频/GIF 使用已捕获的可用 MP4 variant，不把 HLS 播放清单当作视频本体。
+本版本只保存 Media 原生元数据，不持久化图片或视频字节，也不创建媒体下载 Job。用户明确展开时，Twitter Distribution 从已捕获 URL 经现有 HTTP Storage 读取字节；这次读取不创建持久媒体内容 Block。读取只接受精确匹配允许 CDN 主机的 HTTPS URL；不符合读取条件的原生元数据仍保留。视频/GIF 选择已捕获可用 MP4 variant 中码率最高的地址，不把 HLS 播放清单当作视频本体。
 
-保存、query、列表、文本投影与词法索引不得为了媒体内容读取外部字节；用户明确展开后，才使用现有 HTTP Storage 的超时、大小限制和失败反馈。源站 URL 失效时保留文字与元数据，界面明确表示媒体读取失败。`accepted`、`unchanged` 和 `found` 均不承诺媒体长期可用，连接说明必须说明未自动转存媒体，以免沿用客户端的媒体转存文案产生误解。
+保存、query、列表、文本投影与词法索引不得为了这些 Twitter 媒体读取外部字节；用户明确展开后，才使用现有 HTTP Storage 的超时、大小限制和失败反馈。普通媒体内容 Block 可以按其既有 [词法投影与媒体物化合同](feature-retrieval-and-media-interpretation.md#faithful-media-materialization) 被独立处理；为避免全库索引维护提前读取 Twitter 媒体，本版本不预建这类 Block，不改变通用媒体的词法物化政策。
+
+源站 URL 失效时保留文字与元数据，界面明确表示媒体读取失败。`accepted`、`unchanged` 和 `found` 均不承诺媒体长期可用，连接说明必须说明未自动转存媒体，以免沿用客户端的媒体转存文案产生误解。
 
 Post/User Resolver 通过既有投影与索引维护提供原帖 ID/链接、作者和已捕获正文/长文线索；阅读端展示正文、长文、出处和已捕获上下文，并安全解释结构化富文本，不执行归档中的 HTML 或脚本。关闭 x-monkey 后，这些能力仍使用共享信息。未捕获的上下文只显示其已知身份或原生不可用说明，不在阅读时额外抓取完整线程。
 
