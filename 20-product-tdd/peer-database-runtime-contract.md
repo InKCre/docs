@@ -118,8 +118,6 @@ secret independently to the runtimes that validate it.
 
 Extension 可以为同类 JWT 定义有签名保护的用途声明和续签条件，但不能据此声称缩小原有 Peer 权限。Twitter 归档连接的传输、签发默认值和自动续签见 [Twitter 归档信息与接入契约](twitter-archive-contract.md)。
 
-需要浏览器顶层表单交接时，由 Host/Auth 按[浏览器凭据交接协议](semantic-retrieval-and-peer-capabilities.md#浏览器凭据交接协议-v1)绑定所选 Peer 与能力广告，并在内部签发这类 JWT。该通用传输不拥有接收扩展的 Cookie、会话期限或续签政策。
-
 ## Artifact And Environment Contract
 
 - The core database runtime is published as an OCI image addressable by immutable digest.

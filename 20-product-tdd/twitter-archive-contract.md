@@ -83,9 +83,9 @@ Post/User Resolver 通过既有投影与索引维护提供原帖 ID/链接、作
 
 协议复用 [Peer JWT](peer-database-runtime-contract.md#jwt-contract)，不新增 PAT、refresh token、签名秘密或会话表。JWT 仍具既有完整 Peer 权限；用途声明与 Cookie 路径都不构成降权或单会话撤销。
 
-用户在 x-monkey 设置远端数据库地址并检测；未连接时通过 `account_url` 打开 Twitter 连接页。该页指引用户另行打开已连接同一 info-base 的 InKCre Web，在 Twitter setup 中点击“连接 x-monkey”。Twitter UI 向 Host 提交所选 Peer 和 `inkcre.twitter.x-monkey.session.v1` 能力的连接意图；Host 按[浏览器凭据交接协议](semantic-retrieval-and-peer-capabilities.md#浏览器凭据交接协议-v1)发现有效广告、绑定该 Peer 的公共基址和路径前缀，再内部签发新鲜 Peer JWT 并顶层表单导航。UI 不接收原始 JWT 或指定任意目标 URL。发起导航只表示 `initiated`；Core 建立 Cookie 后，用户仍需在账户页及脚本检测中确认连接结果。
+用户在 x-monkey 设置远端数据库地址并检测；未连接时通过 `account_url` 打开同一 Core 自托管的 `/twitter/x-monkey/account`。用户确认是自己信任的 HTTPS 部署后，在账户页输入该部署现有的 `JWT_SECRET`。页面通过浏览器 WebCrypto 本地签发短期 Peer JWT，以同 Origin Bearer 请求提交到 `/twitter/x-monkey/session`；Core 复用普通 Peer JWT 认证后建立归档 Cookie。页面再通过 session 请求确认浏览器实际接受 Cookie，才显示 `Connected`、连接的 Peer 与到期时间；用户返回脚本再次检测。连接不要求安装 InKCre Web 或 Twitter Web Distribution。
 
-Twitter 在实际 session 路由就绪且配置了 HTTPS 公共基址时广告此能力，其 inbound 为 `core.peer.protocol.browser-form.v1`，参数为 `{"method":"POST","path":"/twitter/x-monkey/session","credential_field":"token"}`。停用时随路由撤回。setup 状态的 `x_monkey_base_url` 仍供用户复制服务地址；地址展示与连接按钮分别判断，按钮以所选 Peer 的精确能力广告为依据，展示字段不作为凭据投递目标的权威。连接页不自动发现 Web 地址，也不接受任意回跳地址；能力发现不依靠两个 Distribution 的版本数字相同。
+账户页不持久化或经网络发送 `JWT_SECRET`，不加载第三方脚本，不接受任意回跳地址；本地签名不意味着恶意或被篡改的页面安全，部署页面本身必须可信。可选的 Web Setup 保留 `x_monkey_base_url` 供用户复制，并以普通链接打开该 Core 的账户页，不处理密钥或签发 JWT。
 
 会话 JWT 带有签名保护的 `session_use="twitter_archive"`，其默认有效期为 7 天，由 Core 环境配置。首次连接与续签使用同一签发配置；静态 Web 不读取或复制该期限。普通 Peer JWT 只在显式连接入口证明已有权限，普通业务请求不会自动将它升级为可续签会话。
 
@@ -93,6 +93,6 @@ Twitter 在实际 session 路由就绪且配置了 HTTPS 公共基址时广告�
 
 本版本没有从首次授权开始计算的绝对会话上限；活跃会话和已复制的合格 JWT 都可以持续续签。断开仅清理当前浏览器 Cookie，不撤销已复制 JWT；部署更换既有 JWT_SECRET 后按既有机制失效。较长 JWT 同时扩大被复制凭据的可用时间。
 
-正式 HTTP 接入使用 HTTPS，Cookie 为 Secure、HttpOnly、SameSite=None，Path 限于保留部署前缀的 Twitter 协议路径，期限不晚于 JWT `exp`。只有这些路由读取协议 Cookie，Core 其他受保护路由继续要求既有 Bearer。无关网页不能读取协议响应或利用 Cookie 发起归档写入，明显的子资源嵌入请求不能触发续签；不能把宽松 CORS、JSON 格式或固定客户端头视为凭据。GM 后台请求可能没有网页 Origin，接收端不能据此识别所有触发无 Origin session GET 的页面。JWT 不出现在 URL 或日志中，JWT_SECRET 不发送到新连接页或脚本。
+正式 HTTP 接入使用 HTTPS，Cookie 为 Secure、HttpOnly、SameSite=None，Path 限于保留部署前缀的 Twitter 协议路径，期限不晚于 JWT `exp`。只有这些路由读取协议 Cookie，Core 其他受保护路由继续要求既有 Bearer。无关网页不能读取协议响应或利用 Cookie 发起归档写入，明显的子资源嵌入请求不能触发续签；不能把宽松 CORS、JSON 格式或固定客户端头视为凭据。GM 后台请求可能没有网页 Origin，接收端不能据此识别所有触发无 Origin session GET 的页面。JWT 不出现在 URL 或日志中，JWT_SECRET 不经网络发送给 Core、X 或脚本。
 
 Python 与 Web Distribution 依靠本契约配套；其 [Native Release 独立版本](extension-release-and-installation.md)，不要求版本数字相同。旧阅读端不能假定已支持新版 Resolver，部署需要选择能够解释本契约的 Distribution。
