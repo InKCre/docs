@@ -23,18 +23,19 @@ requirements. An app-only bearer token is not a substitute for authorizing your 
 The browser-side Twitter Extension provides a visual **Setup** wizard. You do not need the OAuth
 script when that wizard is available with a compatible Core Extension.
 
-Use `inkcre/twitter` version `0.4.1` with Core Host SDK `0.3.x` and a compatible Web Host. Both
-Hosts use the same installed version: Core runs the Python collector, while the browser loads the
-setup wizard from that release's Module Federation distribution. If browser enablement reports a
-missing distribution, check the release publication and Registry configuration. Do not downgrade to
-`0.3.0`: its Python package targets Core Host `0.1.x`.
+The Bookmark example uses Python `inkcre/twitter` version `0.4.1` with Core Host SDK
+`>=0.3.1 <0.4.0`. Select a compatible Web Module Federation distribution separately: Core runs the
+Python collector, while the browser runs the setup wizard and content views. These are independently
+versioned releases; equal version numbers do not establish compatibility. If browser enablement
+reports a missing distribution, check its release publication, Host compatibility and Registry
+configuration. Do not downgrade to `0.3.0`: its Python package targets Core Host `0.1.x`.
 
 ### 1. Open Setup
 
 1. [Prepare the Extension](/guide/extensions) on Core with name `inkcre/twitter` and version
    `0.4.1`, then enable it on Core.
-2. In **Extensions**, choose **Enable…** on `inkcre/twitter`, select **This browser**, confirm, and
-   click **Setup**.
+2. Install a compatible Web Module Federation distribution for **This browser**. In **Extensions**,
+   choose **Enable…** on `inkcre/twitter`, select **This browser**, confirm, and click **Setup**.
 3. Choose your online Core Peer in the wizard. Enable Twitter there if prompted. Core handles the
    callback and collection; browser enablement alone is insufficient.
 

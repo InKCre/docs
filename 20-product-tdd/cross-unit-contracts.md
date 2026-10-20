@@ -33,6 +33,10 @@ Record durable data and behavior contracts that span more than one unit reposito
 - Registry owns hosting and executable API details; authors own site content and structure.
   Documentation does not become an installable Distribution or alter Host lifecycle authority.
 
+## Twitter 归档信息与接入契约
+
+[Twitter 归档信息与接入契约](twitter-archive-contract.md)拥有 `inkcre/twitter` 各 Distribution 共同使用的 User/Post/Media 原生信息、Resolver 与关系含义、旧帖子过渡，以及 x-monkey 协议的 JWT 会话和媒体按需读取边界。各 Unit 保留自己的 HTTP 注册、持久化实现、采集适配与界面代码。
+
 ## Info-Base Ownership Contract
 
 - Collection, organization, application, graph authority, resolver/storage composition, and
