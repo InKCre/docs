@@ -4,7 +4,7 @@
 
 ## 原生信息与身份
 
-x-monkey 兼容基线为 `v0.2.0` / `0fe02c7f291bbdc48a6376bc30d8a98f63e94136`，完整 wire 字段以该版本的 [archive/model.ts](https://github.com/steven-vvv/x-monkey/blob/0fe02c7f291bbdc48a6376bc30d8a98f63e94136/src/archive/model.ts) 为依据。三类独立实体通过 ID 引用彼此；同一种实体的原生 ID 决定合并身份，不能使用 handle、显示名或 JavaScript 数字替代。
+User、Post、Media 是 Twitter Extension 自有的共同信息模型，供采集适配器、协议适配器和各 Distribution 的 Resolver 共同使用。x-monkey 的兼容基线为 `v0.2.0` / `0fe02c7f291bbdc48a6376bc30d8a98f63e94136`；该版本的 [archive/model.ts](https://github.com/steven-vvv/x-monkey/blob/0fe02c7f291bbdc48a6376bc30d8a98f63e94136/src/archive/model.ts) 只定义这个客户端适配器的固定 DTO，不拥有共同模型的演进或合并规则。三类实体通过 ID 引用彼此；同一种实体的原生 ID 决定合并身份，不能使用 handle、显示名或 JavaScript 数字替代。
 
 | 原生实体 | Resolver | 完整记录的必需字段 | 保留的信息 |
 | --- | --- | --- | --- |
@@ -12,17 +12,17 @@ x-monkey 兼容基线为 `v0.2.0` / `0fe02c7f291bbdc48a6376bc30d8a98f63e94136`�
 | Post | `extensions.twitter.tweet.v2` | `id`、`authorId`、`createdAt` | 正文富文本、长文结构、作者与上下文 ID、媒体顺序、卡片、投票、地点、计数和其他已捕获源事实。 |
 | Media | `extensions.twitter.media.v1` | `id`、`type`、`url` | 图片或封面 URL、尺寸、alt、视频 variants、来源 ID、可用性及其他已捕获媒体元数据。 |
 
-每个根 Block 的 content 保存该实体的原生 JSON，而不是清洗后的阅读文本或另一个归档副本。阅读投影只使用其中部分字段时，不得删改已接纳的其他源事实。原生 ID 为正十进制字符串；正文实体区间是 Unicode 码点的半开区间 `[start, end)`；原生时间使用 UTC ISO-8601，计数观察时间保留采集响应完成时的精度。长文 Draft.js 区间继续采用源数据的单位，不擅自转换成正文区间。
+每个根 Block 的 content 保存共同模型的结构化 JSON，而不是清洗后的阅读文本或另一份协议归档。已保存字段、Resolver ID、Block ID 和引用含义保持兼容，不因适配器与共同模型分离而迁移数据。阅读投影只使用其中部分字段时，不得删改已接纳的其他源事实。原生 ID 为正十进制字符串；正文实体区间是 Unicode 码点的半开区间 `[start, end)`；原生时间使用 UTC ISO-8601，计数观察时间保留采集响应完成时的精度。长文 Draft.js 区间继续采用源数据的单位，不擅自转换成正文区间。
 
 字段缺省表示未知。合并不得把缺省变成 `null`、空数组、空正文或否定值；纯转帖可以只有必需字段和 `repostOf`。嵌套对象递归合并，已出现的数组整体替换并保留顺序。接收到明确引用的 ID、但没有完整记录时，可以建立 content 严格为 `{"id":"..."}` 的身份根；不能编造作者资料、正文或未捕获的上下文。后续完整记录补齐同一根。
 
-x-monkey 与 Bookmark 是共同原生信息的两个采集入口。同一 native Post ID 补充同一根，Bookmark 不能用加工后的媒体占位文本覆盖已保存的完整正文。Provider 只交付它实际观察到的字段；作者 handle 不能充当作者 ID，conversation ID 不能充当回复父帖 ID。
+x-monkey 与 Bookmark 是共同信息的两个入口。x-monkey 在边界将固定 DTO 转为共同模型；官方 API 和 Twikit 也把实际观察到的已支持字段投影到共同模型。持久化和 Resolver 不依赖 wire DTO 或协议状态。同一 Post ID 补充同一根，Bookmark 不能用加工后的媒体占位文本覆盖已保存的完整正文；作者 handle 不能充当作者 ID，conversation ID 不能充当回复父帖 ID。当前 provider 适配器没有保存全部原始响应，未映射的未知字段不构成已保留事实。
 
 匹配时优先使用新版根，再寻找同一原生 ID 的 `extensions.twitter.tweet.v1` 根。旧根获得足够新版事实时原地升级并保留 Block ID，使已有组织和引用继续成立；没有重新采集的 v1 记录仍由 v1 decoder 读取。若历史上已有重复，使用固定目标，不承诺本次搬迁或清理全部重复。普通 Twitter 写入入口对身份匹配、合并和受管关系使用同一串行化边界，提交失败不能留下部分批次；这不将所有 info-base 原始写入都纳入 Twitter 的身份保证。
 
 ## 稀疏计数与重复提交
 
-User/Post 的每项计数与同名 `countsObservedAt` 成对处理，规则与基线 [mergeCapturedArchiveRecord](https://github.com/steven-vvv/x-monkey/blob/0fe02c7f291bbdc48a6376bc30d8a98f63e94136/src/archive/merge.ts) 一致：
+User/Post 的每项计数与同名 `countsObservedAt` 成对处理。以下规则属于 Twitter 的共同模型；客户端适配器保持相应兼容行为，但不将上游实现当作合并权威。比较按毫秒时间值处理，持久记录保留输入时间字符串的精度：
 
 - 新旧值都有观察时间时，较旧观察不能覆盖较新值；相同或较新时间可以覆盖。
 - 相同计数但较新的观察时间仍需保存；不能用客户端“内容是否改变”的返回值忽略元数据写入。
@@ -53,7 +53,7 @@ Post 的受管出边 content 使用以下 JSON grammar；`type` 是表中的一�
 
 ## 媒体读取与独立使用
 
-本版本只保存 Media 原生元数据，不持久化图片或视频字节，也不创建媒体下载 Job。用户明确展开时，Twitter Distribution 从已捕获 URL 经现有 HTTP Storage 读取字节；这次读取不创建持久媒体内容 Block。读取只接受精确匹配允许 CDN 主机的 HTTPS URL；不符合读取条件的原生元数据仍保留。视频/GIF 选择已捕获可用 MP4 variant 中码率最高的地址，不把 HLS 播放清单当作视频本体。
+本版本只保存 Media 元数据，不持久化图片或视频字节，也不创建媒体下载 Job。用户明确展开时，Twitter Distribution 选择已捕获的图片 URL，或视频/GIF 可用 MP4 variants 中码率最高的地址，交给现有 HTTP Storage 读取；这次读取不创建持久媒体内容 Block。URL 的 HTTP(S) 校验、超时、体积限制和重定向处理由通用 Storage 合同拥有。HLS 继续保留为元数据，不作为视频本体加载。
 
 保存、query、列表、文本投影与词法索引不得为了这些 Twitter 媒体读取外部字节；用户明确展开后，才使用现有 HTTP Storage 的超时、大小限制和失败反馈。普通媒体内容 Block 可以按其既有 [词法投影与媒体物化合同](feature-retrieval-and-media-interpretation.md#faithful-media-materialization) 被独立处理；为避免全库索引维护提前读取 Twitter 媒体，本版本不预建这类 Block，不改变通用媒体的词法物化政策。
 
@@ -70,10 +70,12 @@ Post/User Resolver 通过既有投影与索引维护提供原帖 ID/链接、作
 | 相对 Base URL 的路径 | 行为 |
 | --- | --- |
 | `GET /api/v1/session` | 返回会话状态、期限及 `account_url`；未连接时提供连接指引。 |
-| `POST /api/v1/archive/query` | 按各类 ID 批量返回 `found`、`missing` 或 `failed`。完整记录为 `found` 并返回同一份原生 JSON；严格身份根为 `missing`；损坏记录为 `failed`。 |
-| `POST /api/v1/archive/submit` | 接收 User/Post/Media 原生批次，合并后返回逐项状态与对应汇总；原样重放不新增根或受管关系。 |
+| `POST /api/v1/archive/query` | 按各类 ID 批量返回 `found`、`missing` 或 `failed`。适配器将完整共同模型显式投影为固定协议 DTO；严格身份根为 `missing`；损坏记录为 `failed`。 |
+| `POST /api/v1/archive/submit` | 接收固定 User/Post/Media DTO 批次，转为共同模型写入后，由适配器产生逐项状态与汇总；原样重放不新增根或受管关系。 |
 
 一次 submit 的共同事实与受管关系原子保存；数据库失败使整个批次回滚并返回请求错误。结果中的 `accepted` 表示已保存或合并，包括只有计数观察时间变化的持久更新；`unchanged` 表示没有持久变化。不能用成功汇总掩盖失败实体，也不能因本版本有意不下载媒体而返回 `partial`。
+
+读取与写入用例只返回信息、无效记录、Block 身份和实际变化，不产生 x-monkey 状态。协议请求的条数限制与固定 DTO 校验留在适配边界，不成为共同模型的集合上限。适配器按固定 DTO 字段集递归导出响应，其中声明为自由 JSON 的文章 data 仍保留其内容；共同模型以后增加的字段不会自动泄漏到旧协议，也不会因旧协议投影而从持久记录删除。
 
 协议不依赖 X OAuth；OAuth 仍只服务 Bookmark 采集。浏览器和脚本管理器适配属于 x-monkey。该接入不提供远端历史浏览、检索或恢复接口，也不补抓请求外的线程和历史。
 
@@ -81,7 +83,9 @@ Post/User Resolver 通过既有投影与索引维护提供原帖 ID/链接、作
 
 协议复用 [Peer JWT](peer-database-runtime-contract.md#jwt-contract)，不新增 PAT、refresh token、签名秘密或会话表。JWT 仍具既有完整 Peer 权限；用途声明与 Cookie 路径都不构成降权或单会话撤销。
 
-用户在 x-monkey 设置远端数据库地址并检测；未连接时通过 `account_url` 打开 Twitter 连接页。该页指引用户另行打开已连接同一 info-base 的 InKCre Web，在 Twitter setup 中点击“连接 x-monkey”。Web 向明确选择的 Core 部署以顶层 POST 投递新鲜 Peer JWT；Core 验证后签发会话 JWT、建立 Cookie，用户返回脚本再次检测。连接页不自动发现 Web 地址，也不接受任意回跳地址。Web 从所选 Core 的 setup 状态提供的可选 `x_monkey_base_url` 判断该入口是否可用，不以两个 Distribution 的版本数字猜测能力。
+用户在 x-monkey 设置远端数据库地址并检测；未连接时通过 `account_url` 打开 Twitter 连接页。该页指引用户另行打开已连接同一 info-base 的 InKCre Web，在 Twitter setup 中点击“连接 x-monkey”。Twitter UI 向 Host 提交所选 Peer 和 `inkcre.twitter.x-monkey.session.v1` 能力的连接意图；Host 按[浏览器凭据交接协议](semantic-retrieval-and-peer-capabilities.md#浏览器凭据交接协议-v1)发现有效广告、绑定该 Peer 的公共基址和路径前缀，再内部签发新鲜 Peer JWT 并顶层表单导航。UI 不接收原始 JWT 或指定任意目标 URL。发起导航只表示 `initiated`；Core 建立 Cookie 后，用户仍需在账户页及脚本检测中确认连接结果。
+
+Twitter 在实际 session 路由就绪且配置了 HTTPS 公共基址时广告此能力，其 inbound 为 `core.peer.protocol.browser-form.v1`，参数为 `{"method":"POST","path":"/twitter/x-monkey/session","credential_field":"token"}`。停用时随路由撤回。setup 状态的 `x_monkey_base_url` 仍供用户复制服务地址；地址展示与连接按钮分别判断，按钮以所选 Peer 的精确能力广告为依据，展示字段不作为凭据投递目标的权威。连接页不自动发现 Web 地址，也不接受任意回跳地址；能力发现不依靠两个 Distribution 的版本数字相同。
 
 会话 JWT 带有签名保护的 `session_use="twitter_archive"`，其默认有效期为 7 天，由 Core 环境配置。首次连接与续签使用同一签发配置；静态 Web 不读取或复制该期限。普通 Peer JWT 只在显式连接入口证明已有权限，普通业务请求不会自动将它升级为可续签会话。
 

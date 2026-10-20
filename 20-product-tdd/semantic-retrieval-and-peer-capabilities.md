@@ -3,7 +3,7 @@
 ## Purpose
 
 Define the shared semantics for semantic retrieval, the minimum focal-block organization
-path that improves its granularity, and synchronous capability delegation between
+path that improves its granularity, and capability delegation and browser credential handoff between
 heterogeneous runtime Peers. Unit repositories still own framework classes, route mounting,
 database queries, scheduler wiring, and provider-specific configuration.
 
@@ -142,6 +142,22 @@ The first admitted exact capability IDs are:
 - `core.organization.rumination.v1`;
 - `core.extension.management.v1`;
 - `extensions.mail.mime_part.materialize.v1`.
+
+## 浏览器凭据交接协议 V1
+
+`core.peer.protocol.browser-form.v1` 供需要浏览器顶层导航的显式凭据交接使用。业务能力拥有接收路由及后续会话语义，Host/Auth 拥有目标校验、Peer JWT 签发和表单传输。广告参数为：
+
+```json
+{"method":"POST","path":"/business/session","credential_field":"token"}
+```
+
+参数对象只接受上述三个字段，`method` 固定为 `POST`。`path` 是相对于 Peer 公共基址及其路径前缀追加的路由，最长 2048 字符，各段只能包含 ASCII 字母、数字、下划线和短横线，遵守 `^(?:/[A-Za-z0-9_-]+)+$`；不接受查询、fragment、点段、双斜线或百分号编码。`credential_field` 指定表单中承载凭据的字段，遵守 `^[A-Za-z][A-Za-z0-9_-]{0,63}$`，且不能是 `action`、`enctype`、`method`、`requestSubmit`、`submit` 或 `target`，避免遮蔽浏览器表单属性。
+
+调用者只提交明确选择的 Peer 与精确 capability ID。Host 按数据库时间确认该 Peer 的 live lease，并读取该能力的有效广告；不替换成其他 Peer，也不执行自动重试。Host 从该 Peer 的 `http_public_base_url` 派生目标，要求 HTTPS、无 userinfo/query/fragment，保留已有路径前缀并追加广告 path。业务 UI 不能把任意 URL 或待签 JWT 传入这条路径。
+
+仅在显式调用时，Host/Auth 内部签发新鲜的现有 Peer JWT，通过 `application/x-www-form-urlencoded`、`target=_top` 的 POST 表单将其放入 `credential_field`。原始 JWT 不返回业务 UI，也不进入 URL。调用结果最多说明导航已发起，即 `initiated`；它不证明远端建立会话、Cookie 被浏览器接受或业务操作成功。业务需要通过自己的完成页面或会话检查确认后续结果。
+
+这是一条导航交接合同，不使用 HTTP V1 的请求／响应 envelope。接收能力自行决定是否兑换同类会话 JWT、Cookie、有效期和续签；通用 Host 不吸收这些业务政策。
 
 ## Runtime Authentication And Advertisement
 
