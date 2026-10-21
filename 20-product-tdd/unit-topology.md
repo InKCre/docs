@@ -22,8 +22,9 @@ Define cross-unit technical boundaries and ownership so changes do not leak resp
 - Peer equality does not imply identical execution ability. A business facade may execute
   locally on a capable Peer or delegate one exact synchronous capability to another live
   Peer without turning the deployment into a fixed frontend/backend hierarchy.
-- `impl-swift` 的首个 macOS 分发提供系统采集和持久待办。它通过共享 Peer 公告调用精确采集能力，
-  不承载通用扩展宿主；已收入的材料属于共享 info-base，其他具备解释能力的 Peer 可以独立读取。
+- `impl-swift` 的首个 macOS 分发提供系统采集和持久待办。它自行构图，通过共享数据库协议原子写入，
+  不依赖 Python Peer 或通用扩展宿主；已收入的材料属于共享 info-base，其他具备解释能力的 Peer 可以独立读取。具体跨 Peer
+  语义见[主动采集持久化契约](capture-contract.md)。
 - Shared actors，assets，trust boundaries and proportional security classification use the
   [Security Boundary Model](security-boundary-model.md)。Each Unit still owns its executable
   admission，rendering，runtime and deployment mechanics。

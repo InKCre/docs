@@ -9,6 +9,7 @@
 - [Cross-unit contracts](../20-product-tdd/cross-unit-contracts.md)
 - [跨 Peer 可观测性契约](../20-product-tdd/observability-contract.md)
 - [Twitter 归档信息与接入契约](../20-product-tdd/twitter-archive-contract.md)
+- [主动采集持久化契约](../20-product-tdd/capture-contract.md)
 - [Knowledge capability contract](../20-product-tdd/knowledge-capability-contract.md)
 - [Semantic retrieval and Peer capabilities](../20-product-tdd/semantic-retrieval-and-peer-capabilities.md)
 - [Feature retrieval and media interpretation](../20-product-tdd/feature-retrieval-and-media-interpretation.md)
