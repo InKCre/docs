@@ -1,58 +1,43 @@
-# 主动采集持久化契约
+# Capture Extension 合同
 
-原生 Mac Peer 自己校验采集材料、构造共享图并写入 info-base。它通过既有认证数据库协议访问 PostgreSQL／PostgREST，无需 Python Peer、执行者公告或通用扩展宿主。Python 仓库拥有数据库 schema 和迁移，这不构成运行时写入依赖。
+`inkcre/capture` 是 first-party extension，拥有材料、来源、采集图、收入身份、回执和恢复语义。各平台 Distribution 为所在 Peer 提供这些能力；语言和仓库不决定业务中心。声明支持采集的分发在本 Peer 内完成采集、编辑、本机保存、构图和共享写入，不依赖另一个分发补齐收入流程。
 
-本契约拥有跨 Peer 的 Capture 图、提交身份与原子持久化语义。`impl-swift` 拥有本机采集、待办和构图实现；`impl-py` 拥有数据库事务函数及可选 Python 读取分发；`impl-ts` 拥有可选 Web 读取分发。读取分发的存在、启用与否不影响写入。收入后的信息属于共享 info-base，不依赖原采集者或任何特定执行 Peer 存活。
+原生 Mac 分发通过 PostgreSQL 原生协议操作共享 info-base。Host 提供连接、同连接事务与标准 Block／Relation／Storage 基础操作；Capture 编排业务事务。Python 仓库拥有权威 schema／迁移的交付，不因此成为运行时采集执行者。其他 Peer 按自身能力读取或提供采集分发。
 
-## 冻结材料与图
+## 材料与持久图
 
-本机冻结载荷包含 UUID `submission_id`、带时区的 `captured_at`、入口 `selection | paste | screenshot | manual`、可缺失的 `origin`、有序 `materials` 和可缺失的 `annotation`。出处的 `application_id`、`title`、`url` 都允许缺失；显式粘贴不能推断原始来源。文本材料使用 `kind: text` 和 `text`，图片使用 `kind: image`、`mime_type`、`data_base64` 和可缺失的 `filename`。材料与附注不能同时为空。采集 Peer 将该载荷转换为下述图命令，数据库不接收载荷后代为构图。
+材料包含提交 UUID `submission_id`、采集时间 `captured_at`、入口 `selection | paste | screenshot | manual`、可缺失的 `origin`、有序 `materials` 和可缺失的 `annotation`。出处的应用 ID、标题和 URL 允许缺失；显式粘贴不推断来源。材料和附注不能同时为空。单次至多 128 份材料，文字与附注 UTF-8 加原图 bytes 累计不超过 32 MiB。
 
-单次最多 128 份材料，文本和附注的 UTF-8 字节数加解码图片累计不得超过 32 MiB，HTTP JSON 请求不得超过 48 MiB。支持 PNG、JPEG、GIF、WebP；采集 Peer 验证实际图片格式与声明的 MIME，并拒绝文件损坏或解码尺寸过大的图片。原始字节不经过缩放或重新编码。代理也必须允许相同请求体上限；这两个上限是协议边界，不是所有设备与代理都已完成性能校准的承诺。
-
-调用方先冻结提交 UUID、材料和目标信息库，再发送。网络超时不证明提交失败。恢复先查询同一信息库的 `capture_receipts`，核对指纹，再确认本机结果；没有回执时只可使用原 UUID 和原材料重试。切换当前连接不能重定向已有待办。再次主动采集相同内容使用新 UUID，不进行内容去重。
-
-指纹为规范 JSON 的 SHA-256：对象键排序、紧凑分隔符、UTF-8、缺失的可选字段显式为 `null`，时间转 UTC 并保留六位小数，图片的 `data_base64` 替换为原始字节的 `data_sha256`。UUID 使用标准小写形式；数组顺序、文本换行及 Unicode 组合形式保持原样。Swift 对冻结载荷的网络时间表示再规范化，避免本机亚毫秒时间参与指纹却未被发送。
-
-相同 UUID、相同材料与图返回原回执；相同 UUID、不同材料摘要或不同实际图返回 409，客户端保留材料并要求处理。成功结果包含 `submission_id`、`root_block_id`、`committed_at` 和 `availability: available | deleted`。根 Block 删除后回执仍保留，重试返回 `deleted`，不能复活内容。
-
-## 持久图
+支持 PNG、JPEG、GIF、WebP，验证 MIME、实际格式与解码尺寸。已有支持编码保留原 bytes；系统仅提供原生位图时，由平台分发生成 PNG 后作为本次原图。原文和自己的补充保持可区分，OCR、模型处理不阻塞收入。
 
 | 对象或关系 | 合同 |
 | --- | --- |
-| 根 Block | `extensions.capture.capture.v1`，内容为时间、入口、出处的 JSON |
-| 根 → 材料 | `material:0` 起连续递增的关系，序号不可重复 |
-| 文本材料 | 标准 `core.text.v1`，原文保持不变 |
-| 图片材料 | `extensions.capture.attachment.v1`，内容为 MIME 与可选文件名 |
-| 图片材料 → 原始内容 | 唯一 `content` 关系，目标为 `core.image.v1` |
-| 原始图片 | 标准 PostgreSQL binary storage（`storage = -4`）保存原始字节 |
+| 根 Block | `extensions.capture.capture.v1`，JSON 内容包含采集时间、入口、出处 |
+| 根 → 材料 | 从 `material:0` 连续递增，无重复序号 |
+| 文字 | `core.text.v1`，保持原文 |
+| 图片附件 | `extensions.capture.attachment.v1`，JSON 内容包含 MIME、可选文件名 |
+| 图片附件 → 内容 | 唯一 `content` 关系，目标为 `core.image.v1` |
+| 原图 | 标准 PostgreSQL binary storage `-4`，使用标准 `{"blob_id":"…"}` 指针 |
 | 根 → 用户附注 | 至多一条 `annotation` 关系，目标为 `core.text.v1` |
 
-Resolver 按关系解释材料顺序，不把附注混入原文；缺失或畸形关系显式报错。Web 来源链接仅允许 HTTP(S) 点击，其他来源位置仍可作为文本查看。图片通过标准 storage/resolver 读取，不依赖 Mac 本地文件、Python 内存或派生 OCR。OCR、通用文件、整页抓取和知识查询不属于此版采集范围。
+读取分发按关系解释顺序和附注，畸形关系显式报错。Web 来源只允许 HTTP(S) 点击。信息属于共享 info-base，读取不依赖采集设备本地路径或原分发存活。
 
-## 数据库原子提交
+## 收入、事务与恢复
 
-认证 Peer 调用 `inkcre.commit_capture(submission_id uuid, payload_digest text, graph jsonb)`，PostgREST 对应 `POST /rpc/commit_capture`。JSON 请求键与参数同名；函数返回一个成功结果对象。它使用既有部署 Peer JWT／数据库角色，没有匿名入口，不派发 Job，不查找其他 Peer。
+用户确认后在本机冻结 UUID、材料和目标。Capture 在事务外完成校验和构图，再于同一数据库连接、同一事务内锁定提交身份、检查回执、写图与原图 bytes、写回执。任何写入错误整体回滚。并发请求以 UUID 字符串的 `hashtextextended(value,0)` 取得事务 advisory lock；回执主键再约束唯一性。
 
-`graph` 是采集 Peer 已构造的图，不是待处理的材料请求。其字段为：
+共享 `capture_receipts` 保存 `submission_id`、`payload_digest`、`graph_digest`、`root_block_id`、`committed_at`。摘要必填，根 ID 保留历史引用而不级联删除。相同身份和相同摘要重试恢复原结果；摘要冲突保留材料并要求处理。根删除后返回 `deleted`，不得重建图。
 
-| 字段 | 结构与约束 |
-| --- | --- |
-| `root_local_id` | 根 Block 的负数局部 ID |
-| `blocks` | 1–258 项，每项为 `id`、`resolver`、`content`；ID 为互不重复的负整数，content 为字符串 |
-| `relations` | 至多 257 项，每项为 `from_`、`to_`、`content`，两端只引用本命令的局部 Block |
-| `blobs` | 至多 128 项，每项为 `block_id`、`data_base64`；只关联本命令中不同的 Block |
+材料指纹为规范 JSON 的 SHA-256：键排序、紧凑 UTF-8、缺失可选值为 null、时间 UTC 六位小数、图片数据替换为 bytes SHA-256。文本换行及 Unicode 组合形式不变，材料顺序不变。本机时间冻结为毫秒精度，再规范化为上述时间文本。
 
-函数分配共享 Block ID，将附带 bytes 写入标准 PostgreSQL binary storage，为对应 Block 填入标准 `{"blob_id":"…"}` 指针，并按局部 ID 映射写入关系。它只校验提交结构、引用和限额，不决定 resolver、材料顺序、来源或附注语义，不解码图片或执行采集业务。图 JSON 的 UTF-8 表示至多 48 MiB，解码后 bytes 累计至多 32 MiB；采集 Peer 仍负责前述材料总量和图片格式校验。
+实际图指纹使用 Capture v1 的确定性构图投影：`root_local_id`、有序 `blocks`、`relations`、`blobs`；根局部 ID 为 -1，后续 Block 按材料顺序递减分配，图片附件后紧接内容 Block，附注最后。Block 字段为 id/resolver/content，关系为 from_/to_/content，图片附带项为 block_id/data_base64。对这一投影排序键、紧凑 UTF-8 编码后计算 SHA-256；base64 仅参与摘要投影，原生写入 bytes 使用 bytea 参数。
 
-图、bytes 和 `capture_receipts` 必须在同一个事务中提交。任何引用、编码或持久化错误都回滚整个命令。UUID 的事务 advisory lock 串行化并发重试，回执主键提供唯一性约束；通用图写入原有的新建语义不变。
+网络超时不证明提交失败。本机先查询同目标回执，核对材料指纹后确认；没有回执时以原身份重试。共享回执确认前保留本机材料。更改当前连接不重定向待办；用户再次采集同内容使用新 UUID，不按内容去重。对用户展示和本机保存的回执时间统一为毫秒精度，数据库保留原时间精度。
 
-回执保留 `payload_digest`，用于核对已有本机冻结材料，并由数据库从收到的 `graph` JSONB 计算 `graph_digest`（JSONB 文本的 UTF-8 SHA-256），将提交身份绑定实际图与 bytes。新调用不能沿用同一材料摘要而替换图。函数只为新提交写回执；回执中的根 ID 没有删除级联外键，因此根被删除后重试返回 `deleted`，不会重建图。
+## 平台分发与启停
 
-早期开发合同的回执没有 `graph_digest`，迁移保留其 NULL 值并沿用材料摘要恢复，既有待办的 UUID、目标和材料摘要不迁移。新协议写出的回执总有图摘要；不能通过删除旧回执或重新分配待办身份来升级。
+Capture 的本机草稿格式、待办状态机、系统采集策略和界面属于其平台分发。Host 提供应用、窗口／命令挂载、凭据、持久目录和扩展生命周期。停用某个 Peer 的 Capture 不删除材料或改变共享 schema。
 
-## 验收边界
+Swift 原生分发以 `swift_bundled` 标识，随签名应用携带精确 producer manifest；扩展版本独立于应用版本。未配置数据库时可本机运行。首次加入创建缺失的参与记录，已有选择必须读取且不得覆盖；加入或明确启用成功后，重连不重建已移除的参与，不用缓存启用值覆盖共享意图。用户在线明确启用可以重新创建本 Peer 的缺失参与。离线开关只改变本机运行并说明共享意图未更新；重连读取共享选择，共享写入前复核其精确版本与启用意图。
 
-决定写入是否独立的关键观察是在 Python Peer 停止、其他执行者不可用时，Mac 仍能通过 PostgreSQL／PostgREST 写入包含文字、原图与附注的图。成功提交后丢失响应、重开本机待办并重试只产生一份图；原始 bytes 读回一致。另需覆盖同 UUID 的实际图冲突、事务回滚、根删除后的重放，以及停止 Mac 后其他已具备读取能力的 Peer 冷读共享图。
-
-这些数据库与跨 Peer 观察不替代 macOS 系统权限、真实选区、输入法、物理快捷键和多屏像素的原生验收。
+此 Capture 合同尚未发布，采用一个原生收入协议，不提供旧 HTTP 提交 API、旧回执空摘要或历史本机格式迁移。平台通用数据库协议仍保持原生与 HTTP 的权限对等；未来 HTTP 收入实现须明确自己的事务入口。
