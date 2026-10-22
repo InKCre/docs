@@ -15,8 +15,8 @@ You need a [connected interface](/guide/connect) and a GitHub personal access to
    [GitHub's token instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
    Its account and permissions determine what the collector can see.
 2. [Prepare the Extension](/guide/extensions): `inkcre/github` version `0.3.2` on Core Host SDK
-   `0.3.x`. Follow the Registry-to-Web installation steps, then use **Enable…** on the installed
-   Extension to select your online Core Peer.
+   `0.3.x`. Follow the Registry-to-Web installation steps for your online Core Peer, then use
+   **Enable** in that Peer's row.
 3. Open **Sources** and the create-source form. Enter **Nickname** `My GitHub saves` and choose
    **Type** `extensions.github.stars.Source`.
 4. In the **Form** tab, enter your personal access token in **GitHub token**, then create the
@@ -33,7 +33,7 @@ not a code backup or a full GitHub activity archive.
 
 Start with a working instance and a [connected CLI](/guide/connect-cli). The version below targets
 Core Host SDK `0.3.x`; check the linked release listing for other Host versions. If already
-installed, inspect `inkcre-cli extension get inkcre/github` before changing it. Keep credential
+installed, inspect `inkcre-cli extension status inkcre/github` before changing it. Keep credential
 files and command output private.
 
 1. Create a personal access token for the account whose Stars and Lists you want to collect,
@@ -43,7 +43,8 @@ files and command output private.
 2. Enable the Extension:
 
    ```sh
-   inkcre-cli extension install inkcre/github --version 0.3.2
+   inkcre-cli extension select inkcre/github --distribution python --version 0.3.2
+   # If selection reports a restart, wait for connection check to succeed before enabling.
    inkcre-cli extension enable inkcre/github
    ```
 
@@ -65,7 +66,8 @@ files and command output private.
    backup or a full GitHub activity archive.
 
 See the [GitHub collector](https://github.com/InKCre/impl-py/blob/main/extensions/github/README.md)
-and [published releases](https://registry.inkcre.dev/v1/extensions/inkcre/github).
+and
+[published releases](https://registry.inkcre.dev/v2/extensions/inkcre/github/distributions/python).
 
 Next: [index and search for a known item](/guide/search), then
 [schedule collection](/guide/schedules).

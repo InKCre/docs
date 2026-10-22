@@ -35,7 +35,8 @@ configuration. Do not downgrade to `0.3.0`: its Python package targets Core Host
 1. [Prepare the Extension](/guide/extensions) on Core with name `inkcre/twitter` and version
    `0.4.1`, then enable it on Core.
 2. Install a compatible Web Module Federation distribution for **This browser**. In **Extensions**,
-   choose **Enable…** on `inkcre/twitter`, select **This browser**, confirm, and click **Setup**.
+   use **Install** or **Change Version** in **This browser**'s row, then **Enable** in that row and
+   click **Setup**.
 3. Choose your online Core Peer in the wizard. Enable Twitter there if prompted. Core handles the
    callback and collection; browser enablement alone is insufficient.
 
@@ -80,15 +81,16 @@ account step. You can separately revoke the app in X. Neither action removes col
 ## 1. Enable the Core Extension
 
 ```sh
-inkcre-cli extension install inkcre/twitter --version 0.4.1
+inkcre-cli extension select inkcre/twitter --distribution python --version 0.4.1
+# If selection reports a restart, wait for connection check to succeed before enabling.
 inkcre-cli extension enable inkcre/twitter
 inkcre-cli source types
 ```
 
 Look for `extensions.twitter.bookmark.Source`. If already installed, inspect
-`inkcre-cli extension get inkcre/twitter` before changing it. Check the
-[release listing](https://registry.inkcre.dev/v1/extensions/inkcre/twitter) for other Host versions.
-This CLI / Agent procedure does not require a browser-side Twitter Extension.
+`inkcre-cli extension status inkcre/twitter` before changing it. Check the
+[release listing](https://registry.inkcre.dev/v2/extensions/inkcre/twitter/distributions/python) for
+other Host versions. This CLI / Agent procedure does not require a browser-side Twitter Extension.
 
 ## 2. Connect your X account
 
