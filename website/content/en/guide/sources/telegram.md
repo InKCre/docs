@@ -20,8 +20,8 @@ ID.
    `personal_information.user_id`, not your `@username` or the bot's ID. Telegram may require
    another-device confirmation or a waiting period.
 3. [Prepare the Extension](/guide/extensions): `inkcre/telegram` version `0.3.2` on Core Host SDK
-   `0.3.x`. Follow the Registry-to-Web installation steps, then use **Enable…** on the installed
-   Extension to select your online Core Peer.
+   `0.3.x`. Follow the Registry-to-Web installation steps for your online Core Peer, then use
+   **Enable** in that Peer's row.
 4. Open **Sources** and the create-source form. Enter **Nickname** `My Telegram inbox` and choose
    **Type** `extensions.telegram.source.Source`. In the **Form** tab, enter the bot token and your
    numeric user ID. Leave **Download attachments** off for the first run, then create the Source.
@@ -39,7 +39,7 @@ retains updates for a limited time; keep another copy if your instance sleeps.
 
 Start with a working instance and a [connected CLI](/guide/connect-cli). The version below targets
 Core Host SDK `0.3.x`; check the linked release listing for other Host versions. If already
-installed, inspect `inkcre-cli extension get inkcre/telegram` before changing it. Keep credential
+installed, inspect `inkcre-cli extension status inkcre/telegram` before changing it. Keep credential
 files and command output private.
 
 1. Create a dedicated bot with [@BotFather](https://t.me/botfather): send `/newbot`, follow its
@@ -51,7 +51,8 @@ files and command output private.
 2. Install and enable the Core Extension:
 
    ```sh
-   inkcre-cli extension install inkcre/telegram --version 0.3.2
+   inkcre-cli extension select inkcre/telegram --distribution python --version 0.3.2
+   # If selection reports a restart, wait for connection check to succeed before enabling.
    inkcre-cli extension enable inkcre/telegram
    ```
 
@@ -83,7 +84,7 @@ Use one bot for one Source. This is a capture inbox, not group/channel history i
 notification destination. Attachments are metadata-only in this example; enable
 `download_attachments` when you want their bytes saved too. See the
 [Telegram collector](https://github.com/InKCre/impl-py/blob/main/extensions/telegram/README.md) and
-[published releases](https://registry.inkcre.dev/v1/extensions/inkcre/telegram).
+[published releases](https://registry.inkcre.dev/v2/extensions/inkcre/telegram/distributions/python).
 
 Next: [index and search for a known item](/guide/search), then
 [schedule collection](/guide/schedules).

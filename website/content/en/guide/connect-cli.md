@@ -28,6 +28,13 @@ CLI connects over HTTPS; it does not run another server on your computer.
    inkcre-cli --help
    ```
 
+   The Extension guides use the v2 `extension select/unselect` commands. Check
+   `inkcre-cli extension select --help` before following them. Published CLI 0.2.1 still calls the
+   retired install API and receives 405 from a v2 Core. Until the corrected CLI is published, use a
+   reviewed `impl-py` checkout containing the v2 commands and install its standalone `cli/` package
+   with `python -m pip install /path/to/impl-py/cli`. Do not install Core as a CLI dependency or
+   downgrade the deployment to make an old command work.
+
 3. In a local folder outside any Git repository, use a text editor to create `connection.json`:
 
    ```json

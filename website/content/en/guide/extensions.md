@@ -7,9 +7,9 @@ description: Install a collector and enable it on the Peer that will run it.
 # Prepare an Extension
 
 Start with a [connected interface](/guide/connect). Your source guide supplies an Extension name,
-version, and Source type. An Extension is installed once in the deployment; enabled Peers share its
-version and configuration. Only install code you trust with the host's authority. Do not change a
-working installation merely to match an example.
+version, and Source type. Extension identity and configuration are shared, but each Peer selects its
+own native Distribution and exact version. Only install code you trust with the host's authority. Do
+not change a working installation merely to match an example.
 
 <InterfaceGuide>
 <template #web>
@@ -17,13 +17,12 @@ working installation merely to match an example.
 ## Prepare the Core collector
 
 1. Open **Extensions** in the Web app and choose **Browse Registry**. Search for the Extension named
-   in your source guide, open its details, and select that guide's exact version. The Registry page
-   shows its Core and Web distributions. Choose **Install in** your Web app, check the Extension and
-   version on the returned page, then choose **Install**. This does not require a Peer selection or
-   start the Extension.
-2. Back in **Extensions**, choose **Enable…** on the installed Extension. In the dialog, select your
-   online **Core** Peer by name and version, then choose **Enable selected**. You may select more
-   than one Peer. A Python collector such as RSS runs on Core, not **This browser**.
+   in your source guide and select the Python Distribution's exact version. Choose **Install in**
+   your Web app. On the returned page, verify the coordinate/version, select the online **Core** in
+   **Peer**, and choose **Install**. This selects a version for that Peer; it does not enable it.
+2. Back in **Extensions**, find Core's row under **Used on Peers**. Wait for any managed restart,
+   refresh its status, then choose **Enable** in that row. A Python collector such as RSS runs on
+   Core, not **This browser**.
 3. If the guide requires Extension-wide settings, open **Edit Config** and save them. Source account
    settings belong in **Sources**, unless the guide says otherwise.
 4. Open **Sources**, create a Source, and check that its **Type** is available. An installed entry
@@ -33,35 +32,38 @@ If enablement fails, check that the affected Peer is online and that this releas
 compatible distribution for it. Do not choose **This browser** as a workaround for a Python-only
 collector.
 
-For an existing installation, expand **Version and removal** to change its version or uninstall it.
-Check both Hosts and disable every Peer using it first. Version and configuration are shared across
-the deployment. **Documentation** opens links to the guides published with that exact release.
+For an existing selection, use **Change Version** or **Remove** in the target Peer's row after
+disabling it. Other Peers retain their selections; shared configuration and collected information
+remain. **Documentation** opens links for that Peer's exact native release.
 
 ## Browser Extensions and setup wizards
 
 A browser Extension adds capabilities such as content rendering or a **Setup** wizard. For a release
-with compatible Python **and** browser distributions, enable it on Core, then use **Enable…** again
-to select **This browser**. Open **Setup** when that button appears.
+with compatible Python **and** browser distributions, select a compatible Module Federation release
+in **This browser**'s row and enable it there. Open **Setup** when that button appears.
 
-Do not install a different shared version to obtain a wizard without checking both Hosts. The
+Python and Module Federation versions are independent; equal version numbers are not a compatibility
+test. Check each Host's SDK range and the Extension's shared business contract. The
 [Twitter guide](/guide/sources/twitter) walks through its paired Core and browser setup.
 
 </template>
 <template #cli>
 
-## Install and enable on Core
+## Select and enable on Core
 
 Use the name and version in your source guide. For example, RSS on Core Host SDK `0.3.x`:
 
 ```sh
-inkcre-cli extension install inkcre/rss --version 0.2.1
+inkcre-cli extension select inkcre/rss --distribution python --version 0.2.1
+# If selection reports a restart, wait for connection check to succeed before enabling.
 inkcre-cli extension enable inkcre/rss
 inkcre-cli source types
 ```
 
-For an existing installation, inspect `inkcre-cli extension get inkcre/rss` first. Version changes
-affect all Peers using the installation. Configuration and command output may contain credentials;
-keep them private.
+For an existing selection, inspect `inkcre-cli extension status inkcre/rss` first. Use
+`--peer PEER_ID` to target another Peer; omission targets the connected Core. Disable that Peer
+before changing or removing its selection with `extension unselect`. Configuration and command
+output may contain credentials; keep them private.
 
 </template>
 </InterfaceGuide>

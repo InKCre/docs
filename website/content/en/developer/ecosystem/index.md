@@ -23,9 +23,9 @@ another tool. An Extension packages one or more capabilities for a compatible Ho
 integration needs all three or a custom browser interface.
 
 The Python path uses a native wheel, the `inkcre.core.extensions` entry point, and an exact Registry
-Release. Core installs that release and a Peer records its enabled intent. An online Host then
-activates the Extension best-effort; users do not maintain a second durable running flag. Browser
-code is a separate distribution, not automatically produced by a Python wheel.
+Release. A Peer selects its own Distribution/version and records its enabled intent. An online Host
+then activates the Extension best-effort; users do not maintain a second durable running flag.
+Browser code is a separate distribution, not automatically produced by a Python wheel.
 
 The Source tutorial targets **Core Host SDK 0.3.x**. Its Python programming interfaces currently
 import Core modules; they are not an independent, universally stable Source SDK. The Extension
