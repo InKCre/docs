@@ -23,6 +23,7 @@ Define cross-unit technical boundaries and ownership so changes do not leak resp
   locally on a capable Peer or delegate one exact synchronous capability to another live
   Peer without turning the deployment into a fixed frontend/backend hierarchy.
 - `inkcre/capture` 是 first-party extension，拥有跨平台的材料、采集图与收入语义。Mac 原生分发在本 Peer 内完成采集、持久待办、构图与共享写入；Host/Core 提供通用运行和数据库能力。
+- `inkcre/local-files` 拥有目录来源、文件位置引用、正文与持续更新合同。具备文件访问能力的分发直接收入，读取分发解释已存正文，不要求执行 Peer 在线；见[本地文件合同](local-files-contract.md)。
 - Mac 使用 PostgreSQL 原生协议，Web 按浏览器运行能力使用 PostgREST；传输选择不划分 Peer 业务权威。仓库维护位置不构成运行时流水线。具体语义见[Capture Extension 合同](capture-contract.md)。
 - Shared actors，assets，trust boundaries and proportional security classification use the
   [Security Boundary Model](security-boundary-model.md)。Each Unit still owns its executable
