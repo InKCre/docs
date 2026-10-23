@@ -89,6 +89,30 @@ source object metadata block -> semantic content block -> storage-backed bytes
   sole association fact. Root content must not copy that association merely to simplify an
   adapter.
 
+## 提取结果与保留依据
+
+`core.organization.extraction-result.v1` 表达可独立复用的组织产物。其 hydrated
+content 为 JSON 对象：`text` 是非空整理正文，`basis` 是非空依据组数组。每组包含
+唯一的非空 `key`、`observed_origin` 和非空 `excerpts` 数组；每条引文为非空原文。
+`observed_origin` 只包含实际取得的非空 `label`，不能臆造。所有这些对象拒绝未知字段。
+整理正文与原文引用应清楚区分，
+来源标题不能自动证明发言者归属。
+
+来源 Block 指向结果 Block 的关系内容为 JSON
+`{"kind":"core.organization.extraction.source.v1","basis_key":"b1"}`，其中 `basis_key`
+对应本结果内的组 key。来源身份仅由关系端点表达，不重复保存在结果内容中；该关系表示
+本次取材出处，不等于支持或反对，也不表示原作者认可结果。写入时每组恰好关联一个来源，
+读取时允许关联已缺失。歧义或损坏的映射必须明确失败，不能阻断结果正文与内嵌依据的读取。
+
+删除或更新原材料不删除或改写已保存的正文、必要引文和历史出处；删除结果则一并删除其
+内嵌依据，不删除来源或其他结果。缺边只说明关联不可用，不能据此判断删除原因。
+结果读取不重新抓取或恢复原材料。
+
+提取行为核对实际读取的原文，并在一个产物内保留必要的归属、条件和语境。没有独立增益
+时可以不产出；不能将 token 分片自动视为知识节点。字符串核对不能替代语义判断，任意
+Peer 直接写入该结果类型也不会因此获得真实性认证。采集、查询与其他组织行为不以提取
+为前置步骤，提取也不依赖采集器的完整历史档案或统一修订服务。
+
 ## Resolver Contract
 
 - The resolver identity selects the exact resolver contract version for persisted block
