@@ -99,6 +99,7 @@ export default defineConfig({
               link: '/guide/daily-use',
               items: [
                 { text: 'Browse and Use Your Information', link: '/guide/daily-use' },
+                { text: 'Manage Connections', link: '/guide/connections' },
                 { text: 'CLI / Agent Connection', link: '/guide/connect-cli' },
                 { text: 'ChatGPT via MCP', link: '/guide/sinks/chatgpt' },
               ],

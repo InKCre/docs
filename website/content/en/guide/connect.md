@@ -19,28 +19,24 @@ the site.
 1. Retain your deployment's **PostgREST URL**, private **JWT secret**, and Core URL.
 2. Open [Web app Settings](https://app.inkcre.dev/settings). Only enter your secret into a Web app
    you trust: it grants full deployment authority, not a limited app session.
-3. Enter the PostgREST base URL in **PostgreSQL REST URL**, and the secret in **JWT Secret**. Do not
-   substitute the Core URL for PostgREST.
-4. Select **Save** in **Connection**. Language changes take effect separately, without saving the
-   connection again.
+3. Enter a **Connection name**, the PostgREST base URL in **PostgREST URL**, and the secret in **JWT
+   signing secret**. Do not substitute the Core URL for PostgREST.
+4. Select **Save and use connection** in **Connection**. Language changes take effect separately,
+   without saving the connection again.
 5. Open **Peers**. Confirm that **This browser** and Core appear with their application versions.
    Use **Refresh** after Core starts if its state has not updated yet.
 6. To use the public Extension Registry, select **Edit Config** on **This browser**, set
    `extension_registry_url` to `https://registry.inkcre.dev`, and save.
-
-![Client-web Settings showing connection and local preferences](/images/client-web/settings-overview.png)
-
-_Settings stores this browser's connection and language. Peer-specific configuration lives under
-Peers._
 
 ![Client-web Peers showing the current browser and Core with their versions and states](/images/client-web/peers-overview.png)
 
 _Peers shows the runtimes connected to this deployment. Edit a Peer when configuration belongs to
 that runtime._
 
-The connection belongs to this browser origin. To restore it in another browser, use **Export** and
-**Import** under **Backup and restore**. Keep the file private: it includes your JWT secret. This
-restores browser settings, not a backup of your collected information.
+The connection belongs to this browser origin. To add another instance, switch between saved
+connections, or move the complete list to another browser, follow
+[Manage Connections](/guide/connections). Keep exported settings private: they include the saved JWT
+secrets and do not back up collected information.
 
 **Checkpoint:** Settings saves successfully and you can open **Sources**. An empty list is normal
 for a new instance; a connection error is not an empty list.
