@@ -17,9 +17,9 @@ a bounded Memos `0.29.1` API subset; the previously accepted client is MoeMemos 
 1. [Prepare the Extension](/guide/extensions): use **Browse Registry** to select `inkcre/memos`
    version `0.3.0` for Core Host SDK `0.3.x`, then confirm the installation back in the Web app. For
    an existing installation, follow that guide's version-change instructions.
-2. In **Extensions**, choose **Enable…** on Memos, select **This browser**, confirm, and open
-   **Setup**. The same release supplies the browser setup and Core service; do not install a
-   different version for each client.
+2. In **Extensions**, use **Install** or **Change Version** in **This browser**'s row to select a
+   compatible Module Federation release, then **Enable** and open **Setup**. The Python and browser
+   releases have independent versions; match each Host's SDK range and their shared Memos contract.
 3. Choose your Core if more than one is available, then select **Prepare connection**. Setup
    generates or reuses a dedicated PAT and enables Memos on that Core when necessary.
 4. Copy **Server URL** and **Personal Access Token** into the supported Memos client's account
@@ -52,10 +52,11 @@ implements a bounded Memos `0.29.1` API subset; the previously accepted client i
 ## 1. Configure the Extension
 
 Start with a [connected CLI](/guide/connect-cli) and a Core HTTPS URL. Install the Core Host SDK
-`0.3.x` release, or inspect `inkcre-cli extension get inkcre/memos` if already installed:
+`0.3.x` release, or inspect `inkcre-cli extension status inkcre/memos` if already installed:
 
 ```sh
-inkcre-cli extension install inkcre/memos --version 0.3.0
+inkcre-cli extension select inkcre/memos --distribution python --version 0.3.0
+# If selection reports a restart, wait for connection check to succeed before enabling.
 ```
 
 Generate a dedicated PAT and save it in your password manager. Its required format is `memos_pat_`
@@ -103,7 +104,9 @@ before diagnosing the instance itself.
 Remove the account from the client and rotate or clear `personal_access_token` to revoke the old
 credential. Disable the Extension to withdraw its routes. These actions do not erase stored notes.
 
-See the [release listing](https://registry.inkcre.dev/v1/extensions/inkcre/memos) and the
+See the
+[release listing](https://registry.inkcre.dev/v2/extensions/inkcre/memos/distributions/python) and
+the
 [Memos runtime contract](https://github.com/InKCre/impl-py/blob/main/docs/30-unit-tdd/memos-extension.md).
 
 </template>

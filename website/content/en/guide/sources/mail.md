@@ -14,8 +14,8 @@ You need a [connected interface](/guide/connect) and IMAP credentials for your m
 1. Find your provider's IMAP hostname and enable IMAP if required. Obtain an app-specific password
    where supported. An ordinary password cannot replace an unsupported authentication method.
 2. [Prepare the Extension](/guide/extensions): `inkcre/mail` version `0.3.2` on Core Host SDK
-   `0.3.x`. Follow the Registry-to-Web installation steps, then use **Enable…** on the installed
-   Extension to select your online Core Peer.
+   `0.3.x`. Follow the Registry-to-Web installation steps for your online Core Peer, then use
+   **Enable** in that Peer's row.
 3. Open **Sources** and the create-source form. Use **Nickname** `My mail` and **Type**
    `extensions.mail.source.Source`.
 4. In the **Form** tab, set **Protocol** to `imap`. Under **Parameters**, enter the hostname, port
@@ -46,8 +46,8 @@ mail._
 
 Start with a working instance and a [connected CLI](/guide/connect-cli). The version below targets
 Core Host SDK `0.3.x`; check the linked release listing for other Host versions. If already
-installed, inspect `inkcre-cli extension get inkcre/mail` before changing it. Keep credential files
-and command output private.
+installed, inspect `inkcre-cli extension status inkcre/mail` before changing it. Keep credential
+files and command output private.
 
 1. Find your provider's IMAP hostname and enable IMAP if required. Obtain an app-specific password
    where supported. Accounts requiring an unsupported authentication method cannot be connected by
@@ -55,7 +55,8 @@ and command output private.
 2. Install and enable the Core Extension:
 
    ```sh
-   inkcre-cli extension install inkcre/mail --version 0.3.2
+   inkcre-cli extension select inkcre/mail --distribution python --version 0.3.2
+   # If selection reports a restart, wait for connection check to succeed before enabling.
    inkcre-cli extension enable inkcre/mail
    ```
 
@@ -99,7 +100,8 @@ and command output private.
 
 See the
 [Mail configuration](https://github.com/InKCre/impl-py/blob/main/docs/30-unit-tdd/mail-extension.md)
-and [published releases](https://registry.inkcre.dev/v1/extensions/inkcre/mail).
+and
+[published releases](https://registry.inkcre.dev/v2/extensions/inkcre/mail/distributions/python).
 
 Next: [index and search for a known item](/guide/search), then
 [schedule collection](/guide/schedules).

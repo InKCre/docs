@@ -79,9 +79,11 @@ namespaces = true
 ```
 
 The product coordinate (`yourname/notebook`), Python project name, and module path serve different
-purposes. The entry-point name and Extension's `ext_id` must agree. Declare direct dependencies;
-Core checks them against its existing environment and will not fetch arbitrary missing dependencies
-while enabling your Extension. A new dependency may require a custom Core image.
+purposes. The entry-point name and Extension's `ext_id` must agree. Declare direct dependencies.
+When Core installs the wheel, its Python package installer resolves those dependencies from the
+deployment's configured package indexes. Installation can therefore change the shared Core Python
+environment or fail on an unavailable or incompatible dependency; test the finalized wheel against
+the exact Host environment instead of assuming dependency isolation.
 
 Save `extensions/notebook/__init__.py`:
 
@@ -152,7 +154,7 @@ class Source(SourceBase[SourceConfig], config_cls=SourceConfig):
             await uow.graph.relations.fetchsert(
                 RelationModel(from_=anchor.id, to_=block.id, content="snapshot")
             )
-            # ponytail: remembers one snapshot; use native-ID reconciliation for a multi-item feed.
+            # shortcut: one snapshot only; use native-ID reconciliation for a multi-item feed.
             source.state = {**(source.state or {}), "last_snapshot": snapshot}
             await uow.sources.save(source)
 ```
@@ -163,11 +165,14 @@ advanced if persistence fails. URL participates in snapshot identity so changing
 not reuse the old endpoint's state. The built-in text Resolver makes the saved text readable and
 indexable.
 
-This is a snapshot collector: a changed response creates another snapshot; returning to older text
-can create another one too. It neither reconciles a whole remote collection nor deletes earlier
-snapshots. The endpoint is selected by the user, not exposed as a public URL-fetching API. For a
-real service, add its authentication, bounded response handling, native identity, pagination, rate
-limits, and incremental state according to that service's contract.
+This is a snapshot collector: a changed text creates another snapshot. Text identity is
+content-based, so A→B→A reuses the original A Block and relation instead of creating a third one.
+Changing only the response `id` updates Source state but does not add another graph snapshot because
+this deliberately small example does not model native identity. It neither reconciles a whole remote
+collection nor deletes earlier snapshots. The endpoint is selected by the user, not exposed as a
+public URL-fetching API. For a real service, add its authentication, bounded response handling,
+native identity, pagination, rate limits, and incremental state according to that service's
+contract.
 
 Source configuration is long-lived input, Source state remembers progress, and Job parameters/state
 belong to one execution. Use `collect_config_cls` for typed per-run options and
@@ -182,7 +187,7 @@ Source SDK:
 ```sh
 python3.12 -m venv .venv
 . .venv/bin/activate
-python -m pip install build 'inkcre-extension-toolkit[cli] @ https://github.com/InKCre/ext-reg/releases/download/toolkit-v0.2.1/inkcre_extension_toolkit-0.2.1-py3-none-any.whl'
+python -m pip install build 'inkcre-extension-toolkit[cli] @ https://github.com/InKCre/ext-reg/releases/download/toolkit-v0.5.0/inkcre_extension_toolkit-0.5.0-py3-none-any.whl'
 python -m build --wheel --outdir dist/raw
 inkcre-ext python wheel finalize --project pyproject.toml --wheel dist/raw/yourname_inkcre_notebook-0.1.0-py3-none-any.whl --output-dir dist/final
 ```
@@ -212,13 +217,35 @@ For Core running on the same machine, build and serve the preview in a separate 
 
 ```sh
 inkcre-ext preview build --inventory preview.json --public-origin http://127.0.0.1:8766 --output dist/registry
-python -m http.server 8766 --bind 127.0.0.1 --directory dist/registry
+```
+
+The generated API uses extensionless paths and supplies `_redirects` rewrites. Plain
+`python -m http.server` does not apply them and returns 404. Save this local-only server as
+`serve-preview.py` beside `preview.json`, then run `python serve-preview.py`:
+
+```python
+from functools import partial
+from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
+
+root = Path("dist/registry")
+routes = dict(line.split()[:2] for line in (root / "_redirects").read_text().splitlines())
+
+
+class Handler(SimpleHTTPRequestHandler):
+    def translate_path(self, path):
+        return super().translate_path(routes.get(path.split("?", 1)[0], path))
+
+
+ThreadingHTTPServer(
+    ("127.0.0.1", 8766), partial(Handler, directory=str(root))
+).serve_forever()
 ```
 
 For remote Core, publish **only** the generated `dist/registry` directory to an isolated static
-HTTPS origin you control and use that origin as `--public-origin`. Keep it available for
-installation and restart. This facade contains only the supplied releases; it is not a mirror of the
-public Registry.
+HTTPS origin that honors `_redirects` and `_headers` (or equivalent rules), and use that origin as
+`--public-origin`. Keep it available for installation and restart. This facade contains only the
+supplied releases; it is not a mirror of the public Registry.
 
 In the terminal with your CLI, inspect `inkcre-cli peer get self` and
 `inkcre-cli config get extension.registry`. Record the prior setting (a missing config is normal). A
@@ -228,7 +255,14 @@ origin, replacing the URL if Core is remote:
 
 ```sh
 inkcre-cli config replace extension.registry --schema-id extension.registry.config.v1 --input-json '{"extension_registry_url":"http://127.0.0.1:8766"}'
-inkcre-cli extension install yourname/notebook --version 0.1.0
+inkcre-cli extension select yourname/notebook --distribution python --version 0.1.0
+```
+
+Selecting records this Peer's exact Distribution/version and applies the wheel, which may restart
+Core. If the receipt reports `restart_required`, wait until `inkcre-cli connection check` succeeds
+again before enabling it:
+
+```sh
 inkcre-cli extension enable yourname/notebook
 inkcre-cli source types
 ```
@@ -262,25 +296,65 @@ test. Do it on the disposable instance before inviting others to install your co
 not provide complete multi-item reconciliation or guarantee ordering of overlapping fetches; avoid
 overlapping runs and design that policy before using it as a multi-item collector.
 
-Stop any test Crons, disable/uninstall the test Extension, restore the prior Registry configuration
-(delete the config only if it did not exist before), and stop the fixture/preview servers when done.
-Removing the Extension does not itself erase collected graph data. For iteration, use a new release
-version, disable all enabled Peers, and restart Core when replacing already-imported code; do not
-overwrite published bytes or treat disable/re-enable as Python module reload.
+Stop any test Crons, disable the test Extension and cancel this Peer's selection with
+`inkcre-cli extension unselect yourname/notebook`, restore the prior Registry configuration (delete
+the config only if it did not exist before), and stop the fixture/preview servers when done.
+Cancelling selection does not erase shared configuration or collected graph data. For iteration, use
+a new release version, disable the target Peer, and restart Core when replacing already-imported
+code; do not overwrite published bytes or treat disable/re-enable as Python module reload.
 
 ## Deliver your integration
 
-Keep the package in your own repository. To distribute through a Registry, obtain permission for
-your namespace, prepare the exact release association, upload the finalized wheel, and publish the
-release using the [Extension Toolkit](https://github.com/InKCre/ext-reg/tree/main/toolkit). Users
-then install your exact coordinate/version and follow your source-specific setup guide. The static
-preview is a development path, not authorization to publish to `registry.inkcre.dev`.
+Keep the package in your own repository. The public Registry path requires a namespace and publisher
+token issued by its operator; a successful private preview does not grant either one. After
+receiving them, create `release.json` from the same project metadata and immutable source revision
+used to build the finalized wheel:
+
+```json
+{
+  "nickname": "Notebook",
+  "version": "0.1.0",
+  "python": {
+    "entry_point": {
+      "group": "inkcre.core.extensions",
+      "name": "notebook",
+      "object": "extensions.notebook:Extension"
+    },
+    "host_sdk": "core-py",
+    "host_sdk_version": ">=0.3.0 <0.4.0",
+    "project": "yourname-inkcre-notebook",
+    "source_repository": "https://github.com/yourname/notebook-extension",
+    "source_revision": "<full-commit-sha>"
+  }
+}
+```
+
+Prepare the Python association, upload the finalized wheel through the Registry's PyPI-compatible
+endpoint, and publish that same version. Install Twine in the build environment and provide the
+token through environment variables rather than committing it or writing it into a project
+configuration:
+
+```sh
+python -m pip install twine
+export INKCRE_EXTENSION_REGISTRY_URL=https://registry.inkcre.dev
+# Inject INKCRE_EXTENSION_REGISTRY_TOKEN through your trusted secret manager.
+
+inkcre-ext prepare-release --namespace yourname --name notebook --distribution python --request release.json
+TWINE_REPOSITORY_URL="$INKCRE_EXTENSION_REGISTRY_URL/legacy/" \
+  TWINE_USERNAME=__token__ \
+  TWINE_PASSWORD="$INKCRE_EXTENSION_REGISTRY_TOKEN" \
+  python -m twine upload dist/final/yourname_inkcre_notebook-0.1.0-py3-none-any.whl
+inkcre-ext publish-release --namespace yourname --name notebook --distribution python --version 0.1.0
+```
+
+Published coordinates and wheel bytes are immutable; repair mistakes with a new version. Users then
+install the exact coordinate/version and follow your source-specific setup guide.
 
 For larger collectors, study the
 [RSS implementation](https://github.com/InKCre/impl-py/tree/main/extensions/rss) for incremental
 reconciliation and the
 [Source runtime](https://github.com/InKCre/impl-py/blob/main/app/business/source/main.py) for
 current signatures. The
-[native distribution contract](https://github.com/InKCre/impl-py/blob/main/docs/40-deployment/native-extension-distribution.md)
+[native distribution contract](https://github.com/InKCre/impl-py/blob/main/docs/40-deployment/first-party-extension-distribution.md)
 owns Host installation, dependency admission, restart, and release rules. Pin and test the Host
 compatibility you declare; a working example is not a promise that every `app.*` API is stable.

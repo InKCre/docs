@@ -15,6 +15,17 @@ repository; it does not need to become a Core contribution.
 > [!NOTE] There is no copied, universal setup or contribution procedure. Toolchains and commands
 > belong to the repository that runs and verifies them.
 
+## Find a useful change
+
+Use the organization searches for
+[`good first issue`](https://github.com/search?q=org%3AInKCre+is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22&type=issues)
+and
+[`help wanted`](https://github.com/search?q=org%3AInKCre+is%3Aissue+is%3Aopen+label%3A%22help+wanted%22&type=issues).
+An empty result means no task has currently been qualified for that label; it is not an invitation
+to guess at an untracked change. For another proposal, open an issue in the owning repository before
+a large implementation and describe the user outcome, affected area, and how it could be verified.
+Report suspected vulnerabilities privately through that repository's `SECURITY.md` instead.
+
 ## Choose the change owner
 
 | Change                                          | Start here                                                                                                                       |
@@ -34,17 +45,49 @@ instead of making one repository silently own the others.
 
 After choosing an owner:
 
-1. Read its root `README.md` and `AGENTS.md`, plus `CONTRIBUTING.md` when present.
+1. Fork the repository, branch from its current `main`, and read its root `README.md`, `AGENTS.md`,
+   and `CONTRIBUTING.md` when present.
 2. Use the runtime and package manager pinned by that repository.
 3. Run its own formatter, checks, and tests.
-4. Follow its pull-request and review requirements.
+4. Push the branch to your fork and open a pull request against the owning repository.
+5. Follow its pull-request and review requirements until checks pass and conversations are resolved.
 
 Useful entry points:
 
 - [`impl-py` contributing guide](https://github.com/InKCre/impl-py/blob/main/CONTRIBUTING.md)
-- [`impl-ts` README](https://github.com/InKCre/impl-ts#readme)
+- [`impl-ts` contributing guide](https://github.com/InKCre/impl-ts/blob/main/CONTRIBUTING.md)
 - [`ui` README](https://github.com/InKCre/ui#readme)
 - [`docs` README](https://github.com/InKCre/docs#readme)
+
+### Setup and access boundaries
+
+| Repository | First setup gate                                                                                                                          | Complete local evidence                                                                                             |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `impl-py`  | Python and PDM versions checked by `pdm run doctor`; integration suites need a disposable PostgreSQL runtime                              | `pdm run check`, plus the repository-local integration or acceptance command for changed behavior                   |
+| `impl-ts`  | Use the pinned Node/pnpm toolchain. Locked UI dependencies download from public Release assets; no organization package token is required | `pnpm check`, plus the relevant browser E2E command                                                                 |
+| `ui`       | Install from the repository root; generated tokens, metadata, and skills must be current                                                  | `pnpm check`, plus visual or interaction review for affected Stories or a real consumer                             |
+| `docs`     | Use the website toolchain pinned in `website/`                                                                                            | The [website contract](https://github.com/InKCre/docs/blob/main/website/README.md), including link and build checks |
+
+The [`impl-ts` contribution guide](https://github.com/InKCre/impl-ts/blob/main/CONTRIBUTING.md) owns
+the verified public dependency setup and future version adoption. If a locked public URL fails,
+report its version and redacted response instead of adding credentials or switching back to a
+private package source. Keep UI dependency values as semver; the repository's exact-version
+overrides select the public tarballs without changing Module Federation's version contract.
+
+## Submit a reviewable change
+
+Use `type(scope): summary` for commit subjects and pull-request titles. The repository guide owns
+its stable scopes; choose the primary implementation area, not every package touched. A
+cross-project change may use a repository-level scope such as `extensions`, while the pull-request
+body and the repository's fragment or Changeset mechanism list every affected release project
+precisely.
+
+Complete the pull-request template with the intended outcome, actual verification evidence, risk and
+rollback, delivery effects, and any stacked pull requests. External fork workflows require
+maintainer approval before read-only CI starts and receive no preview or production credentials. A
+maintainer may therefore need to approve CI or perform a trusted preview; do not work around that
+boundary by adding credentials to the branch. Passing review makes a change eligible to merge, but
+canonical publication and production delivery occur only from protected `main`.
 
 ## Changes to shared truth
 
