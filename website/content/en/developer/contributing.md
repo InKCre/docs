@@ -61,17 +61,18 @@ Useful entry points:
 
 ### Setup and access boundaries
 
-| Repository | First setup gate                                                                                                                                                                                                                                                                                         | Complete local evidence                                                                                             |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `impl-py`  | Python and PDM versions checked by `pdm run doctor`; integration suites need a disposable PostgreSQL runtime                                                                                                                                                                                             | `pdm run check`, plus the repository-local integration or acceptance command for changed behavior                   |
-| `impl-ts`  | `pnpm install` reads the private `@inkcre/ui-web` GitHub Package. Local contributors need a classic PAT with `read:packages` **and** package read access; follow the [authentication instructions](https://github.com/InKCre/ui/blob/main/CONTRIBUTING.md#github-packages-authentication) before install | `pnpm check`, plus the relevant browser E2E command                                                                 |
-| `ui`       | Install from the repository root; generated tokens, metadata, and skills must be current                                                                                                                                                                                                                 | `pnpm check`, plus visual or interaction review for affected Stories or a real consumer                             |
-| `docs`     | Use the website toolchain pinned in `website/`                                                                                                                                                                                                                                                           | The [website contract](https://github.com/InKCre/docs/blob/main/website/README.md), including link and build checks |
+| Repository | First setup gate                                                                                                                          | Complete local evidence                                                                                             |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `impl-py`  | Python and PDM versions checked by `pdm run doctor`; integration suites need a disposable PostgreSQL runtime                              | `pdm run check`, plus the repository-local integration or acceptance command for changed behavior                   |
+| `impl-ts`  | Use the pinned Node/pnpm toolchain. Locked UI dependencies download from public Release assets; no organization package token is required | `pnpm check`, plus the relevant browser E2E command                                                                 |
+| `ui`       | Install from the repository root; generated tokens, metadata, and skills must be current                                                  | `pnpm check`, plus visual or interaction review for affected Stories or a real consumer                             |
+| `docs`     | Use the website toolchain pinned in `website/`                                                                                            | The [website contract](https://github.com/InKCre/docs/blob/main/website/README.md), including link and build checks |
 
-For `impl-ts`, a `401` or `403` during install is an access failure, not a source or lockfile
-defect. Do not commit a package token or add it to the repository `.npmrc`. Contributors who do not
-have package access cannot currently complete the normal local `impl-ts` setup; ask a maintainer to
-confirm whether the proposed task is suitable before investing in that path.
+The [`impl-ts` contribution guide](https://github.com/InKCre/impl-ts/blob/main/CONTRIBUTING.md) owns
+the verified public dependency setup and future version adoption. If a locked public URL fails,
+report its version and redacted response instead of adding credentials or switching back to a
+private package source. Keep UI dependency values as semver; the repository's exact-version
+overrides select the public tarballs without changing Module Federation's version contract.
 
 ## Submit a reviewable change
 
