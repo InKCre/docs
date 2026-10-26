@@ -39,6 +39,11 @@ restore browser configuration, not the contents of an instance.
 
 ## Mac app
 
+Mac development builds require the matching
+[native Capture database support](https://github.com/InKCre/impl-py/pull/151). Use a database
+prepared for that build; a deployment without these database changes cannot accept its Capture
+submissions.
+
 1. Open **Settings** with `⌘,` and choose **连接** (Connection).
 2. Select **添加连接…** (Add connection). Enter a name, PostgreSQL host, port, database, runtime
    role, and database password. The optional Web address is used to open shared information in a
