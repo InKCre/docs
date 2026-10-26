@@ -67,4 +67,8 @@ The [CLI reference](https://github.com/InKCre/impl-py/blob/main/cli/README.md) o
 `--help` explains a command; `--schema` on input-taking commands shows the configuration accepted by
 your running instance.
 
+For another instance, save a different name instead of overwriting `personal`. See
+[Manage Connections](/guide/connections) for switching the default or selecting a connection for one
+command.
+
 Next: [Choose your first source](/guide/first-source).

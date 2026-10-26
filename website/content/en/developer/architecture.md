@@ -66,6 +66,15 @@ Client-web demonstrates this topology: database operations use PostgREST, while 
 capabilities may use native HTTP surfaces advertised by an online Peer. The durable boundary is the
 admitted protocol and capability contract, not a permanent frontend/backend hierarchy.
 
+Peers that people interact with directly should normally support local named connections and a
+current selection. Fixed service processes, including an `impl-py` server deployed for one
+info-base, can use a single deployment-configured connection. This recommendation follows the
+runtime's use rather than its language or repository: the CLI shipped by `impl-py` has a separate
+local connection list. Switching changes the foreground target without moving information or
+retargeting work already bound to an instance. The canonical
+[Peer connection guidance](https://github.com/InKCre/docs/blob/main/10-prd/behavior/capabilities.md#peer-本地连接管理推荐)
+owns the scope; [Manage Connections](/guide/connections) describes the user procedures.
+
 Read the canonical
 [unit topology](https://github.com/InKCre/docs/blob/main/20-product-tdd/unit-topology.md) and
 [state authority](https://github.com/InKCre/docs/blob/main/20-product-tdd/system-state-and-authority.md)
