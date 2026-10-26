@@ -66,6 +66,10 @@
 - violation impact: enrichment failure would corrupt primary collection semantics and provenance would be lost.
 - linked claim(s): collect external information into reusable units; expose info-base information for retrieval and downstream use
 
+保存来源声明的标签、作者、分类或关系，表示来源如此表达，不表示 InKCre 已验证其真实性或认可其分类。
+例如，论坛的“已采纳回答”标记可以被保留，但不能因此升级为“答案已证实正确”；来源分类也不会自动成为 info-base 的全局分类。
+整理和后续使用应保留这种归属，既不因保存而授予额外权威，也不因尚未验证而丢弃有用的来源信息。
+
 ## One deployment is one owner context
 
 - rationale: runtime peers and external protocol identities should not silently create an unplanned terminal-user or tenant domain.

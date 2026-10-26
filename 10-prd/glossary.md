@@ -90,6 +90,11 @@
 - user-visible or business lifecycle language: maintaining, splitting, merging, or linking existing information when that makes it more useful.
 - notes on ambiguity with framework terms: breakdown, merge, and linking are known operations, not an exhaustive definition; indexing belongs to application support.
 
+Organization 可以让来源已有的内容边界、结构、关系和元信息更便于使用，不要求产生新的语义主张。
+例如，将已保存的讨论按原有帖子边界整理，并保留作者及明确的回复关系，本身就可能改善使用。
+是否使用模型、当前有哪些 methods，都不决定 Organization 的完整范围；行为归属取决于它对信息采取的动作与产生的效果。
+这不要求首次采集经过 Organization，也不改变 Resolver 在既有合同内解释内容的职责。
+
 ## application
 
 - canonical business meaning: an action that obtains useful results from the info-base, including feature, semantic, and graph-navigation retrieval.
