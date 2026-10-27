@@ -1,4 +1,4 @@
-# 本地文件扩展合同（候选 v1）
+# 本地文件扩展合同
 
 `inkcre/local-files` 将指定 Peer 可访问的文件持续收入同一 info-base。执行分发拥有目录访问、监视、提取与对账；读取分发解释同一份图。原文件留在原 Peer 的文件系统，数据库保存已提取正文和位置引用。其他 Peer 阅读正文无需原 Peer 在线。首版不提供原件传输、备份、OCR 或历史版本。
 
@@ -12,7 +12,9 @@ FSEvents 等平台通知触发被动核对；手动扫描使用普通 Source Job
 
 ## 文件资料与正文
 
-文件根 Block 使用 `extensions.local_files.file.v1`，content 为以下 JSON。成功提取后恰有一条 `body` 关系指向 `core.text.v1`；首次提取失败时可没有正文。用户批注或其他组织关系不属于本扩展更新范围。
+文件根 Block 使用 `extensions.local_files.file.v2`，content 为以下 JSON。成功提取后恰有一条 `body` 关系指向 inline 通用内容：HTML 采用 `core.html.v1`，Markdown 采用 `core.markdown.v1`，纯文及 PDF／DOCX 文字提取采用 `core.text.v1`。首次提取失败时可没有正文。用户批注或其他组织关系不属于本扩展更新范围。
+
+已有 `extensions.local_files.file.v1` 保持其唯一 inline `core.text.v1` 正文合同。读端同时解释两个版本；执行分发在成功重新提取时，沿单份文件事务升级根和正文的 resolver、内容及成功修订，保持根、正文 ID 及其它关系。失败或原件缺失保留旧正文、旧成功修订和旧版本，不扫描全库迁移。分发版本选择沿既有参与合同保护写入，不新增目录类型。
 
 | 字段 | 合同 |
 | --- | --- |
@@ -32,6 +34,6 @@ Source state 包含最近完整扫描时间 `scanned_at`、失败文件数 `erro
 
 ## 文字提取范围
 
-PDF 提取文字层并分隔页面；无文字层、加密和损坏分别报告。DOCX 首版提取主文档文字与表格单元格，不含脚注、批注等附属内容；读取界面须呈现 `main_document` 范围。Markdown、Org、纯文本保留原语法和换行，不执行代码或 include。HTML 只解析本地 DOM，剔除脚本、样式与模板，保留基本段落，不执行脚本或下载外链。
+PDF 提取文字层并分隔页面；无文字层、加密和损坏分别报告。DOCX 首版提取主文档文字与表格单元格，不含脚注、批注等附属内容；读取界面须呈现 `main_document` 范围。Markdown、Org、纯文本保留原语法和换行，不执行代码或 include。Markdown 在阅读时按普通 GFM 解释，Org 保持原文阅读。HTML 从已取得的本地 DOM 及明确的嵌入正文提取内容与结构，保留标题、代码、表格、引用、链接及对象边界；不执行脚本或下载外链，也不把机器文件路径当作网页 base。HTML 与 Markdown 的阅读独立净化并隔离脚本和自动资源加载，不保存平行文字／HTML 正文。
 
-首个 Swift 分发的 extractor 为 `mac-native-text.v1`。输入上限 64 MiB，输出 UTF-8 正文上限 8 MiB；超限报错，不截断后标成功。空白文本允许为空正文，但 PDF／DOCX 没有可提取文字是失败。文本支持 UTF-8、带 BOM 的 UTF-16；不能可靠解码时报告失败。
+Swift 分发的 extractor 为 `mac-native-content.v2`；旧值为 `mac-native-text.v1`。实现变化必须改变标识，使相同原件字节可以重新提取。输入上限 64 MiB，输出 UTF-8 正文上限 8 MiB；超限报错，不截断后标成功。空白文本允许为空正文，但 HTML 空壳及 PDF／DOCX 没有可提取文字是失败。文本支持 UTF-8、带 BOM 的 UTF-16；不能可靠解码时报告失败。
