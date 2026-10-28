@@ -80,7 +80,7 @@ source object metadata block -> semantic content block -> storage-backed bytes
   a new graph node type.
 - Filename, declared MIME, declared length, source URL, and source-authored time remain with
   the metadata authority. The semantic content block uses an exact resolver identity to
-  state image, audio, video, PDF, EPUB, ZIP, text, HTML, or file meaning.
+  state image, audio, video, PDF, EPUB, ZIP, text, HTML, Markdown, or file meaning.
 - Byte-derived facts belong to resolver output unless an organization command has a proven
   reason to materialize them into the graph.
 - Do not add a metadata block when the input has no independent meaning; the pattern is not a
@@ -93,9 +93,11 @@ source object metadata block -> semantic content block -> storage-backed bytes
 
 - The resolver identity selects the exact resolver contract version for persisted block
   content. Unknown versions fail explicitly instead of being guessed.
-- The shared semantic resolver identities are `core.text.v1`, `core.html.v1`,
+- The shared semantic resolver identities are `core.text.v1`, `core.html.v1`, `core.markdown.v1`,
   `core.image.v1`, `core.audio.v1`, `core.video.v1`, `core.pdf.v1`, `core.epub.v1`,
   `core.zip.v1`, and `core.file.v1`.
+- `core.markdown.v1` 解释 Unicode Markdown 源文，解算值及文字投影保留源文，包括空白、代码和链接目标。阅读按 GFM 呈现表格、只读任务列表、删除线和自动链接；派生 HTML 仅用于呈现。来源按明确格式选择 Markdown，不根据纯文本标点猜测。
+- HTML 文字投影保留段落和代码边界、表格单元对应关系与链接目标。来源负责从已取得材料提取结构，resolver 解释已保存内容。通用 HTML／Markdown 阅读净化并隔离不可信内容，不执行来源脚本或自动加载资源。
 - Resolver availability is an exact registry property. Re-registering the same decoder is
   idempotent; a different decoder claiming the same identity is a contract error.
 - Unknown resolver, unsupported capability, supported-but-no-meaningful-result, and authored
