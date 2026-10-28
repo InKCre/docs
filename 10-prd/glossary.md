@@ -52,12 +52,12 @@
 
 - canonical business meaning: a user-facing application through which a person interacts with InKCre or a compatible product protocol.
 - user-visible or business lifecycle language: the app or interface a person uses.
-- notes on ambiguity with framework terms: technical architecture uses `peer` for runtime nodes; product, marketing, landing, and other non-technical material may continue to say client where that is what a person experiences.
+- notes on ambiguity with framework terms: use `client` only for an actual application or a protocol-native client role; it is not a product-facing synonym for an InKCre runtime Peer.
 
 ## peer
 
 - canonical business meaning: one running node that participates in a deployment around the shared info-base and may provide or consume capabilities.
-- user-visible or business lifecycle language: normally hidden behind the product's clients and deployment.
+- user-visible or business lifecycle language: the named runtime shown when a person manages where InKCre capabilities run.
 - notes on ambiguity with framework terms: peer equality describes shared authority and participation, not identical execution ability; one interaction may still have caller/provider or client/server roles.
 
 ## job
@@ -89,6 +89,11 @@
 - canonical business meaning: an action over information already in the info-base whose goal is to improve later use.
 - user-visible or business lifecycle language: maintaining, splitting, merging, or linking existing information when that makes it more useful.
 - notes on ambiguity with framework terms: breakdown, merge, and linking are known operations, not an exhaustive definition; indexing belongs to application support.
+
+Organization 可以让来源已有的内容边界、结构、关系和元信息更便于使用，不要求产生新的语义主张。
+例如，在已经能正确解释的文档中，将选定章节保留为可独立复用的内容，并保持它与原文的联系。
+是否使用模型、当前有哪些 methods，都不决定 Organization 的完整范围；行为归属取决于它对信息采取的动作与产生的效果。
+这不转移 Source 正确收录来源信息的责任，也不转移 Resolver 在既有合同内解释内容的责任；处理发生在入库之后，不使来源解析或修复自动成为 Organization。
 
 ## application
 

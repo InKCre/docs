@@ -1,12 +1,23 @@
 # InKCre Shared Product Docs
 
-This repository is the canonical Hub for product truth shared by InKCre repositories.
+The canonical product truth Hub for InKCre — shared PRD, cross-unit product TDD, and the source of [inkcre.dev](https://inkcre.dev).
 
-- [`10-prd/`](10-prd/index.md) owns product intent, observable behavior, vocabulary, and derived domain boundaries.
-- [`20-product-tdd/`](20-product-tdd/unit-topology.md) owns stable cross-unit topology, authority, and interoperability contracts.
-- [`00-meta/`](00-meta/submodule-profile.md) owns the InKCre-specific Hub/Spoke transport and shared-reference workflow.
-- [`tasks/`](tasks/README.md) is volatile Hub-local collaboration state, not durable shared truth.
+`docs` 是 InKCre 的产品真相 Hub——维护跨仓库共享的 PRD、产品 TDD，以及 [inkcre.dev](https://inkcre.dev) 网站的内容源。
 
-SVC framework guidance is intentionally not copied here. Install the version recorded in [`svc.json`](svc.json), use `svc status --json` to verify adoption, and query guidance with `svc lookup`.
+## Repository shape
+
+- [`10-prd/`](10-prd/index.md) — product intent, observable behavior, vocabulary, and derived domain boundaries
+- [`20-product-tdd/`](20-product-tdd/unit-topology.md) — stable cross-unit topology, authority, and interoperability contracts
+- [`00-meta/`](00-meta/submodule-profile.md) — InKCre-specific Hub/Spoke transport and shared-reference workflow
+- [`website/`](website/) — the source of [inkcre.dev](https://inkcre.dev) (developer guide, architecture, and extension docs)
+- [`tasks/`](tasks/README.md) — volatile Hub-local collaboration state, not durable shared truth
+
+## How Spokes consume this Hub
 
 Spoke repositories consume a published Hub commit through a read-only `docs/_shared/` git submodule. Hub content must be committed and pushed before a Spoke records the reference; Hub edits and Spoke reference bumps stay in separate commits.
+
+## Documentation
+
+- [Agent operating guide](AGENTS.md)
+- [Documentation index](docs/index.md)
+- SVC adoption state: [`svc.json`](svc.json) — verify with `svc status --json`

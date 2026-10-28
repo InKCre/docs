@@ -62,6 +62,19 @@ reset must converge to the same result.
 checked-in identifiers and is not a production-data source. Artifact-owned catalogs are
 reconciled independently from development seed.
 
+## Peer Runtime Identity
+
+One Peer row keeps its stable identity and Human-owned display name separately from facts published
+by the running application. `application_version` is the exact release version of the application
+currently running that Peer. It is not a browser version, Peer protocol version, or Extension Host
+SDK compatibility version.
+
+The application writes `application_version` when it registers and refreshes it after an upgrade.
+Registration may also refresh other runtime-owned facts such as the configuration schema, but it
+must not overwrite a display name that a person changed. Historical rows may have no application
+version; consumers keep them usable and present the version as unknown until that Peer registers
+again.
+
 `reset-dev` requires both an explicit destructive confirmation and a database-owned
 development identity. It refuses production, preview, and unknown databases.
 
@@ -90,19 +103,20 @@ The shared browser-to-database and browser-to-runtime token contract is:
 - audience: required and exactly `inkcre-api`;
 - issued-at (`iat`): required;
 - expiry (`exp`): required;
-- maximum lifetime: 24 hours;
 - signature secret: runtime-owned and at least 32 bytes.
 
-A signer may move `iat` a small, bounded amount into the past to tolerate ordinary clock skew
-between independently deployed Peers and protocol runtimes. It must derive `exp` from that adjusted
-`iat`, so the allowance never increases the 24-hour maximum token lifetime. Clock-skew handling
-belongs to the signing boundary; database queries and domain callers do not retry or rewrite tokens
-individually.
+`iat` 与 `exp` 必须是有效数值时间，`exp` 必须晚于 `iat`；接收端校验允许的未来 `iat` 时钟偏差和实际过期时间。协议不设置 `exp - iat` 的最大值，也不将某个部署的签发默认值作为准入上限。
+
+签发者拥有自己的默认有效期与配置方式。服务端签发默认值由环境配置，配置值必须是正整数；默认值只影响以后签发的 JWT，降低默认值不会撤销尚未过期的既有凭据。静态客户端的默认值属于该签发者的策略，不从数据库准入合同派生。
+
+签发者可以将 `iat` 向过去调整一个有界的小幅度，以容忍独立部署的 Peer 与协议运行时之间的普通时钟偏差，并从调整后的 `iat` 计算 `exp`。时钟偏差处理属于签发边界；数据库查询和业务调用者不逐个重试或改写 token。
 
 PostgREST and native HTTP runtimes validate the same claim vectors. A missing, malformed,
-expired, overlong, wrong-secret, wrong-role, wrong-issuer, or wrong-audience token is denied.
-The contract does not assign secret custody to `core-py`; each deployment supplies the same
+expired, wrong-secret, wrong-role, wrong-issuer, or wrong-audience token is denied.
+The contract does not assign secret custody to `impl-py`; each deployment supplies the same
 secret independently to the runtimes that validate it.
+
+Extension 可以为同类 JWT 定义有签名保护的用途声明和续签条件，但不能据此声称缩小原有 Peer 权限。Twitter 归档连接的传输、签发默认值和自动续签见 [Twitter 归档信息与接入契约](twitter-archive-contract.md)。
 
 ## Artifact And Environment Contract
 

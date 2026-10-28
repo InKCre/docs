@@ -97,9 +97,9 @@ business facade
 - Runtime Peers are equal participants around shared database authority but may implement
   different executable capabilities. Caller/provider or client/server describes one
   interaction edge, not a fixed deployment hierarchy.
-- One Peer row owns a validated full capability-advertisement snapshot and one lease expiry.
-  Each advertisement contains an exact capability ID plus an inbound interface whose exact
-  protocol ID owns its parameter schema.
+- One Peer row owns its runtime application version, a validated full
+  capability-advertisement snapshot, and one lease expiry. Each advertisement contains an exact
+  capability ID plus an inbound interface whose exact protocol ID owns its parameter schema.
 - Discovery exposes support and Peer liveness. Readiness is internal to the business service
   and never becomes advertisement metadata. Lease evaluation uses database time; the lease
   owner chooses its TTL because always-on and scale-to-zero deployments differ.
@@ -145,9 +145,7 @@ The first admitted exact capability IDs are:
 
 ## Runtime Authentication And Advertisement
 
-- Peer HTTP uses the shared `HS256` token contract with role `authenticated`, issuer
-  `inkcre-peer`, audience `inkcre-api`, required `iat`/`exp`, a 24-hour maximum lifetime, and
-  deployment-owned secret material of at least 32 bytes.
+- Peer HTTP 使用 [Peer Database Runtime Contract](peer-database-runtime-contract.md#jwt-contract) 的共享 `HS256` JWT：role 为 `authenticated`，issuer 为 `inkcre-peer`，audience 为 `inkcre-api`，必需 `iat`/`exp`，部署持有至少 32 字节的签名秘密。签发默认有效期属于签发者配置，接收端不把它作为最大寿命。
 - A capability is advertised only after its inbound is registered and routable. Withdrawal
   precedes runtime unmount/close. Ordinary Peer-row updates do not imply liveness.
 - The deployment owns each Peer identity and runtime config, including the public base URL

@@ -17,13 +17,25 @@ Record durable data and behavior contracts that span more than one unit reposito
   readiness, JWT claims, and portable acceptance. Unit repositories own only their
   implementation and provider-specific deployment mechanics.
 
+## 跨 Peer 可观测性契约
+
+[跨 Peer 可观测性契约](observability-contract.md)拥有部署/Peer 观测身份、标准传播、持久 Job 提交关联、AI 诊断与内容边界。遥测不接管业务状态或协议准入；各 Unit 与部署 owner 分别交付采集、存储和查询实现。
+
 ## Extension State Contract
 
-- `installed`, `enabled`, and `running` are different states and must not be collapsed into one concept.
-- `installed` means the deployment has the extension package and its persisted installation record.
-- `enabled` means a specific client is allowed to run that extension.
-- `running` means the current runtime has actually started that extension and applied its runtime side effects.
-- Starting or stopping an extension is not a pure flag flip; it changes runtime capabilities and API surface for that client.
+[Extension 分发发布与 Peer 参与契约](extension-release-and-installation.md)拥有独立原生发布坐标、部署共享业务状态、Peer 精确安装选择，以及启用意图和实际运行的区别。插件拥有业务与数据兼容，各 Unit 分别拥有构建发布流程和宿主执行边界。
+
+## Extension Documentation Hosting Contract
+
+- Author-built static documentation, exact native Release identity and historical scope compatibility, conditional whole-site
+  corrections, snapshot-origin isolation, and consumer discovery follow the
+  [Extension Documentation Hosting Contract](extension-documentation-hosting.md).
+- Registry owns hosting and executable API details; authors own site content and structure.
+  Documentation does not become an installable Distribution or alter Host lifecycle authority.
+
+## Twitter 归档信息与接入契约
+
+[Twitter 归档信息与接入契约](twitter-archive-contract.md)拥有 `inkcre/twitter` 各 Distribution 共同使用的 User/Post/Media 原生信息、Resolver 与关系含义、旧帖子过渡，以及 x-monkey 协议的 JWT 会话和媒体按需读取边界。各 Unit 保留自己的 HTTP 注册、持久化实现、采集适配与界面代码。
 
 ## Info-Base Ownership Contract
 

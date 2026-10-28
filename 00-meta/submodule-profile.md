@@ -41,6 +41,26 @@ Hub-local paths may exist in the mounted repo, but Spoke agents should not treat
 - Spoke structural memory stays in `docs/30-unit-tdd/`.
 - SVC adoption state and generated navigation stay in each Spoke rather than arriving through the shared mount.
 
+## Choosing A Durable Owner
+
+Choose the owner from the meaning of a claim, not from the file where it was first written or the component currently
+consuming it.
+
+- Hub PRD owns product intent and vocabulary shared across units; Hub Product TDD owns stable cross-unit topology and
+  interoperability.
+- A Spoke Unit TDD owns that Spoke's expensive internal contract. A nearby `AGENTS.md` owns only repeated hazards for its
+  physical subtree.
+- The component that defines a capability owns its contract. A consumer may describe how it selects or combines the
+  capability, but must link to the owner instead of maintaining a second definition.
+- Importance, first-party delivery, or use by several consumers does not by itself promote a local implementation fact into
+  Hub truth. Conversely, putting a claim in the Hub does not make it cross-unit.
+- Current normative behavior, historical observation, implementation example, and active-task proposal are different kinds
+  of statements. Only the normative owner may define the contract; examples and task packets must be labelled and cannot
+  become competing authority.
+
+When a claim is misplaced, move its definition to the semantic owner, leave only the consumer-specific consequence and a
+reference at the old location, then verify that one definition remains.
+
 ## Guardrails
 
 - Spoke repos should reject ad hoc edits under `docs/_shared/`.

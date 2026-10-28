@@ -13,7 +13,7 @@ Record durable ownership of authoritative state across units and distinguish it 
 
 - PostgreSQL is authoritative for shared persisted InKCre state.
 - The `inkcre` schema is the versioned protocol surface admitted to authenticated peers.
-- `core-py` currently owns migrations and the executable lifecycle contract; this is schema
+- `impl-py` currently owns migrations and the executable lifecycle contract; this is schema
   authority, not request-path or product-tier authority over other peers.
 - Production rows are operational recovery data and must never be reproduced as development
   seed.
@@ -65,6 +65,8 @@ Record durable ownership of authoritative state across units and distinguish it 
 
 - One InKCre deployment is one owner context; the product does not currently define tenants,
   terminal users, or per-row user ownership.
-- Technical runtime participants are Peers. User-facing applications may still be called
-  clients. Identities named by an external source or compatibility protocol
-  keep their native boundary meaning and must not silently become shared-system principals.
+- Technical runtime participants are Peers and are presented as Peers wherever a person manages
+  their identity, configuration, liveness, or capabilities. `Client` remains valid only for an
+  actual application or protocol-native role. Identities named by an external source or
+  compatibility protocol keep their native boundary meaning and must not silently become
+  shared-system principals.
