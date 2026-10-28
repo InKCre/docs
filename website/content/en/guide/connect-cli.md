@@ -24,17 +24,12 @@ CLI connects over HTTPS; it does not run another server on your computer.
    Windows PowerShell. Then install the published CLI:
 
    ```sh
-   python -m pip install inkcre-cli
+   python -m pip install --upgrade "inkcre-cli>=0.3.0"
    inkcre-cli --help
    ```
 
-   The Extension guides use the v2 `extension select/unselect` commands. Check
-   `inkcre-cli extension select --help` before following them. Published CLI 0.2.1 still calls the
-   retired install API and receives 405 from a v2 Core. The correction is tracked in
-   [impl-py#153](https://github.com/InKCre/impl-py/pull/153). Until the corrected CLI is published,
-   use a reviewed `impl-py` checkout containing that change and install its standalone `cli/`
-   package with `python -m pip install /path/to/impl-py/cli`. Do not install Core as a CLI
-   dependency or downgrade the deployment to make an old command work.
+   The Extension guides require CLI 0.3.0 or later and Core's Extension management v2 API. Check
+   `inkcre-cli extension select --help` before following them.
 
 3. In a local folder outside any Git repository, use a text editor to create `connection.json`:
 
