@@ -25,12 +25,12 @@ First finish [one collection](/guide/collect).
    a bounded batch, so a larger import can need another run. A maintenance schedule avoids this
    manual step after every collection.
 
-2. Open **Info Base** in client-web. Enter a distinctive phrase from the collected item and search.
+2. Open **Info Base** in the Web app. Enter a distinctive phrase from the collected item and search.
 3. Select a result, inspect its details, use **View content** where supported, and follow its graph
    relationships. Some content needs a compatible browser Extension for rich rendering; an Agent can
    also retrieve Core-resolved text through the CLI.
 
-![Lexical search in Info Base returning a collected RSS item](/images/client-web/lexical-search.png)
+![Lexical search in Info Base returning a collected RSS item](/images/web/lexical-search.png)
 
 _Search for a phrase you recognize; the result should be the information itself, not merely a
 successful maintenance Job._

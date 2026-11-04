@@ -22,7 +22,7 @@ You need a [connected interface](/guide/connect) and a configured Source.
 5. If creation could not be confirmed, check the Jobs list before submitting again. A timeout does
    not prove the first request did nothing.
 
-![A finished RSS collection Job with its Source, timestamps, state, and diagnostics](/images/client-web/collection-job.png)
+![A finished RSS collection Job with its Source, timestamps, state, and diagnostics](/images/web/collection-job.png)
 
 _A finished Job is the place to verify what the collector actually did._
 

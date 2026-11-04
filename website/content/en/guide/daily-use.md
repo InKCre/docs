@@ -20,7 +20,7 @@ own Peer ID; do not manually create a Peer or reuse Core's identity.
 3. Bookmark the app. A new browser/device needs its own connection. A Settings **Export** restores
    the complete browser connection, including its secret, but is not an information backup.
 
-![Info Base graph centered on one Block and its direct relationships](/images/client-web/info-base-graph.png)
+![Info Base graph centered on one Block and its direct relationships](/images/web/info-base-graph.png)
 
 _Open a result's neighborhood to move from one Block to the information directly related to it._
 

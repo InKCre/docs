@@ -43,7 +43,7 @@ for the shared semantics.
 ## Info-base authority
 
 Persisted Blocks and Relations are the shared information authority. Source-native objects, resolver
-output, search indexes, embeddings, and client views may represent or accelerate parts of that
+output, search indexes, embeddings, and app views may represent or accelerate parts of that
 information, but none creates a parallel authoritative store merely because its native shape is
 convenient.
 
@@ -62,7 +62,7 @@ defines principals, protocol admission, lifecycle, readiness, and JWT claims.
 `impl-py` owns migrations and the executable database lifecycle contract, but it is not a central
 owner of every request path or product behavior.
 
-Client-web demonstrates this topology: database operations use PostgREST, while runtime-owned
+The Web app demonstrates this topology: database operations use PostgREST, while runtime-owned
 capabilities may use native HTTP surfaces advertised by an online Peer. The durable boundary is the
 admitted protocol and capability contract, not a permanent frontend/backend hierarchy.
 
@@ -97,7 +97,7 @@ second durable `running` flag for users to maintain. Runtime errors and capabili
 still show that expected activation failed.
 
 Core supports Python wheels with explicit Host compatibility. A release may also contain a browser
-distribution for client-web setup or rendering. The
+distribution for Web app setup or rendering. The
 [Source Extension tutorial](/developer/ecosystem/source-extension) covers the current Core Host SDK
 `0.3.x` path; those programming interfaces still import Core modules and are not a standalone,
 permanently stable Source SDK.

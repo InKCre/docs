@@ -44,7 +44,7 @@ hero:
   <div class="inkcre-flow" role="list">
     <div class="inkcre-flow-stage" role="listitem">
       <strong>Collect from existing sources</strong>
-      <p>RSS, GitHub, email, Telegram, bookmarks, and capture clients.</p>
+      <p>RSS, GitHub, email, Telegram, bookmarks, and capture apps.</p>
     </div>
     <div class="inkcre-flow-connector" aria-hidden="true">→</div>
     <div class="inkcre-flow-stage inkcre-flow-stage--core" role="listitem">

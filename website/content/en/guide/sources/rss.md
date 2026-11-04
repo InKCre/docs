@@ -19,7 +19,7 @@ Choose a publication's **RSS or Atom feed URL**, not its normal homepage.
 2. Open **Sources** and the create-source form. Set **Nickname** to `My first feed`.
 3. Choose **Type** `extensions.rss.rss.Source`, or `extensions.rss.atom.Source` for Atom.
 
-   ![Create Source with the searchable Type dropdown open](/images/client-web/create-source-type.png)
+   ![Create Source with the searchable Type dropdown open](/images/web/create-source-type.png)
 
    _Search by type name, then select the matching feed format._
 

@@ -40,7 +40,7 @@ configuration. Do not downgrade to `0.3.0`: its Python package targets Core Host
 3. Choose your online Core Peer in the wizard. Enable Twitter there if prompted. Core handles the
    callback and collection; browser enablement alone is insufficient.
 
-![Twitter setup wizard showing the account-connection step](/images/client-web/twitter-setup.png)
+![Twitter setup wizard showing the account-connection step](/images/web/twitter-setup.png)
 
 _The wizard keeps preparation, account connection, Source selection, and review as separate steps._
 
@@ -68,9 +68,9 @@ private.
 3. Review the handle, Source and schedule, then explicitly choose **Start collecting bookmarks**.
 
 The final action enables the schedule **and submits an immediate collection Job**. It does not mean
-that Job has finished. Open the Source's Jobs in client-web, [inspect the run](/guide/collect), then
-[index and search](/guide/search) for a recent bookmark. Do not add a second collection schedule
-after using the wizard.
+that Job has finished. Open the Source's Jobs in the Web app, [inspect the run](/guide/collect),
+then [index and search](/guide/search) for a recent bookmark. Do not add a second collection
+schedule after using the wizard.
 
 To disconnect later, stop its collection schedule first, then use **Disconnect** in the wizard's
 account step. You can separately revoke the app in X. Neither action removes collected information.

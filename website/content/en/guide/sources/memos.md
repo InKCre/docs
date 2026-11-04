@@ -27,7 +27,7 @@ a bounded Memos `0.29.1` API subset; the previously accepted client is MoeMemos 
 5. Write a distinctive note, refresh the client, and reopen it. Then
    [index and search](/guide/search) for the same text in InKCre.
 
-![Memos setup showing a ready Server URL and masked Personal Access Token](/images/client-web/memos-setup.png)
+![Memos setup showing a ready Server URL and masked Personal Access Token](/images/web/memos-setup.png)
 
 _Copy both values from Setup; keep the PAT masked and private._
 

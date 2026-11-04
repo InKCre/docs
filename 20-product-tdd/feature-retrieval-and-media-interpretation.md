@@ -4,7 +4,7 @@
 
 Define the shared semantics of the first feature-retrieval increment: Block-local lexical
 projection, independently maintained derived records, exact local/Peer retrieval, faithful
-multimodal text materialization, system-driven media interpretation, and client navigation.
+multimodal text materialization, system-driven media interpretation, and app navigation.
 Unit repositories still own framework classes, SQL queries, prompts, provider credentials,
 storage implementations, UI styling, and runtime scheduling intervals.
 
@@ -108,7 +108,7 @@ query ---------------------------------------------------------> ranked existing
 - Lexical maintenance later indexes the resulting text Blocks. This temporal composition
   does not transfer record ownership to Organization.
 
-## Peer Capability And Client Navigation
+## Peer Capability And App Navigation
 
 - Exact synchronous capability `core.feature_retrieval.lexical.v1` accepts one non-empty
   textual query plus a result bound and returns the V1 lexical result. The business facade
@@ -117,10 +117,10 @@ query ---------------------------------------------------------> ranked existing
 - `route_to_peer` / `routeToPeer` remains caller-local routing policy and does not enter the
   capability payload.
 - `InfoBaseListView` is the first list navigation host for retrieval results. Selecting a
-  result uses the client-supplied singleton `InfoBaseRouter`; List and Graph views may both
+  result uses the app-supplied singleton `InfoBaseRouter`; List and Graph views may both
   realize Block Inspector and solved-content popup destinations without creating another
   navigation/history authority.
-- Match excerpts are plain presentation-neutral text. A client must not interpret authored
+- Match excerpts are plain presentation-neutral text. An app must not interpret authored
   markup merely because it appears in a lexical result.
 
 ## Explicit Non-Goals

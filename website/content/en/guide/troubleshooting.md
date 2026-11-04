@@ -11,7 +11,7 @@ Use the symptom below to find the next check. Keep credentials out of logs or sc
 | ---------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | Deployment workflow missing              | Enable Actions in your fork and check that it is up to date with upstream `main`.                              |
 | Core slow or offline                     | Start it from your hosting dashboard, then choose **Refresh** in Peers. Inspect host logs if it stays offline. |
-| Client returns `401`                     | Check endpoint and secret. Anonymous PostgREST `401` is expected; authenticated `401` is not.                  |
+| App reports `401`                        | Check endpoint and secret. Anonymous PostgREST `401` is expected; authenticated `401` is not.                  |
 | Source type absent                       | Install a compatible Extension and enable it on Core, not only in the Web app.                                 |
 | Job stays pending                        | Confirm Core is awake and its collector enabled. Job creation only confirms acceptance.                        |
 | Collection finished but search empty     | Confirm the source exposed the item; run lexical maintenance and inspect diagnostics.                          |

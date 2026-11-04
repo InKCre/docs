@@ -27,7 +27,7 @@ Record durable ownership of authoritative state across units and distinguish it 
 
 - Extension installation state is authoritative at the deployment level.
 - One deployment must not carry multiple installed records for the same extension ID.
-- Installation state is distinct from client-scoped permission and distinct from current runtime activity.
+- Installation state is distinct from a Peer’s local execution permissions and from current runtime activity.
 - Validated extension configuration is deployment-scoped durable state. External protocol
   profiles or credentials projected from that configuration do not create an InKCre User or
   tenant authority.
@@ -66,7 +66,7 @@ Record durable ownership of authoritative state across units and distinguish it 
 - One InKCre deployment is one owner context; the product does not currently define tenants,
   terminal users, or per-row user ownership.
 - Technical runtime participants are Peers and are presented as Peers wherever a person manages
-  their identity, configuration, liveness, or capabilities. `Client` remains valid only for an
-  actual application or protocol-native role. Identities named by an external source or
+  their identity, configuration, liveness, or capabilities. Delivered applications are Apps;
+  `client` describes only a protocol-native role. Identities named by an external source or
   compatibility protocol keep their native boundary meaning and must not silently become
   shared-system principals.
