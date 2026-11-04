@@ -22,6 +22,7 @@ This package records shared product truth for InKCre: product purpose, observabl
   - `behavior/workflows.md`
   - `behavior/rules-and-invariants.md`
   - `behavior/scope.md`
+  - `behavior/observability.md`
 - domain structure:
   - `domain-structure/derived-boundaries.md`
   - `domain-structure/cross-domain-interactions.md`

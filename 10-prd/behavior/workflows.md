@@ -63,3 +63,7 @@
 - normal flow: a versioned product adapter maps the request to memo-family graph commands; successful primary mutation is persisted, and native reads are rebuilt from resolver output
 - exception flow: unsupported protocol behavior or unresolved graph meaning fails explicitly; a failed or partially cleaned command may leave documented graph residue without claiming complete-server compatibility
 - observable outcome: the client observes a compatible result and the memo remains represented only by blocks, relations, and storage-backed actual content in the info-base
+
+## 流程：从异常或业务执行进入观测
+
+用户从近期异常、Job 或 Peer 进入观测工作区，限定时间与关联身份，阅读记录和操作摘要，必要时缩窄被截断的窗口。界面明确展示读取失败、当前存储和历史范围，返回业务对象时沿用该对象的真实状态。具体行为见 [可观测性](observability.md)。
