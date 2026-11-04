@@ -9,10 +9,16 @@ Define cross-unit technical boundaries and ownership so changes do not leak resp
 - This file is initialized as a scaffold.
 - Add stable cross-unit boundaries only after they are confirmed by at least one real integration change.
 
+## Core 与 App
+
+[Core 与 App 边界](core-app-boundary.md)规定各语言实现的 SDK/lib 与应用消费关系，以及资源生命周期和平台依赖的归属。这是已确认的目标设计，各实现的迁移状态由对应仓库记录。
+
+实现仓库可交付库、应用和扩展；运行中的应用可承载 Peer。库本身不因导入而成为在线节点，不预设统一的平台适配层。
+
 ## Database Peer Topology
 
-- `impl-py`, `impl-ts`, `impl-swift`, and future units are peer nodes; frontend/backend hierarchy is not
-  part of the durable topology.
+- Applications delivered by `impl-py`, `impl-ts`, `impl-swift`, and future implementations may run as
+  peer nodes; frontend/backend hierarchy is not part of the durable topology.
 - Native PostgreSQL and PostgREST are transports over one admitted database protocol, not
   separate semantic authorities.
 - Every authenticated peer may operate the complete admitted protocol surface. Different

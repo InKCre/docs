@@ -4,6 +4,7 @@
 
 - [Product requirements](../10-prd/index.md)
 - [Unit topology](../20-product-tdd/unit-topology.md)
+- [Core 与 App 边界](../20-product-tdd/core-app-boundary.md)
 - [Security boundary model](../20-product-tdd/security-boundary-model.md)
 - [System state and authority](../20-product-tdd/system-state-and-authority.md)
 - [Cross-unit contracts](../20-product-tdd/cross-unit-contracts.md)
