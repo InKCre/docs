@@ -34,7 +34,7 @@ Report suspected vulnerabilities privately through that repository's `SECURITY.m
 | Cross-unit state, topology, or interoperability | [`InKCre/docs`](https://github.com/InKCre/docs) → [`20-product-tdd/**`](https://github.com/InKCre/docs/tree/main/20-product-tdd) |
 | Hub/Spoke shared-document workflow              | [`InKCre/docs`](https://github.com/InKCre/docs) → [`00-meta/**`](https://github.com/InKCre/docs/tree/main/00-meta)               |
 | Core runtime, migrations, or database lifecycle | [`InKCre/impl-py`](https://github.com/InKCre/impl-py)                                                                            |
-| Web client or browser extension                 | [`InKCre/impl-ts`](https://github.com/InKCre/impl-ts)                                                                            |
+| Web app or browser extension                    | [`InKCre/impl-ts`](https://github.com/InKCre/impl-ts)                                                                            |
 | Design tokens or shared UI                      | [`InKCre/ui`](https://github.com/InKCre/ui)                                                                                      |
 | Public website content or presentation          | [`InKCre/docs`](https://github.com/InKCre/docs) → [`website/**`](https://github.com/InKCre/docs/tree/main/website)               |
 

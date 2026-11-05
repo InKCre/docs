@@ -48,11 +48,11 @@
 - user-visible or business lifecycle language: a pluggable way to extend the product without forking the core.
 - notes on ambiguity with framework terms: this is product vocabulary, not only a Python packaging concept.
 
-## client
+## app
 
-- canonical business meaning: a user-facing application through which a person interacts with InKCre or a compatible product protocol.
-- user-visible or business lifecycle language: the app or interface a person uses.
-- notes on ambiguity with framework terms: use `client` only for an actual application or a protocol-native client role; it is not a product-facing synonym for an InKCre runtime Peer.
+- canonical business meaning: a runnable InKCre application that assembles Core capabilities with its environment, lifecycle, policies, and optional user interface.
+- user-visible or business lifecycle language: the Web app, browser extension, desktop app, CLI, or service a person uses or runs.
+- notes on ambiguity with framework terms: App names a delivered application; Peer names a running participant. App is distinct from the knowledge activity `application`. Reserve `client` for an actual protocol role, such as an HTTP, database, OAuth, or external Memos client; it does not name an InKCre product tier.
 
 ## peer
 

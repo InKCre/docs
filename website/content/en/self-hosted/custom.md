@@ -22,13 +22,13 @@ runtime consisting of:
 | ----------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | PostgreSQL with the required extensions, including pgvector | Persists the info-base and shared configuration.                                        |
 | Database initializer                                        | Creates/migrates the schema, provisions runtime roles, and reconciles built-in records. |
-| PostgREST                                                   | Exposes the admitted database API used by the Web client.                               |
+| PostgREST                                                   | Exposes the admitted database API used by the Web app.                                  |
 | Core Python program                                         | Runs collection, Jobs, Extensions, and the Core HTTP API.                               |
 
 The initializer is a command you run during deployment, not another permanent service. Core and
 PostgREST then connect to the initialized database with separate limited roles. The CLI talks to
-Core; client-web talks to PostgREST and discovers Core capabilities. You can continue using
-`app.inkcre.dev` rather than hosting client-web yourself.
+Core; the Web app talks to PostgREST and discovers Core capabilities. You can continue using
+`app.inkcre.dev` rather than hosting the Web app yourself.
 
 ## 1. Choose a Core release and runtime shape
 
@@ -44,7 +44,7 @@ PostgREST.
 1. Provision PostgreSQL with the extensions required by your chosen Core revision.
 2. Retain its owner connection only for initialization, migrations, and recovery.
 3. Generate separate strong passwords for the `inkcre_core` and `authenticator` login roles.
-4. Generate one private JWT secret that PostgREST and your clients will share.
+4. Generate one private JWT secret that PostgREST and your authenticated Peers will share.
 
 Do not give either running service the database-owner URL. Keep the three generated secrets in your
 hosting provider's secret storage.
@@ -83,8 +83,8 @@ capabilities. The
 [container guide](https://github.com/InKCre/impl-py/blob/main/docs/40-deployment/docker.md) and
 [Core README](https://github.com/InKCre/impl-py#readme) own the supported entry points.
 
-**Checkpoint:** after you connect client-web, Core appears in **Peers**. If it is offline, start the
-service and refresh until the Peer is online and publishes its capabilities.
+**Checkpoint:** after you connect the Web app, Core appears in **Peers**. If it is offline, start
+the service and refresh until the Peer is online and publishes its capabilities.
 
 ## 6. Connect and complete a real journey
 
@@ -93,7 +93,7 @@ Retain the Core URL, PostgREST URL, JWT secret, and Core Peer ID. Follow
 recognize. A healthy process is necessary, but a real collection-and-retrieval loop proves that the
 services work together.
 
-**Checkpoint:** client-web can reach PostgREST and the online Core Peer, and you can retrieve one
+**Checkpoint:** the Web app can reach PostgREST and the online Core Peer, and you can retrieve one
 collected item.
 
 ## Operate your instance
@@ -106,7 +106,7 @@ important information:
 - Keep database backups and verify how you will restore them. Your source accounts and repository
   fork are not backups of the info-base.
 - Retain deployment credentials securely. Coordinate changes to database passwords and JWT settings
-  across the services and clients that use them.
+  across the services and Peers that use them.
 - Plan upgrades against the selected Core revision's migration and deployment instructions. Inspect
   readiness and collection Jobs after changes; do not treat a running process as proof that
   collection succeeded.

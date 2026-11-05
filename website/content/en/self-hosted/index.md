@@ -6,7 +6,7 @@ description: Choose how to run your own InKCre instance and connect it to your i
 # Self-Hosted
 
 Self-hosting means operating your own InKCre instance: you choose where information is stored, which
-sources it collects, and which clients can access it. You also manage credentials, hosting
+sources it collects, and which apps can access it. You also manage credentials, hosting
 availability, backups, and updates. This section is for users choosing that responsibility.
 
 For the application-level introduction and first-use journey, start with

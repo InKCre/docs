@@ -18,7 +18,7 @@ common mental model and routes you to the repository that owns the details.
 
 Start with [Architecture](/developer/architecture) to understand the shared vocabulary and topology.
 Then use [Contributing](/developer/contributing) to locate the owner of the product, cross-unit,
-runtime, client, UI, or website change you want to make.
+runtime, app, UI, or website change you want to make.
 
 Exact setup commands, runtime versions, tests, and pull-request requirements stay in the repository
 that enforces them.
@@ -42,7 +42,7 @@ This is not a promise of unrestricted database access or a complete API compatib
 | ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [`InKCre/docs`](https://github.com/InKCre/docs)       | Shared product and cross-unit documentation Hub; source of this website. Start with its [README](https://github.com/InKCre/docs#readme).                         |
 | [`InKCre/impl-py`](https://github.com/InKCre/impl-py) | Python core runtime, migrations, and database lifecycle authority. Follow its [contributing guide](https://github.com/InKCre/impl-py/blob/main/CONTRIBUTING.md). |
-| [`InKCre/impl-ts`](https://github.com/InKCre/impl-ts) | Web client, browser Extensions, and shared client infrastructure. Start with its [README](https://github.com/InKCre/impl-ts#readme).                             |
+| [`InKCre/impl-ts`](https://github.com/InKCre/impl-ts) | Web app, browser extension, and shared TypeScript SDK libraries. Start with its [README](https://github.com/InKCre/impl-ts#readme).                              |
 | [`InKCre/ui`](https://github.com/InKCre/ui)           | Design system, tokens, and shared Web UI packages. Start with its [README](https://github.com/InKCre/ui#readme).                                                 |
 
 The [InKCre GitHub organization](https://github.com/InKCre) contains prototypes and historical

@@ -59,7 +59,7 @@ layout、camera or route state.
   authority，but remain separate presentation contracts. Preview is bounded and
   interaction-free；solved content may support focused reading and business interaction.
 - Block and Relation inspectors are entity-local. Application routing/history remains owned by
-  the client application，while a Graph view may realize those destinations as a navigation
+  the app，while a Graph view may realize those destinations as a navigation
   host.
 
 ## Shared Acceptance Corpus

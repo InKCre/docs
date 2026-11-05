@@ -20,7 +20,7 @@
 - semantic contract: extensions add source, resolver, storage, sink, or protocol capability without bypassing graph or deployment ownership boundaries.
 - shared language: extension, source, resolver, storage, sink, protocol, lifecycle hooks.
 
-## Interaction Pair: Client -> Shared System
+## Interaction Pair: Peer -> Shared System
 
-- semantic contract: each client is one running node that can participate around the same shared info-base.
-- shared language: client, runtime, shared system, info-base.
+- semantic contract: each peer is one running node that can participate around the same shared info-base.
+- shared language: peer, runtime, shared system, info-base.

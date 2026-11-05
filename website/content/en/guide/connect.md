@@ -6,7 +6,7 @@ description: Use the Web app yourself, or connect a trusted Agent through the CL
 
 # Connect to Your Instance
 
-Use **client-web** for your own day-to-day setup and reading. The **CLI** is primarily an interface
+Use the **Web app** for your own day-to-day setup and reading. The **CLI** is primarily an interface
 for your trusted Agent. You do not need to configure every interface before starting. The selector
 on these guides changes the instructions, not your instance, and keeps your choice while navigating
 the site.
@@ -28,7 +28,7 @@ the site.
 6. To use the public Extension Registry, select **Edit Config** on **This browser**, set
    `extension_registry_url` to `https://registry.inkcre.dev`, and save.
 
-![Client-web Peers showing the current browser and Core with their versions and states](/images/client-web/peers-overview.png)
+![The Web app Peers page showing the current browser and Core with their versions and states](/images/web/peers-overview.png)
 
 _Peers shows the runtimes connected to this deployment. Edit a Peer when configuration belongs to
 that runtime._

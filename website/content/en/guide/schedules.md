@@ -23,7 +23,7 @@ First complete [a manual collection](/guide/collect) and [find a known item](/gu
    Existing Jobs and collected information remain. An Agent can instead disable a Cron through the
    CLI if you want to retain it for later re-enabling.
 
-![A Source details page with saved configuration, collection scheduling, and recent Jobs](/images/client-web/source-schedule.png)
+![A Source details page with saved configuration, collection scheduling, and recent Jobs](/images/web/source-schedule.png)
 
 _Schedules and recent Jobs belong to the selected Source; confirm its name and type before changing
 the schedule._

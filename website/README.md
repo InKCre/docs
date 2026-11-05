@@ -98,7 +98,7 @@ are resolved from the rewritten route, not the source file location.
 - Review a changed page with its navigation entry and exit. Render at least one representative
   procedure in desktop light mode and at narrow width; confirm that hidden interface variants,
   lists, code, tables, screenshots, and links remain understandable.
-- User procedures default to client-web. Use the shared `InterfaceGuide` component with `#web` and
+- User procedures default to the Web app. Use the shared `InterfaceGuide` component with `#web` and
   `#cli` slots for alternate steps on the same route; CLI instructions primarily serve Agents. The
   choice survives client-side navigation, not a full reload. Without JavaScript, both sections
   remain readable. Keep shared prerequisites and limitations outside the slots.
@@ -124,7 +124,7 @@ are resolved from the rewritten route, not the source file location.
 
 - Add a screenshot when it helps the reader identify a control, confirm a saved state, or compare a
   result. Keep prose authoritative; do not use screenshots as decorative substitutes for steps.
-- Capture client-web in light mode at a desktop viewport. Use 1:1, 4:3, or approximately 16:9, and
+- Capture the Web app in light mode at a desktop viewport. Use 1:1, 4:3, or approximately 16:9, and
   crop to the application viewport rather than including the browser toolbar or desktop. Use a
   mobile viewport only when the procedure specifically documents the mobile experience.
 - Show the smallest useful state around the documented action. Preserve enough surrounding UI for
@@ -132,9 +132,9 @@ are resolved from the rewritten route, not the source file location.
 - Use fixtures or placeholders where possible. Remove personal content and real credentials; mask
   secrets before capture, and inspect the final pixels rather than relying only on the control's
   intended masking behavior.
-- Store client-web images under `content/public/images/client-web/` with stable, kebab-case names.
-  Alt text identifies the surface and visible state; the following italic caption explains what the
-  reader should notice or do.
+- Store Web app images under `content/public/images/web/` with stable, kebab-case names. Alt text
+  identifies the surface and visible state; the following italic caption explains what the reader
+  should notice or do.
 - Before publishing, inspect the rendered page at desktop width, confirm that text remains legible,
   and verify the image route in the exact preview deployment. Keep raw acceptance evidence in the
   task packet rather than publishing browser chrome, credentials, or transient diagnostics.

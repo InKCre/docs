@@ -202,8 +202,8 @@ external API uses one of those words.
 - Hydrated content is the inline value or Storage-loaded bytes behind one Block. Solved
   content is a Resolver-derived use projection that may combine hydrated content with local
   graph facts and may lazily materialize missing semantic content under its contract.
-- `InfoBaseRouter` is a client-supplied, deployment-singleton capability port over stable
-  Block/Relation-oriented destinations. It maps domain navigation to the client's existing
+- `InfoBaseRouter` is an app-supplied, deployment-singleton capability port over stable
+  Block/Relation-oriented destinations. It maps domain navigation to the app's existing
   navigation authority; it does not maintain a second history or prescribe Graph as the only
   possible default presentation.
 - `InfoBaseView` is a navigation host that realizes those destinations. GraphSurface is the

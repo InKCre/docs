@@ -25,7 +25,7 @@
 - derivation source: `../behavior/capabilities.md`, `../behavior/rules-and-invariants.md`
 - boundary intent: add bounded source, resolver, storage, sink, or protocol capabilities through controlled registration and lifecycle hooks.
 
-## Client
+## Peer
 
 - derivation source: `../behavior/capabilities.md`, `../behavior/rules-and-invariants.md`
 - boundary intent: represent one runtime participant operating around the shared system.

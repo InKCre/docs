@@ -35,8 +35,8 @@ milestone than a large collection you cannot yet use.
 
 ### 1. Choose how to access an instance
 
-An **instance** stores your collected information and runs capabilities such as collection. A
-**client**, such as the [Web app](https://app.inkcre.dev/settings), connects to that instance.
+An **instance** stores your collected information and runs capabilities such as collection. An
+**app**, such as the [Web app](https://app.inkcre.dev/settings), lets you work with that instance.
 Opening the Web app does not create an instance for you.
 
 - **Run your own instance:** choose a quick or custom path in [Self-Hosted](/self-hosted/), then

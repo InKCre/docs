@@ -28,7 +28,7 @@ online Core Peer when enabling a Python collector. The browser does not need to 
 3. [Run a Collection](/guide/collect) and wait for its Job to finish.
 4. [Find What You Saved](/guide/search) and open a known item.
 
-![The client-web Sources page showing saved Sources and their collection actions](/images/client-web/sources-overview.png)
+![The Web app Sources page showing saved Sources and their collection actions](/images/web/sources-overview.png)
 
 _Each row is one configured Source. Open it to inspect configuration and history, or run a manual
 collection from the row._
