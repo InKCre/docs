@@ -9,6 +9,10 @@ Record durable data and behavior contracts that span more than one unit reposito
 - This file is initialized as a scaffold.
 - Add only contracts that cannot be safely inferred from one unit's code alone.
 
+## Core 与 App 边界
+
+[Core 与 App 边界](core-app-boundary.md)拥有各语言 SDK/lib 的独立消费、依赖方向、资源生命周期与演进约束。平台实现按职责和实际收益归属，不要求统一适配层；具体目录、包名及迁移由各实现拥有。
+
 ## Peer Database Runtime Contract
 
 - All units that directly operate shared persisted state consume the canonical
