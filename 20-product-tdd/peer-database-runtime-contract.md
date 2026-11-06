@@ -118,6 +118,33 @@ secret independently to the runtimes that validate it.
 
 Extension 可以为同类 JWT 定义有签名保护的用途声明和续签条件，但不能据此声称缩小原有 Peer 权限。Twitter 归档连接的传输、签发默认值和自动续签见 [Twitter 归档信息与接入契约](twitter-archive-contract.md)。
 
+## Source Batch Persistence
+
+具备能力的任意 Peer 都可执行采集。Source 通过已准入的同一数据库协议，一次提交原生记录、
+图关系和增量状态；此操作不依赖 Python 采集执行者或 HTTP 业务控制器。
+
+`collection_records` 将扩展拥有的 `(namespace, native_key)` 映射到普通 Block，
+只拥有身份查找与唯一性。语义内容仍在 Blocks / Relations，Source state 仍是执行进度。
+扩展拥有原生 key 语法、精确 Resolver 版本、账号范围及字段补丁含义；同一 namespace
+中的多个 Source 可以复用同一原生对象。
+
+`commit_source_batch` 接收 Source ID、namespace、预期配置与状态、下一状态、记录补丁、
+关系和可选的根 key，并在同一事务中完成：
+
+- 锁定的 Source 配置和状态必须仍与预期一致，否则报告冲突，不覆盖其他执行的进度或修改后的配置。
+- namespace 中的原生身份创建跨 Source 串行化。既有 inline JSON object Block
+  按顶层字段合并；缺省字段保留，显式提供的值替换对应字段。Resolver 不同或已存内容不兼容时明确失败。
+- 关系引用同 namespace 中已映射的原生 key，以精确内容去重。位置、收藏时间等可变成员事实
+  归其记录拥有，不能将变化的内容误当成稳定边身份。
+- 提供业务根 key 时，在同一事务创建或刷新该 Source 独占的 `core.source.v1` 锚点，
+  以 `collects` 关系指向业务根，Source.block 仍指向自己的锚点；未提供时保留已有入口。
+- 无效记录、未知端点或根 key 等错误回滚整批，包括 Source 状态。保留既有用户组织关系，
+  不根据本批未出现的记录推断删除。
+
+输入形状、大小限制和精确函数签名由 schema artifact 及其协议投影强制执行。批次采集要求
+所连接数据库已准入此函数。HTTP 响应中断可能使提交结果未知；调用者刷新原
+Source 和已存记录，不自动重放写入。状态比较是并发边界，不是响应已送达的回执。
+
 ## Artifact And Environment Contract
 
 - The core database runtime is published as an OCI image addressable by immutable digest.

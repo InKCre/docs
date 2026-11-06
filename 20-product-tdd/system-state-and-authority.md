@@ -60,6 +60,9 @@ Record durable ownership of authoritative state across units and distinguish it 
   configuration changes.
 - Incremental state is collection execution authority, not information identity and not
   authoritative graph content.
+- 原生身份映射指向普通图 Block，不构成另一份内容库。Source 批次操作在同一事务提交图变更和进度，
+  检查配置与状态冲突；跨 Peer 语义见
+  [Source Batch Persistence](peer-database-runtime-contract.md#source-batch-persistence)。
 
 ## Deployment Owner Context
 
