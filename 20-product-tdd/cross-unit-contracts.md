@@ -41,6 +41,10 @@ Record durable data and behavior contracts that span more than one unit reposito
 
 [Twitter 归档信息与接入契约](twitter-archive-contract.md)拥有 `inkcre/twitter` 各 Distribution 共同使用的 User/Post/Media 原生信息、Resolver 与关系含义、旧帖子过渡，以及 x-monkey 协议的 JWT 会话和媒体按需读取边界。各 Unit 保留自己的 HTTP 注册、持久化实现、采集适配与界面代码。
 
+## B 站收藏资料契约
+
+[B 站收藏资料契约](bilibili-archive-contract.md)拥有 `inkcre/bilibili` 各 Distribution 共同使用的账号、收藏夹、视频和成员记录、原生身份合并、出处关系与分页完整性的含义。采集适配、宿主执行和索引实现仍由各 Unit 拥有。
+
 ## Info-Base Ownership Contract
 
 - Collection, organization, application, graph authority, resolver/storage composition, and
