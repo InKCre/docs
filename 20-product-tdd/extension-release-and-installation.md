@@ -20,7 +20,15 @@ Extension 不拥有独立共享数据表。资料使用 Block／Relation／Stora
 
 App 可按仓库 Topic `inkcre-extension` 发现候选，也接受部署者直接提供的仓库地址。选定仓库后，从其公开 Releases 查找发行。Git tag 使用 `inkcre-ext/<namespace>/<name>/<distribution>/v<version>`，给出插件逻辑名、原生分发和精确版本。同一仓库可发布多个插件和分发类型。App 选择版本时按逻辑名与分发筛选。
 
-每个 Release 附带一个 `inkcre-release.json`。其中 `schema_version` 为整数 `1`，`source_path` 指向插件源码的仓库相对目录，单插件位于仓库根时填 `.`。`host_sdk` 和 `host_sdk_version` 是取自原生包的 SDK 名称和兼容范围。发布工具从现有生产者元数据和实际构建生成 tag 与描述文件。消费者从 tag 读取坐标和源码提交，从 Release 读取附件。
+GitHub Release 正文含一个机器可读的 `inkcre-release` HTML 注释。发布工具从现有生产者元数据和实际构建生成 tag 与注释里的 JSON。宿主直接读取 Releases API 返回的正文。坐标和源码提交来自 tag，产物来自 Release 附件。
+
+```text
+<!-- inkcre-release
+{"schema_version":1,"source_path":"extensions/mail","host_sdk":"core-py","host_sdk_version":">=0.2.0 <0.4.0"}
+-->
+```
+
+`source_path` 是源码的仓库相对目录，仓库根用 `.`。`host_sdk` 和 `host_sdk_version` 是原生包声明的 SDK 名称和兼容范围。MF 发行还包含下表的 `manifest_url`。
 
 | 分发 | 生产者发布内容 | 宿主读取 |
 | --- | --- | --- |
