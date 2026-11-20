@@ -30,6 +30,10 @@
 - violation impact: extensions could bypass durable product contracts.
 - linked claim(s): collect external information into reusable units; expose info-base information for retrieval and downstream use
 
+## 自部署者可以从发布者仓库添加插件
+
+部署者可通过发布者仓库发现并安装支持的插件。First-party 与社区插件使用相同的安装路径。用户决定各 Peer 的精确版本，并可在插件发布者提供的仓库中查看对应版本的说明。
+
 ## Resolver interpretation and storage retrieval remain distinct
 
 - rationale: resolver interpretation may combine hydrated block content with local relations, while storage only turns the block's opaque pointer into actual bytes.
