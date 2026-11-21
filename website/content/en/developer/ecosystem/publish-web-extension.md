@@ -59,7 +59,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
-      - uses: InKCre/impl-ts/.github/actions/publish-extension@a672aae934652d2cfbb3a77aa27e218c2813a123
+      - uses: InKCre/impl-ts/.github/actions/publish-extension@a903fe36f6342908eaaaae43e65fb3f4c0acebbe
         with:
           package: package.json
           artifact-directory: dist/web
@@ -80,7 +80,7 @@ locked dependencies.
 
 ```sh
 git clone https://github.com/InKCre/impl-ts.git ../inkcre-publisher
-git -C ../inkcre-publisher checkout a672aae934652d2cfbb3a77aa27e218c2813a123
+git -C ../inkcre-publisher checkout a903fe36f6342908eaaaae43e65fb3f4c0acebbe
 (cd ../inkcre-publisher/.github/actions/publish-extension && npm ci --ignore-scripts)
 node ../inkcre-publisher/.github/actions/publish-extension/cli.mjs \
   --repository yourname/notes-extension --package package.json \
@@ -88,9 +88,10 @@ node ../inkcre-publisher/.github/actions/publish-extension/cli.mjs \
 ```
 
 Run the command from your Extension's checked-out repository. Use a fresh output directory and
-change `--format` to `manifest` to inspect the ZIP and static tree instead. For script releases, the
-whole attachment is downloaded before the Web App can start the Extension. Choose `manifest` if the
-script output is large or the build needs separately fetched assets.
+change `--format` to `manifest` to inspect the ZIP and static tree instead. Script mode bundles the
+Vite ESM remote and inlines its CSS, images, and fonts. The Web App downloads the whole attachment
+before it starts the Extension. Choose `manifest` for large bundles or builds that require nested
+remotes, CSS `@import`, or dynamic imports whose paths are only known at runtime.
 
 After publishing, open **Extensions → Browse GitHub repositories**, enter your repository URL and
 choose the exact Web release. Install it, enable it, and reopen the app to verify that it loads the
