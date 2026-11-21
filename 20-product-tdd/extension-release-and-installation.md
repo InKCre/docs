@@ -28,14 +28,17 @@ GitHub Release 正文含一个机器可读的 `inkcre-release` HTML 注释。发
 -->
 ```
 
-`source_path` 是源码的仓库相对目录，仓库根用 `.`。`host_sdk` 和 `host_sdk_version` 是原生包声明的 SDK 名称和兼容范围。MF 发行还包含下表的 `manifest_url`。
+`source_path` 是源码的仓库相对目录，仓库根用 `.`。`host_sdk` 和 `host_sdk_version` 是原生包声明的 SDK 名称和兼容范围。MF 发行选择下表的一种形式。多文件使用 `manifest_url`，单脚本使用 `script`。同一发行坐标只有一种形式，新形式通过新版本发布。
 
 | 分发 | 生产者发布内容 | 宿主读取 |
 | --- | --- | --- |
 | `python` | 该发行的原生 wheel，作为 Release 附件 | 从附件选取兼容的 wheel，按附件摘要核对下载，并用 wheel 的原生元数据校验插件身份、版本和入口 |
-| `module_federation` | 完整的 MF 资源树作为 Release 归档，同时将同样的资源树发布到该版本的静态地址 | 从描述文件中的绝对 URL `manifest_url` 加载 manifest 及其资源，静态地址支持 Web App 跨源访问和正确的内容类型 |
+| `module_federation` 多文件 | Release 归档保存完整的 MF 资源树，同一资源树发布到该版本的静态地址 | 通过绝对 URL `manifest_url` 跨源读取 manifest，按需加载入口和其他资源 |
+| `module_federation` 单脚本 | 自包含的经典 JS 脚本作为 Release 附件 | 按 `script.asset_name` 从该 Release 的附件中定位脚本，通过普通脚本加载并读取 `script.global_name` 对应的 MF 容器 |
 
-每个发布者在自己的仓库控制发行，由该 Release 声明该版本的 `manifest_url`。发布者可用自己的静态站，或者选择能从其仓库提供静态资源的托管服务。宿主直接读取声明的地址，安装无需在 InKCre 的服务注册或上传内容。Release 归档可供部署者自行镜像。
+多文件发行的静态地址要为 manifest 和资源提供正确的内容类型与跨域响应。单脚本的 `asset_name` 是该 Release 中唯一匹配的 `.js` 附件名，`global_name` 是此脚本注册的 JavaScript 标识符，须在发布者、插件名和精确版本之间保持唯一。脚本通过 MF `get` 与 `init` 提供插件和共享依赖接口，其构建资源随这一份附件交付。两种形式都遵循同一 SDK 兼容检查。
+
+每个发布者在自己的仓库控制发行。多文件发行可以使用发布者自己的静态站，也可以由发布工具安排从同一仓库提供文件。部署者可用 Release 归档自行镜像。单脚本由发布者的 Release 直接分发。宿主读取发布者声明的发行，安装无需向 InKCre 服务注册。
 
 用户选定来源后，安装选择保存可定位该仓库与精确发行的引用。恢复时直接使用该引用，已具备对应产物时可在本机恢复。精确版本无法取得时，向用户报告该版本的错误。浏览发现和检查更新按需触发。
 
