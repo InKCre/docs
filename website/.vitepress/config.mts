@@ -123,6 +123,7 @@ export default defineConfig({
           items: [
             { text: 'Build on InKCre', link: '/developer/ecosystem/' },
             { text: 'Build a Source Extension', link: '/developer/ecosystem/source-extension' },
+            { text: 'Publish a Web Extension', link: '/developer/ecosystem/publish-web-extension' },
           ],
         },
         {

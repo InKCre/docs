@@ -11,6 +11,7 @@ to contribute it to the Core repository. Start with the boundary your integratio
 | Goal                                               | Integration path                                                                                                              |
 | -------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | Collect from a service InKCre does not support yet | [Build a Source Extension](/developer/ecosystem/source-extension)                                                             |
+| Ship a browser Extension from your own repository  | [Publish a Web Extension](/developer/ecosystem/publish-web-extension)                                                         |
 | Use existing information from ChatGPT              | [Connect the MCP Sink](/guide/sinks/chatgpt)                                                                                  |
 | Build a new runtime around the shared info-base    | Read the [Peer architecture](/developer/architecture); this requires the admitted database protocol, not arbitrary SQL access |
 | Change InKCre's own runtime or product behavior    | Follow [Contributing](/developer/contributing)                                                                                |
@@ -22,10 +23,9 @@ derives use-facing meaning from stored content and required context. A Sink expo
 another tool. An Extension packages one or more capabilities for a compatible Host; not every
 integration needs all three or a custom browser interface.
 
-The Python path uses a native wheel, the `inkcre.core.extensions` entry point, and an exact Registry
-Release. A Peer selects its own Distribution/version and records its enabled intent. An online Host
-then activates the Extension best-effort; users do not maintain a second durable running flag.
-Browser code is a separate distribution, not automatically produced by a Python wheel.
+A Peer selects an exact Extension distribution and version and records whether it should be enabled.
+Python uses a wheel with an `inkcre.core.extensions` entry point. Browser Extensions have their own
+Module Federation builds and can publish either a manifest with separate assets or a single script.
 
 The Source tutorial targets **Core Host SDK 0.3.x**. Its Python programming interfaces currently
 import Core modules; they are not an independent, universally stable Source SDK. The Extension
@@ -40,7 +40,7 @@ fixtures during development, with its own database and credentials.
 
 Package identity, Host compatibility, dependencies, and immutable releases are part of delivering a
 usable integration. Keep your own package, tests, release history, and user setup guide in your
-repository. A public Registry requires a namespace and publishing authorization; a private
-development preview does not grant those rights.
+repository. You can publish a Web Extension through GitHub Releases using your repository token. If
+you use a Registry for distribution, its operator grants namespace and publishing access.
 
 Continue with [Build a Source Extension](/developer/ecosystem/source-extension).
