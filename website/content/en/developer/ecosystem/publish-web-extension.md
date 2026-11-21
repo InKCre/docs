@@ -81,7 +81,7 @@ locked dependencies.
 ```sh
 git clone https://github.com/InKCre/impl-ts.git ../inkcre-publisher
 git -C ../inkcre-publisher checkout a672aae934652d2cfbb3a77aa27e218c2813a123
-npm ci --prefix ../inkcre-publisher/.github/actions/publish-extension --ignore-scripts
+(cd ../inkcre-publisher/.github/actions/publish-extension && npm ci --ignore-scripts)
 node ../inkcre-publisher/.github/actions/publish-extension/cli.mjs \
   --repository yourname/notes-extension --package package.json \
   --artifact-directory dist/web --format script --prepare-only --output /tmp/notes-release
