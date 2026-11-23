@@ -40,6 +40,11 @@ the same `package.json` used by the build:
 }
 ```
 
+If setup installs the matching Python Distribution from another repository, set
+`inkcre.module_federation.python_repository` to that repository's public GitHub URL. Publish a
+compatible Python release before users run setup. When both Distributions live in your Web
+repository, leave the field out.
+
 Save a workflow in `.github/workflows/publish-extension.yml`. The example uses npm for the build.
 Keep the install and build commands you use in your own repository if they differ.
 
@@ -59,7 +64,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
-      - uses: InKCre/impl-ts/.github/actions/publish-extension@a903fe36f6342908eaaaae43e65fb3f4c0acebbe
+      - uses: InKCre/impl-ts/.github/actions/publish-extension@76f8b0738d9f0c481e4c6861946bf85f06ea8582
         with:
           package: package.json
           artifact-directory: dist/web
@@ -80,7 +85,7 @@ locked dependencies.
 
 ```sh
 git clone https://github.com/InKCre/impl-ts.git ../inkcre-publisher
-git -C ../inkcre-publisher checkout a903fe36f6342908eaaaae43e65fb3f4c0acebbe
+git -C ../inkcre-publisher checkout 76f8b0738d9f0c481e4c6861946bf85f06ea8582
 (cd ../inkcre-publisher/.github/actions/publish-extension && npm ci --ignore-scripts)
 node ../inkcre-publisher/.github/actions/publish-extension/cli.mjs \
   --repository yourname/notes-extension --package package.json \
