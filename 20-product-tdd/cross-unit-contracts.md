@@ -27,15 +27,11 @@ Record durable data and behavior contracts that span more than one unit reposito
 
 ## Extension State Contract
 
-[Extension 分发发布与 Peer 参与契约](extension-release-and-installation.md)拥有独立原生发布坐标、部署共享业务状态、Peer 精确安装选择，以及启用意图和实际运行的区别。插件拥有业务与数据兼容，各 Unit 分别拥有构建发布流程和宿主执行边界。
+[Extension 分发发布与 Peer 参与契约](extension-release-and-installation.md)拥有仓库发行的发现与读取、独立原生发布坐标、部署共享业务状态和 Peer 精确安装选择。插件拥有业务与数据兼容，各 Unit 分别拥有构建发布流程和宿主执行边界。
 
 ## Extension Documentation Hosting Contract
 
-- Author-built static documentation, exact native Release identity and historical scope compatibility, conditional whole-site
-  corrections, snapshot-origin isolation, and consumer discovery follow the
-  [Extension Documentation Hosting Contract](extension-documentation-hosting.md).
-- Registry owns hosting and executable API details; authors own site content and structure.
-  Documentation does not become an installable Distribution or alter Host lifecycle authority.
+[Extension 用户文档契约](extension-documentation-hosting.md)规定由发布者维护的仓库入口、发行版本链接和迁移期 Registry 文档的读取。
 
 ## Twitter 归档信息与接入契约
 

@@ -1,5 +1,13 @@
 # Extension Documentation Hosting
 
+## 仓库用户文档
+
+插件发布者维护其源码目录下的 `docs/user/`。源码目录由[仓库发行描述](extension-release-and-installation.md#从发布者仓库发现和安装)定位。App 打开所选发行 tag 对应提交中的该目录。目录缺失表示该发行未提供用户文档。
+
+同一插件的通用说明由其维护者写入一个 producer 的 `docs/user/`，其他分发引用该原文，并补充各自的操作说明。First-party 现有的 Python 和 MF 共通说明由 `impl-py` 维护。面向当前读者的订正可发布到仓库默认分支，精确版本链接继续指向发行时的内容。
+
+以下托管与更新规则适用于迁移期仍由 Registry 提供的文档。仓库发行使用上面的用户文档入口。
+
 ## Purpose And Ownership
 
 This contract defines how Extension authors, Registry, developer tooling, and consuming Hosts
