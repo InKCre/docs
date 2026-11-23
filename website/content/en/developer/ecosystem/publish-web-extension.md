@@ -64,7 +64,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
-      - uses: InKCre/impl-ts/.github/actions/publish-extension@76f8b0738d9f0c481e4c6861946bf85f06ea8582
+      - uses: InKCre/impl-ts/.github/actions/publish-extension@902535ee6ef39d642b9a6cb6892b98a29c59e952
         with:
           package: package.json
           artifact-directory: dist/web
@@ -85,7 +85,7 @@ locked dependencies.
 
 ```sh
 git clone https://github.com/InKCre/impl-ts.git ../inkcre-publisher
-git -C ../inkcre-publisher checkout 76f8b0738d9f0c481e4c6861946bf85f06ea8582
+git -C ../inkcre-publisher checkout 902535ee6ef39d642b9a6cb6892b98a29c59e952
 (cd ../inkcre-publisher/.github/actions/publish-extension && npm ci --ignore-scripts)
 node ../inkcre-publisher/.github/actions/publish-extension/cli.mjs \
   --repository yourname/notes-extension --package package.json \
