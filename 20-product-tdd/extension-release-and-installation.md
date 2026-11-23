@@ -18,7 +18,7 @@ Extension 不拥有独立共享数据表。资料使用 Block／Relation／Stora
 
 ## 从发布者仓库发现和安装
 
-App 可按仓库 Topic `inkcre-extension` 发现候选，也接受部署者直接提供的仓库地址。选定仓库后，从其公开 Releases 查找发行。Git tag 使用 `inkcre-ext/<namespace>/<name>/<distribution>/v<version>`，给出插件逻辑名、原生分发和精确版本。同一仓库可发布多个插件和分发类型。App 选择版本时按逻辑名与分发筛选。
+所有发布者通过仓库 Topic `inkcre-extension` 参加同一个发现入口。App 也接受部署者直接提供的仓库地址。选定仓库后，从其公开 Releases 查找发行。Git tag 使用 `inkcre-ext/<namespace>/<name>/<distribution>/v<version>`，给出插件逻辑名、原生分发和精确版本。同一仓库可发布多个插件和分发类型。App 选择版本时按逻辑名与分发筛选。
 
 GitHub Release 正文含一个机器可读的 `inkcre-release` HTML 注释。发布工具从现有生产者元数据和实际构建生成 tag 与注释里的 JSON。宿主直接读取 Releases API 返回的正文。坐标和源码提交来自 tag，产物来自 Release 附件。
 
@@ -40,11 +40,13 @@ GitHub Release 正文含一个机器可读的 `inkcre-release` HTML 注释。发
 
 每个发布者在自己的仓库控制发行。多文件发行可以使用发布者自己的静态站，也可以由发布工具安排从同一仓库提供文件。部署者可用 Release 归档自行镜像。单脚本由发布者的 Release 直接分发。宿主读取发布者声明的发行，安装无需向 InKCre 服务注册。
 
+Web 发行的设置流程如需为同一 Extension 安装 Python 分发，默认读取该 Web 发行所属仓库。Python 分发由另一仓库发布时，Web Release 正文可使用 `python_repository` 指定 `https://github.com/<owner>/<repo>`。设置从已选 Web Release 读取这个地址，查找逻辑名相同的公开 Python 发行。缺少匹配发行时报告仓库和插件名。来源仍为旧 Registry 的 Web 选择继续使用原设置路径。
+
 用户选定来源后，安装选择保存可定位该仓库与精确发行的引用。恢复时直接使用该引用，已具备对应产物时可在本机恢复。精确版本无法取得时，向用户报告该版本的错误。浏览发现和检查更新按需触发。
 
 ### First-party 发布
 
-`InKCre/impl-py` 和 `InKCre/impl-ts` 分别在现有仓库为各自维护的 Python 与 MF 分发发布。插件仍以 `inkcre/<name>` 表达共享业务身份，App 按这个名字把两个仓库的发行显示在同一个插件入口。宿主沿用各自分发的版本和兼容范围。
+`InKCre/impl-py` 和 `InKCre/impl-ts` 分别在现有仓库发布各自维护的 Python 与 MF 分发。两个仓库都使用 `inkcre-extension` Topic。插件仍以 `inkcre/<name>` 表达共享业务身份，安装到各 Peer 的分发共用以此名字标识的插件条目。宿主沿用各自分发的版本和兼容范围。
 
 以 Mail 为例，Python `0.4.0` 和 MF `0.4.4` 分别生成 `inkcre-ext/inkcre/mail/python/v0.4.0` 和 `inkcre-ext/inkcre/mail/module_federation/v0.4.4`。版本列表直接来自两个仓库的公开 Releases，普通 App 或 SDK 发行按 tag 前缀区分。
 
