@@ -20,7 +20,9 @@ git -C /path/to/spoke-repo/docs/_shared checkout <hub-commit>
 Then validate:
 
 ```bash
-<skill-root>/scripts/check-submodule.sh   --repo-root /path/to/spoke-repo --mode pre-commit
+<skill-root>/scripts/check-submodule.sh --repo-root /path/to/spoke-repo --mode pre-bump
+git -C /path/to/spoke-repo add -- docs/_shared
+<skill-root>/scripts/check-submodule.sh --repo-root /path/to/spoke-repo --mode pre-commit
 ```
 
 The canonical `<skill-root>` is:

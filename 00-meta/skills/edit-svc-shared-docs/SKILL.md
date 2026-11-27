@@ -59,8 +59,9 @@ Apply this when a Spoke repo must consume new shared docs.
 
 1. In the Spoke repo, initialize or update submodule `docs/_shared`.
 2. Set `docs/_shared` to the intended Hub commit.
-3. Run `scripts/check-submodule.sh --repo-root <spoke-repo> --mode pre-commit` from the canonical shared skill root.
-4. Commit only the ref bump in the Spoke repo.
+3. Stage the gitlink with `git add -- docs/_shared` in the Spoke repository.
+4. Run `scripts/check-submodule.sh --repo-root <spoke-repo> --mode pre-commit` from the canonical shared skill root. The check requires the staged gitlink to match the checked-out Hub commit.
+5. Commit only the ref bump in the Spoke repo.
 
 Do not edit content inside `docs/_shared` from Spoke repo context.
 
@@ -99,6 +100,7 @@ Run:
 
 ```bash
 scripts/check-submodule.sh --repo-root <spoke-repo> --mode pre-bump
+git -C <spoke-repo> add -- docs/_shared
 scripts/check-submodule.sh --repo-root <spoke-repo> --mode pre-commit
 ```
 

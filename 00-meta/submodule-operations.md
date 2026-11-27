@@ -12,8 +12,9 @@ SVC supplies the upstream multi-repo contract through its packaged corpus. This 
 2. Make shared doc changes in `InKCre/docs` and push first.
 3. In the Spoke repository, run `git submodule update --init --recursive docs/_shared`.
 4. Move the shared ref to the required Hub commit.
-5. Validate path boundaries and pointer reachability.
-6. Commit only the isolated shared-ref bump in the Spoke repository.
+5. Stage the gitlink with `git add -- docs/_shared`.
+6. Run the canonical pre-commit check for the submodule checkout, staged gitlink, and Hub commit reachability.
+7. Commit only the isolated shared-ref bump in the Spoke repository.
 
 The Hub commit must be available from `origin` before a Spoke records it. Generated Hub SVC files outside the exported allowlist are never treated as shared-mount guidance.
 

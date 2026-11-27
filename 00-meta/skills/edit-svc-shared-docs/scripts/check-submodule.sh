@@ -7,10 +7,11 @@ Usage:
   check-submodule.sh --repo-root <unit-repo-path> --mode <pre-bump|pre-commit>
 
 Checks:
-  - docs/_shared exists and is a git repo
+  - docs/_shared is an initialized submodule working tree
   - .gitmodules maps docs/_shared to InKCre/docs
   - submodule worktree is clean
   - submodule commit exists on origin
+  - in pre-commit mode, the index records the checked-out gitlink
 EOF
 }
 
@@ -50,7 +51,7 @@ if [[ "$MODE" != "pre-bump" && "$MODE" != "pre-commit" ]]; then
   exit 2
 fi
 
-REPO_ROOT="$(cd "$REPO_ROOT" && pwd)"
+REPO_ROOT="$(cd "$REPO_ROOT" && pwd -P)"
 SUBMODULE_PATH="$REPO_ROOT/docs/_shared"
 GITMODULES_PATH="$REPO_ROOT/.gitmodules"
 
@@ -64,8 +65,9 @@ if [[ ! -d "$SUBMODULE_PATH" ]]; then
   exit 1
 fi
 
-if ! git -C "$SUBMODULE_PATH" rev-parse --git-dir >/dev/null 2>&1; then
-  echo "[ERROR] docs/_shared is not a valid git working tree." >&2
+submodule_root="$(git -C "$SUBMODULE_PATH" rev-parse --show-toplevel 2>/dev/null || true)"
+if [[ "$submodule_root" != "$SUBMODULE_PATH" ]]; then
+  echo "[ERROR] docs/_shared is not initialized. Run git submodule update --init -- docs/_shared." >&2
   exit 1
 fi
 
@@ -86,18 +88,21 @@ if [[ -n "$(git -C "$SUBMODULE_PATH" status --porcelain)" ]]; then
 fi
 
 submodule_commit="$(git -C "$SUBMODULE_PATH" rev-parse HEAD)"
+if [[ "$MODE" == "pre-commit" ]]; then
+  index_entry="$(git -C "$REPO_ROOT" ls-files --stage -- docs/_shared)"
+  if [[ "$index_entry" != "160000 $submodule_commit 0"$'\t'"docs/_shared" ]]; then
+    echo "[ERROR] Index does not record the checked-out docs/_shared commit $submodule_commit. Resolve any conflict and stage the intended gitlink with git add -- docs/_shared." >&2
+    exit 1
+  fi
+  if git -C "$REPO_ROOT" diff --cached --quiet --ignore-submodules=none -- docs/_shared; then
+    echo "[WARN] docs/_shared pointer not changed in superproject index." >&2
+  fi
+fi
+
 git -C "$SUBMODULE_PATH" fetch --quiet origin
 if ! git -C "$SUBMODULE_PATH" for-each-ref --format='%(refname)' refs/remotes/origin --contains "$submodule_commit" | grep -q .; then
   echo "[ERROR] Submodule commit not reachable on origin: $submodule_commit" >&2
   exit 1
-fi
-
-if [[ "$MODE" == "pre-commit" ]]; then
-  if [[ -n "$(git -C "$REPO_ROOT" status --porcelain docs/_shared | sed -n '1p')" ]]; then
-    :
-  else
-    echo "[WARN] docs/_shared pointer not changed in superproject index." >&2
-  fi
 fi
 
 echo "[OK] Submodule checks passed for mode=$MODE"
