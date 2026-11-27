@@ -99,8 +99,10 @@ if [[ "$MODE" == "pre-commit" ]]; then
   fi
 fi
 
-git -C "$SUBMODULE_PATH" fetch --quiet origin
-if ! git -C "$SUBMODULE_PATH" for-each-ref --format='%(refname)' refs/remotes/origin --contains "$submodule_commit" | grep -q .; then
+git -C "$SUBMODULE_PATH" fetch --quiet --prune origin
+origin_ref="$(git -C "$SUBMODULE_PATH" for-each-ref \
+  --count=1 --format='%(refname)' --contains "$submodule_commit" refs/remotes/origin)"
+if [[ -z "$origin_ref" ]]; then
   echo "[ERROR] Submodule commit not reachable on origin: $submodule_commit" >&2
   exit 1
 fi
