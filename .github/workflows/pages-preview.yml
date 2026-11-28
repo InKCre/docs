@@ -57,6 +57,8 @@ jobs:
             const pull = pulls.data.find((candidate) =>
               candidate.state === 'open' &&
               candidate.base.ref === 'main' &&
+              candidate.base.repo.full_name === `${context.repo.owner}/${context.repo.repo}` &&
+              run.pull_requests.some((item) => item.number === candidate.number) &&
               candidate.head.sha === run.head_sha &&
               candidate.head.repo?.full_name === `${context.repo.owner}/${context.repo.repo}`
             )
@@ -78,6 +80,8 @@ jobs:
     permissions:
       contents: read
       deployments: write
+      actions: read
+      pull-requests: read
       statuses: write
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -85,6 +89,24 @@ jobs:
       name: preview
       deployment: false
     steps:
+      - name: Reverify the current pull request before delivery
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+        env:
+          PREVIEW_PULL_NUMBER: ${{ needs.identity.outputs.pull_number }}
+          PREVIEW_HEAD_SHA: ${{ needs.identity.outputs.head_sha }}
+        with:
+          script: |
+            const { data: pull } = await github.rest.pulls.get({
+              ...context.repo,
+              pull_number: Number(process.env.PREVIEW_PULL_NUMBER),
+            })
+            const repository = `${context.repo.owner}/${context.repo.repo}`
+            if (pull.state !== 'open' || pull.head.sha !== process.env.PREVIEW_HEAD_SHA ||
+                pull.base.ref !== 'main' || pull.base.repo.full_name !== repository ||
+                pull.head.repo?.full_name !== repository) {
+              core.setFailed('The current PR no longer matches the exact-head preview build.')
+            }
+
       - name: Create the exact pull-request deployment
         id: deployment
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
@@ -132,34 +154,60 @@ jobs:
           path: controller
           persist-credentials: false
 
-      - name: Checkout the exact pull-request head
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Set up trusted Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
         with:
-          ref: ${{ needs.identity.outputs.head_sha }}
-          path: candidate
-          persist-credentials: false
+          node-version-file: controller/website/package.json
 
-      - name: Install the pinned pnpm release
-        uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+      - name: Prepare isolated delivery tool directory
+        run: mkdir --parents "$RUNNER_TEMP/pages-preview-tool"
+
+      - name: Download the triggering run exact-head artifact
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
         with:
-          package_json_file: candidate/website/package.json
+          github-token: ${{ github.token }}
+          run-id: ${{ github.event.workflow_run.id }}
+          name: pages-preview-${{ needs.identity.outputs.head_sha }}
+          path: ${{ runner.temp }}/pages-preview-artifact
 
-      - name: Set up Node
-        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
-        with:
-          node-version-file: candidate/website/package.json
-          cache: pnpm
-          cache-dependency-path: candidate/website/pnpm-lock.yaml
-
-      - name: Build the exact-head website preview
+      - name: Validate static preview files
+        env:
+          PREVIEW_DIST: ${{ runner.temp }}/pages-preview-artifact
         run: |
-          pnpm --dir candidate/website install --frozen-lockfile
-          pnpm --dir candidate/website check
+          python3 - <<'PYCODE'
+          import os
+          import stat
+          from pathlib import Path
+          root = Path(os.environ['PREVIEW_DIST'])
+          for directory, dirs, files in os.walk(root, followlinks=False):
+              for name in dirs + files:
+                  path = Path(directory) / name
+                  mode = path.lstat().st_mode
+                  if stat.S_ISLNK(mode) or not (stat.S_ISDIR(mode) or stat.S_ISREG(mode)):
+                      raise SystemExit(f'Unsupported static artifact entry: {path}')
+                  if name == '_worker.js':
+                      raise SystemExit(f'Pages Worker code is forbidden: {path}')
+          if not (root / 'index.html').is_file():
+              raise SystemExit('Static preview requires index.html')
+          PYCODE
 
-      - name: Prepare the isolated Pages delivery
-        run: |
-          mkdir --parents .pages-preview
-          cp --recursive candidate/website/.vitepress/dist .pages-preview/dist
+      - name: Reverify the current pull request before delivery
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+        env:
+          PREVIEW_PULL_NUMBER: ${{ needs.identity.outputs.pull_number }}
+          PREVIEW_HEAD_SHA: ${{ needs.identity.outputs.head_sha }}
+        with:
+          script: |
+            const { data: pull } = await github.rest.pulls.get({
+              ...context.repo,
+              pull_number: Number(process.env.PREVIEW_PULL_NUMBER),
+            })
+            const repository = `${context.repo.owner}/${context.repo.repo}`
+            if (pull.state !== 'open' || pull.head.sha !== process.env.PREVIEW_HEAD_SHA ||
+                pull.base.ref !== 'main' || pull.base.repo.full_name !== repository ||
+                pull.head.repo?.full_name !== repository) {
+              core.setFailed('The current PR no longer matches the exact-head preview build.')
+            }
 
       - name: Deploy to the isolated Pages preview branch
         id: pages
@@ -169,9 +217,9 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           packageManager: npm
           wranglerVersion: 4.114.0
-          workingDirectory: .pages-preview
+          workingDirectory: ${{ runner.temp }}/pages-preview-tool
           command: >-
-            pages deploy dist
+            pages deploy ${{ runner.temp }}/pages-preview-artifact
             --project-name=${{ vars.CLOUDFLARE_PAGES_PROJECT }}
             --branch=${{ needs.identity.outputs.branch }}
             --commit-hash=${{ needs.identity.outputs.head_sha }}
