@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     outputs:
-      release_identity: ${{ steps.stamp.outputs.release_identity }}
+      release_identity: ${{ steps.build.outputs.release_identity }}
       artifact_digest: ${{ steps.artifact.outputs['artifact-digest'] }}
       head_sha: ${{ steps.identity.outputs.head_sha }}
     steps:
@@ -57,13 +57,13 @@ jobs:
         run: pnpm --dir website install --frozen-lockfile
 
       - name: Build and verify the website release
-        run: pnpm --dir website check
-
-      - name: Stamp the built root page with its release identity
-        id: stamp
-        run: node website/scripts/stamp-release.mjs
+        id: build
         env:
           RELEASE_HEAD_SHA: ${{ steps.identity.outputs.head_sha }}
+        run: |
+          release_identity="${RELEASE_HEAD_SHA}:${GITHUB_RUN_ID}:${GITHUB_RUN_ATTEMPT}"
+          INKCRE_PAGES_RELEASE_IDENTITY="${release_identity}" pnpm --dir website check
+          echo "release_identity=${release_identity}" >> "${GITHUB_OUTPUT}"
 
       - name: Upload the exact release artifact
         id: artifact

@@ -1,6 +1,8 @@
 import { defineConfig, type HeadConfig } from 'vitepress'
 import { canonicalOrigin, defaultLanguage } from '../scripts/site-contract.mjs'
 
+const releaseIdentity = process.env.INKCRE_PAGES_RELEASE_IDENTITY
+
 const description =
   'InKCre collects information from the tools you use so you can find it and put it to use.'
 
@@ -34,7 +36,8 @@ export default defineConfig({
       pageData.title && pageData.title !== 'InKCre' ? `${pageData.title} | InKCre` : 'InKCre'
     const pageDescription = pageData.description || description
 
-    ;((pageData.frontmatter.head ??= []) as HeadConfig[]).push(
+    const head = (pageData.frontmatter.head ??= []) as HeadConfig[]
+    head.push(
       ['link', { rel: 'canonical', href: url }],
       ['meta', { property: 'og:type', content: 'website' }],
       ['meta', { property: 'og:site_name', content: 'InKCre' }],
@@ -46,6 +49,9 @@ export default defineConfig({
       ['meta', { name: 'twitter:title', content: title }],
       ['meta', { name: 'twitter:description', content: pageDescription }]
     )
+    if (releaseIdentity && url === new URL('/', canonicalOrigin).href) {
+      head.push(['meta', { name: 'inkcre-release', content: releaseIdentity }])
+    }
   },
   themeConfig: {
     logo: '/images/inkcre-mark.svg',
