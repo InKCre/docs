@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "vitepress build",
-    "check": "pnpm format:check && pnpm build",
+    "check": "pnpm format:check && pnpm test && pnpm build",
+    "test": "node --test scripts/*.test.mjs",
     "dev": "vitepress dev",
     "format": "oxfmt .",
     "format:check": "oxfmt --check .",
