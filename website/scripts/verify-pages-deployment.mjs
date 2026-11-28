@@ -1,6 +1,5 @@
 import { appendFile } from 'node:fs/promises'
 import { pathToFileURL } from 'node:url'
-import { requireReleaseIdentity } from './stamp-release.mjs'
 import { canonicalOrigin as canonicalOriginUrl, defaultLanguage } from './site-contract.mjs'
 
 export async function verifyPagesDeployment(
@@ -24,6 +23,13 @@ export async function verifyPagesDeployment(
     )
   }
 
+  if (
+    smokeMode === 'production' &&
+    !/^[a-f0-9]{40}:[1-9][0-9]*:[1-9][0-9]*$/.test(expectedReleaseIdentity ?? '')
+  ) {
+    throw new Error('Release identity must contain an exact SHA, run ID, and build attempt')
+  }
+
   if (!deploymentId) {
     throw new Error('Wrangler did not report a Cloudflare Pages deployment ID')
   }
@@ -36,21 +42,24 @@ export async function verifyPagesDeployment(
     throw new Error(`Unexpected Cloudflare Pages deployment URL: ${pagesOrigin.origin}`)
   }
 
-  function matchingTags(html, tagName, expectedAttributes) {
-    const tags = html.match(new RegExp(`<${tagName}\\b[^>]*>`, 'g')) ?? []
-
-    return tags.filter((tag) => {
-      const attributes = new Map(
-        [...tag.matchAll(/([:\w-]+)="([^"]*)"/g)].map((match) => [match[1], match[2]])
-      )
-      return Object.entries(expectedAttributes).every(
-        ([name, value]) => attributes.get(name) === value
-      )
-    })
+  function tagAttributes(html, name) {
+    const tags = html.match(new RegExp(`<${name}\\b[^>]*>`, 'gi')) ?? []
+    return tags.map(
+      (tag) =>
+        new Map(
+          [...tag.matchAll(/\s([:\w-]+)\s*=\s*(["'])(.*?)\2/g)].map((match) => [
+            match[1].toLowerCase(),
+            match[3],
+          ])
+        )
+    )
   }
 
   function requireSingleTag(html, tagName, expectedAttributes, address, purpose) {
-    if (matchingTags(html, tagName, expectedAttributes).length !== 1) {
+    const matches = tagAttributes(html, tagName).filter((attributes) =>
+      Object.entries(expectedAttributes).every(([name, value]) => attributes.get(name) === value)
+    )
+    if (matches.length !== 1) {
       throw new Error(`${address} does not contain exactly one ${purpose}`)
     }
   }
@@ -86,7 +95,15 @@ export async function verifyPagesDeployment(
     )
 
     if (smokeMode === 'production') {
-      requireReleaseIdentity(body, expectedReleaseIdentity, address)
+      const head = body.match(/<head\b[^>]*>([\s\S]*?)<\/head\s*>/i)?.[1] ?? ''
+      const markers = tagAttributes(head, 'meta').filter(
+        (attributes) => attributes.get('name')?.toLowerCase() === 'inkcre-release'
+      )
+      if (markers.length !== 1 || markers[0].get('content') !== expectedReleaseIdentity) {
+        throw new Error(
+          `${address} does not contain exactly one expected release marker ${expectedReleaseIdentity}`
+        )
+      }
     }
 
     const robotsHeader = response.headers.get('x-robots-tag') || ''

@@ -1,6 +1,5 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { stampRelease, requireReleaseIdentity } from './stamp-release.mjs'
 import { verifyPagesDeployment } from './verify-pages-deployment.mjs'
 
 const identity = `${'a'.repeat(40)}:12345:1`
@@ -11,6 +10,10 @@ const env = {
   CLOUDFLARE_PAGES_DEPLOYMENT_ID: 'deployment',
   CLOUDFLARE_PAGES_DEPLOYMENT_URL: 'https://release.inkcre.pages.dev',
   INKCRE_PAGES_RELEASE_IDENTITY: identity,
+}
+
+function releaseMarker(value) {
+  return `<meta name="inkcre-release" content="${value}">`
 }
 
 function fakeFetch({ canonicalIdentity = identity, pagesIdentity = identity, mutate } = {}) {
@@ -28,58 +31,19 @@ function fakeFetch({ canonicalIdentity = identity, pagesIdentity = identity, mut
     if (url.pathname === '/sitemap.xml') return new Response('<urlset></urlset>')
     if (url.pathname === '/robots.txt')
       return new Response('Sitemap: https://inkcre.dev/sitemap.xml')
-    let html = marker ? stampRelease(rootHtml, marker) : rootHtml
+    let html = marker ? rootHtml.replace('</head>', `${releaseMarker(marker)}</head>`) : rootHtml
     if (mutate) html = mutate(html)
     return new Response(html, { headers })
   }
   return { fetchPage, retryAttempts: 1, requested }
 }
 
-test('stamp changes only head metadata and requires a valid exact build identity', () => {
-  const stamped = stampRelease(rootHtml, identity)
-  assert.equal(
-    stamped,
-    rootHtml.replace('<head>', `<head><meta name="inkcre-release" content="${identity}">`)
-  )
-  requireReleaseIdentity(stamped, identity, 'root')
-  for (const invalid of [
-    undefined,
-    '',
-    `${'a'.repeat(39)}:1:1`,
-    `${'g'.repeat(40)}:1:1`,
-    `${'a'.repeat(40)}:0:1`,
-    `${'a'.repeat(40)}:1:0`,
-    `${identity}\n`,
-  ]) {
-    assert.throws(() => stampRelease(rootHtml, invalid), /Release identity/)
-  }
-})
-
-test('stamp rejects missing, duplicate, reversed heads and existing markers', () => {
-  for (const html of [
-    '<html></html>',
-    '<head></head><head></head>',
-    '<head></head></head>',
-    '</head><head>',
-    stampRelease(rootHtml, identity),
-  ]) {
-    assert.throws(() => stampRelease(html, identity))
-  }
-})
-
-test('root validation rejects duplicate, missing, wrong, or body-only markers', () => {
-  const stamped = stampRelease(rootHtml, identity)
-  for (const html of [
-    rootHtml,
-    stampRelease(rootHtml, staleIdentity),
-    stampRelease(rootHtml, `${'a'.repeat(40)}:12345:2`),
-    stampRelease(rootHtml, `${'a'.repeat(40)}:12346:1`),
-    stamped.replace('name="inkcre-release"', 'data-name="inkcre-release"'),
-    stamped.replace(`content="${identity}"`, `data-content="${identity}"`),
-    stamped.replace('</head>', `<meta name="inkcre-release" content="${staleIdentity}"></head>`),
-    rootHtml.replace('<body>', `<body><meta name="inkcre-release" content="${identity}">`),
-  ]) {
-    assert.throws(() => requireReleaseIdentity(html, identity, 'root'), /expected release marker/)
+test('production rejects malformed expected identities', async () => {
+  for (const invalid of [undefined, '', `${'a'.repeat(39)}:1:1`, `${'a'.repeat(40)}:0:1`]) {
+    await assert.rejects(
+      verifyPagesDeployment({ ...env, INKCRE_PAGES_RELEASE_IDENTITY: invalid }, fakeFetch()),
+      /Release identity/
+    )
   }
 })
 
@@ -91,16 +55,39 @@ test('production checks the expected build on both actual roots and retains all 
   assert(options.requested.includes('https://release.inkcre.pages.dev/'))
 })
 
-for (const [name, identities] of [
+for (const [name, fixture] of [
   ['stale canonical root', { canonicalIdentity: staleIdentity }],
   ['stale immutable root', { pagesIdentity: staleIdentity }],
   ['missing production marker', { canonicalIdentity: null }],
+  ['wrong build attempt', { pagesIdentity: `${'a'.repeat(40)}:12345:2` }],
+  ['wrong workflow run', { pagesIdentity: `${'a'.repeat(40)}:12346:1` }],
+  [
+    'duplicate root markers',
+    {
+      mutate: (html) =>
+        html.replace('</head>', `<META NAME='INKCRE-RELEASE' CONTENT='${staleIdentity}'></head>`),
+    },
+  ],
+  [
+    'body-only marker',
+    {
+      mutate: (html) =>
+        html
+          .replace(releaseMarker(identity), '')
+          .replace('<body>', `<body>${releaseMarker(identity)}`),
+    },
+  ],
+  [
+    'lookalike name attribute',
+    { mutate: (html) => html.replace('name="inkcre-release"', 'data-name="inkcre-release"') },
+  ],
+  [
+    'lookalike content attribute',
+    { mutate: (html) => html.replace(`content="${identity}"`, `data-content="${identity}"`) },
+  ],
 ]) {
   test(`production rejects ${name} without network or retry delays`, async () => {
-    await assert.rejects(
-      verifyPagesDeployment(env, fakeFetch(identities)),
-      /expected release marker/
-    )
+    await assert.rejects(verifyPagesDeployment(env, fakeFetch(fixture)), /expected release marker/)
   })
 }
 
