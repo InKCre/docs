@@ -58,9 +58,9 @@ defines principals, protocol admission, lifecycle, readiness, and JWT claims.
 
 ## Peer runtimes, not frontend and backend tiers
 
-`impl-py`, `impl-ts`, and compatible future runtimes participate as Peers around the same info-base.
-`impl-py` owns migrations and the executable database lifecycle contract, but it is not a central
-owner of every request path or product behavior.
+The Python, TypeScript, Rust, and macOS implementations participate as Peers around the same
+info-base. `impl-py` owns migrations and the executable database lifecycle contract, but it is not a
+central owner of every request path or product behavior.
 
 The Web app demonstrates this topology: database operations use PostgREST, while runtime-owned
 capabilities may use native HTTP surfaces advertised by an online Peer. The durable boundary is the
@@ -90,17 +90,16 @@ provider internals remain outside that surface.
 
 ### Extensions
 
-An Extension packages one or more capabilities for a compatible Host. A deployment installs one
-exact version; each Peer records whether it should enable that Extension. For normal operation,
-**online Peer + enabled intent** means the Host is expected to run it best-effort. There is no
-second durable `running` flag for users to maintain. Runtime errors and capability observations can
-still show that expected activation failed.
+A deployment shares one Extension identity, configuration, and business state. Each Peer chooses a
+compatible distribution and exact version, and stores its own enablement intent. The Host reports
+what actually loads and runs. A change to one Peer's selection leaves the other Peers' selections
+intact.
 
-Core supports Python wheels with explicit Host compatibility. A release may also contain a browser
-distribution for Web app setup or rendering. The
-[Source Extension tutorial](/developer/ecosystem/source-extension) covers the current Core Host SDK
-`0.3.x` path; those programming interfaces still import Core modules and are not a standalone,
-permanently stable Source SDK.
+Python wheels and browser Module Federation distributions have independent release versions. A
+signed macOS app can carry its own bundled distribution. The
+[extension release and installation contract](https://github.com/InKCre/docs/blob/main/20-product-tdd/extension-release-and-installation.md)
+defines how these releases and Peer choices fit together. The
+[Source Extension tutorial](/developer/ecosystem/source-extension) covers the Python Host path.
 
 ### Native HTTP and sinks
 

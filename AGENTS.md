@@ -31,7 +31,7 @@ This Hub owns **what** the product is and **why** (PRD), plus the cross-unit tec
 - Read `10-prd/` for product claims and `20-product-tdd/` for cross-unit contracts; do not put Spoke-local architecture or runtime mechanics in either.
 - Edit and publish Hub truth before updating any Spoke `docs/_shared` reference.
 - Keep Hub edits, Spoke reference bumps, and Spoke-local changes in separate commits.
-- Task retention: keep packets while work is active; completed packets may be deleted without an archive or deletion-time promotion review.
+- Task retention follows the installed SVC workflow and the [task workspace guide](tasks/README.md).
 
 ## Governance And Workflow
 

@@ -36,17 +36,10 @@ develop your own Python package and test it on a matching Core Host without cont
 This is not a promise of unrestricted database access or a complete API compatibility policy. The
 [Architecture guide](/developer/architecture) explains the wider model and canonical contracts.
 
-## Primary repositories
+## Find the owning repository
 
-| Repository                                            | Role and development entry                                                                                                                                       |
-| ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`InKCre/docs`](https://github.com/InKCre/docs)       | Shared product and cross-unit documentation Hub; source of this website. Start with its [README](https://github.com/InKCre/docs#readme).                         |
-| [`InKCre/impl-py`](https://github.com/InKCre/impl-py) | Python core runtime, migrations, and database lifecycle authority. Follow its [contributing guide](https://github.com/InKCre/impl-py/blob/main/CONTRIBUTING.md). |
-| [`InKCre/impl-ts`](https://github.com/InKCre/impl-ts) | Web app, browser extension, and shared TypeScript SDK libraries. Start with its [README](https://github.com/InKCre/impl-ts#readme).                              |
-| [`InKCre/ui`](https://github.com/InKCre/ui)           | Design system, tokens, and shared Web UI packages. Start with its [README](https://github.com/InKCre/ui#readme).                                                 |
-
-The [InKCre GitHub organization](https://github.com/InKCre) contains prototypes and historical
-repositories as well. They are not all equivalent contributor entry points.
+The [contribution guide's repository map](/developer/contributing#choose-the-change-owner) links
+each type of change to its owner.
 
 ## Canonical foundations
 
