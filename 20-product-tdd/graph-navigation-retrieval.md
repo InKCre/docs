@@ -70,6 +70,10 @@ Runtime database identities，one arbitrary equal-shortest path，private query 
 geometry are deliberately absent. Every peer runner resolves aliases only inside its
 acceptance harness.
 
+The Hub skill `verify-peer-graph-contract` runs this corpus through Python and Rust's
+public HTTP routes on one disposable database. Each runner may accept either valid
+equal-length path after checking its endpoints, direction, and Relation filters.
+
 ## Explicit Non-Goals
 
 - generic N-hop/pattern query language，full-graph loading or community analysis
