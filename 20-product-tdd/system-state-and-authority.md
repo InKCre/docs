@@ -4,11 +4,6 @@
 
 Record durable ownership of authoritative state across units and distinguish it from derived state.
 
-## Current Baseline
-
-- This file is initialized as a scaffold.
-- Populate only cross-unit state authority that is stable and expensive to rediscover.
-
 ## Shared Database Authority
 
 - PostgreSQL is authoritative for shared persisted InKCre state.
@@ -23,14 +18,15 @@ Record durable ownership of authoritative state across units and distinguish it 
   revalidate values already restored by that owner. Runtime capability checks remain separate
   from the authority of saved records.
 
-## Extension Installation Authority
+## Extension Participation Authority
 
-- Extension installation state is authoritative at the deployment level.
-- One deployment must not carry multiple installed records for the same extension ID.
-- Installation state is distinct from a Peer’s local execution permissions and from current runtime activity.
-- Validated extension configuration is deployment-scoped durable state. External protocol
-  profiles or credentials projected from that configuration do not create an InKCre User or
-  tenant authority.
+- One deployment shares the Extension identity, validated configuration, and business state.
+- The database records the exact distribution and version selected for each `Peer × Extension`,
+  together with that Peer's persistent enablement intent.
+- The current Host reports the distribution, version, and result it actually runs.
+- External protocol profiles and credentials derived from Extension configuration keep their native
+  authority. The [extension release and installation contract](extension-release-and-installation.md)
+  defines this split and the migration from deployment-wide versions.
 
 ## Info-Base Graph Authority
 

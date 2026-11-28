@@ -4,11 +4,6 @@
 
 Define cross-unit technical boundaries and ownership so changes do not leak responsibilities.
 
-## Current Baseline
-
-- This file is initialized as a scaffold.
-- Add stable cross-unit boundaries only after they are confirmed by at least one real integration change.
-
 ## Core 与 App
 
 [Core 与 App 边界](core-app-boundary.md)规定各语言实现的 SDK/lib 与应用消费关系，以及资源生命周期和平台依赖的归属。这是已确认的目标设计，各实现的迁移状态由对应仓库记录。
@@ -17,8 +12,8 @@ Define cross-unit technical boundaries and ownership so changes do not leak resp
 
 ## Database Peer Topology
 
-- Applications delivered by `impl-py`, `impl-ts`, `impl-swift`, and future implementations may run as
-  peer nodes; frontend/backend hierarchy is not part of the durable topology.
+- Applications delivered by `impl-py`, `impl-ts`, `impl-rs`, and `impl-swift` can participate
+  as peer nodes around the shared info-base.
 - Native PostgreSQL and PostgREST are transports over one admitted database protocol, not
   separate semantic authorities.
 - Every authenticated peer may operate the complete admitted protocol surface. Different
@@ -30,7 +25,7 @@ Define cross-unit technical boundaries and ownership so changes do not leak resp
   Peer without turning the deployment into a fixed frontend/backend hierarchy.
 - `inkcre/capture` 是 first-party extension，拥有跨平台的材料、采集图与收入语义。Mac 原生分发在本 Peer 内完成采集、持久待办、构图与共享写入；Host/Core 提供通用运行和数据库能力。
 - `inkcre/local-files` 拥有目录来源、文件位置引用、正文与持续更新合同。具备文件访问能力的分发直接收入，读取分发解释已存正文，不要求执行 Peer 在线；见[本地文件合同](local-files-contract.md)。
-- Mac 使用 PostgreSQL 原生协议，Web 按浏览器运行能力使用 PostgREST；传输选择不划分 Peer 业务权威。仓库维护位置不构成运行时流水线。具体语义见[Capture Extension 合同](capture-contract.md)。
+- Mac 与 Rust HTTP Peer 直接使用 PostgreSQL 原生协议，Web App 使用 PostgREST。三者通过同一准入协议操作共享状态。
 - Shared actors，assets，trust boundaries and proportional security classification use the
   [Security Boundary Model](security-boundary-model.md)。Each Unit still owns its executable
   admission，rendering，runtime and deployment mechanics。

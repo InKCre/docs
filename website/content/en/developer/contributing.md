@@ -28,18 +28,23 @@ Report suspected vulnerabilities privately through that repository's `SECURITY.m
 
 ## Choose the change owner
 
-| Change                                          | Start here                                                                                                                       |
-| ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| Product purpose, behavior, or shared vocabulary | [`InKCre/docs`](https://github.com/InKCre/docs) → [`10-prd/**`](https://github.com/InKCre/docs/tree/main/10-prd)                 |
-| Cross-unit state, topology, or interoperability | [`InKCre/docs`](https://github.com/InKCre/docs) → [`20-product-tdd/**`](https://github.com/InKCre/docs/tree/main/20-product-tdd) |
-| Hub/Spoke shared-document workflow              | [`InKCre/docs`](https://github.com/InKCre/docs) → [`00-meta/**`](https://github.com/InKCre/docs/tree/main/00-meta)               |
-| Core runtime, migrations, or database lifecycle | [`InKCre/impl-py`](https://github.com/InKCre/impl-py)                                                                            |
-| Web app or browser extension                    | [`InKCre/impl-ts`](https://github.com/InKCre/impl-ts)                                                                            |
-| Design tokens or shared UI                      | [`InKCre/ui`](https://github.com/InKCre/ui)                                                                                      |
-| Public website content or presentation          | [`InKCre/docs`](https://github.com/InKCre/docs) → [`website/**`](https://github.com/InKCre/docs/tree/main/website)               |
+| Change                                                | Start here                                                                                                                       |
+| ----------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| Product purpose, behavior, or shared vocabulary       | [`InKCre/docs`](https://github.com/InKCre/docs) → [`10-prd/**`](https://github.com/InKCre/docs/tree/main/10-prd)                 |
+| Cross-unit state, topology, or interoperability       | [`InKCre/docs`](https://github.com/InKCre/docs) → [`20-product-tdd/**`](https://github.com/InKCre/docs/tree/main/20-product-tdd) |
+| Hub/Spoke shared-document workflow                    | [`InKCre/docs`](https://github.com/InKCre/docs) → [`00-meta/**`](https://github.com/InKCre/docs/tree/main/00-meta)               |
+| Python SDK or Peer, migrations, or database lifecycle | [`InKCre/impl-py`](https://github.com/InKCre/impl-py/blob/main/CONTRIBUTING.md)                                                  |
+| Rust core SDK or HTTP Peer                            | [`InKCre/impl-rs`](https://github.com/InKCre/impl-rs/blob/main/CONTRIBUTING.md)                                                  |
+| macOS app or native Peer                              | [`InKCre/impl-swift`](https://github.com/InKCre/impl-swift#readme)                                                               |
+| Extension Registry, Toolkit, or extension runtime     | [`InKCre/ext-reg`](https://github.com/InKCre/ext-reg/blob/main/CONTRIBUTING.md)                                                  |
+| Web app or browser extension                          | [`InKCre/impl-ts`](https://github.com/InKCre/impl-ts)                                                                            |
+| Design tokens or shared UI                            | [`InKCre/ui`](https://github.com/InKCre/ui)                                                                                      |
+| Reusable Agent assets shared across repositories      | [`InKCre/agent-skills`](https://github.com/InKCre/agent-skills#readme)                                                           |
+| Public website content or presentation                | [`InKCre/docs`](https://github.com/InKCre/docs) → [`website/**`](https://github.com/InKCre/docs/tree/main/website)               |
 
-If a change spans repositories, separate the shared contract from each repository's implementation
-instead of making one repository silently own the others.
+For a cross-repository change, update the shared contract in the Hub and the implementation in each
+owning repository. The [Kotlin CameraX sample](https://github.com/InKCre/impl-kotlin) and
+[early product docs](https://github.com/InKCre/inkcre-docu) are historical references.
 
 ## Follow the selected repository
 

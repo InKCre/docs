@@ -4,11 +4,6 @@
 
 Map product claims to participating units and clarify each unit's technical responsibility.
 
-## Current Baseline
-
-- This file is initialized as a scaffold.
-- Populate rows only for claims already accepted in PRD and already linked to implementation units.
-
 | Product claim | Reference realization | Participating units | Evidence boundary |
 | --- | --- | --- | --- |
 | Organize information in one reusable info-base | Explicit focal-block rumination and system-driven media interpretation are admitted organization approaches; Agents may add ordinary graph interpretations while preserving existing graph authority | `impl-py`; `impl-ts` as an explicit rumination trigger and retrieval consumer | Real-provider Resolver/Agent/Tool/graph journeys, meaningful no-write boundary, and bounded independent media candidates; not a complete organization taxonomy, replacement, merge, or linking realization |
